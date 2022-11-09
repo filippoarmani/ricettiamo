@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_cercaRicetta"
+        android:name="cfgmm.ricettiamo.ui.cercaRicetta.CercaRicettaFragment"
+        android:label="@string/menu_cerca_ricetta"
+        tools:layout="@layout/fragment_cercaricetta" />
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="cfgmm.ricettiamo.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_frigorifero"
+        android:name="cfgmm.ricettiamo.ui.frigorifero.FrigoriferoFragment"
+        android:label="@string/menu_frigo"
+        tools:layout="@layout/fragment_frigorifero" />
+
+    <fragment
+        android:id="@+id/nav_listaDellaSpesa"
+        android:name="cfgmm.ricettiamo.ui.listaDellaSpesa.ListaDellaSpesaFragment"
+        android:label="@string/menu_shop"
+        tools:layout="@layout/fragment_listadellaspesa" />
+
+    <fragment
+        android:id="@+id/nav_preferiti"
+        android:name="cfgmm.ricettiamo.ui.preferiti.PreferitiFragment"
+        android:label="@string/menu_prefe"
+        tools:layout="@layout/fragment_preferiti" />
+
+    <fragment
+        android:id="@+id/nav_impostazioni"
+        android:name="cfgmm.ricettiamo.ui.impostazioni.ImpostazioniFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_impostazioni" />
+</navigation>
