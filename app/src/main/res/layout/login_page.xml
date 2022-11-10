@@ -64,7 +64,7 @@
 
     <Button
         android:id="@+id/l_login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginEnd="24dp"
         android:layout_below="@+id/l_passwordD"
@@ -111,7 +111,7 @@
 
     <Button
         android:id="@+id/button_Lgin_Google"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/l_or"
         android:layout_centerHorizontal="true"
