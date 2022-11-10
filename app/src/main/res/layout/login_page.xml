@@ -64,7 +64,7 @@
 
     <Button
         android:id="@+id/l_login"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginEnd="24dp"
         android:layout_below="@+id/l_passwordD"
