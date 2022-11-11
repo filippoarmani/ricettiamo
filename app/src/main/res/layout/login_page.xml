@@ -15,6 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="47dp"
+
         app:srcCompat="@drawable/logo" />
 
     <EditText
@@ -26,19 +27,22 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
+
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/orang_w"
         android:drawableLeft="@drawable/email_icon"
         android:paddingLeft="20dp"
         android:drawablePadding="10dp"
+
         android:ems="10"
         android:hint="@string/email"
-        android:textSize="18dp"
-        android:textColorHint="@color/black"
-        android:textStyle="bold"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp"
+        android:textColorHint="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold"
         android:textColor="@color/black"
+        android:minHeight="48dp"
+
 
         />
 
@@ -50,19 +54,22 @@
         android:layout_marginEnd="24dp"
         android:layout_below="@+id/l_email"
         android:layout_centerHorizontal="true"
+
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/orang_w"
         android:drawableLeft="@drawable/password_icon"
         android:paddingLeft="20dp"
         android:drawablePadding="10dp"
+
         android:ems="10"
         android:hint="@string/password"
-        android:textSize="18dp"
         android:textColorHint="@color/black"
-        android:textStyle="bold"
         android:inputType="textPassword"
-        android:minHeight="48dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
         android:textColor="@color/black"
+        android:minHeight="48dp"
+        app:passwordToggleEnabled="true"
         />
 
 
@@ -74,23 +81,31 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="24dp"
         android:layout_alignParentEnd="true"
+
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:text="@string/p_dimenticata"
         android:textSize="14sp"
+        android:textColor="@color/orange"
         app:textAllCaps="false"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
         />
 
     <Button
         android:id="@+id/l_login"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="55dp"
         android:layout_marginEnd="24dp"
         android:layout_below="@+id/l_passwordD"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="24dp"
+
         android:backgroundTint="@color/orange"
+        app:cornerRadius="24dp"
+
         android:text="@string/login"
-        app:cornerRadius="24dp"/>
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        />
 
     <RelativeLayout
         android:id="@+id/l_or"
@@ -133,16 +148,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/l_or"
         android:layout_centerHorizontal="true"
-
-
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
+
         android:text="@string/login_google"
         android:textSize="14sp"
         android:textAllCaps="true"
         app:icon="@drawable/google_icon"
         android:textColor="@color/google_login_text"
-        app:backgroundTint="@color/google_login_button"
+        app:backgroundTint="@color/orang_w"
+        app:cornerRadius="24dp"
         app:iconGravity="textStart"
         app:iconTint="@null"
          />
@@ -169,6 +184,7 @@
             android:layout_marginEnd="24dp"
             android:text="@string/register"
             android:textSize="12sp"
+            android:textColor="@color/orange"
             app:textAllCaps="false"
             style="@style/Widget.MaterialComponents.Button.TextButton" />
 
