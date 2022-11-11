@@ -9,6 +9,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class Frigorifero extends AppCompatActivity {
+    private ArrayList<String> items;
+    private ArrayAdapter<String> itemsAdapter;
+    private ListView lvItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,9 +19,9 @@ public class Frigorifero extends AppCompatActivity {
         setContentView(R.layout.activity_frigorifero);
 
         //create listItem
-        ListView lvItems = (ListView) findViewById(R.id.lvItems);
-        ArrayList<String> items = new ArrayList<String>();
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+         lvItems = (ListView) findViewById(R.id.lvItems);
+        items = new ArrayList<String>();
+        itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.test_list_item, items);
         lvItems.setAdapter(itemsAdapter);
         items.add("First Item");
         items.add("Second Item");
