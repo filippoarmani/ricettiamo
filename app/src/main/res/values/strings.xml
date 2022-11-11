@@ -31,4 +31,5 @@
     <string name="menu_settings">Impostazioni</string>
     <string name="menu_logout">Logout</string>
     <string name="menu_upgrade">Upgrade account</string>
+    <string name="login_google">Login with Google</string>
 </resources>
