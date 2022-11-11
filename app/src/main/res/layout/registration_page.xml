@@ -114,13 +114,12 @@
     <Button
         android:id="@+id/r_creaAccount"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/r_password"
         android:layout_alignEnd="@id/r_password"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/orange"
-        android:text="@string/crea"
-        app:cornerRadius="24dp" />
+        app:cornerRadius="24dp"
+        android:text="@string/crea" />
 
 </RelativeLayout>
