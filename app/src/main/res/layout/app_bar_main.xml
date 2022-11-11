@@ -34,4 +34,13 @@
         app:layout_anchorGravity="center"
         app:popupTheme="@style/Theme.RicettiAmo.PopupOverlay" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_anchor="@+id/appBarLayout"
+        app:layout_anchorGravity="center"
+        app:popupTheme="@style/Theme.RicettiAmo.PopupOverlay" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
