@@ -151,11 +151,11 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
 
-        android:text="login_google"
+        android:text="@string/login_google"
         android:textSize="14sp"
         android:textAllCaps="true"
         app:icon="@drawable/google_icon"
-        android:textColor="color/google_login_text"
+        android:textColor="@color/google_login_text"
         app:backgroundTint="@color/orang_w"
         app:cornerRadius="24dp"
         app:iconGravity="textStart"
