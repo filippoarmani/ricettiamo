@@ -32,4 +32,10 @@
     <string name="menu_logout">Logout</string>
     <string name="menu_upgrade">Upgrade account</string>
     <string name="login_google">Login with Google</string>
+    <string name="upgrade_1">Condividi le tue ricette con il pubblico diventando un Cuoco di successo!</string>
+    <string name="upgrade_2">Avrai a disposizione un template predefinito  per la tua ricetta, dove potrai aggiungere le tue foto preferite.</string>
+    <string name="upgrade_3">Le tue ricette potranno essere valutate dal pubblico tramite delle stelle di gradimento.</string>
+    <string name="upgrade_4">Raggiungi il successo scalando la classifica tra i top Cuochi di Ricettiamo.</string>
+    <string name="upgrade_5">Cosa aspetti? Unisciti alla Community Cuoco di RicettiAmo!</string>
+    <string name="upgrade_button">Upgrade Cuoco</string>
 </resources>
