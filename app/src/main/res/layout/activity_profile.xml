@@ -13,6 +13,18 @@
         android:layout_height="80dp"
         android:background="@drawable/ban" />
 
+    <TextView
+        android:id="@+id/profText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/bakerie"
+        android:text="@string/profilo"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
     <ImageView
         android:id="@+id/user"
         android:contentDescription="@string/nome_cognom"
@@ -23,6 +35,18 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="120dp"
         android:background="@drawable/user"
+        android:elevation="10dp" />
+
+    <ImageView
+        android:id="@+id/menulat"
+        android:contentDescription="@string/nome_cognom"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/menulat"
         android:elevation="10dp" />
 
     <TextView
