@@ -35,9 +35,7 @@
     <string name="nome_cognom">Nome Cognome</string>
     <string name="descrizione">Descrizione Cuoco</string>
     <string name="le_mie_rice">Le mie ricette:</string>
-    <string name="spaghetti_a">Spaghetti alla carbonara</string>
-    <string name="risotto_all">Risotto allo zafferano</string>
-    <string name="le_mie_stel">Le mie stelle:</string>
+    <string name="le_mie_stel">Le mie stelle ottenute:</string>
     <string name="stelleTot">30</string>
     <string name="la_mia_posi">La mia posizione in classifica:</string>
     <string name="pos">#46</string>
