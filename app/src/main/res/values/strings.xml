@@ -32,16 +32,21 @@
     <string name="menu_logout">Logout</string>
     <string name="menu_upgrade">Upgrade account</string>
 
-    <string name="nome_cognom">Nome Cognome</string>
-    <string name="descrizione">Descrizione Cuoco</string>
-    <string name="le_mie_rice">Le mie ricette:</string>
-    <string name="le_mie_stel">Le mie stelle ottenute:</string>
-    <string name="stelleTot">30</string>
-    <string name="la_mia_posi">La mia posizione in classifica:</string>
-    <string name="pos">#46</string>
-    <string name="profilo">Profilo</string>
 
 
+    <string name="text"> Text</string>
+    <string name="upgrade_1">Condividi le tue ricette con il pubblico diventando un Cuoco di successo!</string>
+    <string name="upgrade_2">Avrai a disposizione un template predefinito  per la tua ricetta, dove potrai aggiungere le tue foto preferite.</string>
+    <string name="upgrade_3">Le tue ricette potranno essere valutate dal pubblico tramite delle stelle di gradimento.</string>
+    <string name="upgrade_4">Raggiungi il successo scalando la classifica tra i top Cuochi di Ricettiamo.</string>
+    <string name="upgrade_5">Cosa aspetti? Unisciti alla Community Cuoco di RicettiAmo!</string>
+    <string name="upgrade_button">Upgrade Cuoco</string>
 
-
+    <string-array name="qta_array">
+        <item>gr</item>
+        <item>kg</item>
+        <item>pz</item>
+        <item>ml</item>
+        <item>l</item>
+    </string-array>
 </resources>
