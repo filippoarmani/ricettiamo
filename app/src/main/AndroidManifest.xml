@@ -13,13 +13,6 @@
         android:theme="@style/Theme.RicettiAmo"
         tools:targetApi="31">
         <activity
-            android:name=".frigorifero"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
@@ -34,9 +27,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
