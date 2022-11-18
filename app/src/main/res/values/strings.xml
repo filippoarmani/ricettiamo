@@ -36,10 +36,10 @@
 
 
     <string-array name="qta_array">
-        <item>Italy</item>
-        <item>France</item>
-        <item>Germany</item>
-        <item>Spain</item>
-        <item>US</item>
+        <item>gr</item>
+        <item>kg</item>
+        <item>l</item>
+        <item>ml</item>
+        <item>pz</item>
     </string-array>
 </resources>
