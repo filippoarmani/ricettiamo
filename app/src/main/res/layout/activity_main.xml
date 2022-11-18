@@ -37,7 +37,9 @@
             android:id="@+id/relativeLayout"
             android:layout_width="@dimen/fab_margin"
             android:layout_height="match_parent"
-            android:background="@color/orange"></RelativeLayout>
+            android:background="@color/orange">
+
+        </RelativeLayout>
 
     </com.google.android.material.navigation.NavigationView>
 

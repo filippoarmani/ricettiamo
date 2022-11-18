@@ -6,10 +6,10 @@
     app:startDestination="@+id/nav_home">
 
     <fragment
-        android:id="@+id/nav_cercaRicetta"
+        android:id="@+id/nav_cerca_ricetta"
         android:name="cfgmm.ricettiamo.ui.cercaRicetta.CercaRicettaFragment"
         android:label="@string/menu_cerca_ricetta"
-        tools:layout="@layout/fragment_cercaricetta" />
+        tools:layout="@layout/fragment_cerca_ricetta" />
 
     <fragment
         android:id="@+id/nav_home"
@@ -27,7 +27,7 @@
         android:id="@+id/nav_listaDellaSpesa"
         android:name="cfgmm.ricettiamo.ui.listaDellaSpesa.ListaDellaSpesaFragment"
         android:label="@string/menu_shop"
-        tools:layout="@layout/fragment_listadellaspesa" />
+        tools:layout="@layout/fragment_lista_della_spesa" />
 
     <fragment
         android:id="@+id/nav_preferiti"
@@ -40,4 +40,17 @@
         android:name="cfgmm.ricettiamo.ui.impostazioni.ImpostazioniFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_impostazioni" />
+
+    <fragment
+        android:id="@+id/nav_upgrade"
+        android:name="cfgmm.ricettiamo.ui.upgradeAccount.UpgradeAccountFragment"
+        android:label="@string/menu_upgrade"
+        tools:layout="@layout/fragment_upgrade_account" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="cfgmm.ricettiamo.ui.logout.LogoutFragment"
+        android:label="@string/menu_logout"
+        tools:layout="@layout/fragment_logout" />
+
 </navigation>
