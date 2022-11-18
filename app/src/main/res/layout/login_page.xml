@@ -29,7 +29,7 @@
         android:layout_marginEnd="24dp"
 
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
+        android:backgroundTint="@color/orange_w"
         android:drawableLeft="@drawable/email_icon"
         android:paddingLeft="20dp"
         android:drawablePadding="10dp"
@@ -57,7 +57,7 @@
         android:layout_centerHorizontal="true"
 
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
+        android:backgroundTint="@color/orange_w"
         android:drawableLeft="@drawable/password_icon"
         android:paddingLeft="20dp"
         android:drawablePadding="10dp"
@@ -161,7 +161,7 @@
         app:icon="@drawable/google_icon"
         android:textColor="@color/google_login_text"
         android:fontFamily="@font/montserrat"
-        app:backgroundTint="@color/orang_w"
+        app:backgroundTint="@color/orange_w"
         app:cornerRadius="24dp"
         app:iconGravity="textStart"
         app:iconTint="@null"
