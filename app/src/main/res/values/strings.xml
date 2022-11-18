@@ -42,6 +42,26 @@
     <string name="upgrade_5">Cosa aspetti? Unisciti alla Community Cuoco di RicettiAmo!</string>
     <string name="upgrade_button">Upgrade Cuoco</string>
 
+    <string name="nome_cognom">Nome Cognome</string>
+    <string name="descrizione">Descrizione Cuoco</string>
+    <string name="le_mie_rice">Le mie ricette:</string>
+    <string name="le_mie_stel">Le mie stelle ottenute:</string>
+    <string name="stelleTot">30</string>
+    <string name="la_mia_posi">La mia posizione in classifica:</string>
+    <string name="pos">#46</string>
+    <string name="profilo">Profilo</string>
+    <string name="ricette_preferite">Ricette Preferite</string>
+    <string name="antipasti">Antipasti</string>
+    <string name="primi_piatti">Primi Piatti</string>
+    <string name="secondi_piatti">Secondi Piatti</string>
+    <string name="dolci">Dolci</string>
+    <string name="info">Info</string>
+    <string name="chiSiamo">Chi Siamo</string>
+    <string name="accedi">Accedi</string>
+    <string name="upgradeCuoco">Upgrade Cuoco</string>
+    <string name="ritornaInAlto">Ritorna in alto</string>
+    <string name="login_google">login google</string>
+
     <string-array name="qta_array">
         <item>gr</item>
         <item>kg</item>
