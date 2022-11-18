@@ -33,7 +33,6 @@
     <string name="menu_upgrade">Upgrade account</string>
 
 
-
     <string name="text"> Text</string>
     <string name="upgrade_1">Condividi le tue ricette con il pubblico diventando un Cuoco di successo!</string>
     <string name="upgrade_2">Avrai a disposizione un template predefinito  per la tua ricetta, dove potrai aggiungere le tue foto preferite.</string>
@@ -69,4 +68,6 @@
         <item>ml</item>
         <item>l</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
