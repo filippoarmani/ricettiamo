@@ -53,7 +53,7 @@
             android:layout_marginStart="30dp"
             android:layout_alignParentTop="true"
             android:layout_marginTop="25dp"
-            android:background="@drawable/ic_chef"
+            android:background="@drawable/edit_text2"
             android:elevation="10dp" />
 
         <TextView
@@ -89,7 +89,7 @@
             android:layout_below="@+id/email"
             android:layout_centerInParent="true"
             android:layout_marginTop="15dp"
-            android:background="@drawable/ic_chef"
+            android:background="@drawable/edit_text2"
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:text="@string/descrizione"
@@ -105,7 +105,7 @@
             android:layout_below="@+id/descrizioneTesto"
             android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
-            android:background="@drawable/ic_chef"
+            android:background="@drawable/edit_text2"
             android:paddingStart="18dp"
             android:paddingEnd="1dp"
             tools:context=".MainActivity"
@@ -131,7 +131,7 @@
             android:layout_below="@+id/ric"
             android:layout_marginTop="28dp"
             android:layout_marginStart="30dp"
-            android:background="@drawable/ic_chef"
+            android:background="@drawable/edit_text2"
             android:paddingTop="18dp"
             android:elevation="10dp"/>
 
@@ -160,7 +160,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="60dp"
             android:layout_marginBottom="60dp"
-            android:background="@drawable/ic_chef"
+            android:background="@drawable/edit_text2"
             android:elevation="10dp"/>
 
         <TextView
@@ -185,7 +185,7 @@
             android:layout_below="@+id/ric"
             android:layout_marginTop="28dp"
             android:layout_marginStart="220dp"
-            android:background="@drawable/ic_chef"
+            android:background="@drawable/edit_text2"
             android:paddingStart="18dp"
             android:paddingEnd="1dp"
             android:paddingTop="18dp"
