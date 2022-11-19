@@ -70,14 +70,14 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/ic_chef"
+                    app:srcCompat="@drawable/ic_star"
                     android:layout_weight="1"
                     android:layout_gravity="center"/>
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/ic_chef"
+                    app:srcCompat="@drawable/trophy"
                     android:layout_weight="1"
                     android:layout_gravity="center" />
 
