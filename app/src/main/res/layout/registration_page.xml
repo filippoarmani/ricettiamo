@@ -7,11 +7,10 @@
 
     <ImageView
         android:id="@+id/r_logo"
-        android:layout_width="195dp"
-        android:layout_height="195dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="-178dp"
         app:srcCompat="@drawable/logo"
         tools:layout_editor_absoluteX="104dp"
         tools:layout_editor_absoluteY="27dp" />
@@ -22,12 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/r_logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         android:text="@string/benvenuto"
-        android:fontFamily="@font/montserrat"
         android:textColor="@color/orange"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
+        android:textSize="26sp" />
 
     <EditText
         android:id="@+id/r_nome"
@@ -35,25 +32,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/r_benvenuto"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="14dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="8dp"
-
-        android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
-        android:paddingLeft="20dp"
-        android:drawablePadding="10dp"
-
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="@string/nome"
         android:inputType="textPersonName"
-        android:textColorHint="@color/black"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:fontFamily="@font/montserrat"
-        android:minHeight="48dp"
-        />
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/r_cognome"
@@ -61,24 +46,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/r_nome"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="8dp"
-
-        android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
-        android:paddingLeft="20dp"
-        android:drawablePadding="10dp"
-
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="@string/cognome"
         android:inputType="textPersonName"
-        android:textColorHint="@color/black"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:fontFamily="@font/montserrat"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/r_dataNascita"
@@ -86,25 +60,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/r_cognome"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="8dp"
-
-        android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
-        android:paddingLeft="20dp"
-        android:drawablePadding="10dp"
-
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="@string/data"
         android:inputType="date"
-        android:textColorHint="@color/black"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:fontFamily="@font/montserrat"
-        android:minHeight="48dp"
-        />
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/r_email"
@@ -112,23 +74,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/r_dataNascita"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="8dp"
-
-        android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
-        android:paddingLeft="20dp"
-        android:drawablePadding="10dp"
-
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:textColorHint="@color/black"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:fontFamily="@font/montserrat"
         android:minHeight="48dp" />
 
     <EditText
@@ -137,23 +88,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/r_email"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="8dp"
-
-        android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
-        android:paddingLeft="20dp"
-        android:drawablePadding="10dp"
-
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="@string/telefono"
         android:inputType="phone"
-        android:textColorHint="@color/black"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:fontFamily="@font/montserrat"
         android:minHeight="48dp" />
 
     <EditText
@@ -162,38 +102,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/r_telefono"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="8dp"
-
-        android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
-        android:paddingLeft="20dp"
-        android:drawablePadding="10dp"
-
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:textColorHint="@color/black"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:fontFamily="@font/montserrat"
         android:minHeight="48dp" />
 
     <Button
         android:id="@+id/r_creaAccount"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/r_password"
         android:layout_alignEnd="@id/r_password"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/orange"
         app:cornerRadius="24dp"
-        android:text="@string/crea"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:fontFamily="@font/montserrat"
-        android:textStyle="bold"/>
+        android:text="@string/crea" />
 
 </RelativeLayout>
