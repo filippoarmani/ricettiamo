@@ -7,9 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
     <color name="orange">#FF8A00</color>
-    <color name="orang_w">#FFE5C2</color>
-    <color name="google_login_button">#eceff1</color>
-    <color name="google_login_text">#505050</color>
+    <color name="orange_w">#FFE5C2</color>
+    <color name="orangelogo">#FFAB3C</color>
+    <color name="google_login_text">#FFFFFF</color>
 </resources>

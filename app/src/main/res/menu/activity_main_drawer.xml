@@ -4,46 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/menu_principale"
+        android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_cerca_ricetta"
             android:icon="@drawable/ic_lente"
-            android:title="@string/menu_cerca_ricetta"
-            />
+            android:title="@string/menu_cerca_ricetta" />
+
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
+
         <item
-            android:id="@+id/nav_frigo"
+            android:id="@+id/nav_frigorifero"
             android:icon="@drawable/ic_fridgee"
-            android:title="@string/menu_frigo"
-            />
+            android:title="@string/menu_frigo" />
+
         <item
-            android:id="@+id/nav_shop"
+            android:id="@+id/nav_listaDellaSpesa"
             android:icon="@drawable/ic_shopp"
             android:title="@string/menu_shop" />
+
         <item
-            android:id="@+id/nav_prefe"
+            android:id="@+id/nav_preferiti"
             android:icon="@drawable/ic_heart"
             android:title="@string/menu_prefe" />
+
         <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_impostazioni"
             android:icon="@drawable/ic_settings"
             android:title="@string/menu_settings" />
-    </group>
 
-    <group android:id="@+id/sotto_menu" >
         <item
-            android:menuCategory="secondary"
             android:id="@+id/nav_upgrade"
-            android:icon="@drawable/ic_exit"
-            android:title="@string/menu_logout" />
-        <item
-            android:id="@+id/nav_logout"
             android:icon="@drawable/ic_chef"
             android:title="@string/menu_upgrade" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit"
+            android:title="@string/menu_logout" />
+
     </group>
+
 </menu>
 
 
