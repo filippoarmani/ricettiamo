@@ -40,7 +40,7 @@
         android:layout_marginBottom="8dp"
 
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
+        android:backgroundTint="@color/orange_w"
         android:paddingLeft="20dp"
         android:drawablePadding="10dp"
 
@@ -66,7 +66,7 @@
         android:layout_marginBottom="8dp"
 
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
+        android:backgroundTint="@color/orange_w"
         android:paddingLeft="20dp"
         android:drawablePadding="10dp"
 
@@ -91,7 +91,7 @@
         android:layout_marginBottom="8dp"
 
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
+        android:backgroundTint="@color/orange_w"
         android:paddingLeft="20dp"
         android:drawablePadding="10dp"
 
@@ -117,7 +117,7 @@
         android:layout_marginBottom="8dp"
 
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
+        android:backgroundTint="@color/orange_w"
         android:paddingLeft="20dp"
         android:drawablePadding="10dp"
 
@@ -142,7 +142,7 @@
         android:layout_marginBottom="8dp"
 
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
+        android:backgroundTint="@color/orange_w"
         android:paddingLeft="20dp"
         android:drawablePadding="10dp"
 
@@ -167,7 +167,7 @@
         android:layout_marginBottom="8dp"
 
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="@color/orang_w"
+        android:backgroundTint="@color/orange_w"
         android:paddingLeft="20dp"
         android:drawablePadding="10dp"
 

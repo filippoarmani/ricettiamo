@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.upgradeAccount.UpgradeAccountFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.upgradeAccount.UpgradeAccountFragment">
+
+        <TextView
+            android:id="@+id/introduction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@id/line"
+            android:layout_alignEnd="@id/line"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="152dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/upgrade_1"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            app:flow_verticalAlign="center" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@id/introduction"
+            android:layout_marginTop="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@color/material_dynamic_neutral_variant40" />
+
+        <LinearLayout
+            android:id="@+id/riquadro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/line"
+            android:layout_alignEnd="@id/line"
+            android:layout_below="@id/line"
+            android:layout_above="@id/textView"
+            android:layout_marginTop="40dp"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="2"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_giornale"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_star"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/trophy"
+                    android:layout_weight="1"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/introduction2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/upgrade_2"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    app:flow_verticalAlign="center"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/introduction3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/upgrade_3"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    app:flow_verticalAlign="center"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/introduction4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/upgrade_4"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    app:flow_verticalAlign="center"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/button2"
+            android:layout_margin="20dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/upgrade_5" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/upgrade_button"
+            android:backgroundTint="@color/orange"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -17,14 +17,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        android:background="@color/orang_w"
+        android:background="@color/orange_w"
         android:layout_gravity="start"
 
         app:headerLayout="@layout/nav_header_main"
@@ -37,13 +35,10 @@
             android:id="@+id/relativeLayout"
             android:layout_width="@dimen/fab_margin"
             android:layout_height="match_parent"
-            android:background="@color/orange"></RelativeLayout>
+            android:background="@color/orange">
+
+        </RelativeLayout>
 
     </com.google.android.material.navigation.NavigationView>
-
-
-
-
-
 
 </androidx.drawerlayout.widget.DrawerLayout>
