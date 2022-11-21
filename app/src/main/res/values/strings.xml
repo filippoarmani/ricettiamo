@@ -38,5 +38,14 @@
     <string name="upgrade_4">Raggiungi il successo scalando la classifica tra i top Cuochi di Ricettiamo.</string>
     <string name="upgrade_5">Cosa aspetti? Unisciti alla Community Cuoco di RicettiAmo!</string>
     <string name="upgrade_button">Upgrade Cuoco</string>
+    <!--homepage-->
     <string name="title_activity_homepage">Homepage_Temp</string>
+    <string name="ricette_preferite">Ricette Preferite</string>
+    <string name="antipasti">Antipasti</string>
+    <string name="primi_piatti">Primi Piatti</string>
+    <string name="secondi_piatti">Secondi Piatti</string>
+    <string name="dolci">Dolci</string>
+    <string name="info">Info</string>
+    <string name="chiSiamo">Chi Siamo</string>
+    <string name="ritornaInAlto">Torna in Alto</string>
 </resources>
