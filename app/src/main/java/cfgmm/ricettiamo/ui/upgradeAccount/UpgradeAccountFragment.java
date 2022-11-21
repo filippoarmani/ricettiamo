@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.impostazioni;
+package cfgmm.ricettiamo.ui.upgradeAccount;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import cfgmm.ricettiamo.databinding.FragmentImpostazioniBinding;
+import cfgmm.ricettiamo.databinding.FragmentUpgradeaccountBinding;
 
-public class ImpostazioniFragment extends Fragment {
+public class UpgradeAccountFragment extends Fragment {
 
-    private FragmentImpostazioniBinding binding;
+    private FragmentUpgradeaccountBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ImpostazioniViewModel impostazioniViewModel =
-                new ViewModelProvider(this).get(ImpostazioniViewModel.class);
+        UpgradeAccountViewModel upgradeAccountViewModel =
+                new ViewModelProvider(this).get(UpgradeAccountViewModel.class);
 
-        binding = FragmentImpostazioniBinding.inflate(inflater, container, false);
+        binding = FragmentUpgradeaccountBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        impostazioniViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textView;
+        upgradeAccountViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
