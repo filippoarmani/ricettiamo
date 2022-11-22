@@ -147,7 +147,7 @@
         android:drawablePadding="10dp"
 
         android:ems="10"
-        android:hint="@string/phone-number"
+        android:hint="@string/phone_number"
         android:inputType="phone"
         android:textColorHint="@color/black"
         android:textSize="18dp"

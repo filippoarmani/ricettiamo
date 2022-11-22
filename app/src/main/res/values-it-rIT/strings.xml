@@ -13,7 +13,7 @@
     <string name="create_account">Crea account</string>
     <string name="menu_search_recipe">Cerca Ricetta</string>
     <string name="menu_fridge">Frigorifero</string>
-    <string name="shopping_lis">Lista della spesa</string>
+    <string name="shopping_list">Lista della spesa</string>
     <string name="menu_favorites">Preferiti</string>
     <string name="upgrade_account">Aggiorna account</string>
     <string name="text">Testo</string>
@@ -36,4 +36,6 @@
     <string name="upgrade_3">Le tue ricette potranno essere valutate dal pubblico tramite delle stelle di gradimento.</string>
     <string name="upgrade_4">Raggiungi il successo scalando la classifica tra i top Cuochi di RicettiAmo.</string>
     <string name="upgrade_5">Cosa aspetti? Unisciti alla Community Cuoco di RicettiAmo!</string>
+    <string name="ranking">Classifica</string>
+    <string name="account">Profilo</string>
 </resources>

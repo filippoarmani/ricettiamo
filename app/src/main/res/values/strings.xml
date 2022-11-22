@@ -4,45 +4,51 @@
 
     <string name="menu_home" translatable="false">Home</string>
     <string name="menu_gallery">Gallery</string>
+    <string name="text">Text</string>
 
-    <string name="email" translatable="false">Email</string>
-    <string name="password" translatable="false">Password</string>
-    <string name="login" translatable="false">Login</string>
-    <string name="p_lost">Forgot Password?</string>
-    <string name="txt_or">Or</string>
-    <string name="txt_nUser">"New on RicettiAmo? "</string>
-    <string name="sign_in">Sign In</string>
-    <string name="welcome">Welcome!</string>
-    <string name="name">Name</string>
-    <string name="surname">Surname</string>
-    <string name="date">Date of Birth</string>
-    <string name="phone_number">Phone Number</string>
-    <string name="create_account">Create Account</string>
     <string name="menu_search_recipe">Search Recipe</string>
     <string name="menu_fridge">Fridge</string>
-    <string name="shopping_lis">Shopping List</string>
+    <string name="shopping_list">Shopping List</string>
     <string name="menu_favorites">Favorites</string>
     <string name="menu_logout" translatable="false">Logout</string>
     <string name="upgrade_account">Upgrade Account</string>
-
     <string name="full_name">Full Name</string>
     <string name="description_chef">Chef Description</string>
     <string name="my_stars">My Stars</string>
     <string name="max_stars" translatable="false">30</string>
     <string name="my_position">My Position</string>
     <string name="position" translatable="false">#46</string>
+    <string name="add" translatable="false">+</string>
+    <string name="recipe_position" translatable="false">1</string>
+    <string name="ranking">Ranking</string>
 
-    <string name="text">Text</string>
-    <string-array name="qta_array">
-        <item>gr</item>
-        <item>kg</item>
-        <item>pz</item>
-        <item>ml</item>
-        <item>l</item>
-    </string-array>
 
-    <string name="login_google" translatable="false">Login with Google</string>
+    <string name="upgrade_1">Share your recipes with the community and become a successful chef!</string>
+    <string name="upgrade_2">You will have a predefinte template for your recipe; where tou can add your photo.</string>
+    <string name="upgrade_3">Your recipes can be evaluated by the community through rating stars.</string>
+    <string name="upgrade_4">Reach succes by climbing the ranking among the top chefs of RicettiAmo.</string>
+    <string name="upgrade_5">What are you waiting for? Join the Chef Community of RicettiAmo!</string>
+
+    <!--account-->
     <string name="upgrade_button">Upgrade Chef</string>
+    <string name="account">Account</string>
+
+    <!--login/register-->
+    <string name="email" translatable="false">Email</string>
+    <string name="password" translatable="false">Password</string>
+    <string name="login" translatable="false">Login</string>
+    <string name="p_lost">Forgot Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="welcome">Welcome!</string>
+    <string name="txt_or">Or</string>
+    <string name="txt_nUser">"New on RicettiAmo? "</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="date">Date of Birth</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="create_account">Create Account</string>
+    <string name="login_google" translatable="false">Login with Google</string>
+
 
     <!--homepage-->
     <string name="favourite_dishes">Favourite Dishes</string>
@@ -54,10 +60,16 @@
     <string name="dessert">Dessert</string>
     <string name="first_dishes">Firts Dishes</string>
     <string name="second_dishes">Second Dishes</string>
-    <string name="upgrade_1">Share your recipes with the community and become a successful chef!</string>
-    <string name="upgrade_2">You will have a predefinte template for your recipe; where tou can add your photo.</string>
-    <string name="upgrade_3">Your recipes can be evaluated by the community through rating stars.</string>
-    <string name="upgrade_4">Reach succes by climbing the ranking among the top chefs of RicettiAmo.</string>
-    <string name="upgrade_5">What are you waiting for? Join the Chef Community of RicettiAmo!</string>
-    <string name="add" translatable="false">+</string>
+
+    <!--fridge/Shopping List-->
+    <string-array name="qta_array">
+        <item>gr</item>
+        <item>kg</item>
+        <item>pz</item>
+        <item>ml</item>
+        <item>l</item>
+    </string-array>
+
+
+
 </resources>
