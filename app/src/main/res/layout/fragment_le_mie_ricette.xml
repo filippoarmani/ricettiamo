@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".Frigorifero">
+    tools:context=".leMieRicette">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                         <TextView
                             android:layout_width="21dp"
                             android:layout_height="21dp"
-                            android:background="@drawable/star"
+                            android:background="@drawable/ic_star_24"
                             android:layout_gravity="center"
                             android:layout_toLeftOf="@+id/number"
                             android:gravity="center"

@@ -10,32 +10,32 @@
 
         <item
             android:id="@+id/nav_cerca_ricetta"
-            android:icon="@drawable/ic_lente"
+            android:icon="@drawable/ic_search_24"
             android:title="@string/menu_cerca_ricetta" />
 
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home"
+            android:icon="@drawable/ic_home_24"
             android:title="@string/menu_home" />
 
         <item
             android:id="@+id/nav_frigorifero"
-            android:icon="@drawable/ic_fridgee"
+            android:icon="@drawable/ic_kitchen_24"
             android:title="@string/menu_frigo" />
 
         <item
             android:id="@+id/nav_listaDellaSpesa"
-            android:icon="@drawable/ic_shopp"
+            android:icon="@drawable/ic_shopping_cart_24"
             android:title="@string/menu_shop" />
 
         <item
             android:id="@+id/nav_preferiti"
-            android:icon="@drawable/ic_heart"
+            android:icon="@drawable/ic_favorite_24"
             android:title="@string/menu_prefe" />
 
         <item
             android:id="@+id/nav_impostazioni"
-            android:icon="@drawable/ic_settings"
+            android:icon="@drawable/ic_settings_24"
             android:title="@string/menu_settings" />
 
         <item
@@ -45,7 +45,7 @@
 
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_exit"
+            android:icon="@drawable/ic_exit_24"
             android:title="@string/menu_logout" />
 
     </group>
