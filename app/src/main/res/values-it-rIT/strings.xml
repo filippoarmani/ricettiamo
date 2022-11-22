@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RicettiAmo</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="menu_gallery">Galleria</string>
+    <string name="p_dimenticata">Password dimenticata?</string>
+    <string name="txt_nUtente">"Nuovo su RicettiAmo? "</string>
+    <string name="register">Registrati</string>
+    <string name="benvenuto">Benvenuto!</string>
+    <string name="nome">Nome</string>
+    <string name="cognome">Cognome</string>
+    <string name="data">Data di nascita</string>
+    <string name="telefono">Telefono</string>
+    <string name="crea">Crea account</string>
+    <string name="menu_cerca_ricetta">Cerca Ricetta</string>
+    <string name="menu_frigo">Frigorifero</string>
+    <string name="menu_shop">Lista della spesa</string>
+    <string name="menu_prefe">Preferiti</string>
+    <string name="menu_upgrade">Aggiorna account</string>
+    <string name="text">Testo</string>
+    <string name="my_recipe">Le mie ricette</string>
+    <string name="settings">Impostazioni</string>
+    <string name="txt_or">O</string>
+</resources>
