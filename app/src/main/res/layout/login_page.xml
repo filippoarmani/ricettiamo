@@ -82,7 +82,7 @@
         android:layout_alignParentEnd="true"
 
         style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:text="@string/p_dimenticata"
+        android:text="@string/p_lost"
         android:textSize="14sp"
         android:textColor="@color/orange"
         android:fontFamily="@font/montserrat"
@@ -177,7 +177,7 @@
             android:id="@+id/l_nuovoUtente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_nUtente"
+            android:text="@string/txt_nUser"
             android:fontFamily="@font/montserrat"/>
 
         <Button
@@ -186,7 +186,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="24dp"
-            android:text="@string/register"
+            android:text="@string/sign_in"
             android:textSize="12sp"
             android:textColor="@color/orange"
             android:fontFamily="@font/montserrat"

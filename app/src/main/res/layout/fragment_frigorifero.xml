@@ -49,14 +49,15 @@
 
             <EditText
                 android:id="@+id/text"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="qta"
+                android:inputType="number"
+                android:minWidth="48dp"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toRightOf="@+id/button"
-                app:layout_constraintTop_toTopOf="parent"
-                android:hint="qta"
-                android:inputType="number"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Space
                 android:layout_width="0dp"

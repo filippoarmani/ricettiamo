@@ -23,7 +23,7 @@
         android:layout_below="@+id/r_logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:text="@string/benvenuto"
+        android:text="@string/welcome"
         android:fontFamily="@font/montserrat"
         android:textColor="@color/orange"
         android:textSize="26sp"
@@ -45,7 +45,7 @@
         android:drawablePadding="10dp"
 
         android:ems="10"
-        android:hint="@string/nome"
+        android:hint="@string/name"
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
         android:textSize="18dp"
@@ -71,7 +71,7 @@
         android:drawablePadding="10dp"
 
         android:ems="10"
-        android:hint="@string/cognome"
+        android:hint="@string/surname"
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
         android:textSize="18dp"
@@ -96,7 +96,7 @@
         android:drawablePadding="10dp"
 
         android:ems="10"
-        android:hint="@string/data"
+        android:hint="@string/date"
         android:inputType="date"
         android:textColorHint="@color/black"
         android:textSize="18dp"
@@ -147,7 +147,7 @@
         android:drawablePadding="10dp"
 
         android:ems="10"
-        android:hint="@string/telefono"
+        android:hint="@string/phone-number"
         android:inputType="phone"
         android:textColorHint="@color/black"
         android:textSize="18dp"
@@ -190,7 +190,7 @@
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/orange"
         android:fontFamily="@font/montserrat"
-        android:text="@string/crea"
+        android:text="@string/create_account"
         android:textColor="@color/black"
         android:textSize="15dp"
         android:textStyle="bold"

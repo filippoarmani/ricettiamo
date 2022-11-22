@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_cerca_ricetta"
             android:icon="@drawable/ic_lente"
-            android:title="@string/menu_cerca_ricetta" />
+            android:title="@string/menu_search_recipe" />
 
         <item
             android:id="@+id/nav_home"
@@ -21,17 +21,17 @@
         <item
             android:id="@+id/nav_frigorifero"
             android:icon="@drawable/ic_fridgee"
-            android:title="@string/menu_frigo" />
+            android:title="@string/menu_fridge" />
 
         <item
             android:id="@+id/nav_listaDellaSpesa"
             android:icon="@drawable/ic_shopp"
-            android:title="@string/menu_shop" />
+            android:title="@string/shopping_lis" />
 
         <item
             android:id="@+id/nav_preferiti"
             android:icon="@drawable/ic_heart"
-            android:title="@string/menu_prefe" />
+            android:title="@string/menu_favorites" />
 
         <item
             android:id="@+id/nav_impostazioni"
@@ -41,7 +41,7 @@
         <item
             android:id="@+id/nav_upgrade"
             android:icon="@drawable/ic_chef"
-            android:title="@string/menu_upgrade" />
+            android:title="@string/upgrade_account" />
 
         <item
             android:id="@+id/nav_logout"

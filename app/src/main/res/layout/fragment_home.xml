@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:text="@string/piatti_preferiti"
+                    android:text="@string/favourite_dishes"
                     android:textAllCaps="true"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -75,7 +75,7 @@
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/piatti_preferiti">
+                    android:contentDescription="@string/favourite_dishes">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:text="@string/antipasti"
+                    android:text="@string/starters"
                     android:textAllCaps="true"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -111,7 +111,7 @@
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/antipasti">
+                    android:contentDescription="@string/starters">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -139,7 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:text="@string/primi_piatti"
+                    android:text="@string/first_dishes"
                     android:textAllCaps="true"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -147,7 +147,7 @@
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/primi_piatti">
+                    android:contentDescription="@string/first_dishes">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -175,7 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:text="@string/secondi_piatti"
+                    android:text="@string/second_dishes"
                     android:textAllCaps="true"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -183,7 +183,7 @@
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/secondi_piatti">
+                    android:contentDescription="@string/second_dishes">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -211,7 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:text="@string/dolci"
+                    android:text="@string/dessert"
                     android:textAllCaps="true"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -219,7 +219,7 @@
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/dolci">
+                    android:contentDescription="@string/dessert">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -286,7 +286,7 @@
                             android:layout_height="20dp"
                             android:layout_weight="1"
                             android:background="#00FFFFFF"
-                            android:text="@string/chiSiamo"
+                            android:text="@string/about_us"
                             android:textColor="@color/white"
                             android:textSize="11sp"
                             android:textStyle="bold" />
@@ -308,7 +308,7 @@
                             android:layout_height="20dp"
                             android:layout_weight="1"
                             android:background="#00FFFFFF"
-                            android:text="@string/menu_upgrade"
+                            android:text="@string/upgrade_account"
                             android:textColor="@color/white"
                             android:textSize="11sp"
                             android:textStyle="bold" />
@@ -319,7 +319,7 @@
                             android:layout_height="20dp"
                             android:layout_weight="1"
                             android:background="#00FFFFFF"
-                            android:text="@string/ritornaInAlto"
+                            android:text="@string/return_up"
                             android:textAlignment="textStart"
                             android:textColor="@color/white"
                             android:textSize="11sp"
@@ -341,7 +341,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@android:drawable/ic_menu_search"
-            android:contentDescription="@string/menu_cerca_ricetta"/>
+            android:contentDescription="@string/menu_search_recipe"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
