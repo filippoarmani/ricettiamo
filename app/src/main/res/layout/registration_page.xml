@@ -41,19 +41,20 @@
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:drawablePadding="10dp"
 
         android:ems="10"
         android:hint="@string/name"
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:fontFamily="@font/montserrat"
         android:minHeight="48dp"
-        />
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/r_cognome"
@@ -67,18 +68,20 @@
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:drawablePadding="10dp"
 
         android:ems="10"
         android:hint="@string/surname"
         android:inputType="textPersonName"
         android:textColorHint="@color/black"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:fontFamily="@font/montserrat"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/r_dataNascita"
@@ -92,19 +95,20 @@
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:drawablePadding="10dp"
 
         android:ems="10"
         android:hint="@string/date"
         android:inputType="date"
         android:textColorHint="@color/black"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:fontFamily="@font/montserrat"
         android:minHeight="48dp"
-        />
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/r_email"
@@ -118,18 +122,20 @@
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:drawablePadding="10dp"
 
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textColorHint="@color/black"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:fontFamily="@font/montserrat"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/r_telefono"
@@ -143,18 +149,20 @@
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:drawablePadding="10dp"
 
         android:ems="10"
         android:hint="@string/phone_number"
         android:inputType="phone"
         android:textColorHint="@color/black"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:fontFamily="@font/montserrat"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/r_password"
@@ -168,18 +176,20 @@
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:drawablePadding="10dp"
 
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:textColorHint="@color/black"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:fontFamily="@font/montserrat"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/r_creaAccount"
@@ -192,7 +202,7 @@
         android:fontFamily="@font/montserrat"
         android:text="@string/create_account"
         android:textColor="@color/black"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:cornerRadius="24dp" />
 

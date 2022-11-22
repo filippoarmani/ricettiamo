@@ -30,7 +30,7 @@
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
-        android:drawableLeft="@drawable/ic_email_24"
+        android:drawableStart="@drawable/ic_email_24"
         android:drawablePadding="10dp"
         android:ems="10"
 
@@ -38,13 +38,14 @@
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:textSize="18dp"
+        android:textSize="18sp"
 
 
-        />
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/l_password"
@@ -57,7 +58,7 @@
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
-        android:drawableLeft="@drawable/ic_password_24"
+        android:drawableStart="@drawable/ic_password_24"
         android:drawablePadding="10dp"
         android:ems="10"
 
@@ -65,11 +66,13 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:textSize="18dp"
-        app:passwordToggleEnabled="true" />
+        android:textSize="18sp"
+        app:passwordToggleEnabled="true"
+        android:importantForAutofill="no" />
 
 
     <Button
@@ -103,7 +106,7 @@
 
         android:text="@string/login"
         android:textColor="@color/white"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:fontFamily="@font/montserrat"
         />
@@ -152,18 +155,18 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
 
-        android:text="@string/login_google"
-        android:textSize="14sp"
-        android:textAllCaps="true"
-        app:icon="@drawable/google_icon"
-        android:textColor="@color/black"
         android:fontFamily="@font/montserrat"
-        app:backgroundTint="@color/orange_w"
+        android:text="@string/login_google"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         android:textStyle="bold"
+        app:backgroundTint="@color/orange_w"
         app:cornerRadius="24dp"
+        app:icon="@drawable/google_icon"
         app:iconGravity="textStart"
-        app:iconTint="@null"
-        />
+        app:iconSize="20dp"
+        app:iconTint="@null" />
 
     <LinearLayout
         android:layout_width="match_parent"
