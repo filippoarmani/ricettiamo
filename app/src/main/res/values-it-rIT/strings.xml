@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">Impostazioni</string>
-    <string name="menu_gallery">Galleria</string>
     <string name="p_lost">Password dimenticata?</string>
     <string name="txt_nUser">"Nuovo su RicettiAmo? "</string>
     <string name="sign_in">Registrati</string>

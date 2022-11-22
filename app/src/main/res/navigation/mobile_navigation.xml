@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_cerca_ricetta"
         android:name="cfgmm.ricettiamo.ui.cercaRicetta.CercaRicettaFragment"
-        android:label="@string/menu_cerca_ricetta"
+        android:label="@string/menu_search_recipe"
         tools:layout="@layout/fragment_cerca_ricetta" />
 
     <fragment
@@ -20,31 +20,31 @@
     <fragment
         android:id="@+id/nav_frigorifero"
         android:name="cfgmm.ricettiamo.ui.frigorifero.FrigoriferoFragment"
-        android:label="@string/menu_frigo"
+        android:label="@string/menu_fridge"
         tools:layout="@layout/fragment_frigorifero" />
 
     <fragment
         android:id="@+id/nav_listaDellaSpesa"
         android:name="cfgmm.ricettiamo.ui.listaDellaSpesa.ListaDellaSpesaFragment"
-        android:label="@string/menu_shop"
+        android:label="@string/shopping_list"
         tools:layout="@layout/fragment_lista_della_spesa" />
 
     <fragment
         android:id="@+id/nav_preferiti"
         android:name="cfgmm.ricettiamo.ui.preferiti.PreferitiFragment"
-        android:label="@string/menu_prefe"
+        android:label="@string/menu_favorites"
         tools:layout="@layout/fragment_preferiti" />
 
     <fragment
         android:id="@+id/nav_impostazioni"
         android:name="cfgmm.ricettiamo.ui.impostazioni.ImpostazioniFragment"
-        android:label="@string/settings"
+        android:label="@string/action_settings"
         tools:layout="@layout/fragment_impostazioni" />
 
     <fragment
         android:id="@+id/nav_upgrade"
         android:name="cfgmm.ricettiamo.ui.upgradeAccount.UpgradeAccountFragment"
-        android:label="@string/menu_upgrade"
+        android:label="@string/upgrade_button"
         tools:layout="@layout/fragment_upgrade_account" />
 
     <fragment

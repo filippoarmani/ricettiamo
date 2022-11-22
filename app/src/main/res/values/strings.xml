@@ -3,7 +3,6 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home" translatable="false">Home</string>
-    <string name="menu_gallery">Gallery</string>
     <string name="text">Text</string>
 
     <string name="menu_search_recipe">Search Recipe</string>
@@ -21,7 +20,6 @@
     <string name="add" translatable="false">+</string>
     <string name="recipe_position" translatable="false">1</string>
     <string name="ranking">Ranking</string>
-
 
     <string name="upgrade_1">Share your recipes with the community and become a successful chef!</string>
     <string name="upgrade_2">You will have a predefinte template for your recipe; where tou can add your photo.</string>
@@ -49,7 +47,6 @@
     <string name="create_account">Create Account</string>
     <string name="login_google" translatable="false">Login with Google</string>
 
-
     <!--homepage-->
     <string name="favourite_dishes">Favourite Dishes</string>
     <string name="starters">Starters</string>
@@ -71,7 +68,5 @@
         <item>ml</item>
         <item>l</item>
     </string-array>
-
-
 
 </resources>
