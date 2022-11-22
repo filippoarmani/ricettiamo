@@ -60,6 +60,8 @@
     <string name="dessert">Dessert</string>
     <string name="first_dishes">Firts Dishes</string>
     <string name="second_dishes">Second Dishes</string>
+    <string name="chef">Chef</string>
+    <string name="toDo" translatable="false">TempModify</string>
 
     <!--fridge/Shopping List-->
     <string-array name="qta_array">

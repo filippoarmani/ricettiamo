@@ -22,13 +22,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/cuocoText"
+            app:title="@string/chef"
             app:titleCentered="true"
-            app:titleTextAppearance="@style/cuocoText"/>
-
+            />
+        <!--app:titleTextAppearance="@style/chef"-->
         <ImageView
             android:id="@+id/menulat"
-            android:contentDescription="@string/cuocoText"
+            android:contentDescription="@string/chef"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/montserrat"
-                android:text="@string/condividi_l"
+                android:text="@string/toDo"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:gravity="center"/>
@@ -81,7 +81,7 @@
                 android:layout_marginStart="60dp"
                 android:background="@drawable/template"
                 android:elevation="10dp"
-                android:contentDescription="@string/avrai_a_dis" />
+                android:contentDescription="@string/toDo" />
 
             <TextView
                 android:id="@+id/avrai_a_dis"
@@ -90,7 +90,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/montserrat"
-                android:text="@string/avrai_a_dis"
+                android:text="@string/toDo"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -110,7 +110,7 @@
                 android:layout_marginStart="60dp"
                 android:background="@drawable/ic_star_24"
                 android:elevation="10dp"
-                android:contentDescription="@string/stelgrad" />
+                android:contentDescription="@string/toDo" />
 
             <TextView
                 android:id="@+id/stelgrad"
@@ -119,7 +119,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="40dp"
                 android:fontFamily="@font/montserrat"
-                android:text="@string/stelgrad"
+                android:text="@string/toDo"
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
@@ -139,7 +139,7 @@
                 android:layout_marginStart="60dp"
                 android:background="@drawable/trophy"
                 android:elevation="10dp"
-                android:contentDescription="@string/raggiungi_i" />
+                android:contentDescription="@string/toDo" />
 
             <TextView
                 android:id="@+id/raggiungi_i"
@@ -148,7 +148,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="40dp"
                 android:fontFamily="@font/montserrat"
-                android:text="@string/raggiungi_i"
+                android:text="@string/toDo"
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
@@ -167,7 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:text="@string/cosa_aspett"
+                android:text="@string/toDo"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:gravity="center"/>
@@ -177,7 +177,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
                 android:layout_marginTop="10dp"
-                android:text="@string/upgrade"
+                android:text="@string/toDo"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:backgroundTint="@color/orange"
