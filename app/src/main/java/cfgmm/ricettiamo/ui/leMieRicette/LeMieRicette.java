@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo;
+package cfgmm.ricettiamo.ui.leMieRicette;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cfgmm.ricettiamo.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link leMieRicette#newInstance} factory method to
+ * Use the {@link LeMieRicette#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class leMieRicette extends Fragment {
+public class LeMieRicette extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class leMieRicette extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public leMieRicette() {
+    public LeMieRicette() {
         // Required empty public constructor
     }
 
@@ -37,8 +39,8 @@ public class leMieRicette extends Fragment {
      * @return A new instance of fragment leMieRicette.
      */
     // TODO: Rename and change types and number of parameters
-    public static leMieRicette newInstance(String param1, String param2) {
-        leMieRicette fragment = new leMieRicette();
+    public static LeMieRicette newInstance(String param1, String param2) {
+        LeMieRicette fragment = new LeMieRicette();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
