@@ -5,9 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.profilo.ProfiloFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:id="@+id/profile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,7 +27,7 @@
             android:fontFamily="@font/bakerie"
             android:text="@string/account"
             android:textColor="@color/white"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -97,8 +95,7 @@
             android:textSize="18sp"
             android:elevation="10dp"/>
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+        <LinearLayout
             android:id="@+id/ric"
             android:layout_width="350dp"
             android:layout_height="100dp"
