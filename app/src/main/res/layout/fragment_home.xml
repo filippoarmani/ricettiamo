@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
@@ -39,9 +39,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="32dp"
-                android:background="@drawable/menulat"
                 android:isScrollContainer="false"
-                app:icon="@drawable/menulat"
+                app:icon="@drawable/ic_menu_24"
                 app:iconGravity="textEnd"
                 app:iconPadding="1dp"
                 app:iconSize="32dp"
@@ -64,11 +63,11 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewRicettePreferite"
+                    android:id="@+id/textViewPiattiPreferiti"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    android:text="@string/ricette_preferite"
+                    android:text="@string/piatti_preferiti"
                     android:textAllCaps="true"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -76,7 +75,7 @@
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/ricette_preferite">
+                    android:contentDescription="@string/piatti_preferiti">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
