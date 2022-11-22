@@ -5,149 +5,185 @@
     android:layout_height="match_parent"
     tools:context=".ui.upgradeAccount.UpgradeAccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cuoco"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.upgradeAccount.UpgradeAccountFragment">
 
-        <TextView
-            android:id="@+id/introduction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        tools:context=".upgradeCuoco">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/top_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/orange"
+            app:titleTextColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/cuocoText"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/cuocoText"/>
+
+        <ImageView
+            android:id="@+id/menulat"
+            android:contentDescription="@string/cuocoText"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="30dp"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@id/line"
-            android:layout_alignEnd="@id/line"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="152dp"
-            android:fontFamily="@font/montserrat"
-            android:text="@string/upgrade_1"
-            android:textAlignment="center"
-            android:textSize="15sp"
-            app:flow_verticalAlign="center" />
+            android:layout_marginTop="25dp"
+            android:background="@drawable/menulat"
+            android:elevation="10dp" />
+
+        <LinearLayout
+            android:id="@+id/cond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/top_appbar">
+
+            <TextView
+                android:id="@+id/condividi_l"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/condividi_l"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center"/>
+
+        </LinearLayout>
 
         <View
             android:id="@+id/line"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_below="@id/introduction"
-            android:layout_marginTop="24dp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:background="@color/material_dynamic_neutral_variant40" />
+            android:layout_below="@+id/cond"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@color/black" />
 
         <LinearLayout
-            android:id="@+id/riquadro"
-            android:layout_width="wrap_content"
+            android:id="@+id/templayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@id/line"
-            android:layout_alignEnd="@id/line"
-            android:layout_below="@id/line"
-            android:layout_above="@id/textView"
-            android:layout_marginTop="40dp"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            android:baselineAligned="false">
+            android:layout_below="@+id/cond">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="2"
-                android:weightSum="3">
+            <ImageView
+                android:id="@+id/template"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginStart="60dp"
+                android:background="@drawable/template"
+                android:elevation="10dp"
+                android:contentDescription="@string/avrai_a_dis" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/ic_giornale"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"/>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/ic_star"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"/>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/trophy"
-                    android:layout_weight="1"
-                    android:layout_gravity="center" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:weightSum="3">
-
-                <TextView
-                    android:id="@+id/introduction2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/upgrade_2"
-                    android:textAlignment="center"
-                    android:textSize="15sp"
-                    app:flow_verticalAlign="center"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:id="@+id/introduction3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/upgrade_3"
-                    android:textAlignment="center"
-                    android:textSize="15sp"
-                    app:flow_verticalAlign="center"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:id="@+id/introduction4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/upgrade_4"
-                    android:textAlignment="center"
-                    android:textSize="15sp"
-                    app:flow_verticalAlign="center"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/avrai_a_dis"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/avrai_a_dis"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="250dp"
+        <LinearLayout
+            android:id="@+id/starlayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@id/button2"
-            android:layout_margin="20dp"
-            android:textAlignment="center"
-            android:fontFamily="@font/montserrat"
-            android:text="@string/upgrade_5" />
+            android:layout_below="@+id/templayout">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/star"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="60dp"
+                android:background="@drawable/star"
+                android:elevation="10dp"
+                android:contentDescription="@string/stelgrad" />
+
+            <TextView
+                android:id="@+id/stelgrad"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/stelgrad"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/troplayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
-            android:fontFamily="@font/montserrat"
-            android:text="@string/upgrade_button"
-            android:backgroundTint="@color/orange"/>
+            android:layout_below="@+id/starlayout">
+
+            <ImageView
+                android:id="@+id/trophystar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="60dp"
+                android:background="@drawable/trophystar"
+                android:elevation="10dp"
+                android:contentDescription="@string/raggiungi_i" />
+
+            <TextView
+                android:id="@+id/raggiungi_i"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/raggiungi_i"
+                android:textColor="@color/black"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/upgradelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/troplayout"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/cosa_aspett"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/cosa_aspett"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:layout_marginTop="10dp"
+                android:text="@string/upgrade"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/orange"
+                app:cornerRadius="15dp" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 

@@ -71,4 +71,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add">+</string>
+
+    <string name="cuocoText">Cuoco</string>
+    <string name="condividi_l">Condividi le tue ricette con il pubblico diventando un Cuoco di successo!</string>
+    <string name="avrai_a_dis">Avrai a disposizione un template predefinito \nper la tua ricetta, dove potrai aggiungere le tue foto preferite.</string>
+    <string name="stelgrad">Le tue ricette potranno essere valutate dal pubblico tramite delle stelle di gradimento.</string>
+    <string name="raggiungi_i">Raggiungi il successo scalando la classifica tra\ni top Cuochi di Ricettiamo.</string>
+    <string name="cosa_aspett">Cosa aspetti?\nUnisciti alla Community Cuoco\ndi RicettiAmo!</string>
+    <string name="upgrade">UPGRADE CUOCO</string>
 </resources>
