@@ -137,7 +137,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="60dp"
-                android:background="@drawable/trophystar"
+                android:background="@drawable/trophy"
                 android:elevation="10dp"
                 android:contentDescription="@string/raggiungi_i" />
 
