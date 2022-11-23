@@ -64,7 +64,7 @@
 
     <!--settings-->
     <string name="change_password">Change my password</string>
-    <string name="advice">We recommend using a strong password that you don't use anywhere else</string>
+    <string name="advice">We recommend using a strong password that you don\'t use anywhere else</string>
     <string name="my_password">Current password</string>
     <string name="new_password">New password</string>
     <string name="new_password_again">Type new password again</string>
