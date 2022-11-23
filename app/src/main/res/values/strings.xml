@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_homepage" translatable="false">Homepage</string>
+    <string name="menu_home" translatable="false">Home</string>
     <string name="text">Text</string>
 
     <string name="menu_search_recipe">Search Recipe</string>
