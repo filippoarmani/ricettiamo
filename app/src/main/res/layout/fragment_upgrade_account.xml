@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/upgrade_chef"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.upgradeAccount.UpgradeAccountFragment">
 
     <RelativeLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/cuoco"
+        android:id="@+id/chef"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
@@ -16,7 +17,7 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/top_appbar"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="80dp"
             android:background="@color/orange"
             app:titleTextColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,19 +25,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/chef"
             app:titleCentered="true"
+            app:titleTextAppearance="@style/title"
             />
-        <!--app:titleTextAppearance="@style/chef"-->
-        <ImageView
-            android:id="@+id/menulat"
-            android:contentDescription="@string/chef"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="30dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/menulat"
-            android:elevation="10dp" />
+
+        <Button
+            android:id="@+id/btn_menu"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/transparent"
+            app:icon="@drawable/ic_menu_24"
+            app:iconGravity="textEnd"
+            app:iconPadding="1dp"
+            app:iconSize="32dp"
+            app:iconTint="@color/white"/>
 
         <LinearLayout
             android:id="@+id/cond"
@@ -45,10 +48,12 @@
             android:layout_below="@+id/top_appbar">
 
             <TextView
-                android:id="@+id/condividi_l"
+                android:id="@+id/upgrade_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/upgrade_1"
                 android:textColor="@color/black"
@@ -84,7 +89,7 @@
                 android:contentDescription="@string/toDo" />
 
             <TextView
-                android:id="@+id/avrai_a_dis"
+                android:id="@+id/upgrade_2"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -113,7 +118,7 @@
                 android:contentDescription="@string/toDo" />
 
             <TextView
-                android:id="@+id/stelgrad"
+                android:id="@+id/upgrade_3"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -142,7 +147,7 @@
                 android:contentDescription="@string/toDo" />
 
             <TextView
-                android:id="@+id/raggiungi_i"
+                android:id="@+id/upgrade_4"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -163,11 +168,21 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/cosa_aspett"
+                android:id="@+id/upgrade_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/upgrade_5"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/upgrade_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/upgrade_6"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:gravity="center"/>
