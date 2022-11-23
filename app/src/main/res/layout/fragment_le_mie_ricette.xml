@@ -13,6 +13,7 @@
         android:fillViewport="true">
 
         <RelativeLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -30,13 +31,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/toDo"
-                        android:textColor="?android:textColorPrimary"
+                        android:textColor="@color/orange"
                         android:textSize="24sp">
                     </TextView>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-
+                android:id="@+id/card_podio1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cardView_start"
@@ -45,14 +46,18 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                >
                 <LinearLayout
-                    android:id="@+id/list_item"
+                    android:backgroundTint="@color/orange_w"
+                    android:id="@+id/list_item1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/edit_text2">
                     <TextView
-                        android:id="@+id/medal"
+                        android:id="@+id/medal1"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/medal1"
@@ -77,34 +82,233 @@
                             android:layout_height="21dp"
                             android:background="@drawable/ic_star_24"
                             android:layout_gravity="center"
-                            android:layout_toStartOf="@+id/number"
+                            android:layout_toStartOf="@+id/number1"
                             android:gravity="center"
                             android:layout_margin="5dp">
                         </TextView>
 
                         <TextView
-                            android:id="@+id/number"
+                            android:id="@+id/number1"
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="5dp"
                             android:text="@string/toDo"
                             android:textColor="@color/black"
                             android:textSize="18sp"
-                            android:layout_alignParentEnd="true"
+                            ></TextView>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_podio2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card_podio1"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:backgroundTint="@color/orange_w"
+                    android:id="@+id/list_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/edit_text2">
+                    <TextView
+                        android:id="@+id/medal2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/medal2"
+                        android:layout_margin="5dp"
+                        android:layout_gravity="center">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/text"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:layout_margin="5dp"></TextView>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+                        <TextView
+                            android:layout_width="21dp"
+                            android:layout_height="21dp"
+                            android:background="@drawable/ic_star_24"
                             android:layout_gravity="center"
+                            android:layout_toStartOf="@+id/number2"
+                            android:gravity="center"
                             android:layout_margin="5dp">
                         </TextView>
+
+                        <TextView
+                            android:id="@+id/number2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="@string/toDo"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"></TextView>
                     </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_podio3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card_podio2"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                >
+                <LinearLayout
+                    android:backgroundTint="@color/orange_w"
+                    android:id="@+id/list_item3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/edit_text2">
+                    <TextView
+                        android:id="@+id/medal3"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/medal3"
+                        android:layout_margin="5dp"
+                        android:layout_gravity="center">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/text"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:layout_margin="5dp"></TextView>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+                        <TextView
+                            android:layout_width="21dp"
+                            android:layout_height="21dp"
+                            android:background="@drawable/ic_star_24"
+                            android:layout_gravity="center"
+                            android:layout_toStartOf="@+id/number3"
+                            android:gravity="center"
+                            android:layout_margin="5dp">
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/number3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="@string/toDo"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            ></TextView>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card_podio3"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:padding="5dp">
 
+                <TextView
+                    android:id="@+id/list_item_icon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/list_item"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></TextView>
 
+                <TextView
+                    android:id="@+id/text_ricette"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/text"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintLeft_toRightOf="@+id/list_item_icon"
+                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/edit_text2"
+                        android:backgroundTint="@color/orange_w"
+                        android:padding="5dp">
+                        <TextView
+                            android:layout_width="21dp"
+                            android:layout_height="21dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/ic_star_24">
+                        </TextView>
 
+                        <TextView
+                            android:id="@+id/numberVote"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_margin="5dp"
+                            android:text="@string/toDo"
+                            android:textColor="@color/black"
+                            android:textSize="18sp">
+                        </TextView>
+                    </LinearLayout>
 
-
-
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
