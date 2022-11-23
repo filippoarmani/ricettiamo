@@ -1,14 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".ui.impostazioni.ImpostazioniFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/top_appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="IMPOSTAZIONI" />
+        android:layout_height="80dp"
+        android:background="@color/orange"
+        app:titleTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/action_settings"
+        app:titleCentered="true"
+        app:titleTextAppearance="@style/title"/>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btn_menu"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/transparent"
+        app:icon="@drawable/ic_menu_24"
+        app:iconGravity="textEnd"
+        app:iconPadding="1dp"
+        app:iconSize="32dp"
+        app:iconTint="@color/white"/>
+
+    <LinearLayout
+        android:id="@+id/modificheDati"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_appbar"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/modFotoDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/change_photo_description"
+            android:textColor="@color/orange"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"/>
+
+        <ImageButton
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/user" />
+
+        <EditText
+            android:id="@+id/modificaDescr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/description_chef"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:background="@drawable/back"
+            android:paddingStart="80dp"
+            android:paddingEnd="80dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:elevation="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/modifichePass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/modificheDati"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/modPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/change_password"
+            android:textColor="@color/orange"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"/>
+
+        <TextView
+            android:id="@+id/consiglio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/advice"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginStart="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/modifichePass"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/passAtt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/montserrat"
+            android:minHeight="48dp"
+            android:text="@string/my_password"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/passNew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/montserrat"
+            android:minHeight="48dp"
+            android:text="@string/new_password"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/passNewAgain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/montserrat"
+            android:minHeight="48dp"
+            android:text="@string/new_password_again"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/salva"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pass"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/save_changes"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="15dp"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

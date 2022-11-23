@@ -17,7 +17,7 @@
     <string name="upgrade_account">Aggiorna account</string>
     <string name="text">Testo</string>
     <string name="my_recipes">Le mie ricette</string>
-    <string name="txt_or">O</string>
+    <string name="txt_or">OPPURE</string>
     <string name="full_name">Nome Cognome</string>
     <string name="description_chef">Descrizione Cuoco</string>
     <string name="return_up">Ritorna in Alto</string>
@@ -35,7 +35,19 @@
     <string name="upgrade_3">Le tue ricette potranno essere valutate dal pubblico tramite delle stelle di gradimento.</string>
     <string name="upgrade_4">Raggiungi il successo scalando la classifica tra i top Cuochi di RicettiAmo.</string>
     <string name="upgrade_5">Cosa aspetti? Unisciti alla Community Cuoco di RicettiAmo!</string>
+    <string name="upgrade_6">Unisciti alla Community Cuoco di RicettiAmo!</string>
     <string name="ranking">Classifica</string>
-    <string name="account">Profilo</string>
+    <string name="profile">Profilo</string>
+    <string name="change_password">Modifica password</string>
+    <string name="advice">Ti consigliamo usare una password sicura che non utilizzi altrove</string>
+    <string name="my_password">Password attuale</string>
+    <string name="new_password">Nuova password</string>
+    <string name="new_password_again">Digita nuovamente la nuova password</string>
+    <string name="save_changes">Salva modifiche</string>
+    <string name="change_photo_description">Modifica foto e descrizione</string>
     <string name="chef">Cuoco</string>
+
+
+
+
 </resources>

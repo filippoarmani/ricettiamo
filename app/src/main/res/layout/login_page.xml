@@ -26,7 +26,7 @@
         android:layout_below="@+id/l_logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="60dp"
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
@@ -54,7 +54,7 @@
         android:layout_below="@+id/l_email"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="60dp"
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
@@ -96,7 +96,7 @@
         android:id="@+id/l_login"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="60dp"
         android:layout_below="@+id/l_passwordD"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
@@ -153,7 +153,7 @@
         android:layout_below="@+id/l_or"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="60dp"
 
         android:fontFamily="@font/montserrat"
         android:text="@string/login_google"
