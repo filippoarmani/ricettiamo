@@ -81,5 +81,7 @@
     </string-array>
     <string name="profile">Profile</string>
 
+    <!--le_mie_ricette-->
+    <string name="top" translatable="false">Top 3</string>
 
 </resources>

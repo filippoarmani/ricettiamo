@@ -6,14 +6,41 @@
     android:layout_height="match_parent"
 
     tools:context=".ui.leMieRicette.LeMieRicette">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/top_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/my_recipes"
+        app:titleCentered="true"
+        app:titleTextAppearance="@style/title"
+        app:titleTextColor="@color/white" />
+    <Button
+        android:id="@+id/btn_menu"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/transparent"
+        app:icon="@drawable/ic_menu_24"
+        app:iconGravity="textEnd"
+        app:iconPadding="1dp"
+        app:iconSize="32dp"
+        app:iconTint="@color/white"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:layout_below="@+id/top_appbar">
+
+
+
 
         <RelativeLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -30,7 +57,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/toDo"
+                        android:text= "@string/top"
                         android:textColor="@color/orange"
                         android:textSize="24sp">
                     </TextView>
