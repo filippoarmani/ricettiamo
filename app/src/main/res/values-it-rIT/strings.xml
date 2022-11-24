@@ -1,43 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">Impostazioni</string>
-    <string name="p_lost">Password dimenticata?</string>
-    <string name="txt_nUser">"Nuovo su RicettiAmo? "</string>
-    <string name="sign_in">Registrati</string>
-    <string name="welcome">Benvenuto!</string>
-    <string name="name">Nome</string>
-    <string name="surname">Cognome</string>
-    <string name="date">Data di nascita</string>
-    <string name="phone_number">Telefono</string>
-    <string name="create_account">Crea account</string>
+
+    <string name="text">Testo</string>
+
     <string name="menu_search_recipe">Cerca Ricetta</string>
     <string name="menu_fridge">Frigorifero</string>
     <string name="shopping_list">Lista della spesa</string>
     <string name="menu_favorites">Preferiti</string>
     <string name="upgrade_account">Aggiorna account</string>
-    <string name="text">Testo</string>
-    <string name="my_recipes">Le mie ricette</string>
-    <string name="txt_or">OPPURE</string>
     <string name="full_name">Nome Cognome</string>
     <string name="description_chef">Descrizione Cuoco</string>
-    <string name="return_up">Ritorna in Alto</string>
-    <string name="about_us">Chi Siamo</string>
-    <string name="dessert">Dolci</string>
-    <string name="first_dishes">Primi Piatti</string>
-    <string name="second_dishes">Secondi Piatti</string>
-    <string name="starters">Antipasti</string>
-    <string name="favourite_dishes">Piatti Preferiti</string>
-    <string name="upgrade_button">Upgrade Cuoco</string>
-    <string name="my_position">La mia Posizione</string>
     <string name="my_stars">Le mie Stelle</string>
+    <string name="my_position">La mia Posizione</string>
+    <string name="ranking">Classifica</string>
+
+
     <string name="upgrade_1">Condividi le tue ricette con il pubblico diventando un Cuoco di successo!</string>
     <string name="upgrade_2">Avrai a disposizione un template predefinito  per la tua ricetta, dove potrai aggiungere le tue foto.</string>
     <string name="upgrade_3">Le tue ricette potranno essere valutate dal pubblico tramite delle stelle di gradimento.</string>
     <string name="upgrade_4">Raggiungi il successo scalando la classifica tra i top Cuochi di RicettiAmo.</string>
     <string name="upgrade_5">Cosa aspetti? Unisciti alla Community Cuoco di RicettiAmo!</string>
     <string name="upgrade_6">Unisciti alla Community Cuoco di RicettiAmo!</string>
-    <string name="ranking">Classifica</string>
-    <string name="profile">Profilo</string>
+
+    <!--profile-->
+    <string name="upgrade_button">Upgrade Cuoco</string>
+
+    <!--login/register-->
+    <string name="p_lost">Password dimenticata?</string>
+    <string name="sign_in">Registrati</string>
+    <string name="welcome">Benvenuto!</string>
+    <string name="txt_or">OPPURE</string>
+    <string name="txt_nUser">"Nuovo su RicettiAmo? "</string>
+    <string name="name">Nome</string>
+    <string name="surname">Cognome</string>
+    <string name="date">Data di nascita</string>
+    <string name="phone_number">Telefono</string>
+    <string name="create_account">Crea account</string>
+
+    <!--homepage-->
+    <string name="favourite_dishes">Piatti Preferiti</string>
+    <string name="starters">Antipasti</string>
+    <string name="first_dishes">Primi Piatti</string>
+    <string name="second_dishes">Secondi Piatti</string>
+    <string name="dessert">Dolci</string>
+    <string name="about_us">Chi Siamo</string>
+    <string name="return_up">Ritorna in Alto</string>
+    <string name="my_recipes">Le mie ricette</string>
+    <string name="chef">Cuoco</string>
+
+    <!--settings-->
     <string name="change_password">Modifica password</string>
     <string name="advice">Ti consigliamo usare una password sicura che non utilizzi altrove</string>
     <string name="my_password">Password attuale</string>
@@ -45,7 +57,9 @@
     <string name="new_password_again">Digita nuovamente la nuova password</string>
     <string name="save_changes">Salva modifiche</string>
     <string name="change_photo_description">Modifica foto e descrizione</string>
-    <string name="chef">Cuoco</string>
+
+    <!--fridge/Shopping List-->
+    <string name="profile">Profilo</string>
     <string name="product_name">Nome Prodotto</string>
     <string name="quantity">Qta</string>
 

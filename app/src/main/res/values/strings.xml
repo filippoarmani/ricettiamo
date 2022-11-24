@@ -6,6 +6,8 @@
     <string name="menu_home" translatable="false">Home</string>
     <string name="text">Text</string>
 
+    <string name="toDo" translatable="false">TempModify</string>
+
     <string name="menu_search_recipe">Search Recipe</string>
     <string name="menu_fridge">Fridge</string>
     <string name="shopping_list">Shopping List</string>
@@ -32,7 +34,6 @@
     <!--profile-->
     <string name="upgrade_button">Upgrade Chef</string>
 
-
     <!--login/register-->
     <string name="email" translatable="false">Email</string>
     <string name="password" translatable="false">Password</string>
@@ -52,15 +53,14 @@
     <!--homepage-->
     <string name="favourite_dishes">Favourite Dishes</string>
     <string name="starters">Starters</string>
+    <string name="first_dishes">First Dishes</string>
+    <string name="second_dishes">Second Dishes</string>
+    <string name="dessert">Dessert</string>
     <string name="info" translatable="false">Info</string>
     <string name="about_us">About Us</string>
     <string name="return_up">Return Up</string>
     <string name="my_recipes">My Recipes</string>
-    <string name="dessert">Dessert</string>
-    <string name="first_dishes">First Dishes</string>
-    <string name="second_dishes">Second Dishes</string>
     <string name="chef">Chef</string>
-    <string name="toDo" translatable="false">TempModify</string>
 
     <!--settings-->
     <string name="change_password">Change my password</string>
@@ -72,7 +72,7 @@
     <string name="change_photo_description">Change photo and description</string>
 
     <!--fridge/Shopping List-->
-    <string-array name="qta_array">
+    <string-array name="qta_array" translatable="false">
         <item>gr</item>
         <item>kg</item>
         <item>pz</item>
