@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
 
         tools:context=".upgradeCuoco">
-
+<!--
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/top_appbar"
             android:layout_width="match_parent"
@@ -40,12 +40,11 @@
             app:iconPadding="1dp"
             app:iconSize="32dp"
             app:iconTint="@color/white"/>
-
+-->
         <LinearLayout
             android:id="@+id/cond"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/top_appbar">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/upgrade_1"

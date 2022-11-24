@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     tools:context=".ui.impostazioni.ImpostazioniFragment">
-
+<!--
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/top_appbar"
         android:layout_width="match_parent"
@@ -32,12 +32,11 @@
         app:iconPadding="1dp"
         app:iconSize="32dp"
         app:iconTint="@color/white"/>
-
+-->
     <LinearLayout
         android:id="@+id/modificheDati"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/top_appbar"
         android:orientation="vertical"
         android:gravity="center">
 
@@ -66,7 +65,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/montserrat"
-            android:text="@string/description_chef"
+            android:hint="@string/description_chef"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:background="@drawable/back"
@@ -127,7 +126,7 @@
             android:layout_marginEnd="40dp"
             android:fontFamily="@font/montserrat"
             android:minHeight="48dp"
-            android:text="@string/my_password"
+            android:hint="@string/my_password"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -140,7 +139,7 @@
             android:layout_marginEnd="40dp"
             android:fontFamily="@font/montserrat"
             android:minHeight="48dp"
-            android:text="@string/new_password"
+            android:hint="@string/new_password"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -153,7 +152,7 @@
             android:layout_marginEnd="40dp"
             android:fontFamily="@font/montserrat"
             android:minHeight="48dp"
-            android:text="@string/new_password_again"
+            android:hint="@string/new_password_again"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
