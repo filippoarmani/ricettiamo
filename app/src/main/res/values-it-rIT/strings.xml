@@ -46,8 +46,8 @@
     <string name="save_changes">Salva modifiche</string>
     <string name="change_photo_description">Modifica foto e descrizione</string>
     <string name="chef">Cuoco</string>
-
-
+    <string name="product_name">Nome Prodotto</string>
+    <string name="quantity">Qta</string>
 
 
 </resources>

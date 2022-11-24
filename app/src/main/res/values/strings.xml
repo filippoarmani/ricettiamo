@@ -80,6 +80,8 @@
         <item>l</item>
     </string-array>
     <string name="profile">Profile</string>
+    <string name="product_name">Product Name</string>
+    <string name="quantity">Qty</string>
 
     <!--le_mie_ricette-->
     <string name="top" translatable="false">Top 3</string>
