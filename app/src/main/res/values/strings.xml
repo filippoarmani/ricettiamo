@@ -6,8 +6,6 @@
     <string name="menu_home" translatable="false">Home</string>
     <string name="text">Text</string>
 
-    <string name="toDo" translatable="false">TempModify</string>
-
     <string name="menu_search_recipe">Search Recipe</string>
     <string name="menu_fridge">Fridge</string>
     <string name="shopping_list">Shopping List</string>
@@ -31,8 +29,9 @@
     <string name="upgrade_5">What are you waiting for?</string>
     <string name="upgrade_6">Join the Chef Community of RicettiAmo!</string>
 
-    <!--profile-->
+    <!--upgradechef-->
     <string name="upgrade_button">Upgrade Chef</string>
+
 
     <!--login/register-->
     <string name="email" translatable="false">Email</string>
@@ -53,18 +52,19 @@
     <!--homepage-->
     <string name="favourite_dishes">Favourite Dishes</string>
     <string name="starters">Starters</string>
-    <string name="first_dishes">First Dishes</string>
-    <string name="second_dishes">Second Dishes</string>
-    <string name="dessert">Dessert</string>
     <string name="info" translatable="false">Info</string>
     <string name="about_us">About Us</string>
     <string name="return_up">Return Up</string>
     <string name="my_recipes">My Recipes</string>
+    <string name="dessert">Dessert</string>
+    <string name="first_dishes">Firts Dishes</string>
+    <string name="second_dishes">Second Dishes</string>
     <string name="chef">Chef</string>
+    <string name="toDo" translatable="false">TempModify</string>
 
     <!--settings-->
     <string name="change_password">Change my password</string>
-    <string name="advice">We recommend using a strong password that you don\'t use anywhere else</string>
+    <string name="advice">We recommend using a strong password that you don't use anywhere else</string>
     <string name="my_password">Current password</string>
     <string name="new_password">New password</string>
     <string name="new_password_again">Type new password again</string>
@@ -72,7 +72,7 @@
     <string name="change_photo_description">Change photo and description</string>
 
     <!--fridge/Shopping List-->
-    <string-array name="qta_array" translatable="false">
+    <string-array name="qta_array">
         <item>gr</item>
         <item>kg</item>
         <item>pz</item>
@@ -80,10 +80,9 @@
         <item>l</item>
     </string-array>
     <string name="profile">Profile</string>
-    <string name="product_name">Product Name</string>
-    <string name="quantity">Qty</string>
 
     <!--le_mie_ricette-->
     <string name="top" translatable="false">Top 3</string>
+
 
 </resources>
