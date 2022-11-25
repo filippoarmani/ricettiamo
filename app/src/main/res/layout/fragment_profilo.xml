@@ -5,7 +5,6 @@
     android:id="@+id/profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_menu_24"
     tools:context=".ui.profilo.ProfiloFragment">
 
     <LinearLayout
@@ -123,7 +122,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="85dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/ic_star_24"
+            android:background="@drawable/star"
             android:elevation="10dp"/>
 
         <TextView
