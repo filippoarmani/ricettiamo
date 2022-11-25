@@ -25,7 +25,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:background="@color/transparent"
-        app:icon="@drawable/ic_menu_24"
+        app:icon="@drawable/menulat"
         app:iconGravity="textEnd"
         app:iconPadding="1dp"
         app:iconSize="32dp"
@@ -107,7 +107,7 @@
                         <TextView
                             android:layout_width="21dp"
                             android:layout_height="21dp"
-                            android:background="@drawable/ic_star_24"
+                            android:background="@drawable/star"
                             android:layout_gravity="center"
                             android:layout_toStartOf="@+id/number1"
                             android:gravity="center"
@@ -177,7 +177,7 @@
                         <TextView
                             android:layout_width="21dp"
                             android:layout_height="21dp"
-                            android:background="@drawable/ic_star_24"
+                            android:background="@drawable/star"
                             android:layout_gravity="center"
                             android:layout_toStartOf="@+id/number2"
                             android:gravity="center"
@@ -245,7 +245,7 @@
                         <TextView
                             android:layout_width="21dp"
                             android:layout_height="21dp"
-                            android:background="@drawable/ic_star_24"
+                            android:background="@drawable/star"
                             android:layout_gravity="center"
                             android:layout_toStartOf="@+id/number3"
                             android:gravity="center"
@@ -289,7 +289,7 @@
                     android:layout_height="18dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/list_item"
+                    android:background="@drawable/menulat"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></TextView>
 
@@ -320,7 +320,7 @@
                             android:layout_height="21dp"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            android:background="@drawable/ic_star_24">
+                            android:background="@drawable/star">
                         </TextView>
 
                         <TextView

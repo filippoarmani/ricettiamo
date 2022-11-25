@@ -35,7 +35,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:background="@color/transparent"
-            app:icon="@drawable/ic_menu_24"
+            app:icon="@drawable/ic_menu"
             app:iconGravity="textEnd"
             app:iconPadding="1dp"
             app:iconSize="32dp"
