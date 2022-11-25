@@ -18,18 +18,6 @@
         app:titleCentered="true"
         app:titleTextAppearance="@style/title"
         app:titleTextColor="@color/white" />
-    <Button
-        android:id="@+id/btn_menu"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/transparent"
-        app:icon="@drawable/menulat"
-        app:iconGravity="textEnd"
-        app:iconPadding="1dp"
-        app:iconSize="32dp"
-        app:iconTint="@color/white"/>
 
 
     <ScrollView
@@ -290,7 +278,7 @@
                     android:layout_height="18dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/menulat"
+                    android:background="@drawable/list_item"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></TextView>
 

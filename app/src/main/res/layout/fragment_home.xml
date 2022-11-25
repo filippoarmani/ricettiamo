@@ -24,7 +24,7 @@
             android:background="@drawable/edit_text_background"
             android:backgroundTint="@color/orange_w"
 
-            android:drawableStart="@drawable/ic_search_24"
+            android:drawableStart="@drawable/ic_search"
             android:drawablePadding="10dp"
             android:ems="10"
             android:fontFamily="@font/montserrat"
