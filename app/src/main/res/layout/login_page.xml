@@ -19,7 +19,7 @@
         android:layout_marginTop="47dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="47dp"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo_round" />
 
     <EditText
         android:id="@+id/l_email"
@@ -33,7 +33,7 @@
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
-        android:drawableStart="@drawable/ic_email_24"
+        android:drawableStart="@drawable/ic_email"
 
         android:drawablePadding="10dp"
         android:ems="10"
@@ -61,7 +61,7 @@
 
         android:background="@drawable/edit_text_background"
         android:backgroundTint="@color/orange_w"
-        android:drawableStart="@drawable/ic_password_24"
+        android:drawableStart="@drawable/ic_password"
 
         android:drawablePadding="10dp"
         android:ems="10"
