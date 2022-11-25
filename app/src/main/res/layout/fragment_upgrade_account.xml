@@ -13,34 +13,7 @@
         android:layout_height="match_parent"
 
         tools:context=".upgradeCuoco">
-<!--
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/top_appbar"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@color/orange"
-            app:titleTextColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/chef"
-            app:titleCentered="true"
-            app:titleTextAppearance="@style/title"
-            />
 
-        <Button
-            android:id="@+id/btn_menu"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/transparent"
-            app:icon="@drawable/ic_menu_24"
-            app:iconGravity="textEnd"
-            app:iconPadding="1dp"
-            app:iconSize="32dp"
-            app:iconTint="@color/white"/>
--->
         <LinearLayout
             android:id="@+id/cond"
             android:layout_width="match_parent"
@@ -50,7 +23,7 @@
                 android:id="@+id/upgrade_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/montserrat"
@@ -75,24 +48,25 @@
             android:id="@+id/templayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cond">
+            android:layout_below="@+id/line">
 
             <ImageView
                 android:id="@+id/template"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginStart="60dp"
                 android:background="@drawable/template"
                 android:elevation="10dp"
-                android:contentDescription="@string/toDo" />
+                android:contentDescription="@string/upgrade_2" />
 
             <TextView
                 android:id="@+id/upgrade_2"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/upgrade_2"
                 android:textColor="@color/black"
@@ -110,18 +84,19 @@
                 android:id="@+id/star"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginStart="60dp"
                 android:background="@drawable/ic_star_24"
                 android:elevation="10dp"
-                android:contentDescription="@string/toDo" />
+                android:contentDescription="@string/upgrade_3" />
 
             <TextView
                 android:id="@+id/upgrade_3"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/upgrade_3"
                 android:textColor="@color/black"
@@ -139,18 +114,19 @@
                 android:id="@+id/trophystar"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginStart="60dp"
                 android:background="@drawable/trophy"
                 android:elevation="10dp"
-                android:contentDescription="@string/toDo" />
+                android:contentDescription="@string/upgrade_4" />
 
             <TextView
                 android:id="@+id/upgrade_4"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginStart="40dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/upgrade_4"
                 android:textColor="@color/black"
@@ -181,6 +157,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/upgrade_6"
                 android:textColor="@color/black"
                 android:textSize="18sp"

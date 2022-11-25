@@ -6,33 +6,7 @@
     android:layout_height="match_parent"
 
     tools:context=".ui.impostazioni.ImpostazioniFragment">
-<!--
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/top_appbar"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/orange"
-        app:titleTextColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/action_settings"
-        app:titleCentered="true"
-        app:titleTextAppearance="@style/title"/>
 
-    <Button
-        android:id="@+id/btn_menu"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/transparent"
-        app:icon="@drawable/ic_menu_24"
-        app:iconGravity="textEnd"
-        app:iconPadding="1dp"
-        app:iconSize="32dp"
-        app:iconTint="@color/white"/>
--->
     <LinearLayout
         android:id="@+id/modificheDati"
         android:layout_width="match_parent"
@@ -44,39 +18,42 @@
             android:id="@+id/modFotoDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="60dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/change_photo_description"
             android:textColor="@color/orange"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginStart="20dp"/>
+            android:textStyle="bold"/>
 
         <ImageButton
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/user"
             android:contentDescription="@string/profile"/>
 
         <EditText
             android:id="@+id/modificaDescr"
-            android:layout_width="wrap_content"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
+            android:background="@drawable/back"
+            android:elevation="10dp"
             android:fontFamily="@font/montserrat"
             android:hint="@string/description_chef"
+            android:importantForAutofill="no"
+            android:maxWidth="1000dp"
+            android:maxLines="4"
+            android:minLines="4"
+            android:padding="10dp"
+            android:inputType="textMultiLine"
             android:textColor="@color/black"
-            android:inputType="text"
-            android:textSize="16sp"
-            android:background="@drawable/back"
-            android:paddingStart="80dp"
-            android:paddingEnd="80dp"
-            android:paddingTop="30dp"
-            android:paddingBottom="30dp"
-            android:elevation="10dp"
-            android:importantForAutofill="no" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -84,32 +61,34 @@
         android:id="@+id/modifichePass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/modificheDati"
+        android:layout_below="@+id/modFotoDesc"
         android:orientation="vertical"
-        android:gravity="center">
+        tools:ignore="NotSibling">
 
         <TextView
             android:id="@+id/modPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="350dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/change_password"
             android:textColor="@color/orange"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginStart="20dp"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/consiglio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/advice"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_marginStart="20dp"/>
+            android:textSize="16sp" />
 
     </LinearLayout>
 
