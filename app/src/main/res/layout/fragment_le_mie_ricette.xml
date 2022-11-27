@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
 
     tools:context=".ui.leMieRicette.LeMieRicette">
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/top_appbar"
         android:layout_width="match_parent"
@@ -25,9 +26,6 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:layout_below="@+id/top_appbar">
-
-
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -76,7 +74,7 @@
                         android:id="@+id/medal1"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:background="@drawable/medal1"
+                        android:background="@drawable/medal_1"
                         android:layout_margin="5dp"
                         android:layout_gravity="center">
                     </TextView>
@@ -146,7 +144,7 @@
                         android:id="@+id/medal2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:background="@drawable/medal2"
+                        android:background="@drawable/medal_2"
                         android:layout_margin="5dp"
                         android:layout_gravity="center">
                     </TextView>
@@ -214,7 +212,7 @@
                         android:id="@+id/medal3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:background="@drawable/medal3"
+                        android:background="@drawable/medal_3"
                         android:layout_margin="5dp"
                         android:layout_gravity="center">
                     </TextView>
