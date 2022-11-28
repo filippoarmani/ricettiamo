@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "653587249342",
+    "project_id": "ricettiamo-8cacf",
+    "storage_bucket": "ricettiamo-8cacf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653587249342:android:1bbc2e1fb54f664c4086ef",
+        "android_client_info": {
+          "package_name": "cfgmm.ricettiamo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653587249342-3dah3jbg2vfid8t0i9hsbnr1bi4idoar.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cfgmm.ricettiamo",
+            "certificate_hash": "4bf47dbfac78f19b135ec9f6d457aa5dae53fedb"
+          }
+        },
+        {
+          "client_id": "653587249342-i1oqfo503m71u7grkrr8fgqa56mq4ebd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV-eh6et-UbWjS19ZITnTmIGaxjyNkxlE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653587249342-i1oqfo503m71u7grkrr8fgqa56mq4ebd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
