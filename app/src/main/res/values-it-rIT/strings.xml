@@ -62,6 +62,7 @@
     <string name="profile">Profilo</string>
     <string name="product_name">Nome Prodotto</string>
     <string name="quantity">Qta</string>
+    <string name="login_later">Registrati successivamente</string>
 
 
 </resources>
