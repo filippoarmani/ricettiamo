@@ -44,7 +44,7 @@
     <string name="txt_nUser">"New on RicettiAmo? "</string>
     <string name="name">Name</string>
     <string name="surname">Surname</string>
-    <string name="date">Date of Birth (dd/mm/yyyy)</string>
+    <string name="date">Date of Birth</string>
     <string name="phone_number">Phone Number</string>
     <string name="create_account">Create Account</string>
     <string name="login_google" translatable="false">Login with Google</string>

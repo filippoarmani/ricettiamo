@@ -34,7 +34,7 @@
     <string name="txt_nUser">"Nuovo su RicettiAmo? "</string>
     <string name="name">Nome</string>
     <string name="surname">Cognome</string>
-    <string name="date">Data di nascita (gg/mm/aaaa)</string>
+    <string name="date">Data di nascita</string>
     <string name="phone_number">Telefono</string>
     <string name="create_account">Crea account</string>
 
