@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -101,7 +101,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@id/home"
@@ -138,15 +138,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            app:srcCompat="@drawable/carb" />
+                            app:srcCompat="@drawable/carb"
+                            android:contentDescription="@string/toDo"/>
 
                         <ImageView
                             android:id="@+id/imageViewRicettePreferite2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            app:srcCompat="@drawable/guac" />
+                            app:srcCompat="@drawable/guac"
+                            android:contentDescription="@string/toDo"/>
+
                     </LinearLayout>
+
                 </HorizontalScrollView>
 
                 <TextView
@@ -176,14 +180,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            app:srcCompat="@drawable/carb" />
+                            app:srcCompat="@drawable/carb"
+                            android:contentDescription="@string/toDo"/>
 
                         <ImageView
                             android:id="@+id/imageViewAntipasti2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            app:srcCompat="@drawable/guac" />
+                            app:srcCompat="@drawable/guac"
+                            android:contentDescription="@string/toDo"/>
+
                     </LinearLayout>
 
                 </HorizontalScrollView>
@@ -215,15 +222,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            app:srcCompat="@drawable/carb" />
+                            app:srcCompat="@drawable/carb"
+                            android:contentDescription="@string/toDo"/>
 
                         <ImageView
                             android:id="@+id/imageViewPrimiPiatti2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            app:srcCompat="@drawable/guac" />
+                            app:srcCompat="@drawable/guac"
+                            android:contentDescription="@string/toDo"/>
+
                     </LinearLayout>
+
                 </HorizontalScrollView>
 
                 <TextView
@@ -253,15 +264,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            app:srcCompat="@drawable/carb" />
+                            app:srcCompat="@drawable/carb"
+                            android:contentDescription="@string/toDo"/>
 
                         <ImageView
                             android:id="@+id/imageViewSecondiPiatti2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            app:srcCompat="@drawable/guac" />
+                            app:srcCompat="@drawable/guac"
+                            android:contentDescription="@string/toDo"/>
+
                     </LinearLayout>
+
                 </HorizontalScrollView>
 
                 <TextView
@@ -291,14 +306,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            app:srcCompat="@drawable/carb" />
+                            app:srcCompat="@drawable/carb"
+                            android:contentDescription="@string/toDo"/>
 
                         <ImageView
                             android:id="@+id/imageViewDolci2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="32dp"
-                            app:srcCompat="@drawable/guac" />
+                            app:srcCompat="@drawable/guac"
+                            android:contentDescription="@string/toDo"/>
+
                     </LinearLayout>
 
                 </HorizontalScrollView>
@@ -322,7 +340,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/logo_round" />
+                        app:srcCompat="@drawable/logo_round"
+                        android:contentDescription="@string/toDo"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -392,9 +411,8 @@
                             android:textSize="16sp" />
 
                     </LinearLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -402,4 +420,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</RelativeLayout>

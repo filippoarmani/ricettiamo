@@ -64,5 +64,23 @@
     <string name="quantity">Qta</string>
     <string name="login_later">Registrati successivamente</string>
 
+    <!--ricetta-->
+
+    <string name="informations">Difficoltà: Facile\nPreparazione: 15min\nCosto: Basso\nDosi per: 4 persone</string>
+    <string name="ingredients">Ingredienti</string>
+    <string name="ingredient_2">Tuorli 6</string>
+    <string name="ingredient_3">Pepe nero q.b.</string>
+    <string name="ingredient_5">Pecorino romano 50g</string>
+    <string name="preparation">Preparazione</string>
+    <string name="prep_1">Per preparare gli spaghetti alla carbonara cominciate mettendo sul fuoco una pentola con l acqua salata per cuocere la pasta. \n\nNel frattempo eliminate la cotenna dal guanciale e tagliatelo prima a fette e poi a striscioline spesse circa 1cm. La cotenna avanzata può essere riutilizzata per insaporire altre preparazioni. Versate i pezzetti di guanciale in una padella antiaderente e rosolate per circa 10 minuti a fiamma medio alta, fate attenzione a non bruciarlo altrimenti rilascerà un aroma troppo forte.</string>
+    <string name="prep_2">Nel frattempo tuffate gli spaghetti nell’acqua bollente e cuoceteli al dente. Intanto versate i tuorli in una ciotola. Aggiungete il Pecorino romano e insaporite con il pepe nero. Amalgamate il tutto con una frusta a mano, sino ad ottenere una crema liscia.</string>
+    <string name="prep_3">Intanto il guanciale sarà giunto a cottura; spegnete il fuoco e utilizzando un mestolo prelevatelo dalla padella, lasciando il fondo di cottura all interno della padella stessa. Trasferite il guanciale in una ciotolina e tenetelo da parte.Versate una mestolata d’acqua della pasta in padella, insieme al grasso del guanciale. Scolate la pasta al dente direttamente nel tegame con il fondo di cottura. Saltatela brevemente per insaporirla. Togliete dal fuoco e versate il composto di uova e Pecorino nel tegame. Mescolate velocemente per amalgamare. Per renderla ben cremosa, al bisogno, potete aggiungere poca acqua di cottura della pasta. Aggiungete il guanciale, mescolate un ultima volta e servite subito gli spaghetti alla carbonara aggiungendo ancora del pecorino in superficie e un pizzico di pepe nero. </string>
+    <string name="tip_1">Consiglio</string>
+    <string name="tip_2">Il guanciale non dovrà essere rosolato troppo, altrimenti potrebbe rilasciare un gusto amarognolo. Inoltre è bene aggiungere il guanciale solo all ultimo per mantenere la sua croccantezza. Per evitare l effetto frittata è importante aggiungere il composto di tuorli solo a fuoco spento. La mantecatura è un passaggio importante, bisogna mescolare sino a che la cremina non si è addensata. E potete regolare la consistenza aggiungendo acqua di cottura della pasta. Potete utilizzare metà dose di Pecorino romano e metà dose di Parmigiano per una versione più delicata.</string>
+    <string name="review">Le vostre recensioni</string>
+    <string name="write_review">Scrivi una recensione</string>
+    <string name="review_2">Preferisco usare il Parmigiano perchè il Pecorino è un po’ troppo salato per i miei gusti.</string>
+    <string name="review_1">Uno dei miei piatti preferiti! I miei figli mi chiedono sempre di preparare la carbonara.</string>
+
 
 </resources>

@@ -4,38 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".ui.leMieRicette.LeMieRicette">
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/top_appbar"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/orange"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/my_recipes"
-        app:titleCentered="true"
-        app:titleTextAppearance="@style/title"
-        app:titleTextColor="@color/white" />
-
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:layout_below="@+id/top_appbar">
+        android:layout_marginTop="30dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView_start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp">
+                android:layout_margin="30dp">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -45,23 +31,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text= "@string/top"
+                        android:fontFamily="@font/montserrat"
+                        android:textStyle="bold"
                         android:textColor="@color/orange"
-                        android:textSize="24sp">
-                    </TextView>
+                        android:textSize="20sp"/>
+
                 </RelativeLayout>
+
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_podio1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cardView_start"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                >
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp">
+
                 <LinearLayout
                     android:backgroundTint="@color/orange_w"
                     android:id="@+id/list_item1"
@@ -70,14 +57,15 @@
                     android:orientation="horizontal"
                     android:padding="5dp"
                     android:background="@drawable/edit_text2">
-                    <TextView
+
+                    <ImageView
                         android:id="@+id/medal1"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/medal_1"
                         android:layout_margin="5dp"
-                        android:layout_gravity="center">
-                    </TextView>
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/toDo"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -85,21 +73,24 @@
                         android:layout_gravity="center"
                         android:text="@string/text"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:layout_margin="5dp"></TextView>
+                        android:textSize="16sp"
+                        android:layout_margin="5dp"
+                        android:fontFamily="@font/montserrat"/>
+
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center">
-                        <TextView
+
+                        <ImageView
                             android:layout_width="21dp"
                             android:layout_height="21dp"
                             android:background="@drawable/star"
                             android:layout_gravity="center"
                             android:layout_toStartOf="@+id/number1"
                             android:gravity="center"
-                            android:layout_margin="5dp">
-                        </TextView>
+                            android:layout_margin="5dp"
+                            android:contentDescription="@string/toDo"/>
 
                         <TextView
                             android:id="@+id/number1"
@@ -113,24 +104,23 @@
                             android:layout_marginBottom="5dp"
                             android:text="@string/toDo"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
-                            ></TextView>
+                            android:textSize="16sp"
+                            android:fontFamily="@font/montserrat" />
 
                     </RelativeLayout>
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_podio2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/card_podio1"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp">
 
                 <LinearLayout
                     android:backgroundTint="@color/orange_w"
@@ -140,14 +130,15 @@
                     android:orientation="horizontal"
                     android:padding="5dp"
                     android:background="@drawable/edit_text2">
-                    <TextView
+
+                    <ImageView
                         android:id="@+id/medal2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/medal_2"
                         android:layout_margin="5dp"
-                        android:layout_gravity="center">
-                    </TextView>
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/toDo"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -155,21 +146,27 @@
                         android:layout_gravity="center"
                         android:text="@string/text"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:layout_margin="5dp"></TextView>
+                        android:textSize="16sp"
+                        android:layout_margin="5dp"
+                        android:fontFamily="@font/montserrat"/>
+
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center">
-                        <TextView
+
+                        <ImageView
                             android:layout_width="21dp"
                             android:layout_height="21dp"
-                            android:background="@drawable/star"
                             android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_toStartOf="@+id/number2"
-                            android:gravity="center"
-                            android:layout_margin="5dp">
-                        </TextView>
+                            android:background="@drawable/star"
+                            android:contentDescription="@string/toDo"
+                            android:gravity="center" />
 
                         <TextView
                             android:id="@+id/number2"
@@ -183,9 +180,13 @@
                             android:layout_marginBottom="5dp"
                             android:text="@string/toDo"
                             android:textColor="@color/black"
-                            android:textSize="18sp"></TextView>
+                            android:textSize="16sp"
+                            android:fontFamily="@font/montserrat"/>
+
                     </RelativeLayout>
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -193,13 +194,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/card_podio2"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                >
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="16dp">
+
                 <LinearLayout
                     android:backgroundTint="@color/orange_w"
                     android:id="@+id/list_item3"
@@ -208,14 +206,15 @@
                     android:orientation="horizontal"
                     android:padding="5dp"
                     android:background="@drawable/edit_text2">
-                    <TextView
+
+                    <ImageView
                         android:id="@+id/medal3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/medal_3"
                         android:layout_margin="5dp"
-                        android:layout_gravity="center">
-                    </TextView>
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/toDo"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -223,21 +222,27 @@
                         android:layout_gravity="center"
                         android:text="@string/text"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:layout_margin="5dp"></TextView>
+                        android:textSize="16sp"
+                        android:layout_margin="5dp"
+                        android:fontFamily="@font/montserrat"/>
+
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center">
-                        <TextView
+
+                        <ImageView
                             android:layout_width="21dp"
                             android:layout_height="21dp"
-                            android:background="@drawable/star"
                             android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_toStartOf="@+id/number3"
+                            android:background="@drawable/star"
                             android:gravity="center"
-                            android:layout_margin="5dp">
-                        </TextView>
+                            android:contentDescription="@string/toDo"/>
 
                         <TextView
                             android:id="@+id/number3"
@@ -251,10 +256,11 @@
                             android:layout_marginBottom="5dp"
                             android:text="@string/toDo"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
-                            ></TextView>
+                            android:textSize="16sp"
+                            android:fontFamily="@font/montserrat"/>
 
                     </RelativeLayout>
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -264,51 +270,56 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/card_podio3"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
                 android:padding="5dp">
 
-                <TextView
+                <ImageView
                     android:id="@+id/list_item_icon"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/list_item"
+                    android:contentDescription="@string/toDo"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/text_ricette"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginStart="3dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/text"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat"
                     app:layout_constraintLeft_toRightOf="@+id/list_item_icon"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        app:layout_constraintEnd_toEndOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/edit_text2"
                         android:backgroundTint="@color/orange_w"
                         android:padding="5dp">
-                        <TextView
+
+                        <ImageView
                             android:layout_width="21dp"
                             android:layout_height="21dp"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            android:background="@drawable/star">
-                        </TextView>
+                            android:background="@drawable/star"
+                            android:contentDescription="@string/toDo"/>
 
                         <TextView
                             android:id="@+id/numberVote"
@@ -317,14 +328,19 @@
                             android:layout_margin="5dp"
                             android:text="@string/toDo"
                             android:textColor="@color/black"
-                            android:textSize="18sp">
-                        </TextView>
+                            android:textSize="16sp"
+                            android:fontFamily="@font/montserrat"/>
+
                     </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </RelativeLayout>
+
     </ScrollView>
+
 </RelativeLayout>
 
 
