@@ -72,9 +72,8 @@
                 android:textAlignment="center"
                 app:layout_constraintLeft_toRightOf="@+id/text" />
         </LinearLayout>
-
-        <ListView
-            android:id="@android:id/list"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_ingredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/inserimento_frigorifero"
