@@ -72,15 +72,15 @@
                 android:textAlignment="center"
                 app:layout_constraintLeft_toRightOf="@+id/text" />
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_ingredients"
+            android:id="@+id/recyclerview_list_ingredients"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/inserimento_frigorifero"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:drawSelectorOnTop="false" />
+            android:layout_marginBottom="20dp"/>
 
 </RelativeLayout>

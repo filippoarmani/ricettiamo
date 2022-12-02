@@ -16,8 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import adpter.IngredientsRecyclerAdapter;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Ingredient;
 
@@ -46,7 +50,7 @@ public class FrigoriferoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         }
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,8 +74,33 @@ public class FrigoriferoFragment extends Fragment {
             }
         });
 
-        RecyclerView recyclerView = view.findViewById(R.id.list_ingredients);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false);
-        List<Ingredient> ingredientList =
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients);
+        RecyclerView.LayoutManager layoutManager = new  LinearLayoutManager(requireContext(),
+                LinearLayoutManager.VERTICAL,  false);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        List<Ingredient> ingredientList = new ArrayList<>();
+        for (int i=0; i<10;i++){
+            ingredientList.add(new Ingredient("nome" + i,3, "size"+ "kg"));
+        }
+
+        IngredientsRecyclerAdapter adapter = new IngredientsRecyclerAdapter(ingredientList,
+                new IngredientsRecyclerAdapter.OnItemClickListener() {
+                    @Override
+                    public void onIngredientItemClick(Ingredient ingredient) {
+                        Snackbar.make(view, ingredient.getName(),Snackbar.LENGTH_SHORT).show();
+                    }
+    
+                    @Override
+                    public void onDeleteButtonPressed(int position) {
+
+                    }
+                });
+
+                recyclerView.setAdapter(adapter);
+
+
+
     }
 }

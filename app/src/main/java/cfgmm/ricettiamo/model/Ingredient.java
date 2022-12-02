@@ -10,20 +10,22 @@ import androidx.annotation.NonNull;
 public class Ingredient implements Parcelable {
     private String name;
     @SerializedName("publishedAt")
-    private String qta;
+    private int qta;
+    private String size;
     private String url;
     private String urlToImage;
 
-public Ingredient(){}
-
-    public Ingredient(String nome, String qta, String url, String urlToImage) {
-        this.name = nome;
+    public Ingredient(String name, int qta, String size, String url, String urlToImage) {
+        this.name = name;
         this.qta = qta;
+        this.size = size;
         this.url = url;
         this.urlToImage = urlToImage;
     }
-    public Ingredient(String nome, String qta) {
-        this(nome, qta, null, null);
+
+
+    public Ingredient(String name, int qta, String size) {
+        this(name, qta, size, null, null);
     }
 
     public static final Creator<Ingredient> CREATOR = new Creator<Ingredient>() {
@@ -38,7 +40,15 @@ public Ingredient(){}
         }
     };
 
-    public String getNome() {
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getName() {
         return name;
     }
 
@@ -46,11 +56,11 @@ public Ingredient(){}
         this.name = nome;
     }
 
-    public String getQta() {
+    public int getQta() {
         return qta;
     }
 
-    public void setQta(String qta) {
+    public void setQta(int qta) {
         this.qta = qta;
     }
 
@@ -75,6 +85,7 @@ public Ingredient(){}
         return "Ingredient{" +
                 "nome='" + name + '\'' +
                 ", qta='" + qta + '\'' +
+                ", size='" + size + '\'' +
                 ", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
                 '}';
@@ -82,7 +93,8 @@ public Ingredient(){}
 
     public Ingredient(Parcel in) {
         this.name = in.readString();
-        this.qta = in.readString();
+        this.qta = in.readInt();
+        this.size = in.readString();
         this.url = in.readString();
         this.urlToImage = in.readString();
     }
@@ -95,7 +107,8 @@ public Ingredient(){}
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
-        dest.writeString(this.qta);
+        dest.writeInt(this.qta);
+        dest.writeString(this.size);
         dest.writeString(this.url);
         dest.writeString(this.urlToImage);
 
