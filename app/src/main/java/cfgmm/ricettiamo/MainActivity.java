@@ -1,12 +1,15 @@
 package cfgmm.ricettiamo;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +51,40 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_listaDellaSpesa,
                 R.id.nav_preferiti,
                 R.id.nav_impostazioni,
-                R.id.nav_upgrade,
-                R.id.nav_logout)
+                R.id.nav_upgrade/*,
+                R.id.nav_logout*/)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        Button button = (Button) findViewById(R.id.btn_logout);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage(R.string.Confirmation);
+                // Add the buttons
+                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button --> open login fragment
+
+                        dialog.cancel();
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog --> close alert dialog
+                        dialog.cancel();
+                    }
+                });
+                // Set other dialog properties
+
+
+                // Create the AlertDialog
+                AlertDialog dialog = builder.create();
+            }
+        });
     }
 
     @Override

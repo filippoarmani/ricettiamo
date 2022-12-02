@@ -81,6 +81,8 @@
     <string name="write_review">Scrivi una recensione</string>
     <string name="review_2">Preferisco usare il Parmigiano perchè il Pecorino è un po’ troppo salato per i miei gusti.</string>
     <string name="review_1">Uno dei miei piatti preferiti! I miei figli mi chiedono sempre di preparare la carbonara.</string>
+    <string name="Confirmation">Sei Sicuro?</string>
+    <string name="cancel">Annulla</string>
 
 
 </resources>
