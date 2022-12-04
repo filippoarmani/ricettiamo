@@ -113,5 +113,6 @@
     <string name="review_2">I prefer to use Parmesan because Pecorino is a bit too salty for my taste.</string>
     <string name="star_2" translatable="false">3,5/5</string>
     <string name="write_review">Write a review</string>
+    <string name="ok">ok</string>
 
 </resources>

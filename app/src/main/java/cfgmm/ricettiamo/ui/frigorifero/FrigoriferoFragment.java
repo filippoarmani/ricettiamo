@@ -28,7 +28,7 @@ import cfgmm.ricettiamo.model.Ingredient;
 
 public class FrigoriferoFragment extends Fragment {
 
-   private static String TAG = FrigoriferoFragment.class.getSimpleName();
+    private final String TAG = FrigoriferoFragment.class.getSimpleName();
 
 
     public FrigoriferoFragment() {
@@ -38,10 +38,10 @@ public class FrigoriferoFragment extends Fragment {
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     * @return A new instance of fragment FrigoriferoFragment.
+
      */
 
-    public static FrigoriferoFragment newInstance() {
+    public static FrigoriferoFragment newInstance(String param1, String param2) {
         FrigoriferoFragment fragment = new FrigoriferoFragment();
         return fragment;
     }
@@ -49,8 +49,7 @@ public class FrigoriferoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        }
-
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,45 +61,32 @@ public class FrigoriferoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        requireActivity().addMenuProvider(new MenuProvider() {
-            @Override
-            public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
-                menu.clear();
-            }
-
-            @Override
-            public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
-                return false;
-            }
-        });
-
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients);
-        RecyclerView.LayoutManager layoutManager = new  LinearLayoutManager(requireContext(),
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext(),
                 LinearLayoutManager.VERTICAL,  false);
 
         recyclerView.setLayoutManager(layoutManager);
 
         List<Ingredient> ingredientList = new ArrayList<>();
         for (int i=0; i<10;i++){
-            ingredientList.add(new Ingredient("nome" + i,3, "size"+ "kg"));
+            ingredientList.add(new Ingredient("nome" + i,"3", "size"+ "kg"));
         }
 
-        IngredientsRecyclerAdapter adapter = new IngredientsRecyclerAdapter(ingredientList,
-                new IngredientsRecyclerAdapter.OnItemClickListener() {
-                    @Override
-                    public void onIngredientItemClick(Ingredient ingredient) {
-                        Snackbar.make(view, ingredient.getName(),Snackbar.LENGTH_SHORT).show();
-                    }
-    
-                    @Override
-                    public void onDeleteButtonPressed(int position) {
+        IngredientsRecyclerAdapter adapter = new IngredientsRecyclerAdapter(ingredientList, new IngredientsRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onIngredientItemClick(Ingredient ingredient) {
+                Snackbar.make(view, ingredient.getName(), Snackbar.LENGTH_SHORT).show();
+            }
 
-                    }
-                });
+            @Override
+            public void onDeleteButtonPressed(int position) {
 
-                recyclerView.setAdapter(adapter);
+            }
+        });
 
-
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(layoutManager);
 
     }
+
 }
