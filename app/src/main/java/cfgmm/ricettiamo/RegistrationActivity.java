@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,7 +40,8 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.registration_page);
+        setContentView(R.layout.activity_registration);
+
         mAuth = FirebaseAuth.getInstance();
 
         e_nome = findViewById(R.id.r_nome_layout);
@@ -73,38 +76,74 @@ public class RegistrationActivity extends AppCompatActivity {
             String email = e_email.getEditText().getText().toString().trim();
             String password = e_password.getEditText().getText().toString().trim();
 
-            if(checkOk(nome, cognome, dataNascita, phoneNumber, email, password)) {
+            if(checkOk(v, nome, cognome, dataNascita, phoneNumber, email, password)) {
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success");
+                                Toast.makeText(RegistrationActivity.this, R.string.reg_s,
+                                        Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(RegistrationActivity.this, "Authentication failed.",
+                                Toast.makeText(RegistrationActivity.this, R.string.reg_f,
                                         Toast.LENGTH_SHORT).show();
                                 updateUI(null);
                             }
                         });
-            }  else {
-                Snackbar.make(v, "The fields must not be empty", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
-
         });
     }
 
-    private boolean checkOk(String nome, String cognome, String dataNascita, String phoneNumber, String email, String password) {
-        if(isEmpty(nome) ||
-                isEmpty(cognome) ||
-                isEmpty(dataNascita) ||
-                isEmpty(phoneNumber) ||
-                isEmpty(email) ||
-            isEmpty(password))
+    private boolean checkOk(View v, String nome, String cognome, String dataNascita, String phoneNumber, String email, String password) {
+        if(isEmpty(nome) || isEmpty(cognome) || isEmpty(dataNascita) ||
+                isEmpty(phoneNumber) || isEmpty(email) || isEmpty(password)) {
+            Snackbar.make(v, R.string.empty_fields, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
             return false;
+        }
+
+       /* if(!EmailValidator.getInstance().isValid(email)) {
+            Snackbar.make(v, "Invalid Email", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            return false;
+        }*/
+
+        if(password.length() < 8) {
+            Snackbar.make(v, R.string.short_password, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            return false;
+        }
+
+        int i = 0;
+        boolean noUpper = true;
+        boolean noLower = true;
+        boolean noNumber = true;
+        boolean noSpecial = true;
+
+        while(i < password.length() && (noUpper || noLower || noNumber || noSpecial)) {
+            char c = password.charAt(i);
+
+            if(c >= 'a' && c <= 'z')
+                noLower = false;
+            else if(c >= 'A' && c <= 'Z')
+                noUpper = false;
+            else if(c >= '0' && c <= '0')
+                noNumber = false;
+            else
+                noSpecial = false;
+
+            i++;
+        }
+
+        if(noUpper || noLower || noNumber || noSpecial) {
+            Snackbar.make(v, R.string.weak_password, Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            return false;
+        }
 
         return true;
     }

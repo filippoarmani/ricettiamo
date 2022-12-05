@@ -15,7 +15,6 @@
     <string name="my_position">La mia Posizione</string>
     <string name="ranking">Classifica</string>
 
-
     <string name="upgrade_1">Condividi le tue ricette con il pubblico diventando un Cuoco di successo!</string>
     <string name="upgrade_2">Avrai a disposizione un template predefinito  per la tua ricetta, dove potrai aggiungere le tue foto.</string>
     <string name="upgrade_3">Le tue ricette potranno essere valutate dal pubblico tramite delle stelle di gradimento.</string>
@@ -83,6 +82,16 @@
     <string name="review_1">Uno dei miei piatti preferiti! I miei figli mi chiedono sempre di preparare la carbonara.</string>
     <string name="Confirmation">Sei Sicuro?</string>
     <string name="cancel">Annulla</string>
-
+    <string name="reset_password">Resetta Password</string>
+    <string name="instruction_reset">Per ripristinare la tua password serve solo il tuo indirizzo email!</string>
+    <string name="instruction_reset2">Riceverai una email contenente le istruzioni per il reset della tua password</string>
+    <string name="instruction_reset3">Non trovi la e-mail? Prova a guardare nello spam</string>
+    <string name="empty_fields">I campi non devono essere vuoti</string>
+    <string name="short_password">Scegli una password più lunga</string>
+    <string name="weak_password">La password è troppo debole</string>
+    <string name="auth_f">Autenticazione fallita</string>
+    <string name="auth_s">Autenticazione avvenuta con successo</string>
+    <string name="reg_f">Registrazione fallita</string>
+    <string name="reg_s">Registrazione avvenuta con successo</string>
 
 </resources>

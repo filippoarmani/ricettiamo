@@ -29,16 +29,22 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_page);
+        setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
 
-        email_layout = findViewById(R.id.l_email_layout);
+        email_layout = findViewById(R.id.pd_email_layout);
         password_layout = findViewById(R.id.l_password_layout);
 
         login = findViewById(R.id.l_login);
         login_later = findViewById(R.id.btn_noLogIn);
         sign_in = findViewById(R.id.l_registrati);
         f_password = findViewById(R.id.l_passwordD);
+
+        f_password.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), PasswordDimenticataActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         login_later.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), MainActivity.class);
@@ -62,18 +68,20 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success");
+                                Toast.makeText(LoginActivity.this, R.string.auth_s,
+                                        Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                Toast.makeText(LoginActivity.this, R.string.auth_f,
                                         Toast.LENGTH_SHORT).show();
                                 updateUI(null);
                             }
                         });
             } else {
-                Snackbar.make(v, "The fields must not be empty", Snackbar.LENGTH_LONG)
+                Snackbar.make(v, R.string.empty_fields, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.NavController;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User cancelled the dialog --> close alert dialog
+                        FirebaseAuth.getInstance().signOut();
                         dialog.cancel();
                     }
                 });
