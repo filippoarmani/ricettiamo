@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 	private Button login;
 	private Button f_password;
 	private Button login_later;
-	private Button sign_in;
+	private TextView sign_in;
     private FirebaseAuth mAuth;
 
     @Override
