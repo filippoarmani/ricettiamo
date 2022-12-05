@@ -1,22 +1,29 @@
 package cfgmm.ricettiamo;
 
 import static android.content.ContentValues.TAG;
+import static android.net.Uri.*;
 import static android.text.TextUtils.isEmpty;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.text.SimpleDateFormat;
@@ -76,6 +83,7 @@ public class RegistrationActivity extends AppCompatActivity {
             String email = e_email.getEditText().getText().toString().trim();
             String password = e_password.getEditText().getText().toString().trim();
 
+
             if(checkOk(v, nome, cognome, dataNascita, phoneNumber, email, password)) {
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this, task -> {
@@ -85,6 +93,17 @@ public class RegistrationActivity extends AppCompatActivity {
                                 Toast.makeText(RegistrationActivity.this, R.string.reg_s,
                                         Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
+
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(nome + "\n" + cognome)
+                                        .setPhotoUri(Uri.parse(String.valueOf(R.drawable.user)))
+                                        .build();
+
+                                user.updateProfile(profileUpdates);
+
+                                Toast.makeText(RegistrationActivity.this, R.string.reg_s,
+                                        Toast.LENGTH_SHORT).show();
+
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -106,11 +125,11 @@ public class RegistrationActivity extends AppCompatActivity {
             return false;
         }
 
-       /* if(!EmailValidator.getInstance().isValid(email)) {
+       if(!EmailValidator.getInstance().isValid(email)) {
             Snackbar.make(v, "Invalid Email", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             return false;
-        }*/
+        }
 
         if(password.length() < 8) {
             Snackbar.make(v, R.string.short_password, Snackbar.LENGTH_LONG)
