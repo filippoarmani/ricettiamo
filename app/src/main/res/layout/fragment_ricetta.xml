@@ -119,7 +119,7 @@
                 android:id="@+id/ingredient_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ingredient_1"
+                android:layout_below="@id/ingredient_1"
                 android:layout_marginTop="1dp">
 
                 <ImageView
@@ -145,7 +145,7 @@
                 android:id="@+id/ingredient_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ingredient_2"
+                android:layout_below="@id/ingredient_2"
                 android:layout_marginTop="1dp">
 
                 <ImageView
@@ -171,7 +171,7 @@
                 android:id="@+id/ingredient_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ingredient_3"
+                android:layout_below="@id/ingredient_3"
                 android:layout_marginTop="1dp">
 
                 <ImageView
@@ -197,7 +197,7 @@
                 android:id="@+id/ingredient_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ingredient_4"
+                android:layout_below="@id/ingredient_4"
                 android:layout_marginTop="1dp">
 
                 <ImageView
@@ -243,7 +243,7 @@
             android:id="@+id/preparation_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/prep">
+            android:layout_below="@id/prep">
 
             <TextView
                 android:id="@+id/prep_1"
@@ -262,7 +262,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/carb_1"
-                android:layout_below="@+id/prep_1"
+                android:layout_below="@id/prep_1"
                 android:contentDescription="@string/toDo"/>
 
         </RelativeLayout>
@@ -271,7 +271,7 @@
             android:id="@+id/preparation_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/preparation_1">
+            android:layout_below="@id/preparation_1">
 
             <TextView
                 android:id="@+id/prep_2"
@@ -290,7 +290,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/carb_1"
-                android:layout_below="@+id/prep_2"
+                android:layout_below="@id/prep_2"
                 android:contentDescription="@string/toDo"/>
 
         </RelativeLayout>
@@ -299,7 +299,7 @@
             android:id="@+id/preparation_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/preparation_2">
+            android:layout_below="@id/preparation_2">
 
             <TextView
                 android:id="@+id/prep_3"
@@ -318,7 +318,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/carb_1"
-                android:layout_below="@+id/prep_3"
+                android:layout_below="@id/prep_3"
                 android:contentDescription="@string/toDo"/>
 
         </RelativeLayout>
@@ -332,7 +332,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/recipe_3">
+        android:layout_below="@id/recipe_3">
 
             <TextView
                 android:id="@+id/tip_1"
@@ -346,7 +346,7 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:layout_below="@+id/tip_1"
+                android:layout_below="@id/tip_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
@@ -365,7 +365,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/recipe_4">
+        android:layout_below="@id/recipe_4">
 
             <TextView
                 android:id="@+id/review"
@@ -383,7 +383,7 @@
                 android:id="@+id/scrollreview"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_below="@+id/review">
+                android:layout_below="@id/review">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -409,7 +409,7 @@
 
                         <TextView
                             android:id="@+id/review_1"
-                            android:layout_below="@+id/reviewer_1"
+                            android:layout_below="@id/reviewer_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
@@ -423,7 +423,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_below="@+id/review_1">
+                            android:layout_below="@id/review_1">
 
                             <ImageView
                                 android:layout_width="30dp"
@@ -453,7 +453,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/back"
                         android:layout_marginTop="15dp"
-                        android:layout_below="@+id/box_1">
+                        android:layout_below="@id/box_1">
 
                         <TextView
                             android:id="@+id/reviewer_2"
@@ -468,7 +468,7 @@
 
                         <TextView
                             android:id="@+id/review_2"
-                            android:layout_below="@+id/reviewer_2"
+                            android:layout_below="@id/reviewer_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
@@ -482,7 +482,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_below="@+id/review_2">
+                            android:layout_below="@id/review_2">
 
                             <ImageView
                                 android:layout_width="30dp"
@@ -514,7 +514,7 @@
             android:id="@+id/button_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/scrollreview"
+            android:layout_below="@id/scrollreview"
             android:layout_marginTop="15dp">
 
             <Button
@@ -559,7 +559,7 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageViewBottom"
+                app:layout_constraintStart_toEndOf="@id/imageViewBottom"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView

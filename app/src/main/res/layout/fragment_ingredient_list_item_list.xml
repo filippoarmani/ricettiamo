@@ -49,7 +49,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/text_size"
-            app:layout_constraintStart_toEndOf="@+id/text_ricette">
+            app:layout_constraintStart_toEndOf="@id/text_ricette">
         </TextView>
     <TextView
         android:id="@+id/text_size"

@@ -52,7 +52,7 @@
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/dati"
+        android:layout_below="@id/dati"
         android:layout_marginTop="20dp"
         android:background="@drawable/back"
         android:elevation="10dp"
@@ -76,7 +76,7 @@
         android:id="@+id/ric"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/desc"
+        android:layout_below="@id/desc"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="20dp"
@@ -92,7 +92,7 @@
         android:id="@+id/startrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ric">
+        android:layout_below="@id/ric">
 
     <RelativeLayout
         android:id="@+id/starlayout"
