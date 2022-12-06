@@ -1,7 +1,6 @@
 package cfgmm.ricettiamo;
 
 import static android.content.ContentValues.TAG;
-import static android.net.Uri.*;
 import static android.text.TextUtils.isEmpty;
 
 import android.app.DatePickerDialog;
@@ -13,11 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -95,7 +91,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
 
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(nome + "\n" + cognome)
+                                        .setDisplayName(nome + " " + cognome)
                                         .setPhotoUri(Uri.parse(String.valueOf(R.drawable.user)))
                                         .build();
 
@@ -173,6 +169,7 @@ public class RegistrationActivity extends AppCompatActivity {
         e_dataNascita.getEditText().setText(dateFormat.format(myCalendar.getTime()));
     }
 
+/*
     @Override
     public void onStart() {
         super.onStart();
@@ -182,7 +179,7 @@ public class RegistrationActivity extends AppCompatActivity {
             currentUser.reload();
         }
     }
-
+*/
     private void updateUI(FirebaseUser currentUser) {
         Intent intent;
 

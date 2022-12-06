@@ -2,14 +2,19 @@ package cfgmm.ricettiamo;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -47,12 +52,13 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,
-                R.id.nav_cerca_ricetta,
+                //R.id.nav_cerca_ricetta,
                 R.id.nav_frigorifero,
                 R.id.nav_listaDellaSpesa,
                 R.id.nav_preferiti,
                 R.id.nav_impostazioni,
-                R.id.nav_upgrade/*,
+                R.id.nav_upgrade,
+                R.id.nav_profilo/*,
                 R.id.nav_logout*/)
                 .setOpenableLayout(drawer)
                 .build();
@@ -61,32 +67,32 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         Button button = (Button) findViewById(R.id.btn_logout);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage(R.string.Confirmation);
-                // Add the buttons
-                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User clicked OK button --> open login fragment
+        button.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage(R.string.Confirmation);
+            // Add the buttons
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked OK button --> open login fragment
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                    startActivity(intent);
+                    dialog.cancel();
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog --> close alert dialog
+                    dialog.cancel();
+                }
+            });
+            // Set other dialog properties
 
-                        dialog.cancel();
-                    }
-                });
-                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog --> close alert dialog
-                        FirebaseAuth.getInstance().signOut();
-                        dialog.cancel();
-                    }
-                });
-                // Set other dialog properties
 
-
-                // Create the AlertDialog
-                AlertDialog dialog = builder.create();
-            }
+            // Create the AlertDialog
+            AlertDialog dialog = builder.create();
         });
+
     }
 
     @Override
@@ -102,4 +108,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }

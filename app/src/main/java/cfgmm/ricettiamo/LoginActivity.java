@@ -21,43 +21,28 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextInputLayout email_layout;
 	private TextInputLayout password_layout;
+
 	private Button login;
 	private Button f_password;
 	private Button login_later;
 	private TextView sign_in;
+
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         mAuth = FirebaseAuth.getInstance();
 
         email_layout = findViewById(R.id.pd_email_layout);
         password_layout = findViewById(R.id.l_password_layout);
 
         login = findViewById(R.id.l_login);
+        f_password = findViewById(R.id.l_passwordD);
         login_later = findViewById(R.id.btn_noLogIn);
         sign_in = findViewById(R.id.l_registrati);
-        f_password = findViewById(R.id.l_passwordD);
-
-        f_password.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), PasswordDimenticataActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        login_later.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        sign_in.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), RegistrationActivity.class);
-            startActivity(intent);
-            finish();
-        });
 
         login.setOnClickListener(v -> {
             String email = email_layout.getEditText().getText().toString().trim();
@@ -86,6 +71,24 @@ public class LoginActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        f_password.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), PasswordDimenticataActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        login_later.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        sign_in.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), RegistrationActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     public void onStart() {
@@ -93,7 +96,8 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            currentUser.reload();
+            updateUI(currentUser);
+            //currentUser.reload();
         }
     }
 
