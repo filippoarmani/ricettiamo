@@ -1,5 +1,6 @@
 package cfgmm.ricettiamo.ui.profilo;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,12 +9,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import cfgmm.ricettiamo.LoginActivity;
 import cfgmm.ricettiamo.R;
 
 /**
@@ -35,6 +38,8 @@ public class ProfiloFragment extends Fragment {
     private TextView fullName;
     private TextView email;
     private ImageView ph_profile;
+
+    private Button buttonLogin;
 
     public ProfiloFragment() {
         // Required empty public constructor
@@ -81,11 +86,29 @@ public class ProfiloFragment extends Fragment {
         fullName = view.findViewById(R.id.nomeCognome);
         email = view.findViewById(R.id.email);
         ph_profile = view.findViewById(R.id.user);
+        buttonLogin = view.findViewById(R.id.buttonLogin);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        fullName.setText(user.getDisplayName());
-        email.setText(user.getEmail());
-        ph_profile.setImageURI(user.getPhotoUrl());
+        if(user == null) {
+            buttonLogin.setVisibility(View.VISIBLE);
+            fullName.setVisibility(View.GONE);
+            email.setVisibility(View.GONE);
+
+            buttonLogin.setOnClickListener(v -> {
+                Intent intent = new Intent(v.getContext(), LoginActivity.class);
+                startActivity(intent);
+            });
+        } else {
+            buttonLogin.setVisibility(View.GONE);
+            fullName.setVisibility(View.VISIBLE);
+            email.setVisibility(View.VISIBLE);
+
+            fullName.setText(user.getDisplayName());
+            email.setText(user.getEmail());
+            ph_profile.setImageURI(user.getPhotoUrl());
+        }
+
+
     }
 }

@@ -44,16 +44,16 @@
             android:id="@+id/nav_upgrade"
             android:icon="@drawable/ic_chef"
             android:title="@string/upgrade_account" />
-<!--
+
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_exit"
             android:title="@string/menu_logout" />
--->
+
         <item
             android:id="@+id/nav_profilo"
             android:icon="@drawable/ic_user"
-            android:title="profilo" />
+            android:title="@string/profile" />
     </group>
 
 </menu>

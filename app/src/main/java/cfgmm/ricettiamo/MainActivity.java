@@ -4,24 +4,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Menu;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import cfgmm.ricettiamo.databinding.ActivityMainBinding;
 
@@ -58,15 +52,19 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_preferiti,
                 R.id.nav_impostazioni,
                 R.id.nav_upgrade,
-                R.id.nav_profilo/*,
-                R.id.nav_logout*/)
+                R.id.nav_logout,
+                R.id.nav_profilo
+                )
                 .setOpenableLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        Button button = (Button) findViewById(R.id.btn_logout);
+       /*
+       Spostato in LogOutDialogFragment
+       Button button = (Button) findViewById(R.id.btn_logout);
         button.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setMessage(R.string.Confirmation);
@@ -92,14 +90,7 @@ public class MainActivity extends AppCompatActivity {
             // Create the AlertDialog
             AlertDialog dialog = builder.create();
         });
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        */
     }
 
     @Override
