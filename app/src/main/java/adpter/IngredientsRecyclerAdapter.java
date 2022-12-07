@@ -80,14 +80,9 @@ public class IngredientsRecyclerAdapter extends
 
         @Override
         public void onClick(View v) {
-            if(v.getId()== R.id.button_less){
-                int q= ingredientList.get(getAbsoluteAdapterPosition()).getQta();
-                if(q <= 1)
-                    ingredientList.get(getAbsoluteAdapterPosition()).setQta(0);
-                else{
-                ingredientList.get(getAbsoluteAdapterPosition()).setQta(q-1);
+           //TODO
                 }
             }
-        }
-    }
+
+
 }

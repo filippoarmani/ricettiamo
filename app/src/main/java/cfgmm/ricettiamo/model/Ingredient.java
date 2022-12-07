@@ -10,12 +10,12 @@ import androidx.annotation.NonNull;
 public class Ingredient implements Parcelable {
     private String name;
     @SerializedName("publishedAt")
-    private int qta;
+    private String qta;
     private String size;
     private String url;
     private String urlToImage;
 
-    public Ingredient(String name, int qta, String size, String url, String urlToImage) {
+    public Ingredient(String name, String qta, String size, String url, String urlToImage) {
         this.name = name;
         this.qta = qta;
         this.size = size;
@@ -24,7 +24,7 @@ public class Ingredient implements Parcelable {
     }
 
 
-    public Ingredient(String name, int qta, String size) {
+    public Ingredient(String name, String qta, String size) {
         this(name, qta, size, null, null);
     }
 
@@ -56,11 +56,11 @@ public class Ingredient implements Parcelable {
         this.name = nome;
     }
 
-    public int getQta() {
+    public String getQta() {
         return qta;
     }
 
-    public void setQta(int qta) {
+    public void setQta(String qta) {
         this.qta = qta;
     }
 
@@ -93,7 +93,7 @@ public class Ingredient implements Parcelable {
 
     public Ingredient(Parcel in) {
         this.name = in.readString();
-        this.qta = in.readInt();
+        this.qta = in.readString();
         this.size = in.readString();
         this.url = in.readString();
         this.urlToImage = in.readString();
@@ -107,7 +107,7 @@ public class Ingredient implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
-        dest.writeInt(this.qta);
+        dest.writeString(this.qta);
         dest.writeString(this.size);
         dest.writeString(this.url);
         dest.writeString(this.urlToImage);

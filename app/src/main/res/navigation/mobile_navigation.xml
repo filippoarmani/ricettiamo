@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_home">
 
-    <!--
-        <fragment
-            android:id="@+id/nav_cerca_ricetta"
-            android:name="cfgmm.ricettiamo.ui.cercaRicetta.CercaRicettaFragment"
-            android:label="@string/menu_search_recipe"
-            tools:layout="@layout/fragment_cerca_ricetta" />
-            -->
+<!--
+    <fragment
+        android:id="@+id/nav_cerca_ricetta"
+        android:name="cfgmm.ricettiamo.ui.cercaRicetta.CercaRicettaFragment"
+        android:label="@string/menu_search_recipe"
+        tools:layout="@layout/fragment_cerca_ricetta" />
+-->
 
     <fragment
         android:id="@+id/nav_home"
@@ -49,10 +49,16 @@
         android:label="@string/upgrade_button"
         tools:layout="@layout/fragment_upgrade_account" />
 
-    <fragment
+    <dialog
         android:id="@+id/nav_logout"
-        android:name="cfgmm.ricettiamo.ui.logout.LogoutFragment"
-        android:label="@string/menu_logout"
-        tools:layout="@layout/fragment_logout" />
+        android:name="cfgmm.ricettiamo.ui.logout.LogoutDialogFragment"
+        android:label="@string/menu_logout" />
+
+    <fragment
+        android:id="@+id/nav_profilo"
+        android:name="cfgmm.ricettiamo.ui.profilo.ProfiloFragment"
+        android:label="Profilo"
+        tools:layout="@layout/fragment_profilo" />
+
 
 </navigation>

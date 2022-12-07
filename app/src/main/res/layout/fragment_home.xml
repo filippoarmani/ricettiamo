@@ -38,7 +38,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@id/home"
+                    android:id="@+id/home"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="30dp"
@@ -154,7 +154,7 @@
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageViewBottom"
+                        app:layout_constraintStart_toEndOf="@id/imageViewBottom"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView

@@ -112,6 +112,24 @@
     <string name="review_2">I prefer to use Parmesan because Pecorino is a bit too salty for my taste.</string>
     <string name="star_2" translatable="false">3,5/5</string>
     <string name="write_review">Write a review</string>
+    <string name="ok" translatable="false">ok</string>
+
+    <string name="Confirmation">Are you sure?</string>
+    <string name="cancel">Cancel</string>
+    <string name="reset_password">reset password</string>
+    <string name="instruction_reset">All you need to reset your password is your email address!</string>
+    <string name="instruction_reset2">You will receive an email containing instructions for resetting your password</string>
+    <string name="instruction_reset3">Can\'t find the email? Try looking in spam</string>
+
+
+    <!-- Java Strings -->
+    <string name="empty_fields">The fields must be empty</string>
+    <string name="short_password">Choose a longer password</string>
+    <string name="weak_password">Weak password</string>
+    <string name="auth_f">Authentication Failed</string>
+    <string name="auth_s">Authentication Succeeded</string>
+    <string name="reg_f">Registration Failed</string>
+    <string name="reg_s">Registration Succeeded</string>
 
     <string name="add_photo">Add the main picture</string>
     <string name="type_nameRecipe">Type name of the recipe</string>
