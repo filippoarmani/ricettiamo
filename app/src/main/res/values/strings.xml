@@ -85,7 +85,6 @@
     <string name="less" translatable="false">-</string>
 
 
-
     <!--le_mie_ricette-->
     <string name="top" translatable="false">Top 3</string>
     <string name="login_later">LogIn later</string>
@@ -113,5 +112,17 @@
     <string name="review_2">I prefer to use Parmesan because Pecorino is a bit too salty for my taste.</string>
     <string name="star_2" translatable="false">3,5/5</string>
     <string name="write_review">Write a review</string>
+
+    <string name="add_photo">Add the main picture</string>
+    <string name="type_nameRecipe">Type name of the recipe</string>
+    <string name="difficolty">Difficolty: </string>
+    <string name="prep_time">Preparation time:  </string>
+    <string name="cost">Cost: </string>
+    <string name="serving">Serving: </string>
+    <string name="type_ingredient">Type an ingredient</string>
+    <string name="type_step">Type a step</string>
+    <string name="add_photo_step">Type a photo</string>
+
+
 
 </resources>
