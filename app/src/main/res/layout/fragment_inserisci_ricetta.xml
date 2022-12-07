@@ -36,7 +36,7 @@
                 android:background="@drawable/back"
                 android:text="@string/add_photo"
                 android:textAllCaps="false"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -191,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ingredients"
                     android:fontFamily="@font/montserrat"
-                    android:text="@string/type_ingredient"
+                    android:text="@string/add_ingredient"
                     android:background="@drawable/back"
                     android:textColor="@color/white"
                     android:layout_marginTop="10dp"
@@ -231,7 +231,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/type_step"
+                        android:text="@string/add_step"
                         android:background="@drawable/back"
                         android:textColor="@color/white"
                         android:layout_marginTop="10dp"

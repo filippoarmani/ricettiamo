@@ -93,5 +93,14 @@
     <string name="auth_s">Autenticazione avvenuta con successo</string>
     <string name="reg_f">Registrazione fallita</string>
     <string name="reg_s">Registrazione avvenuta con successo</string>
+    <string name="add_photo">Aggiungi la foto principale</string>
+    <string name="type_nameRecipe">Scrivi il nome della ricetta</string>
+    <string name="difficolty">Difficoltà:</string>
+    <string name="prep_time">Tempo di preparazione:</string>
+    <string name="cost">Costo:</string>
+    <string name="serving">Servito:</string>
+    <string name="add_ingredient">Aggiunti un ingrediente</string>
+    <string name="add_step">Aggiunti un passaggio</string>
+    <string name="add_photo_step">Aggiungi una foto</string>
 
 </resources>

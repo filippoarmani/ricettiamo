@@ -137,9 +137,9 @@
     <string name="prep_time">Preparation time:  </string>
     <string name="cost">Cost: </string>
     <string name="serving">Serving: </string>
-    <string name="type_ingredient">Type an ingredient</string>
-    <string name="type_step">Type a step</string>
-    <string name="add_photo_step">Type a photo</string>
+    <string name="add_ingredient">Add an ingredient</string>
+    <string name="add_step">Add a step</string>
+    <string name="add_photo_step">Add a photo</string>
 
 
 
