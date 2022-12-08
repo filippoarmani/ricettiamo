@@ -69,7 +69,11 @@
     <string name="new_password">New password</string>
     <string name="new_password_again">Type new password again</string>
     <string name="save_changes">Save changes</string>
-    <string name="change_photo_description">Change photo and description</string>
+    <string name="change_email">Change email</string>
+    <string name="change_informations">Change informations</string>
+    <string name="my_email">Current email</string>
+    <string name="new_email">New email</string>
+    <string name="new_email_again">Type new email again</string>
 
     <!--fridge/Shopping List-->
     <string-array name="qta_array">

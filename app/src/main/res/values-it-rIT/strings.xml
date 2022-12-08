@@ -55,7 +55,6 @@
     <string name="new_password">Nuova password</string>
     <string name="new_password_again">Digita nuovamente la nuova password</string>
     <string name="save_changes">Salva modifiche</string>
-    <string name="change_photo_description">Modifica foto e descrizione</string>
 
     <!--fridge/Shopping List-->
     <string name="profile">Profilo</string>
@@ -78,7 +77,7 @@
     <string name="tip_2">Il guanciale non dovrà essere rosolato troppo, altrimenti potrebbe rilasciare un gusto amarognolo. Inoltre è bene aggiungere il guanciale solo all ultimo per mantenere la sua croccantezza. Per evitare l effetto frittata è importante aggiungere il composto di tuorli solo a fuoco spento. La mantecatura è un passaggio importante, bisogna mescolare sino a che la cremina non si è addensata. E potete regolare la consistenza aggiungendo acqua di cottura della pasta. Potete utilizzare metà dose di Pecorino romano e metà dose di Parmigiano per una versione più delicata.</string>
     <string name="review">Le vostre recensioni</string>
     <string name="write_review">Scrivi una recensione</string>
-    <string name="review_2">Preferisco usare il Parmigiano perchè il Pecorino è un po’ troppo salato per i miei gusti.</string>
+    <string name="review_2">Preferisco usare il Parmigiano perché il Pecorino è un po’ troppo salato per i miei gusti.</string>
     <string name="review_1">Uno dei miei piatti preferiti! I miei figli mi chiedono sempre di preparare la carbonara.</string>
     <string name="Confirmation">Sei Sicuro?</string>
     <string name="cancel">Annulla</string>
@@ -102,5 +101,10 @@
     <string name="add_ingredient">Aggiunti un ingrediente</string>
     <string name="add_step">Aggiunti un passaggio</string>
     <string name="add_photo_step">Aggiungi una foto</string>
+    <string name="change_email">Cambia Email</string>
+    <string name="change_informations">Cambia le informazioni</string>
+    <string name="my_email">Email corrente</string>
+    <string name="new_email">Nuova Email</string>
+    <string name="new_email_again">Digita nuovamente la nuova Email</string>
 
 </resources>
