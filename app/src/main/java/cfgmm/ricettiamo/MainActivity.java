@@ -1,12 +1,8 @@
 package cfgmm.ricettiamo;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -15,21 +11,19 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 import cfgmm.ricettiamo.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMainBinding binding;
     final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        cfgmm.ricettiamo.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMenuLaterale.toolbar);
@@ -90,7 +84,30 @@ public class MainActivity extends AppCompatActivity {
             // Create the AlertDialog
             AlertDialog dialog = builder.create();
         });
+
         */
+
+        /*TextView nome = findViewById(R.id.nh_nome);
+        TextView email = findViewById(R.id.nh_email);
+        ImageView photo = findViewById(R.id.nh_foto);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        Button login = findViewById(R.id.nh_login);
+
+        if(user != null) {
+            login.setVisibility(View.GONE);
+            nome.setVisibility(View.VISIBLE);
+            email.setVisibility(View.VISIBLE);
+
+            nome.setText(user.getDisplayName());
+            email.setText(user.getEmail());
+            photo.setImageURI(user.getPhotoUrl());
+        } else {
+            login.setVisibility(View.VISIBLE);
+            nome.setVisibility(View.GONE);
+            email.setVisibility(View.GONE);
+        }*/
     }
 
     @Override

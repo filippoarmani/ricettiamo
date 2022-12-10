@@ -18,9 +18,6 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    private Button cancel;
-    private Button reset;
-
     private TextInputLayout email_layout;
 
     @Override
@@ -29,8 +26,8 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_password_dimenticata);
         mAuth = FirebaseAuth.getInstance();
 
-        cancel = findViewById(R.id.pd_cancel);
-        reset = findViewById(R.id.pd_reset);
+        Button cancel = findViewById(R.id.pd_cancel);
+        Button reset = findViewById(R.id.pd_reset);
         email_layout = findViewById(R.id.pd_email_layout);
 
         cancel.setOnClickListener(v -> {

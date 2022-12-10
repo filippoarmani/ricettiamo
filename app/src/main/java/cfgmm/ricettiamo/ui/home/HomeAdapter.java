@@ -14,11 +14,11 @@ import cfgmm.ricettiamo.R;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
 
-    String title[];
-    int image[];
-    Context context;
+    final String[] title;
+    final int[] image;
+    final Context context;
 
-    public HomeAdapter(Context ct, String t[], int i[]) {
+    public HomeAdapter(Context ct, String[] t, int[] i) {
         context = ct;
         title = t;
         image = i;
@@ -43,9 +43,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
         return image.length;
     }
 
-    public class HomeViewHolder extends RecyclerView.ViewHolder {
-        TextView titleRecipe;
-        ImageButton imageRecipe;
+    public static class HomeViewHolder extends RecyclerView.ViewHolder {
+        final TextView titleRecipe;
+        final ImageButton imageRecipe;
 
         public HomeViewHolder(View view) {
             super(view);

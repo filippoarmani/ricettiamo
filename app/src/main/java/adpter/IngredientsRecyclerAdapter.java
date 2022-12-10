@@ -22,10 +22,8 @@ public class IngredientsRecyclerAdapter extends
         void onDeleteButtonPressed(int position);
     }
     private final List<Ingredient> ingredientList;
-    private final OnItemClickListener onItemClickListener;
 
     public IngredientsRecyclerAdapter(List<Ingredient> ingredientList, OnItemClickListener onItemClickListener){
-        this.onItemClickListener = onItemClickListener;
         this.ingredientList = ingredientList;
     }
 
@@ -52,7 +50,7 @@ public class IngredientsRecyclerAdapter extends
         return 0;
     }
 
-    public class IngredientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class IngredientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView textViewName;
         private final TextView textViewQta;
         private final  TextView textViewSize;

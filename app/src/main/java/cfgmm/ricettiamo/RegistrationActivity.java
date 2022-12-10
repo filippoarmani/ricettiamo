@@ -38,8 +38,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private TextInputLayout e_phoneNumber;
     private TextInputLayout e_password;
 
-    private Button registrati;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +52,7 @@ public class RegistrationActivity extends AppCompatActivity {
         e_phoneNumber = findViewById(R.id.r_phone_layout);
         e_password = findViewById(R.id.r_password_layout);
 
-        registrati = findViewById(R.id.r_creaAccount);
+        Button registrati = findViewById(R.id.r_creaAccount);
 
         DatePickerDialog.OnDateSetListener date = (view, year, month, day) -> {
             myCalendar.set(Calendar.YEAR, year);

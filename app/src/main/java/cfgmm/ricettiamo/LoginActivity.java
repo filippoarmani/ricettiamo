@@ -22,11 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout email_layout;
 	private TextInputLayout password_layout;
 
-	private Button login;
-	private Button f_password;
-	private Button login_later;
-	private TextView sign_in;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -39,10 +34,10 @@ public class LoginActivity extends AppCompatActivity {
         email_layout = findViewById(R.id.pd_email_layout);
         password_layout = findViewById(R.id.l_password_layout);
 
-        login = findViewById(R.id.l_login);
-        f_password = findViewById(R.id.l_passwordD);
-        login_later = findViewById(R.id.btn_noLogIn);
-        sign_in = findViewById(R.id.l_registrati);
+        Button login = findViewById(R.id.l_login);
+        TextView f_password = findViewById(R.id.l_passwordD);
+        Button login_later = findViewById(R.id.btn_noLogIn);
+        TextView sign_in = findViewById(R.id.l_registrati);
 
         login.setOnClickListener(v -> {
             String email = email_layout.getEditText().getText().toString().trim();

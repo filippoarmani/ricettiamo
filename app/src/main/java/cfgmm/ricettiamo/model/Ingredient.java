@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import androidx.annotation.NonNull;
-
 public class Ingredient implements Parcelable {
     private String name;
     @SerializedName("publishedAt")
@@ -81,7 +79,7 @@ public class Ingredient implements Parcelable {
     }
 
     @Override
-    public String   toString() {
+    public String toString() {
         return "Ingredient{" +
                 "nome='" + name + '\'' +
                 ", qta='" + qta + '\'' +

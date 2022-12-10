@@ -26,19 +26,15 @@ public class HomeFragment extends Fragment {
     private final int[] s_i = {R.drawable.esempio_branzino_acqua_pazza, R.drawable.esempio_gateau, R.drawable.esempio_polpette, R.drawable.esempio_polpettone_carne};
     private final int[] d_i = {R.drawable.esempio_tiramisu, R.drawable.esempio_torta_magica, R.drawable.esempio_cheesecake, R.drawable.esempio_sorbetto};
 
-    private String[] st_t = {"Guacamole", "Mozzarella in Carrozza", "Bicchierini con formaggio e verdure", "Finger Food"};
-    private String[] p_t = {"Pasta al forno", "Pasta allo zafferano", "Risotto", "Ravioli"};
-    private String[] s_t = {"Branzino", "Gateau di patate", "Polpette", "Polpettone"};
-    private String[] d_t = {"Tiramisu", "Torta", "Cheesecake", "Sorbetto"};
+    private final String[] st_t = {"Guacamole", "Mozzarella in Carrozza", "Bicchierini con formaggio e verdure", "Finger Food"};
+    private final String[] p_t = {"Pasta al forno", "Pasta allo zafferano", "Risotto", "Ravioli"};
+    private final String[] s_t = {"Branzino", "Gateau di patate", "Polpette", "Polpettone"};
+    private final String[] d_t = {"Tiramisu", "Torta", "Cheesecake", "Sorbetto"};
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -66,8 +62,9 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            // TODO: Rename and change types of parameters
+            String mParam1 = getArguments().getString(ARG_PARAM1);
+            String mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
