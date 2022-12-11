@@ -145,5 +145,9 @@
     <string name="add_step">Add a step</string>
     <string name="add_photo_step">Add a photo</string>
 
+    <!-- content description images -->
+    <string name="logo_image" translatable="false">Logo</string>
+    <string name="search_recipe" >Search Recipes</string>
+
 
 </resources>

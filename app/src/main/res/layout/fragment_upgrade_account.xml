@@ -41,7 +41,8 @@
             android:id="@+id/templayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/line">
+            android:layout_below="@id/line"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:id="@+id/template"
@@ -71,7 +72,8 @@
             android:id="@+id/starlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/templayout">
+            android:layout_below="@id/templayout"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:id="@+id/star"
@@ -101,7 +103,8 @@
             android:id="@+id/troplayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/starlayout">
+            android:layout_below="@id/starlayout"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:id="@+id/trophystar"

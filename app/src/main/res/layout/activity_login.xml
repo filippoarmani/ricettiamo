@@ -34,7 +34,8 @@
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_round" />
+        app:srcCompat="@drawable/logo_round"
+        android:contentDescription="@string/logo_image" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/pd_email_layout"
@@ -222,7 +223,8 @@
             android:text="@string/sign_in"
             android:textColor="@color/orange"
             android:textSize="12sp"
-            app:textAllCaps="false" />
+            app:textAllCaps="false"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
 

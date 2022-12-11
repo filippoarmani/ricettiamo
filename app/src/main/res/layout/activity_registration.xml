@@ -30,7 +30,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="10dp"
-        android:contentDescription="@string/welcome"
+        android:contentDescription="@string/logo_image"
         app:layout_constraintBottom_toTopOf="@id/pd_title"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintStart_toStartOf="@id/left_guideline"

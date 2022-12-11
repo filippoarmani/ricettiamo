@@ -93,7 +93,8 @@
                 android:id="@+id/ingredient_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp">
+                android:layout_marginTop="40dp"
+                tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="18dp"
@@ -120,7 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ingredient_1"
-                android:layout_marginTop="1dp">
+                android:layout_marginTop="1dp"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:layout_width="18dp"
@@ -146,7 +148,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ingredient_2"
-                android:layout_marginTop="1dp">
+                android:layout_marginTop="1dp"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:layout_width="18dp"
@@ -172,7 +175,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ingredient_3"
-                android:layout_marginTop="1dp">
+                android:layout_marginTop="1dp"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:layout_width="18dp"
@@ -198,7 +202,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ingredient_4"
-                android:layout_marginTop="1dp">
+                android:layout_marginTop="1dp"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:layout_width="18dp"
@@ -423,7 +428,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_below="@+id/review_1">
+                            android:layout_below="@+id/review_1"
+                            tools:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:layout_width="30dp"
@@ -482,7 +488,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_below="@+id/review_2">
+                            android:layout_below="@+id/review_2"
+                            tools:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:layout_width="30dp"

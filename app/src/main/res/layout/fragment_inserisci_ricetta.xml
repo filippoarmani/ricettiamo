@@ -73,42 +73,45 @@
                     android:id="@+id/nameRecipe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/type_nameRecipe"
                     android:background="@drawable/back"
+                    android:fontFamily="@font/montserrat"
+                    android:minHeight="48dp"
+                    android:padding="5dp"
+                    android:hint="@string/type_nameRecipe"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:padding="5dp"/>
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/nameRecipe">
 
-                <TextView
-                    android:id="@+id/difficolty"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/difficolty"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/difficolty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/difficolty"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
 
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="150dp"
-                        android:layout_marginTop="20dp"
                         android:entries="@array/qta_array"
                         android:minWidth="30dp"
-                        android:minHeight="20dp"/>
+                        android:minHeight="48dp"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
 
                     <TextView
                         android:id="@+id/prep_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="60dp"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/prep_time"
                         android:textColor="@color/black"
@@ -117,17 +120,17 @@
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:entries="@array/qta_array"
-                        android:layout_marginTop="40dp"
                         android:layout_marginStart="150dp"
+                        android:layout_marginTop="48dp"
+                        android:entries="@array/qta_array"
                         android:minWidth="30dp"
-                        android:minHeight="20dp"/>
+                        android:minHeight="48dp" />
 
                     <TextView
                         android:id="@+id/cost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="60dp"
+                        android:layout_marginTop="108dp"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/cost"
                         android:textColor="@color/black"
@@ -136,17 +139,17 @@
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:entries="@array/qta_array"
-                        android:layout_marginTop="60dp"
                         android:layout_marginStart="150dp"
+                        android:layout_marginTop="96dp"
+                        android:entries="@array/qta_array"
                         android:minWidth="30dp"
-                        android:minHeight="20dp" />
+                        android:minHeight="48dp" />
 
                     <TextView
                         android:id="@+id/serving"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="80dp"
+                        android:layout_marginTop="156dp"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/serving"
                         android:textColor="@color/black"
@@ -155,11 +158,11 @@
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:entries="@array/qta_array"
-                        android:layout_marginTop="80dp"
                         android:layout_marginStart="150dp"
+                        android:layout_marginTop="144dp"
+                        android:entries="@array/qta_array"
                         android:minWidth="30dp"
-                        android:minHeight="20dp" />
+                        android:minHeight="48dp" />
 
                 </RelativeLayout>
 
