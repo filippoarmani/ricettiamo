@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.model;
+package model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,23 +7,21 @@ import com.google.gson.annotations.SerializedName;
 
 public class Ingredient implements Parcelable {
     private String name;
-    @SerializedName("publishedAt")
-    private String qta;
+    private int qta;
     private String size;
-    private String url;
+    //opzionale
     private String urlToImage;
 
-    public Ingredient(String name, String qta, String size, String url, String urlToImage) {
+    public Ingredient(String name, int qta, String size, String urlToImage) {
         this.name = name;
         this.qta = qta;
         this.size = size;
-        this.url = url;
         this.urlToImage = urlToImage;
     }
 
 
-    public Ingredient(String name, String qta, String size) {
-        this(name, qta, size, null, null);
+    public Ingredient(String name, int qta, String size) {
+        this(name, qta, size, null);
     }
 
     public static final Creator<Ingredient> CREATOR = new Creator<Ingredient>() {
@@ -54,20 +52,12 @@ public class Ingredient implements Parcelable {
         this.name = nome;
     }
 
-    public String getQta() {
+    public int getQta() {
         return qta;
     }
 
-    public void setQta(String qta) {
+    public void setQta(int qta) {
         this.qta = qta;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public String getUrlToImage() {
@@ -84,16 +74,14 @@ public class Ingredient implements Parcelable {
                 "nome='" + name + '\'' +
                 ", qta='" + qta + '\'' +
                 ", size='" + size + '\'' +
-                ", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
                 '}';
     }
 
     public Ingredient(Parcel in) {
         this.name = in.readString();
-        this.qta = in.readString();
+        this.qta = in.readInt();
         this.size = in.readString();
-        this.url = in.readString();
         this.urlToImage = in.readString();
     }
 
@@ -105,11 +93,9 @@ public class Ingredient implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
-        dest.writeString(this.qta);
+        dest.writeInt(this.qta);
         dest.writeString(this.size);
-        dest.writeString(this.url);
         dest.writeString(this.urlToImage);
 
     }
-
 }

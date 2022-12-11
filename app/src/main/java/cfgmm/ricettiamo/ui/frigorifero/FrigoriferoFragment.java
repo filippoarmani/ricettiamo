@@ -4,22 +4,32 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import adpter.IngredientsRecyclerAdapter;
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.model.Ingredient;
+import cfgmm.ricettiamo.model.IngredientApiResponse;
+import model.Ingredient;
 
 
 public class FrigoriferoFragment extends Fragment {
@@ -61,13 +71,13 @@ public class FrigoriferoFragment extends Fragment {
                 LinearLayoutManager.VERTICAL,  false);
 
         recyclerView.setLayoutManager(layoutManager);
+        List<Ingredient> ingredientList = getIngredientListWithWithGSon();
 
-        List<Ingredient> ingredientList = new ArrayList<>();
-        for (int i=0; i<10;i++){
-            ingredientList.add(new Ingredient("nome" + i,"3", "size"+ "kg"));
-        }
+        IngredientsRecyclerAdapter adapter = new
+                IngredientsRecyclerAdapter(ingredientList,
+                new IngredientsRecyclerAdapter.OnItemClickListener()  {
 
-        IngredientsRecyclerAdapter adapter = new IngredientsRecyclerAdapter(ingredientList, new IngredientsRecyclerAdapter.OnItemClickListener() {
+
             @Override
             public void onIngredientItemClick(Ingredient ingredient) {
                 Snackbar.make(view, ingredient.getName(), Snackbar.LENGTH_SHORT).show();
@@ -75,13 +85,32 @@ public class FrigoriferoFragment extends Fragment {
 
             @Override
             public void onDeleteButtonPressed(int position) {
+                Snackbar.make(view, getString(R.string.list_size_message) + ingredientList.size(),
+                        Snackbar.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onAddButtonPressed(int position) {
+                Snackbar.make(view, getString(R.string.list_size_message) + ingredientList.size(),
+                        Snackbar.LENGTH_SHORT).show();
             }
         });
 
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(layoutManager);
 
+    }
+
+    private List<Ingredient> getIngredientListWithWithGSon() {
+        InputStream inputStream = null;
+        try {
+            inputStream = requireActivity().getAssets().open("api.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+        IngredientApiResponse ingredientApiResponse = new
+                Gson().fromJson(bufferedReader, IngredientApiResponse.class);
+        return ingredientApiResponse.getArticles();
     }
 
 }

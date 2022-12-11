@@ -106,8 +106,7 @@
     <string name="my_email">Email corrente</string>
     <string name="new_email">Nuova Email</string>
     <string name="new_email_again">Digita nuovamente la nuova Email</string>
+    <string name="list_size_message">"la dimensione della lista è "</string>
 
-    <!-- content description images -->
-    <string name="search_recipe">Cerca Ricette</string>
 
 </resources>

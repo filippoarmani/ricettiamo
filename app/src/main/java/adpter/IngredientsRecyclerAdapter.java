@@ -9,22 +9,31 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+
+
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.model.Ingredient;
+import model.Ingredient;
 
 public class IngredientsRecyclerAdapter extends
-        RecyclerView.Adapter<IngredientsRecyclerAdapter.IngredientViewHolder> {
+        RecyclerView.Adapter<IngredientsRecyclerAdapter.IngredientViewHolder>{
 
+
+
+    //interfaccia per poter avere un'intereazione
     public interface OnItemClickListener {
         void onIngredientItemClick(Ingredient ingredient);
         void onDeleteButtonPressed(int position);
+        void onAddButtonPressed(int position);
     }
     private final List<Ingredient> ingredientList;
+    private final OnItemClickListener onItemClickListener;
 
     public IngredientsRecyclerAdapter(List<Ingredient> ingredientList, OnItemClickListener onItemClickListener){
         this.ingredientList = ingredientList;
+        this.onItemClickListener = onItemClickListener;
     }
 
 
@@ -50,7 +59,7 @@ public class IngredientsRecyclerAdapter extends
         return 0;
     }
 
-    public static class IngredientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class IngredientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView textViewName;
         private final TextView textViewQta;
         private final  TextView textViewSize;
@@ -72,15 +81,27 @@ public class IngredientsRecyclerAdapter extends
 
         public void bind(Ingredient ingredient) {
             textViewName.setText(ingredient.getName());
-            textViewQta.setText(ingredient.getQta());
+            textViewQta.setText(String.valueOf(ingredient.getQta()));
             textViewSize.setText(ingredient.getSize());
         }
-
+        //azione quando clicco
         @Override
         public void onClick(View v) {
-           //TODO
+            if(v.getId() == R.id.button_less) {
+                int qta = ingredientList.get(getBindingAdapterPosition()).getQta();
+                if (qta == 1) {
+                    ingredientList.remove(getBindingAdapterPosition());
+                    notifyItemRemoved(getBindingAdapterPosition());
+                } else {
+                    ingredientList.get(getBindingAdapterPosition()).setQta(qta - 1);
+                    notifyItemChanged(getBindingAdapterPosition());
                 }
             }
-
-
+            if(v.getId() == R.id.button_add) {
+                int qta = (ingredientList.get(getBindingAdapterPosition()).getQta());
+                ingredientList.get(getBindingAdapterPosition()).setQta(qta + 1);
+                notifyItemChanged(getBindingAdapterPosition());
+            }
+        }
+    }
 }
