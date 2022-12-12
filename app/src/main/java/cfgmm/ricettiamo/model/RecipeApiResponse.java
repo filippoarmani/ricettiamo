@@ -5,20 +5,22 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
-
-
-public class IngredientApiResponse implements Parcelable {
+public class RecipeApiResponse implements Parcelable {
 
     private String status;
     private int totalResults;
-    private List<Ingredient> articles;
+    private List<Recipe> listRecipes;
 
-    public IngredientApiResponse(String status, int totalResults, List<Ingredient> articles) {
+    public RecipeApiResponse(String status, int totalResults, List<Recipe> listRecipes) {
         this.status = status;
         this.totalResults = totalResults;
-        this.articles = articles;
+        this.listRecipes = listRecipes;
+    }
+
+    protected RecipeApiResponse(Parcel in) {
     }
 
     public String getStatus() {
@@ -37,38 +39,32 @@ public class IngredientApiResponse implements Parcelable {
         this.totalResults = totalResults;
     }
 
-    public List<Ingredient> getArticles() {
-        return articles;
+    public List<Recipe> getListRecipes() {
+        return listRecipes;
     }
 
-    public void setArticles(List<Ingredient> articles) {
-        this.articles = articles;
+    public void setListRecipes(List<Recipe> listRecipes) {
+        this.listRecipes = listRecipes;
     }
 
     @Override
     public String toString() {
-        return "IngredientApiResponse{" +
+        return "RecipeApiResponse{" +
                 "status='" + status + '\'' +
                 ", totalResults=" + totalResults +
-                ", articles=" + articles +
+                ", listRecipes=" + listRecipes +
                 '}';
     }
 
-    protected IngredientApiResponse(Parcel in) {
-        this.status = in.readString();
-        this.totalResults = in.readInt();
-        this.articles = in.createTypedArrayList(Ingredient.CREATOR);
-    }
-
-    public static final Creator<IngredientApiResponse> CREATOR = new Creator<IngredientApiResponse>() {
+    public static final Creator<RecipeApiResponse> CREATOR = new Creator<RecipeApiResponse>() {
         @Override
-        public IngredientApiResponse createFromParcel(Parcel in) {
-            return new IngredientApiResponse(in);
+        public RecipeApiResponse createFromParcel(Parcel in) {
+            return new RecipeApiResponse(in);
         }
 
         @Override
-        public IngredientApiResponse[] newArray(int size) {
-            return new IngredientApiResponse[size];
+        public RecipeApiResponse[] newArray(int size) {
+            return new RecipeApiResponse[size];
         }
     };
 
@@ -81,12 +77,11 @@ public class IngredientApiResponse implements Parcelable {
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(this.status);
         dest.writeInt(this.totalResults);
-        dest.writeTypedList(this.articles);
+        dest.writeTypedList(this.listRecipes);
     }
     public void readFromParcel(Parcel source) {
         this.status = source.readString();
         this.totalResults = source.readInt();
-        this.articles = source.createTypedArrayList(Ingredient.CREATOR);
+        this.listRecipes = source.createTypedArrayList(Recipe.CREATOR);
     }
-
 }

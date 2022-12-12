@@ -18,7 +18,7 @@
             android:layout_marginBottom="20dp"
             android:clickable="true"
             android:focusable="true"
-            app:backgroundTint="#FF5722"
+            app:backgroundTint="@color/orange_w"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_search"
@@ -69,6 +69,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/montserrat"
                         android:text="@string/starters"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -85,6 +86,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/montserrat"
                         android:text="@string/first_dishes"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -101,6 +103,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/montserrat"
                         android:text="@string/second_dishes"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -119,6 +122,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/montserrat"
                         android:text="@string/dessert"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -133,12 +137,10 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_weight="1"
+                    android:layout_height="150dp"
                     android:background="@color/orange"
                     android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@id/home">
+                    android:layout_marginTop="40dp">
 
                     <ImageView
                         android:id="@+id/imageViewBottom"
@@ -149,7 +151,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/logo_round"
-                        android:contentDescription="@string/logo_image"/>
+                        android:contentDescription="@string/toDo"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -157,7 +159,7 @@
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/imageViewBottom"
+                        app:layout_constraintStart_toEndOf="@+id/imageViewBottom"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
@@ -165,10 +167,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/montserrat"
                             android:text="@string/info"
                             android:textColor="@color/white"
                             android:textSize="18sp"
+                            android:fontFamily="@font/montserrat"
                             android:textStyle="bold" />
 
                         <!-- aggiungere onClick o far diventare bottoni i quattro seguenti-->
@@ -179,9 +181,9 @@
                             android:layout_height="20dp"
                             android:layout_weight="1"
                             android:background="#00FFFFFF"
-                            android:fontFamily="@font/montserrat"
                             android:text="@string/about_us"
                             android:textColor="@color/white"
+                            android:fontFamily="@font/montserrat"
                             android:textSize="16sp" />
 
                         <TextView
@@ -190,9 +192,9 @@
                             android:layout_height="20dp"
                             android:layout_weight="1"
                             android:background="#00FFFFFF"
-                            android:fontFamily="@font/montserrat"
                             android:text="@string/login"
                             android:textColor="@color/white"
+                            android:fontFamily="@font/montserrat"
                             android:textSize="16sp" />
 
                         <TextView
@@ -201,9 +203,9 @@
                             android:layout_height="20dp"
                             android:layout_weight="1"
                             android:background="#00FFFFFF"
-                            android:fontFamily="@font/montserrat"
                             android:text="@string/upgrade_account"
                             android:textColor="@color/white"
+                            android:fontFamily="@font/montserrat"
                             android:textSize="16sp" />
 
                         <TextView
@@ -212,11 +214,12 @@
                             android:layout_height="20dp"
                             android:layout_weight="1"
                             android:background="#00FFFFFF"
-                            android:fontFamily="@font/montserrat"
                             android:text="@string/return_up"
                             android:textAlignment="textStart"
                             android:textColor="@color/white"
+                            android:fontFamily="@font/montserrat"
                             android:textSize="16sp" />
+
                     </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

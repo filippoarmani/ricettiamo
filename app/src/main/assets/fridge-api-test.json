@@ -1,0 +1,40 @@
+{
+  "status": "ok",
+  "totalResults": 1,
+  "articles": [
+    {
+      "source": {
+        "id": null
+      },
+      "name": "cipolla",
+      "qta": 1,
+      "size": "kg"
+    },
+    {
+      "source": {
+        "id": null
+      },
+      "name": "tomatoes",
+      "qta": 5,
+      "size": "kg"
+    },
+    {
+      "source": {
+        "id": null
+      },
+      "name": "potatoes",
+      "qta": 40,
+      "size": "kg"
+    },
+    {
+      "source": {
+        "id": null
+      },
+      "name": "milk",
+      "qta": 200,
+      "size": "ml"
+    }
+
+
+  ]
+}

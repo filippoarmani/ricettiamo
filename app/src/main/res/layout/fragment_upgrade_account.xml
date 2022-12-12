@@ -46,10 +46,10 @@
 
             <ImageView
                 android:id="@+id/template"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginStart="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="45dp"
                 android:background="@drawable/template"
                 android:elevation="10dp"
                 android:contentDescription="@string/upgrade_2" />
@@ -77,11 +77,11 @@
 
             <ImageView
                 android:id="@+id/star"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginStart="60dp"
-                android:background="@drawable/star"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="45dp"
+                android:background="@drawable/rating"
                 android:elevation="10dp"
                 android:contentDescription="@string/upgrade_3" />
 
@@ -108,11 +108,11 @@
 
             <ImageView
                 android:id="@+id/trophystar"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginStart="60dp"
-                android:background="@drawable/ic_trophy"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginStart="45dp"
+                android:background="@drawable/ranking"
                 android:elevation="10dp"
                 android:contentDescription="@string/upgrade_4" />
 

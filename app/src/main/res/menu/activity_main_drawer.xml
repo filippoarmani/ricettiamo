@@ -8,13 +8,6 @@
         android:id="@+id/menu_principale"
         android:checkableBehavior="single">
 
-<!--
-        <item
-            android:id="@+id/nav_cerca_ricetta"
-            android:icon="@drawable/ic_search"
-            android:title="@string/menu_search_recipe" />
--->
-
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
@@ -45,6 +38,32 @@
             android:id="@+id/nav_impostazioni"
             android:icon="@drawable/ic_settings"
             android:title="@string/action_settings" />
+    </group>
+
+    <group
+        android:id="@+id/menu_upgrade"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_profilo"
+            android:icon="@drawable/ic_user"
+            android:title="@string/profile" />
+
+        <item
+            android:id="@+id/nav_my_recipe"
+            android:icon="@drawable/ic_book"
+            android:title="@string/my_recipes" />
+
+        <item
+            android:id="@+id/nav_ranking"
+            android:icon="@drawable/ic_trophy"
+            android:title="@string/top_10_chef" />
+
+    </group>
+
+    <group
+        android:id="@+id/menu_end"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_upgrade"
@@ -56,10 +75,6 @@
             android:icon="@drawable/ic_exit"
             android:title="@string/menu_logout" />
 
-        <item
-            android:id="@+id/nav_profilo"
-            android:icon="@drawable/ic_user"
-            android:title="@string/profile" />
     </group>
 </menu>
 

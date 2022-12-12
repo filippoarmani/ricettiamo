@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
-import model.Ingredient;
+import cfgmm.ricettiamo.model.Ingredient;
+
 
 public class IngredientsRecyclerAdapter extends
         RecyclerView.Adapter<IngredientsRecyclerAdapter.IngredientViewHolder>{
@@ -31,7 +32,8 @@ public class IngredientsRecyclerAdapter extends
     private final List<Ingredient> ingredientList;
     private final OnItemClickListener onItemClickListener;
 
-    public IngredientsRecyclerAdapter(List<Ingredient> ingredientList, OnItemClickListener onItemClickListener){
+    public IngredientsRecyclerAdapter(List<Ingredient> ingredientList, OnItemClickListener
+            onItemClickListener){
         this.ingredientList = ingredientList;
         this.onItemClickListener = onItemClickListener;
     }
@@ -47,7 +49,8 @@ public class IngredientsRecyclerAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IngredientsRecyclerAdapter.IngredientViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull IngredientsRecyclerAdapter.IngredientViewHolder holder,
+                                 int position) {
         holder.bind(ingredientList.get(position));
     }
 
@@ -59,7 +62,8 @@ public class IngredientsRecyclerAdapter extends
         return 0;
     }
 
-    public class IngredientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class IngredientViewHolder extends RecyclerView.ViewHolder implements
+            View.OnClickListener{
         private final TextView textViewName;
         private final TextView textViewQta;
         private final  TextView textViewSize;

@@ -107,6 +107,7 @@
     <string name="new_email_again">Digita nuovamente la nuova Email</string>
     <string name="list_size_message">"la dimensione della lista è "</string>
     <string name="search_recipe">Cerca Ricetta</string>
+    <string name="top_chef">Top 3 Cuochi</string>
 
 
 </resources>

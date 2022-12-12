@@ -72,6 +72,8 @@
                     android:id="@+id/i_dName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:background="@drawable/back"
                     android:hint="@string/name"
                     android:inputType="text" />
 
@@ -89,6 +91,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:background="@drawable/back"
                     android:maxLength="250"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -135,6 +139,8 @@
                     android:id="@+id/i_cPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:background="@drawable/back"
                     android:hint="@string/my_password"
                     android:inputType="textPassword" />
 
@@ -154,6 +160,8 @@
                     android:id="@+id/i_nPassword1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:background="@drawable/back"
                     android:hint="@string/new_password"
                     android:inputType="textPassword" />
 
@@ -173,6 +181,8 @@
                     android:id="@+id/i_nPassword2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:background="@drawable/back"
                     android:hint="@string/new_password_again"
                     android:inputType="textPassword" />
 
@@ -206,6 +216,8 @@
                     android:id="@+id/i_cEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:background="@drawable/back"
                     android:hint="@string/my_email"
                     android:inputType="textEmailAddress" />
 
@@ -225,6 +237,8 @@
                     android:id="@+id/n_nEmail1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:background="@drawable/back"
                     android:hint="@string/new_email"
                     android:inputType="textEmailAddress" />
 
@@ -243,6 +257,8 @@
                     android:id="@+id/i_nEmail2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:background="@drawable/back"
                     android:hint="@string/new_email_again"
                     android:inputType="textEmailAddress" />
 
