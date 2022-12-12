@@ -2,56 +2,48 @@ package cfgmm.ricettiamo.ui.listaDellaSpesa;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import cfgmm.ricettiamo.R;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ListaDellaSpesaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
+
+import adpter.ShoppingListRecyclerAdapter;
+import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.model.Ingredient;
+import cfgmm.ricettiamo.model.IngredientApiResponse;
+
+
+
 public class ListaDellaSpesaFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private final String TAG = ListaDellaSpesaFragment.class.getSimpleName();
 
     public ListaDellaSpesaFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ListaDellaSpesaFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ListaDellaSpesaFragment newInstance(String param1, String param2) {
-        ListaDellaSpesaFragment fragment = new ListaDellaSpesaFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+
+    public static ListaDellaSpesaFragment newInstance() {
+        return new ListaDellaSpesaFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            // TODO: Rename and change types of parameters
-            String mParam1 = getArguments().getString(ARG_PARAM1);
-            String mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -59,5 +51,47 @@ public class ListaDellaSpesaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lista_della_spesa, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients_shopping);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext(),
+                LinearLayoutManager.VERTICAL,  false);
+
+        recyclerView.setLayoutManager(layoutManager);
+        List<Ingredient> shoppingList = getIngredientListWithWithGSon();
+
+
+        ShoppingListRecyclerAdapter adapter = new ShoppingListRecyclerAdapter(shoppingList,
+                new ShoppingListRecyclerAdapter.OnItemClickListener() {
+
+                    @Override
+                    public void onIngredientItemClick(Ingredient ingredient) {
+                        Snackbar.make(view, ingredient.getName(), Snackbar.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+            public void onDeleteButtonPressed(int position) {
+                Snackbar.make(view, getString(R.string.list_size_message) + shoppingList.size(),
+                        Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private List<Ingredient> getIngredientListWithWithGSon() {
+        InputStream inputStream = null;
+        try {
+            inputStream = requireActivity().getAssets().open("fridge-api-test.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+        IngredientApiResponse ingredientApiResponse = new
+                Gson().fromJson(bufferedReader, IngredientApiResponse.class);
+        return ingredientApiResponse.getArticles();
     }
 }

@@ -28,8 +28,9 @@ import java.util.List;
 
 import adpter.IngredientsRecyclerAdapter;
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.IngredientApiResponse;
-import model.Ingredient;
+
 
 
 public class FrigoriferoFragment extends Fragment {
@@ -47,7 +48,7 @@ public class FrigoriferoFragment extends Fragment {
 
      */
 
-    public static FrigoriferoFragment newInstance(String param1, String param2) {
+    public static FrigoriferoFragment newInstance() {
         return new FrigoriferoFragment();
     }
 
@@ -78,12 +79,12 @@ public class FrigoriferoFragment extends Fragment {
                 new IngredientsRecyclerAdapter.OnItemClickListener()  {
 
 
-            @Override
-            public void onIngredientItemClick(Ingredient ingredient) {
-                Snackbar.make(view, ingredient.getName(), Snackbar.LENGTH_SHORT).show();
-            }
+                    @Override
+                    public void onIngredientItemClick(Ingredient ingredient) {
+                        Snackbar.make(view, ingredient.getName(), Snackbar.LENGTH_SHORT).show();
+                    }
 
-            @Override
+                    @Override
             public void onDeleteButtonPressed(int position) {
                 Snackbar.make(view, getString(R.string.list_size_message) + ingredientList.size(),
                         Snackbar.LENGTH_SHORT).show();
@@ -102,7 +103,7 @@ public class FrigoriferoFragment extends Fragment {
     private List<Ingredient> getIngredientListWithWithGSon() {
         InputStream inputStream = null;
         try {
-            inputStream = requireActivity().getAssets().open("api.json");
+            inputStream = requireActivity().getAssets().open("fridge-api-test.json");
         } catch (IOException e) {
             e.printStackTrace();
         }

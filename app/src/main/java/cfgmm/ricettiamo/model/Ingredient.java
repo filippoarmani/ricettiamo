@@ -1,4 +1,4 @@
-package model;
+package cfgmm.ricettiamo.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
