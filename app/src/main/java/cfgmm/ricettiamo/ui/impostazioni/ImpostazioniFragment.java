@@ -3,19 +3,13 @@ package cfgmm.ricettiamo.ui.impostazioni;
 import static android.content.ContentValues.TAG;
 import static android.text.TextUtils.isEmpty;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -29,9 +23,7 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -46,9 +38,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import cfgmm.ricettiamo.LoginActivity;
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.RegistrationActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -236,6 +226,7 @@ public class ImpostazioniFragment extends Fragment {
                     // Handle the returned Uri
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
+                        bitmap = getCroppedBitmap(bitmap);
                         change_photo.setImageBitmap(bitmap);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -251,28 +242,26 @@ public class ImpostazioniFragment extends Fragment {
         return Uri.parse(path);
     }
 
-    /*public Bitmap getAdaptedBitmap(Bitmap b) {
-        b = Bitmap.createScaledBitmap(b, 90, 90, false);
-
-        Bitmap output = Bitmap.createBitmap(b.getWidth(),
-                b.getHeight(), Bitmap.Config.ARGB_8888);
+    public Bitmap getCroppedBitmap(Bitmap bitmap) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
 
         final int color = 0xff424242;
         final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, b.getWidth(), b.getHeight());
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
 
         paint.setAntiAlias(true);
         canvas.drawARGB(0, 0, 0, 0);
         paint.setColor(color);
         // canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-        canvas.drawCircle(b.getWidth() / 2, b.getHeight() / 2,
-                b.getWidth() / 2, paint);
+        canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
+                bitmap.getWidth() / 2, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(b, rect, rect, paint);
-        //Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
-        //return _bmp;
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+       // Bitmap _bmp = Bitmap.createScaledBitmap(output, change_photo.getWidth(), change_photo.getHeight(), false);
+       // return _bmp;
         return output;
-    }*/
+    }
 
 }
