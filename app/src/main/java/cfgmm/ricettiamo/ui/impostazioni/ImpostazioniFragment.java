@@ -9,6 +9,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -129,8 +134,7 @@ public class ImpostazioniFragment extends Fragment {
         Button save = view.findViewById(R.id.salva);
 
         change_photo.setOnClickListener(v -> {
-            if(v.getContext().checkPermission(Context.MEDIA_COMMUNICATION_SERVICE, 0, 0))
-                mGetContent.launch("image/*");
+            mGetContent.launch("image/*");
         });
 
         save.setOnClickListener(v -> {
@@ -246,5 +250,29 @@ public class ImpostazioniFragment extends Fragment {
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, user.getUid()+"_photo", null);
         return Uri.parse(path);
     }
+
+    /*public Bitmap getAdaptedBitmap(Bitmap b) {
+        b = Bitmap.createScaledBitmap(b, 90, 90, false);
+
+        Bitmap output = Bitmap.createBitmap(b.getWidth(),
+                b.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, b.getWidth(), b.getHeight());
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        // canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+        canvas.drawCircle(b.getWidth() / 2, b.getHeight() / 2,
+                b.getWidth() / 2, paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(b, rect, rect, paint);
+        //Bitmap _bmp = Bitmap.createScaledBitmap(output, 60, 60, false);
+        //return _bmp;
+        return output;
+    }*/
 
 }

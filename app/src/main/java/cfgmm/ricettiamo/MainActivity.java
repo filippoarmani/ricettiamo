@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         Menu menu = navigationView.getMenu();
         View header = navigationView.getHeaderView(0);
 
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         TextView nome = header.findViewById(R.id.nh_nome);
         ImageView photo = header.findViewById(R.id.nh_foto);
@@ -82,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
             photo.setImageURI(user.getPhotoUrl());
         } else {
             menu.removeGroup(R.id.with_login);
+            menu.removeGroup(R.id.with_login2);
+            menu.removeGroup(R.id.with_login3);
             login.setVisibility(View.VISIBLE);
             nome.setVisibility(View.GONE);
 

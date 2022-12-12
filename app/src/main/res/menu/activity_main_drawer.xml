@@ -41,7 +41,7 @@
     </group>
 
     <group
-        android:id="@+id/menu_upgrade"
+        android:id="@+id/with_login2"
         android:checkableBehavior="single">
 
         <item
@@ -62,14 +62,14 @@
     </group>
 
     <group
-        android:id="@+id/menu_end"
+        android:id="@+id/with_login3"
         android:checkableBehavior="single">
 
-        <item
+<!--    <item
             android:id="@+id/nav_upgrade"
             android:icon="@drawable/ic_chef"
             android:title="@string/upgrade_account" />
-
+-->
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_exit"
