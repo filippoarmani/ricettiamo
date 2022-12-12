@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,
-                //R.id.nav_cerca_ricetta,
                 R.id.nav_frigorifero,
                 R.id.nav_listaDellaSpesa,
                 R.id.nav_preferiti,
@@ -55,37 +54,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-       /*
-       Spostato in LogOutDialogFragment
-       Button button = (Button) findViewById(R.id.btn_logout);
-        button.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage(R.string.Confirmation);
-            // Add the buttons
-            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // User clicked OK button --> open login fragment
-                    FirebaseAuth.getInstance().signOut();
-                    Intent intent = new Intent(view.getContext(), LoginActivity.class);
-                    startActivity(intent);
-                    dialog.cancel();
-                }
-            });
-            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // User cancelled the dialog --> close alert dialog
-                    dialog.cancel();
-                }
-            });
-            // Set other dialog properties
-
-
-            // Create the AlertDialog
-            AlertDialog dialog = builder.create();
-        });
-
-        */
 
         /*TextView nome = findViewById(R.id.nh_nome);
         TextView email = findViewById(R.id.nh_email);

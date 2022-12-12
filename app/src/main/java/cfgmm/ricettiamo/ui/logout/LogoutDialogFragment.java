@@ -21,13 +21,13 @@ public class LogoutDialogFragment extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(R.string.Confirmation)
-                .setPositiveButton(R.string.ok, (dialog, id) -> {
+                .setPositiveButton(android.R.string.ok, (dialog, id) -> {
                     FirebaseAuth.getInstance().signOut();
                     Intent intent = new Intent(builder.getContext() , LoginActivity.class);
                     startActivity(intent);
                     dialog.cancel();
                 })
-                .setNegativeButton(R.string.cancel, (dialog, id) -> {
+                .setNegativeButton(android.R.string.cancel, (dialog, id) -> {
                     // User cancelled the dialog
                     dialog.cancel();
                 });

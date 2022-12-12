@@ -80,7 +80,6 @@
     <string name="review_2">Preferisco usare il Parmigiano perché il Pecorino è un po’ troppo salato per i miei gusti.</string>
     <string name="review_1">Uno dei miei piatti preferiti! I miei figli mi chiedono sempre di preparare la carbonara.</string>
     <string name="Confirmation">Sei Sicuro?</string>
-    <string name="cancel">Annulla</string>
     <string name="reset_password">Resetta Password</string>
     <string name="instruction_reset">Per ripristinare la tua password serve solo il tuo indirizzo email!</string>
     <string name="instruction_reset2">Riceverai una email contenente le istruzioni per il reset della tua password</string>
@@ -107,6 +106,7 @@
     <string name="new_email">Nuova Email</string>
     <string name="new_email_again">Digita nuovamente la nuova Email</string>
     <string name="list_size_message">"la dimensione della lista è "</string>
+    <string name="search_recipe">Cerca Ricetta</string>
 
 
 </resources>
