@@ -89,7 +89,6 @@
     <string name="less" translatable="false">-</string>
 
 
-
     <!--le_mie_ricette-->
     <string name="top" translatable="false">Top 3</string>
     <string name="login_later">LogIn later</string>
@@ -157,8 +156,11 @@
 
     <!-- content description images -->
     <string name="logo_image" translatable="false">Logo</string>
-    <string name="search_recipe" >Search Recipes</string>
+    <string name="search_recipe">Search Recipes</string>
     <string name="list_size_message">The size of the list is</string>
+
+    <!-- inserisci_ricetta -->
+    <string name="top_chef">Top 3 Chefs</string>
 
 
 </resources>
