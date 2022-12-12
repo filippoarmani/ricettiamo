@@ -3,15 +3,30 @@ package cfgmm.ricettiamo.ui.impostazioni;
 import static android.content.ContentValues.TAG;
 import static android.text.TextUtils.isEmpty;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -23,8 +38,12 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 import cfgmm.ricettiamo.LoginActivity;
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.RegistrationActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +65,12 @@ public class ImpostazioniFragment extends Fragment {
     private TextInputLayout change_email_current;
     private TextInputLayout change_email_new;
     private TextInputLayout change_email_new2;
+
+    private ImageButton change_photo;
+    private Uri image_profile;
+    private Bitmap bitmap;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     public ImpostazioniFragment() {
         // Required empty public constructor
@@ -88,9 +113,9 @@ public class ImpostazioniFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        ImageButton change_photo = view.findViewById(R.id.change_user);
+        change_photo = view.findViewById(R.id.change_user);
+        image_profile = user.getPhotoUrl();
+        change_photo.setImageURI(image_profile);
 
         change_display_name = view.findViewById(R.id.i_dName_layout);
         change_description = view.findViewById(R.id.modificaDescr);
@@ -104,7 +129,8 @@ public class ImpostazioniFragment extends Fragment {
         Button save = view.findViewById(R.id.salva);
 
         change_photo.setOnClickListener(v -> {
-            //TODO
+            if(v.getContext().checkPermission(Context.MEDIA_COMMUNICATION_SERVICE, 0, 0))
+                mGetContent.launch("image/*");
         });
 
         save.setOnClickListener(v -> {
@@ -119,6 +145,20 @@ public class ImpostazioniFragment extends Fragment {
             String cEmail = change_email_current.getEditText().getText().toString().trim();
             String nEmail1 = change_email_new.getEditText().getText().toString().trim();
             String nEmail2 = change_email_new2.getEditText().getText().toString().trim();
+
+            UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+                    .setPhotoUri(getImageUri(view.getContext(), bitmap))
+                    .build();
+
+            user.updateProfile(profileUpdate).addOnCompleteListener(task -> {
+                if(task.isSuccessful()) {
+                    Toast.makeText(v.getContext(), "immagine cambiata",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(v.getContext(), "immagine non cambiata",
+                            Toast.LENGTH_SHORT).show();
+            });
 
             if(!(isEmpty(displayName))) {
                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -177,9 +217,34 @@ public class ImpostazioniFragment extends Fragment {
                 }
             }
 
-            FirebaseAuth.getInstance().signOut();
+            /*FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(view.getContext(), LoginActivity.class);
-            startActivity(intent);
+            startActivity(intent);*/
         });
     }
+
+    // GetContent creates an ActivityResultLauncher<String> to allow you to pass
+    // in the mime type you'd like to allow the user to select
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri uri) {
+                    // Handle the returned Uri
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
+                        change_photo.setImageBitmap(bitmap);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, user.getUid()+"_photo", null);
+        return Uri.parse(path);
+    }
+
 }

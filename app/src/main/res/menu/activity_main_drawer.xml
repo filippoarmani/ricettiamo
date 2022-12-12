@@ -35,6 +35,12 @@
             android:icon="@drawable/ic_favorite"
             android:title="@string/menu_favorites" />
 
+    </group>
+
+    <group
+        android:id="@+id/with_login"
+        android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_impostazioni"
             android:icon="@drawable/ic_settings"
@@ -55,7 +61,6 @@
             android:icon="@drawable/ic_user"
             android:title="@string/profile" />
     </group>
-
 </menu>
 
 

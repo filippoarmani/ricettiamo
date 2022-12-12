@@ -1,7 +1,14 @@
 package cfgmm.ricettiamo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -11,6 +18,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import cfgmm.ricettiamo.databinding.ActivityMainBinding;
 
@@ -55,27 +64,33 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        /*TextView nome = findViewById(R.id.nh_nome);
-        TextView email = findViewById(R.id.nh_email);
-        ImageView photo = findViewById(R.id.nh_foto);
+        Menu menu = navigationView.getMenu();
+        View header = navigationView.getHeaderView(0);
+
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        TextView nome = header.findViewById(R.id.nh_nome);
+        ImageView photo = header.findViewById(R.id.nh_foto);
 
-        Button login = findViewById(R.id.nh_login);
+        Button login = header.findViewById(R.id.nh_login);
 
         if(user != null) {
             login.setVisibility(View.GONE);
             nome.setVisibility(View.VISIBLE);
-            email.setVisibility(View.VISIBLE);
 
             nome.setText(user.getDisplayName());
-            email.setText(user.getEmail());
             photo.setImageURI(user.getPhotoUrl());
         } else {
+            menu.removeGroup(R.id.with_login);
             login.setVisibility(View.VISIBLE);
             nome.setVisibility(View.GONE);
-            email.setVisibility(View.GONE);
-        }*/
+
+            login.setOnClickListener(v -> {
+                Intent intent = new Intent(v.getContext(), LoginActivity.class);
+                startActivity(intent);
+                finish();
+            });
+        }
     }
 
     @Override
