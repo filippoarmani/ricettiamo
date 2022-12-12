@@ -134,11 +134,22 @@
     <string name="reg_f">Registration Failed</string>
     <string name="reg_s">Registration Succeeded</string>
 
+    <!-- inserisci_ricetta -->
     <string name="add_photo">Add the main picture</string>
     <string name="type_nameRecipe">Type name of the recipe</string>
     <string name="difficolty">Difficolty: </string>
+    <string-array name="difficolty_array">
+        <item>Easy</item>
+        <item>Average</item>
+        <item>Hard</item>
+    </string-array>
     <string name="prep_time">Preparation time:  </string>
     <string name="cost">Cost: </string>
+    <string-array name="cost_array">
+        <item>Low</item>
+        <item>Average</item>
+        <item>High</item>
+    </string-array>
     <string name="serving">Serving: </string>
     <string name="add_ingredient">Add an ingredient</string>
     <string name="add_step">Add a step</string>

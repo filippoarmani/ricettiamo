@@ -35,6 +35,8 @@
                 android:layout_height="248dp"
                 android:background="@drawable/back"
                 android:text="@string/add_photo"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat"
                 android:textAllCaps="false"
                 android:textSize="18sp" />
 
@@ -75,8 +77,9 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/back"
                     android:fontFamily="@font/montserrat"
+                    android:layout_marginTop="10dp"
                     android:minHeight="48dp"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:hint="@string/type_nameRecipe"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -92,7 +95,7 @@
                         android:id="@+id/difficolty"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="10dp"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/difficolty"
                         android:textColor="@color/black"
@@ -102,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="150dp"
-                        android:entries="@array/qta_array"
+                        android:entries="@array/difficolty_array"
                         android:minWidth="30dp"
                         android:minHeight="48dp"
                         tools:ignore="DuplicateSpeakableTextCheck" />
@@ -111,18 +114,20 @@
                         android:id="@+id/prep_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="60dp"
+                        android:layout_marginTop="45dp"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/prep_time"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:padding="5dp"
                         android:layout_marginStart="150dp"
-                        android:layout_marginTop="48dp"
-                        android:entries="@array/qta_array"
+                        android:layout_marginTop="45dp"
+                        android:autofillHints="number"
+                        android:inputType="numberDecimal"
                         android:minWidth="30dp"
                         android:minHeight="48dp" />
 
@@ -130,7 +135,7 @@
                         android:id="@+id/cost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="108dp"
+                        android:layout_marginTop="80dp"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/cost"
                         android:textColor="@color/black"
@@ -140,8 +145,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="150dp"
-                        android:layout_marginTop="96dp"
-                        android:entries="@array/qta_array"
+                        android:layout_marginTop="70dp"
+                        android:entries="@array/cost_array"
                         android:minWidth="30dp"
                         android:minHeight="48dp" />
 
@@ -149,20 +154,22 @@
                         android:id="@+id/serving"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="156dp"
+                        android:layout_marginTop="115dp"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/serving"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
                         android:layout_marginStart="150dp"
-                        android:layout_marginTop="144dp"
-                        android:entries="@array/qta_array"
+                        android:layout_marginTop="115dp"
+                        android:padding="5dp"
                         android:minWidth="30dp"
-                        android:minHeight="48dp" />
+                        android:minHeight="48dp"
+                        android:autofillHints="number"
+                        android:inputType="numberDecimal"/>
 
                 </RelativeLayout>
 
@@ -175,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/recipe_1"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="15dp">
 
                 <TextView
                     android:id="@+id/ingredients"
@@ -210,13 +217,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/recipe_2"
-                android:layout_marginStart="30dp">
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp">
 
                 <TextView
                     android:id="@+id/prep"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/preparation"
                     android:textColor="@color/black"
