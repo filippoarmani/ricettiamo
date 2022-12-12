@@ -34,12 +34,13 @@ public class LoginActivity extends AppCompatActivity {
         email_layout = findViewById(R.id.pd_email_layout);
         password_layout = findViewById(R.id.l_password_layout);
 
-        Button login = findViewById(R.id.l_login);
+        Button login_password = findViewById(R.id.l_login);
+        Button login_google = findViewById(R.id.button_Login_Google);
         TextView f_password = findViewById(R.id.l_passwordD);
         Button login_later = findViewById(R.id.btn_noLogIn);
         TextView sign_in = findViewById(R.id.l_registrati);
 
-        login.setOnClickListener(v -> {
+        login_password.setOnClickListener(v -> {
             String email = email_layout.getEditText().getText().toString().trim();
             String password = password_layout.getEditText().getText().toString().trim();
 
@@ -47,17 +48,19 @@ public class LoginActivity extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success");
+
                                 Toast.makeText(LoginActivity.this, R.string.auth_s,
                                         Toast.LENGTH_SHORT).show();
+
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
                             } else {
-                                // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
+
                                 Toast.makeText(LoginActivity.this, R.string.auth_f,
                                         Toast.LENGTH_SHORT).show();
+
                                 updateUI(null);
                             }
                         });
@@ -84,15 +87,18 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        login_google.setOnClickListener(v -> {
+
+        });
     }
 
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             updateUI(currentUser);
-            //currentUser.reload();
         }
     }
 
