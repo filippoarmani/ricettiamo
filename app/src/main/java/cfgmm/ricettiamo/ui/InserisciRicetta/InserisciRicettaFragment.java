@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo;
+package cfgmm.ricettiamo.ui.InserisciRicetta;
 
 import android.os.Bundle;
 
@@ -8,19 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cfgmm.ricettiamo.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link inserisci_ricetta#newInstance} factory method to
+ * Use the {@link InserisciRicettaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class inserisci_ricetta extends Fragment {
+public class InserisciRicettaFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    public inserisci_ricetta() {
+    public InserisciRicettaFragment() {
         // Required empty public constructor
     }
 
@@ -33,8 +35,8 @@ public class inserisci_ricetta extends Fragment {
      * @return A new instance of fragment inserisci_ricetta.
      */
     // TODO: Rename and change types and number of parameters
-    public static inserisci_ricetta newInstance(String param1, String param2) {
-        inserisci_ricetta fragment = new inserisci_ricetta();
+    public static InserisciRicettaFragment newInstance(String param1, String param2) {
+        InserisciRicettaFragment fragment = new InserisciRicettaFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
