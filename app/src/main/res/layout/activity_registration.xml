@@ -71,6 +71,8 @@
             android:id="@+id/r_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:fontFamily="@font/montserrat"
             android:hint="@string/name"
             android:inputType="text" />
 
@@ -92,6 +94,8 @@
             android:id="@+id/r_cognome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:fontFamily="@font/montserrat"
             android:hint="@string/surname"
             android:inputType="text" />
 
@@ -114,6 +118,8 @@
             android:id="@+id/r_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:fontFamily="@font/montserrat"
             android:hint="@string/date"
             android:inputType="date" />
 
@@ -135,6 +141,8 @@
             android:id="@+id/r_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:fontFamily="@font/montserrat"
             android:hint="@string/phone_number"
             android:inputType="phone" />
 
@@ -157,6 +165,8 @@
             android:id="@+id/r_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:fontFamily="@font/montserrat"
             android:hint="@string/email"
             android:inputType="textEmailAddress" />
 
@@ -179,6 +189,8 @@
             android:id="@+id/r_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:fontFamily="@font/montserrat"
             android:hint="@string/password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>

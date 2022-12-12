@@ -54,8 +54,8 @@
 
                 <ImageView
                     android:id="@+id/medal1"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/medal_1"
                     android:layout_margin="5dp"
                     android:layout_gravity="center"
@@ -127,8 +127,8 @@
 
                 <ImageView
                     android:id="@+id/medal2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/medal_2"
                     android:layout_margin="5dp"
                     android:layout_gravity="center"
@@ -203,8 +203,8 @@
 
                 <ImageView
                     android:id="@+id/medal3"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/medal_3"
                     android:layout_margin="5dp"
                     android:layout_gravity="center"
@@ -274,7 +274,6 @@
                 android:id="@+id/list_item_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/list_item"
                 android:contentDescription="@string/toDo"

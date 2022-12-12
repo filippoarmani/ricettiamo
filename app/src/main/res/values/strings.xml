@@ -161,6 +161,7 @@
 
     <!-- inserisci_ricetta -->
     <string name="top_chef">Top 3 Chefs</string>
+    <string name="top_10_chef">Top 10 Chefs</string>
 
 
 </resources>

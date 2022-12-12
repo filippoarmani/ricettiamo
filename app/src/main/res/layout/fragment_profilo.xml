@@ -39,6 +39,8 @@
             android:id="@+id/buttonLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:textStyle="bold"
             android:text="@string/login"
             android:visibility="visible" />
 
