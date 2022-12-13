@@ -3,6 +3,7 @@ package cfgmm.ricettiamo.ui.impostazioni;
 import static android.content.ContentValues.TAG;
 import static android.text.TextUtils.isEmpty;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -65,7 +66,7 @@ public class ImpostazioniFragment extends Fragment {
     private Uri image_profile;
     private Bitmap bitmap;
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private FirebaseUser user;
 
     public ImpostazioniFragment() {
         // Required empty public constructor
@@ -108,6 +109,7 @@ public class ImpostazioniFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        user = FirebaseAuth.getInstance().getCurrentUser();
         change_photo = view.findViewById(R.id.change_user);
         image_profile = user.getPhotoUrl();
         change_photo.setImageURI(image_profile);
@@ -123,11 +125,22 @@ public class ImpostazioniFragment extends Fragment {
 
         Button save = view.findViewById(R.id.salva);
 
-        change_photo.setOnClickListener(v -> {
-            mGetContent.launch("image/*");
-        });
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), user.getPhotoUrl());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        change_photo.setOnClickListener(v -> mGetContent.launch("image/*"));
 
         save.setOnClickListener(v -> {
+            ProgressDialog progress = new ProgressDialog(v.getContext());
+            progress.setTitle("Loading");
+            progress.setMessage("Wait while loading...");
+            progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+            progress.show();
+
+
             String displayName = change_display_name.getEditText().getText().toString().trim();
 
             String description = change_description.getEditText().getText().toString().trim();
@@ -157,6 +170,7 @@ public class ImpostazioniFragment extends Fragment {
             if(!(isEmpty(displayName))) {
                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                         .setDisplayName(displayName)
+                        .setPhotoUri(getImageUri(view.getContext(), bitmap))
                         .build();
 
                 user.updateProfile(profileUpdates);
@@ -170,25 +184,31 @@ public class ImpostazioniFragment extends Fragment {
                 AuthCredential credential = EmailAuthProvider
                         .getCredential(user.getEmail(), cPassword);
 
-                user.reauthenticate(credential)
-                        .addOnCompleteListener(task -> {
-                            if(task.isSuccessful()) {
-                                Log.d(TAG, "User re-authenticated.");
-                                if(nPassword1.equals(nPassword2)) {
-                                    user.updatePassword(nPassword1).addOnCompleteListener(task1 -> {
-                                        if (task1.isSuccessful()) {
-                                            Log.d(TAG, "User password updated.");
-                                        }
-                                    });
-                                } else {
-                                    change_password_new.setError("Passwords not equal");
-                                    change_password_new2.setError("Passwords not equal");
-                                }
+                try {
+                    user.reauthenticate(credential)
+                            .addOnCompleteListener(task -> {
+                                if(task.isSuccessful()) {
+                                    Log.d(TAG, "User re-authenticated.");
+                                    if(nPassword1.equals(nPassword2)) {
+                                        user.updatePassword(nPassword1).addOnCompleteListener(task1 -> {
+                                            if (task1.isSuccessful()) {
+                                                Log.d(TAG, "User password updated.");
+                                            }
+                                        });
+                                    } else {
+                                        change_password_new.setError("Passwords not equal");
+                                        change_password_new2.setError("Passwords not equal");
+                                    }
 
-                            } else {
-                                change_password_current.setError("Wrong Password");
-                            }
-                        });
+                                } else {
+                                    change_password_current.setError("Wrong Password");
+                                }
+                            });
+                } catch(Exception e) {
+                    Toast.makeText(v.getContext(), "Errore!",
+                            Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             if(!(isEmpty(cEmail) || isEmpty(nEmail1) || isEmpty(nEmail2))) {
@@ -214,6 +234,8 @@ public class ImpostazioniFragment extends Fragment {
             /*FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(view.getContext(), LoginActivity.class);
             startActivity(intent);*/
+
+            progress.dismiss();
         });
     }
 

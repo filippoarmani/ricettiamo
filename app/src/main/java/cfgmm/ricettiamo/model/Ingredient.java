@@ -19,7 +19,6 @@ public class Ingredient implements Parcelable {
         this.urlToImage = urlToImage;
     }
 
-
     public Ingredient(String name, int qta, String size) {
         this(name, qta, size, null);
     }
