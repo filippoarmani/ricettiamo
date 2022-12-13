@@ -5,7 +5,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
+import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +21,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import cfgmm.ricettiamo.LoginActivity;
+import cfgmm.ricettiamo.MainActivity;
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.ui.leMieRicette.LeMieRicette;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,6 +66,7 @@ public class ProfiloFragment extends Fragment {
         TextView email = view.findViewById(R.id.email);
         ImageView ph_profile = view.findViewById(R.id.user);
         Button buttonLogin = view.findViewById(R.id.buttonLogin);
+        Button myRecipes = view.findViewById(R.id.ric);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -76,12 +83,13 @@ public class ProfiloFragment extends Fragment {
             buttonLogin.setVisibility(View.GONE);
             fullName.setVisibility(View.VISIBLE);
             email.setVisibility(View.VISIBLE);
+            myRecipes.setOnClickListener(v ->{
+                Navigation.findNavController(requireView()).navigate(R.id.action_nav_profilo_to_nav_my_recipe2);
+            });
 
             fullName.setText(user.getDisplayName());
             email.setText(user.getEmail());
             ph_profile.setImageURI(user.getPhotoUrl());
         }
-
-
     }
 }

@@ -52,10 +52,15 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_frigorifero,
                 R.id.nav_listaDellaSpesa,
                 R.id.nav_preferiti,
+
                 R.id.nav_impostazioni,
+
+                R.id.nav_profilo,
+                //R.id.nav_my_recipe,
+                R.id.nav_ranking,
+
                 R.id.nav_upgrade,
-                R.id.nav_logout,
-                R.id.nav_profilo
+                R.id.nav_logout
                 )
                 .setOpenableLayout(drawer)
                 .build();
