@@ -49,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home,
-                R.id.nav_frigorifero,
-                R.id.nav_listaDellaSpesa,
-                R.id.nav_preferiti,
+                R.id.nav_fridge,
+                R.id.nav_shoppingList,
+                R.id.nav_favourites,
 
-                R.id.nav_impostazioni,
+                R.id.nav_settings,
 
-                R.id.nav_profilo,
+                R.id.nav_profile,
                 //R.id.nav_my_recipe,
                 R.id.nav_ranking,
 

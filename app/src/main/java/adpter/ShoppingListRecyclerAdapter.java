@@ -39,11 +39,10 @@ public class ShoppingListRecyclerAdapter extends
     public ShoppingListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.fragment_item_lista_della_spesa, parent, false);
+                inflate(R.layout.fragment_item_shopping_list, parent, false);
         return new ShoppingListViewHolder(view);
     }
 
-    @NonNull
     @Override
     public void onBindViewHolder(@NonNull ShoppingListRecyclerAdapter.ShoppingListViewHolder holder,
                                  int position) {

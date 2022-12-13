@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class PasswordDimenticataActivity extends AppCompatActivity {
+public class ForgotPasswordActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
@@ -23,7 +23,7 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_password_dimenticata);
+        setContentView(R.layout.activity_forgot_password);
         mAuth = FirebaseAuth.getInstance();
 
         Button cancel = findViewById(R.id.pd_cancel);
@@ -44,7 +44,7 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "resetEmail:success");
-                                Toast.makeText(PasswordDimenticataActivity.this, "Email inviata con successo.",
+                                Toast.makeText(ForgotPasswordActivity.this, "Email inviata con successo.",
                                         Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(this, LoginActivity.class);
@@ -52,7 +52,7 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
                                 finish();
                             } else {
                                 Log.w(TAG, "resetEmail:failure", task.getException());
-                                Toast.makeText(PasswordDimenticataActivity.this, "Errore invio email! Riprova",
+                                Toast.makeText(ForgotPasswordActivity.this, "Errore invio email! Riprova",
                                         Toast.LENGTH_SHORT).show();
                             }
                         });

@@ -86,7 +86,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/l_passwordD"
+        android:id="@+id/l_forgotPassword"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -208,14 +208,14 @@
         app:layout_constraintStart_toStartOf="@id/left_guideline">
 
         <TextView
-            android:id="@+id/l_nuovoUtente"
+            android:id="@+id/l_newUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:text="@string/txt_nUser" />
 
         <TextView
-            android:id="@+id/l_registrati"
+            android:id="@+id/l_registration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"

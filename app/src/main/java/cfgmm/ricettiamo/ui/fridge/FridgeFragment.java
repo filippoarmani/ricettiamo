@@ -1,18 +1,14 @@
-package cfgmm.ricettiamo.ui.frigorifero;
+package cfgmm.ricettiamo.ui.fridge;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,7 +19,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 import adpter.IngredientsRecyclerAdapter;
@@ -33,12 +28,12 @@ import cfgmm.ricettiamo.model.IngredientApiResponse;
 
 
 
-public class FrigoriferoFragment extends Fragment {
+public class FridgeFragment extends Fragment {
 
-    private final String TAG = FrigoriferoFragment.class.getSimpleName();
+    private final String TAG = FridgeFragment.class.getSimpleName();
 
 
-    public FrigoriferoFragment() {
+    public FridgeFragment() {
         // Required empty public constructor
     }
 
@@ -48,8 +43,8 @@ public class FrigoriferoFragment extends Fragment {
 
      */
 
-    public static FrigoriferoFragment newInstance() {
-        return new FrigoriferoFragment();
+    public static FridgeFragment newInstance() {
+        return new FridgeFragment();
     }
 
     @Override
@@ -61,7 +56,7 @@ public class FrigoriferoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_frigorifero, container, false);
+        return inflater.inflate(R.layout.fragment_fridge, container, false);
     }
 
     @Override

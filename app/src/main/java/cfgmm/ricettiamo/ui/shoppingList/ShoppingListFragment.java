@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.leMieRicette;
+package cfgmm.ricettiamo.ui.shoppingList;
 
 import android.os.Bundle;
 
@@ -21,28 +21,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import adpter.IngredientsRecyclerAdapter;
-import adpter.RecipesRecyclerAdapter;
+import adpter.ShoppingListRecyclerAdapter;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.IngredientApiResponse;
-import cfgmm.ricettiamo.model.Recipe;
-import cfgmm.ricettiamo.model.RecipeApiResponse;
 
 
-public class LeMieRicette extends Fragment {
 
-    private static final String TAG = LeMieRicette.class.getSimpleName();
+public class ShoppingListFragment extends Fragment {
 
+    private final String TAG = ShoppingListFragment.class.getSimpleName();
 
-    public LeMieRicette() {
+    public ShoppingListFragment() {
         // Required empty public constructor
     }
 
 
-    public static LeMieRicette newInstance() {
-        LeMieRicette fragment = new LeMieRicette();
-        return fragment;
+    public static ShoppingListFragment newInstance() {
+        return new ShoppingListFragment();
     }
 
     @Override
@@ -54,32 +50,38 @@ public class LeMieRicette extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_le_mie_ricette, container, false);
+        return inflater.inflate(R.layout.fragment_shopping_list, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_recipes);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients_shopping);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext(),
                 LinearLayoutManager.VERTICAL,  false);
 
         recyclerView.setLayoutManager(layoutManager);
-        List<Recipe> recipeList = getIngredientListWithWithGSon();
+        List<Ingredient> shoppingList = getIngredientListWithWithGSon();
 
-        RecipesRecyclerAdapter adapter = new
-                RecipesRecyclerAdapter(recipeList,
-                new RecipesRecyclerAdapter.OnItemClickListener() {
+
+        ShoppingListRecyclerAdapter adapter = new ShoppingListRecyclerAdapter(shoppingList,
+                new ShoppingListRecyclerAdapter.OnItemClickListener() {
+
                     @Override
-                    public void onRecipeItemClick(Recipe recipe) {
-                        Snackbar.make(view, recipe.getName(), Snackbar.LENGTH_SHORT).show();
+                    public void onIngredientItemClick(Ingredient ingredient) {
+                        Snackbar.make(view, ingredient.getName(), Snackbar.LENGTH_SHORT).show();
                     }
-                });
 
+                    @Override
+            public void onDeleteButtonPressed(int position) {
+                Snackbar.make(view, getString(R.string.list_size_message) + shoppingList.size(),
+                        Snackbar.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
-    private List<Recipe> getIngredientListWithWithGSon() {
+    private List<Ingredient> getIngredientListWithWithGSon() {
         InputStream inputStream = null;
         try {
             inputStream = requireActivity().getAssets().open("fridge-api-test.json");
@@ -88,8 +90,8 @@ public class LeMieRicette extends Fragment {
         }
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        RecipeApiResponse recipeApiResponse = new
-                Gson().fromJson(bufferedReader, RecipeApiResponse.class);
-        return recipeApiResponse.getListRecipes();
+        IngredientApiResponse ingredientApiResponse = new
+                Gson().fromJson(bufferedReader, IngredientApiResponse.class);
+        return ingredientApiResponse.getArticles();
     }
 }

@@ -31,9 +31,9 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     final Calendar myCalendar= Calendar.getInstance();
 
-    private TextInputLayout e_nome;
-    private TextInputLayout e_cognome;
-    private TextInputLayout e_dataNascita;
+    private TextInputLayout e_name;
+    private TextInputLayout e_surname;
+    private TextInputLayout e_birthDate;
     private TextInputLayout e_email;
     private TextInputLayout e_phoneNumber;
     private TextInputLayout e_password;
@@ -45,14 +45,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        e_nome = findViewById(R.id.r_nome_layout);
-        e_cognome = findViewById(R.id.r_cognome_layout);
-        e_dataNascita = findViewById(R.id.r_date_layout);
+        e_name = findViewById(R.id.r_nome_layout);
+        e_surname = findViewById(R.id.r_cognome_layout);
+        e_birthDate = findViewById(R.id.r_date_layout);
         e_email = findViewById(R.id.r_email_layout);
         e_phoneNumber = findViewById(R.id.r_phone_layout);
         e_password = findViewById(R.id.r_password_layout);
 
-        Button registrati = findViewById(R.id.r_creaAccount);
+        Button registration = findViewById(R.id.r_creaAccount);
 
         DatePickerDialog.OnDateSetListener date = (view, year, month, day) -> {
             myCalendar.set(Calendar.YEAR, year);
@@ -61,24 +61,24 @@ public class RegistrationActivity extends AppCompatActivity {
             updateLabel();
         };
 
-        e_dataNascita.getEditText().setOnClickListener(view ->
+        e_birthDate.getEditText().setOnClickListener(view ->
                 new DatePickerDialog(RegistrationActivity.this,date,
                         myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show()
         );
 
-        registrati.setOnClickListener(v -> {
+        registration.setOnClickListener(v -> {
 
-            String nome = e_nome.getEditText().getText().toString().trim();
-            String cognome = e_cognome.getEditText().getText().toString().trim();
-            String dataNascita = e_dataNascita.getEditText().getText().toString().trim();
+            String name = e_name.getEditText().getText().toString().trim();
+            String surname = e_surname.getEditText().getText().toString().trim();
+            String birthDate = e_birthDate.getEditText().getText().toString().trim();
             String phoneNumber = e_phoneNumber.getEditText().getText().toString().trim();
 
             String email = e_email.getEditText().getText().toString().trim();
             String password = e_password.getEditText().getText().toString().trim();
 
 
-            if(checkOk(v, nome, cognome, dataNascita, phoneNumber, email, password)) {
+            if(checkOk(v, name, surname, birthDate, phoneNumber, email, password)) {
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful()) {
@@ -89,7 +89,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
 
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(nome + " " + cognome)
+                                        .setDisplayName(name + " " + surname)
                                         .setPhotoUri(Uri.parse(String.valueOf(R.drawable.user)))
                                         .build();
 
@@ -111,8 +111,8 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private boolean checkOk(View v, String nome, String cognome, String dataNascita, String phoneNumber, String email, String password) {
-        if(isEmpty(nome) || isEmpty(cognome) || isEmpty(dataNascita) ||
+    private boolean checkOk(View v, String name, String surname, String birthDate, String phoneNumber, String email, String password) {
+        if(isEmpty(name) || isEmpty(surname) || isEmpty(birthDate) ||
                 isEmpty(phoneNumber) || isEmpty(email) || isEmpty(password)) {
             Snackbar.make(v, R.string.empty_fields, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
@@ -164,7 +164,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private void updateLabel(){
         String myFormat="dd/MM/yyyy";
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
-        e_dataNascita.getEditText().setText(dateFormat.format(myCalendar.getTime()));
+        e_birthDate.getEditText().setText(dateFormat.format(myCalendar.getTime()));
     }
 
 /*

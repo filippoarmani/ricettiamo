@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.listaDellaSpesa;
+package cfgmm.ricettiamo.ui.myRecipes;
 
 import android.os.Bundle;
 
@@ -21,24 +21,23 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import adpter.ShoppingListRecyclerAdapter;
+import adpter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.model.Ingredient;
-import cfgmm.ricettiamo.model.IngredientApiResponse;
+import cfgmm.ricettiamo.model.Recipe;
+import cfgmm.ricettiamo.model.RecipeApiResponse;
 
 
+public class MyRecipes extends Fragment {
 
-public class ListaDellaSpesaFragment extends Fragment {
+    private static final String TAG = MyRecipes.class.getSimpleName();
 
-    private final String TAG = ListaDellaSpesaFragment.class.getSimpleName();
-
-    public ListaDellaSpesaFragment() {
+    public MyRecipes() {
         // Required empty public constructor
     }
 
-
-    public static ListaDellaSpesaFragment newInstance() {
-        return new ListaDellaSpesaFragment();
+    public static MyRecipes newInstance() {
+        MyRecipes fragment = new MyRecipes();
+        return fragment;
     }
 
     @Override
@@ -50,38 +49,30 @@ public class ListaDellaSpesaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lista_della_spesa, container, false);
+        return inflater.inflate(R.layout.fragment_my_recipes, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients_shopping);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_recipes);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext(),
                 LinearLayoutManager.VERTICAL,  false);
 
         recyclerView.setLayoutManager(layoutManager);
-        List<Ingredient> shoppingList = getIngredientListWithWithGSon();
+        List<Recipe> recipeList = getIngredientListWithWithGSon();
 
-
-        ShoppingListRecyclerAdapter adapter = new ShoppingListRecyclerAdapter(shoppingList,
-                new ShoppingListRecyclerAdapter.OnItemClickListener() {
-
+        RecipesRecyclerAdapter adapter = new
+                RecipesRecyclerAdapter(recipeList,
+                new RecipesRecyclerAdapter.OnItemClickListener() {
                     @Override
-                    public void onIngredientItemClick(Ingredient ingredient) {
-                        Snackbar.make(view, ingredient.getName(), Snackbar.LENGTH_SHORT).show();
+                    public void onRecipeItemClick(Recipe recipe) {
+                        Snackbar.make(view, recipe.getName(), Snackbar.LENGTH_SHORT).show();
                     }
-
-                    @Override
-            public void onDeleteButtonPressed(int position) {
-                Snackbar.make(view, getString(R.string.list_size_message) + shoppingList.size(),
-                        Snackbar.LENGTH_SHORT).show();
-            }
-        });
-
+                });
     }
 
-    private List<Ingredient> getIngredientListWithWithGSon() {
+    private List<Recipe> getIngredientListWithWithGSon() {
         InputStream inputStream = null;
         try {
             inputStream = requireActivity().getAssets().open("fridge-api-test.json");
@@ -90,8 +81,8 @@ public class ListaDellaSpesaFragment extends Fragment {
         }
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        IngredientApiResponse ingredientApiResponse = new
-                Gson().fromJson(bufferedReader, IngredientApiResponse.class);
-        return ingredientApiResponse.getArticles();
+        RecipeApiResponse recipeApiResponse = new
+                Gson().fromJson(bufferedReader, RecipeApiResponse.class);
+        return recipeApiResponse.getListRecipes();
     }
 }

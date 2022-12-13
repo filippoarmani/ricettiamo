@@ -14,19 +14,19 @@
             android:title="@string/menu_home" />
 
         <item
-            android:id="@+id/nav_frigorifero"
+            android:id="@+id/nav_fridge"
             android:icon="@drawable/ic_fridge"
             android:title="@string/menu_fridge" />
 
         <item
-            android:id="@+id/nav_listaDellaSpesa"
+            android:id="@+id/nav_shoppingList"
             android:icon="@drawable/ic_shopping_cart"
             android:title="@string/shopping_list" />
 
         <item
-            android:id="@+id/nav_preferiti"
-            android:icon="@drawable/ic_favorite"
-            android:title="@string/menu_favorites" />
+            android:id="@+id/nav_favourites"
+            android:icon="@drawable/ic_favourite"
+            android:title="@string/menu_favourites" />
 
     </group>
 
@@ -35,7 +35,7 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_impostazioni"
+            android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings"
             android:title="@string/action_settings" />
     </group>
@@ -45,7 +45,7 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_profilo"
+            android:id="@+id/nav_profile"
             android:icon="@drawable/ic_user"
             android:title="@string/profile" />
 <!--

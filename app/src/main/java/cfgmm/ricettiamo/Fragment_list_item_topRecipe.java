@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.preferiti;
+package cfgmm.ricettiamo;
 
 import android.os.Bundle;
 
@@ -8,21 +8,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import cfgmm.ricettiamo.R;
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link PreferitiFragment#newInstance} factory method to
+ * Use the {@link Fragment_list_item_topRecipe#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PreferitiFragment extends Fragment {
+public class Fragment_list_item_topRecipe extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    public PreferitiFragment() {
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public Fragment_list_item_topRecipe() {
         // Required empty public constructor
     }
 
@@ -32,11 +34,11 @@ public class PreferitiFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PreferitiFragment.
+     * @return A new instance of fragment fragment_list_item_topRecipe.
      */
     // TODO: Rename and change types and number of parameters
-    public static PreferitiFragment newInstance(String param1, String param2) {
-        PreferitiFragment fragment = new PreferitiFragment();
+    public static Fragment_list_item_topRecipe newInstance(String param1, String param2) {
+        Fragment_list_item_topRecipe fragment = new Fragment_list_item_topRecipe();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -48,9 +50,8 @@ public class PreferitiFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            // TODO: Rename and change types of parameters
-            String mParam1 = getArguments().getString(ARG_PARAM1);
-            String mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -58,6 +59,6 @@ public class PreferitiFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_preferiti, container, false);
+        return inflater.inflate(R.layout.fragment_list_item_top_recipe, container, false);
     }
 }

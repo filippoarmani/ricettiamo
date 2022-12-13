@@ -36,9 +36,9 @@ public class LoginActivity extends AppCompatActivity {
 
         Button login_password = findViewById(R.id.l_login);
         Button login_google = findViewById(R.id.button_Login_Google);
-        TextView f_password = findViewById(R.id.l_passwordD);
+        TextView f_password = findViewById(R.id.l_forgotPassword);
         Button login_later = findViewById(R.id.btn_noLogIn);
-        TextView sign_in = findViewById(R.id.l_registrati);
+        TextView sign_in = findViewById(R.id.l_registration);
 
         login_password.setOnClickListener(v -> {
             String email = email_layout.getEditText().getText().toString().trim();
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         f_password.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), PasswordDimenticataActivity.class);
+            Intent intent = new Intent(v.getContext(), ForgotPasswordActivity.class);
             startActivity(intent);
             finish();
         });

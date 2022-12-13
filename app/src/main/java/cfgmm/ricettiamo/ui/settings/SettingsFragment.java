@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.impostazioni;
+package cfgmm.ricettiamo.ui.settings;
 
 import static android.content.ContentValues.TAG;
 import static android.text.TextUtils.isEmpty;
@@ -43,10 +43,11 @@ import cfgmm.ricettiamo.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ImpostazioniFragment#newInstance} factory method to
+ * Use the {@link SettingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ImpostazioniFragment extends Fragment {
+
+public class SettingsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,7 +69,7 @@ public class ImpostazioniFragment extends Fragment {
 
     private FirebaseUser user;
 
-    public ImpostazioniFragment() {
+    public SettingsFragment() {
         // Required empty public constructor
     }
 
@@ -78,11 +79,11 @@ public class ImpostazioniFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ImpostazioniFragment.
+     * @return A new instance of fragment settingsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ImpostazioniFragment newInstance(String param1, String param2) {
-        ImpostazioniFragment fragment = new ImpostazioniFragment();
+    public static SettingsFragment newInstance(String param1, String param2) {
+        SettingsFragment fragment = new SettingsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -103,8 +104,9 @@ public class ImpostazioniFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_impostazioni, container, false);
+
+        return inflater.inflate(R.layout.fragment_settings,
+                container, false);
     }
 
     @Override
@@ -135,11 +137,10 @@ public class ImpostazioniFragment extends Fragment {
 
         save.setOnClickListener(v -> {
             ProgressDialog progress = new ProgressDialog(v.getContext());
-            progress.setTitle("Loading");
-            progress.setMessage("Wait while loading...");
-            progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+            progress.setTitle(R.string.progress_title);
+            progress.setMessage(String.valueOf(R.string.progress_message));
+            progress.setCancelable(false);
             progress.show();
-
 
             String displayName = change_display_name.getEditText().getText().toString().trim();
 
@@ -159,12 +160,12 @@ public class ImpostazioniFragment extends Fragment {
 
             user.updateProfile(profileUpdate).addOnCompleteListener(task -> {
                 if(task.isSuccessful()) {
-                    Toast.makeText(v.getContext(), "immagine cambiata",
+                    Toast.makeText(v.getContext(), "Image changed",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(v.getContext(), "Image not changed",
                             Toast.LENGTH_SHORT).show();
                 }
-                else
-                    Toast.makeText(v.getContext(), "immagine non cambiata",
-                            Toast.LENGTH_SHORT).show();
             });
 
             if(!(isEmpty(displayName))) {
@@ -187,8 +188,9 @@ public class ImpostazioniFragment extends Fragment {
                 try {
                     user.reauthenticate(credential)
                             .addOnCompleteListener(task -> {
+
                                 if(task.isSuccessful()) {
-                                    Log.d(TAG, "User re-authenticated.");
+                                    Log.d(TAG, "User re-authenticated");
                                     if(nPassword1.equals(nPassword2)) {
                                         user.updatePassword(nPassword1).addOnCompleteListener(task1 -> {
                                             if (task1.isSuccessful()) {
@@ -205,7 +207,7 @@ public class ImpostazioniFragment extends Fragment {
                                 }
                             });
                 } catch(Exception e) {
-                    Toast.makeText(v.getContext(), "Errore!",
+                    Toast.makeText(v.getContext(), "Error",
                             Toast.LENGTH_SHORT).show();
                 }
 
@@ -231,16 +233,10 @@ public class ImpostazioniFragment extends Fragment {
                 }
             }
 
-            /*FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(view.getContext(), LoginActivity.class);
-            startActivity(intent);*/
-
             progress.dismiss();
         });
     }
 
-    // GetContent creates an ActivityResultLauncher<String> to allow you to pass
-    // in the mime type you'd like to allow the user to select
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
@@ -260,7 +256,10 @@ public class ImpostazioniFragment extends Fragment {
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, user.getUid()+"_photo", null);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(),
+                inImage,
+                user.getUid()+"_photo",
+                null);
         return Uri.parse(path);
     }
 
@@ -276,13 +275,12 @@ public class ImpostazioniFragment extends Fragment {
         paint.setAntiAlias(true);
         canvas.drawARGB(0, 0, 0, 0);
         paint.setColor(color);
-        // canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+
         canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
                 bitmap.getWidth() / 2, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
-       // Bitmap _bmp = Bitmap.createScaledBitmap(output, change_photo.getWidth(), change_photo.getHeight(), false);
-       // return _bmp;
+
         return output;
     }
 

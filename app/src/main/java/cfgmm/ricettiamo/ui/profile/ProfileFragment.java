@@ -1,15 +1,12 @@
-package cfgmm.ricettiamo.ui.profilo;
+package cfgmm.ricettiamo.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
-import android.provider.CalendarContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,23 +18,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import cfgmm.ricettiamo.LoginActivity;
-import cfgmm.ricettiamo.MainActivity;
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.ui.leMieRicette.LeMieRicette;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the  factory method to
  * create an instance of this fragment.
  */
-public class ProfiloFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    public ProfiloFragment() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -57,7 +52,7 @@ public class ProfiloFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profilo, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
     @Override
@@ -84,7 +79,7 @@ public class ProfiloFragment extends Fragment {
             fullName.setVisibility(View.VISIBLE);
             email.setVisibility(View.VISIBLE);
             myRecipes.setOnClickListener(v ->{
-                Navigation.findNavController(requireView()).navigate(R.id.action_nav_profilo_to_nav_my_recipe2);
+                Navigation.findNavController(requireView()).navigate(R.id.action_nav_profile_to_nav_my_recipe2);
             });
 
             fullName.setText(user.getDisplayName());

@@ -9,7 +9,7 @@
     <string name="menu_search_recipe">Search Recipe</string>
     <string name="menu_fridge">Fridge</string>
     <string name="shopping_list">Shopping List</string>
-    <string name="menu_favorites">Favorites</string>
+    <string name="menu_favourites">Favourites</string>
     <string name="menu_logout" translatable="false">Logout</string>
     <string name="upgrade_account">Upgrade Account</string>
     <string name="full_name">Full Name</string>
@@ -31,7 +31,6 @@
 
     <!--upgradechef-->
     <string name="upgrade_button">Upgrade Chef</string>
-
 
     <!--login/register-->
     <string name="email" translatable="false">Email</string>
@@ -88,7 +87,6 @@
     <string name="quantity">Qta</string>
     <string name="less" translatable="false">-</string>
 
-
     <!--le_mie_ricette-->
     <string name="top" translatable="false">Top 3</string>
     <string name="login_later">LogIn later</string>
@@ -110,19 +108,18 @@
     <string name="tip_2">The guanciale must not be browned too much, otherwise it could release a bitter taste. It is also good to add the guanciale only at the end to maintain its crunchiness. \n\nTo avoid the omelette effect, it is important to add the yolk mixture only when the heat is off. Creaming is an important step, you have to mix until the cream has thickened. And you can adjust the consistency by adding pasta cooking water. \n\nYou can use half a dose of Pecorino romano cheese and half a dose of Parmesan for a more delicate version.</string>
     <string name="review">Your reviews</string>
     <string name="reviewer_1" translatable="false">LaMary81</string>
-    <string name="review_1">One of my favorite dishes! My kids always ask me to make carbonara.</string>
+    <string name="review_1">One of my favourites dishes! My kids always ask me to make carbonara.</string>
     <string name="star_1" translatable="false">5/5</string>
     <string name="reviewer_2" translatable="false">Davide</string>
     <string name="review_2">I prefer to use Parmesan because Pecorino is a bit too salty for my taste.</string>
     <string name="star_2" translatable="false">3,5/5</string>
     <string name="write_review">Write a review</string>
 
-    <string name="Confirmation">Are you sure?</string>
+    <string name="confirmation">Are you sure?</string>
     <string name="reset_password">reset password</string>
     <string name="instruction_reset">All you need to reset your password is your email address!</string>
     <string name="instruction_reset2">You will receive an email containing instructions for resetting your password</string>
     <string name="instruction_reset3">Can\'t find the email? Try looking in spam</string>
-
 
     <!-- Java Strings -->
     <string name="empty_fields">The fields must be empty</string>
@@ -132,6 +129,8 @@
     <string name="auth_s">Authentication Succeeded</string>
     <string name="reg_f">Registration Failed</string>
     <string name="reg_s">Registration Succeeded</string>
+    <string name="progress_title">Upgrading Informations</string>
+    <string name="progress_message">I\'m upgrading your informations</string>
 
     <!-- inserisci_ricetta -->
     <string name="add_photo">Add the main picture</string>
@@ -158,8 +157,6 @@
     <string name="logo_image" translatable="false">Logo</string>
     <string name="search_recipe">Search Recipes</string>
     <string name="list_size_message">The size of the list is</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- inserisci_ricetta -->
     <string name="top_chef">Top 3 Chefs</string>

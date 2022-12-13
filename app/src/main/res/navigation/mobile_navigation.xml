@@ -12,48 +12,48 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_frigorifero"
-        android:name="cfgmm.ricettiamo.ui.frigorifero.FrigoriferoFragment"
+        android:id="@+id/nav_fridge"
+        android:name="cfgmm.ricettiamo.ui.fridge.FridgeFragment"
         android:label="@string/menu_fridge"
-        tools:layout="@layout/fragment_frigorifero" />
+        tools:layout="@layout/fragment_fridge" />
 
     <fragment
-        android:id="@+id/nav_listaDellaSpesa"
-        android:name="cfgmm.ricettiamo.ui.listaDellaSpesa.ListaDellaSpesaFragment"
+        android:id="@+id/nav_shoppingList"
+        android:name="cfgmm.ricettiamo.ui.shoppingList.ShoppingListFragment"
         android:label="@string/shopping_list"
-        tools:layout="@layout/fragment_lista_della_spesa" />
+        tools:layout="@layout/fragment_shopping_list" />
 
     <fragment
-        android:id="@+id/nav_preferiti"
-        android:name="cfgmm.ricettiamo.ui.preferiti.PreferitiFragment"
-        android:label="@string/menu_favorites"
-        tools:layout="@layout/fragment_preferiti" />
+        android:id="@+id/nav_favourites"
+        android:name="cfgmm.ricettiamo.ui.favourites.FavouritesFragment"
+        android:label="@string/menu_favourites"
+        tools:layout="@layout/fragment_favourites" />
 
     <fragment
-        android:id="@+id/nav_impostazioni"
-        android:name="cfgmm.ricettiamo.ui.impostazioni.ImpostazioniFragment"
+        android:id="@+id/nav_settings"
+        android:name="cfgmm.ricettiamo.ui.settings.SettingsFragment"
         android:label="@string/action_settings"
-        tools:layout="@layout/fragment_impostazioni" />
+        tools:layout="@layout/fragment_settings" />
 
     <fragment
-        android:id="@+id/nav_profilo"
-        android:name="cfgmm.ricettiamo.ui.profilo.ProfiloFragment"
+        android:id="@+id/nav_profile"
+        android:name="cfgmm.ricettiamo.ui.profile.ProfileFragment"
         android:label="@string/profile"
-        tools:layout="@layout/fragment_profilo" >
+        tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_nav_profilo_to_nav_my_recipe2"
+            android:id="@+id/action_nav_profile_to_nav_my_recipe2"
             app:destination="@id/nav_my_recipe" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_my_recipe"
-        android:name="cfgmm.ricettiamo.ui.leMieRicette.LeMieRicette"
+        android:name="cfgmm.ricettiamo.ui.myRecipes.MyRecipes"
         android:label="@string/my_recipes"
-        tools:layout="@layout/fragment_le_mie_ricette" />
+        tools:layout="@layout/fragment_my_recipes" />
 
     <fragment
         android:id="@+id/nav_ranking"
-        android:name="cfgmm.ricettiamo.ranking"
+        android:name="cfgmm.ricettiamo.Ranking"
         android:label="@string/top_10_chef"
         tools:layout="@layout/fragment_ranking" />
 
