@@ -44,11 +44,11 @@
         android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/text_qta">
+        app:layout_constraintEnd_toStartOf="@id/text_shopList_size">
     </TextView>
 
     <TextView
-        android:id="@+id/text_qta"
+        android:id="@+id/text_shopList_size"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginEnd="20dp"
