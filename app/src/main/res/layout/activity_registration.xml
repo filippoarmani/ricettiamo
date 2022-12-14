@@ -208,7 +208,7 @@
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:cornerRadius="24dp"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/r_password_layout" />
 

@@ -114,7 +114,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
 
-        app:cornerRadius="24dp"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@id/button_Login_Google"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintStart_toStartOf="@id/left_guideline" />
@@ -133,7 +133,7 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:backgroundTint="@color/orange_w"
-        app:cornerRadius="24dp"
+        app:cornerRadius="20dp"
         app:icon="@drawable/google_icon"
         app:iconGravity="textStart"
         app:iconSize="20dp"
@@ -190,7 +190,7 @@
         android:textStyle="bold"
 
         app:backgroundTint="@color/orange_w"
-        app:cornerRadius="24dp"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@id/linear_layout"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintStart_toStartOf="@id/left_guideline" />

@@ -5,15 +5,16 @@
     android:layout_height="wrap_content"
     android:background="?android:selectableItemBackground"
     android:descendantFocusability="blocksDescendants"
-    android:padding="12dp">
+    android:padding="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp">
+
     <ImageView
         android:id="@+id/list_item_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-      android:layout_marginTop="5dp"
-        android:background="@drawable/list_item"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:background="@drawable/back_orange"
         android:contentDescription="@string/toDo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,48 +24,42 @@
 
     <TextView
         android:id="@+id/text_ricette"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/text"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:fontFamily="@font/montserrat"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="150dp"
+        android:layout_marginStart="15dp"
         app:layout_constraintStart_toEndOf="@id/list_item_icon"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-       />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/text_qta"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
             android:text="@string/text"
             android:fontFamily="@font/montserrat"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/text_size">
-        </TextView>
+            app:layout_constraintEnd_toStartOf="@id/text_size"/>
 
     <TextView
         android:id="@+id/text_size"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/montserrat"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="@string/text"
-        app:layout_constraintEnd_toStartOf="@id/button_add">
-    </TextView>
+        app:layout_constraintEnd_toStartOf="@id/button_add"/>
 
     <Button style="@style/Widget.AppCompat.Button"
         android:id="@+id/button_add"

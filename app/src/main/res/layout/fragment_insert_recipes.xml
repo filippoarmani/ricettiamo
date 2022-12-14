@@ -33,12 +33,13 @@
                 android:id="@+id/imageRecipe"
                 android:layout_width="match_parent"
                 android:layout_height="248dp"
-                android:background="@drawable/back"
-                android:text="@string/add_photo"
-                android:textStyle="bold"
+                android:background="@color/orange"
                 android:fontFamily="@font/montserrat"
+                android:text="@string/add_photo"
                 android:textAllCaps="false"
-                android:textSize="18sp" />
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -89,87 +90,111 @@
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/nameRecipe">
+                    android:layout_below="@id/nameRecipe"
+                    android:layout_marginTop="15dp">
 
-                    <TextView
+                    <RelativeLayout
                         android:id="@+id/difficolty"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/difficolty"
+                        android:layout_marginTop="12dp"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <Spinner
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
                         android:layout_marginStart="150dp"
                         android:entries="@array/difficolty_array"
                         android:minWidth="30dp"
-                        android:minHeight="48dp"
-                        tools:ignore="DuplicateSpeakableTextCheck" />
+                        android:minHeight="40dp"/>
 
-                    <TextView
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/prep_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="45dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/prep_time"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_below="@id/difficolty">
 
-                    <EditText
-                        android:layout_width="100dp"
-                        android:layout_height="30dp"
-                        android:padding="5dp"
-                        android:layout_marginStart="150dp"
-                        android:layout_marginTop="45dp"
-                        android:autofillHints="number"
-                        android:inputType="numberDecimal"
-                        android:minWidth="30dp"
-                        android:minHeight="48dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text="@string/prep_time"
+                            android:layout_marginTop="12dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
 
-                    <TextView
+                        <EditText
+                            android:layout_width="100dp"
+                            android:layout_height="48dp"
+                            android:padding="5dp"
+                            android:hint="@string/min"
+                            android:fontFamily="@font/montserrat"
+                            android:layout_marginStart="150dp"
+                            android:autofillHints="number"
+                            android:inputType="numberDecimal" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/cost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="80dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/cost"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_below="@id/prep_time">
 
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="150dp"
-                        android:layout_marginTop="70dp"
-                        android:entries="@array/cost_array"
-                        android:minWidth="30dp"
-                        android:minHeight="48dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text="@string/cost"
+                            android:layout_marginTop="12dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
 
-                    <TextView
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="150dp"
+                            android:entries="@array/cost_array"
+                            android:minWidth="30dp"
+                            android:minHeight="40dp"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/serving"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="115dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/serving"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:layout_below="@id/cost">
 
-                    <EditText
-                        android:layout_width="100dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="150dp"
-                        android:layout_marginTop="115dp"
-                        android:padding="5dp"
-                        android:minWidth="30dp"
-                        android:minHeight="48dp"
-                        android:autofillHints="number"
-                        android:inputType="numberDecimal"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat"
+                            android:text="@string/serving"
+                            android:layout_marginTop="12dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:layout_width="100dp"
+                            android:layout_height="48dp"
+                            android:padding="5dp"
+                            android:hint="@string/people"
+                            android:fontFamily="@font/montserrat"
+                            android:layout_marginStart="150dp"
+                            android:autofillHints="number"
+                            android:inputType="numberDecimal" />
+
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
@@ -207,7 +232,8 @@
                     android:layout_marginTop="10dp"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false"
+                    app:cornerRadius="20dp"/>
 
             </RelativeLayout>
 

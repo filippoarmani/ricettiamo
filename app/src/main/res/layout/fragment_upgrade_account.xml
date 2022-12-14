@@ -21,7 +21,8 @@
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/upgrade_1"
-                android:textColor="@color/black"
+                android:textColor="@color/orange"
+                android:textStyle="bold"
                 android:textSize="18sp"
                 android:gravity="center"/>
 
@@ -169,7 +170,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:backgroundTint="@color/orange"
-                app:cornerRadius="15dp" />
+                app:cornerRadius="20dp" />
 
         </LinearLayout>
 

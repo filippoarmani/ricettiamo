@@ -5,48 +5,51 @@
     android:layout_height="wrap_content"
     android:background="?android:selectableItemBackground"
     android:descendantFocusability="blocksDescendants"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp">
 
 <ImageView
     android:id="@+id/list_item_icon"
-    android:layout_width="18dp"
-    android:layout_height="18dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginTop="15dp"
-    android:background="@drawable/list_item"
+    android:layout_width="15dp"
+    android:layout_height="15dp"
+    android:background="@drawable/back_orange"
     android:contentDescription="@string/toDo"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"/>
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"/>
 
 <TextView
-android:id="@+id/text_topRecipe_name"
-android:layout_width="wrap_content"
-android:layout_height="match_parent"
-android:layout_gravity="center"
-android:layout_marginStart="3dp"
-android:layout_marginTop="10dp"
-android:text="@string/text"
-android:textColor="@color/black"
-android:textSize="16sp"
-android:fontFamily="@font/montserrat"
-app:layout_constraintLeft_toRightOf="@id/list_item_icon"
-app:layout_constraintTop_toTopOf="parent"/>
+    android:id="@+id/text_topRecipe_name"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_marginStart="15dp"
+    android:text="@string/text"
+    android:textColor="@color/black"
+    android:textSize="18sp"
+    android:fontFamily="@font/montserrat"
+    app:layout_constraintStart_toEndOf="@id/list_item_icon"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
 
 <androidx.cardview.widget.CardView
-android:layout_width="wrap_content"
-android:layout_height="match_parent"
-app:layout_constraintEnd_toEndOf="parent">
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    app:layout_constraintEnd_toEndOf="parent">
 
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@drawable/edit_text2"
     android:backgroundTint="@color/orange_w"
-    android:padding="5dp">
+    android:paddingStart="5dp"
+    android:paddingEnd="5dp">
 
     <ImageView
-        android:layout_width="21dp"
-        android:layout_height="21dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_gravity="center"
         android:layout_margin="5dp"
         android:background="@drawable/star"
@@ -55,11 +58,11 @@ app:layout_constraintEnd_toEndOf="parent">
     <TextView
         android:id="@+id/text_topRecipe_numberVote"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_margin="5dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="@string/toDo"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:fontFamily="@font/montserrat"/>
 
 </LinearLayout>

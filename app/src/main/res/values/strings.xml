@@ -83,7 +83,7 @@
         <item>l</item>
     </string-array>
     <string name="profile">Profile</string>
-    <string name="product_name">Product name</string>
+    <string name="product_name">Ingredient</string>
     <string name="quantity">Qta</string>
     <string name="less" translatable="false">-</string>
 
@@ -142,6 +142,7 @@
         <item>Hard</item>
     </string-array>
     <string name="prep_time">Preparation time:  </string>
+    <string name="min">minutes</string>
     <string name="cost">Cost: </string>
     <string-array name="cost_array">
         <item>Low</item>
@@ -149,6 +150,7 @@
         <item>High</item>
     </string-array>
     <string name="serving">Serving: </string>
+    <string name="people">people</string>
     <string name="add_ingredient">Add an ingredient</string>
     <string name="add_step">Add a step</string>
     <string name="add_photo_step">Add a photo</string>
@@ -158,7 +160,7 @@
     <string name="search_recipe">Search Recipes</string>
     <string name="list_size_message">The size of the list is</string>
 
-    <!-- inserisci_ricetta -->
+    <!-- top -->
     <string name="top_chef">Top 3 Chefs</string>
     <string name="top_10_chef">Top 10 Chefs</string>
 
