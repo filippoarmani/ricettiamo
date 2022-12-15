@@ -21,7 +21,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import adpter.ShoppingListRecyclerAdapter;
+import cfgmm.ricettiamo.adapter.ShoppingListRecyclerAdapter;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.IngredientApiResponse;

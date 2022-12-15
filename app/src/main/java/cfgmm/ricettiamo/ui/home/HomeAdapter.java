@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,8 +35,19 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
+        final int[] click = {0};
         holder.titleRecipe.setText(title[position]);
         holder.imageRecipe.setImageResource(image[position]);
+        //click da sistemare con il database e non so perchè Android vuole che sia un array
+        holder.favoriteRecipe.setOnClickListener(v -> {
+            if(click[0] == 0) {
+                holder.favoriteRecipe.setImageResource(R.drawable.ic_favourite_fill);
+                click[0] = 1;
+            } else {
+                holder.favoriteRecipe.setImageResource(R.drawable.ic_favourite);
+                click[0] = 0;
+            }
+        });
     }
 
     @Override
@@ -45,12 +57,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
     public static class HomeViewHolder extends RecyclerView.ViewHolder {
         final TextView titleRecipe;
-        final ImageButton imageRecipe;
+        final ImageView imageRecipe;
+        final ImageButton favoriteRecipe;
 
         public HomeViewHolder(View view) {
             super(view);
             titleRecipe = view.findViewById(R.id.titleRecipe);
             imageRecipe = view.findViewById(R.id.imageRecipe);
+            favoriteRecipe = view.findViewById(R.id.favouriteRecipe);
         }
     }
 }

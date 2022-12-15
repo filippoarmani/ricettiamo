@@ -1,4 +1,4 @@
-package adpter;
+package cfgmm.ricettiamo.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.Recipe;
 
 
