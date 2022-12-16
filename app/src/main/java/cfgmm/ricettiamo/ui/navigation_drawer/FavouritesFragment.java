@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.upgradeAccount;
+package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
 
@@ -12,17 +12,17 @@ import cfgmm.ricettiamo.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link UpgradeAccountFragment#newInstance} factory method to
+ * Use the {@link FavouritesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class UpgradeAccountFragment extends Fragment {
+public class FavouritesFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    public UpgradeAccountFragment() {
+    public FavouritesFragment() {
         // Required empty public constructor
     }
 
@@ -32,11 +32,11 @@ public class UpgradeAccountFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment UpgradeAccountFragment.
+     * @return A new instance of fragment favouritesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static UpgradeAccountFragment newInstance(String param1, String param2) {
-        UpgradeAccountFragment fragment = new UpgradeAccountFragment();
+    public static FavouritesFragment newInstance(String param1, String param2) {
+        FavouritesFragment fragment = new FavouritesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,6 +58,6 @@ public class UpgradeAccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_upgrade_account, container, false);
+        return inflater.inflate(R.layout.fragment_favourites, container, false);
     }
 }

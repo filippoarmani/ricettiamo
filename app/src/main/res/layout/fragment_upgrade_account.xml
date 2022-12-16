@@ -5,7 +5,7 @@
     android:id="@+id/upgrade_chef"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.upgradeAccount.UpgradeAccountFragment">
+    tools:context=".ui.navigation_drawer.UpgradeAccountFragment">
 
         <LinearLayout
             android:id="@+id/cond"

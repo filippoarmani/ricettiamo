@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo;
+package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,11 +17,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.databinding.ActivityMainBinding;
+import cfgmm.ricettiamo.ui.authentication.AuthenticationActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,13 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMenuLaterale.toolbar);
-        /*binding.appBarMenuLaterale.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -57,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
                 R.id.nav_profile,
                 //R.id.nav_my_recipe,
+                R.id.nav_add_new_recipe,
                 R.id.nav_ranking,
 
                 R.id.nav_upgrade,
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             nome.setVisibility(View.GONE);
 
             login.setOnClickListener(v -> {
-                Intent intent = new Intent(v.getContext(), LoginActivity.class);
+                Intent intent = new Intent(v.getContext(), AuthenticationActivity.class);
                 startActivity(intent);
                 finish();
             });

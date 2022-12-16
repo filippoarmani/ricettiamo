@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.myRecipes;
+package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
 
@@ -27,16 +27,16 @@ import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.RecipeApiResponse;
 
 
-public class MyRecipes extends Fragment {
+public class MyRecipesFragment extends Fragment {
 
-    private static final String TAG = MyRecipes.class.getSimpleName();
+    private static final String TAG = MyRecipesFragment.class.getSimpleName();
 
-    public MyRecipes() {
+    public MyRecipesFragment() {
         // Required empty public constructor
     }
 
-    public static MyRecipes newInstance() {
-        MyRecipes fragment = new MyRecipes();
+    public static MyRecipesFragment newInstance() {
+        MyRecipesFragment fragment = new MyRecipesFragment();
         return fragment;
     }
 

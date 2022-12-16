@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.settings;
+package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import static android.content.ContentValues.TAG;
 import static android.text.TextUtils.isEmpty;

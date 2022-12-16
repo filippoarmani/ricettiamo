@@ -7,37 +7,37 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="cfgmm.ricettiamo.ui.home.HomeFragment"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_fridge"
-        android:name="cfgmm.ricettiamo.ui.fridge.FridgeFragment"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.FridgeFragment"
         android:label="@string/menu_fridge"
         tools:layout="@layout/fragment_fridge" />
 
     <fragment
         android:id="@+id/nav_shoppingList"
-        android:name="cfgmm.ricettiamo.ui.shoppingList.ShoppingListFragment"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.ShoppingListFragment"
         android:label="@string/shopping_list"
         tools:layout="@layout/fragment_shopping_list" />
 
     <fragment
         android:id="@+id/nav_favourites"
-        android:name="cfgmm.ricettiamo.ui.favourites.FavouritesFragment"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.FavouritesFragment"
         android:label="@string/menu_favourites"
         tools:layout="@layout/fragment_favourites" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="cfgmm.ricettiamo.ui.settings.SettingsFragment"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.SettingsFragment"
         android:label="@string/action_settings"
         tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="cfgmm.ricettiamo.ui.profile.ProfileFragment"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -47,9 +47,15 @@
 
     <fragment
         android:id="@+id/nav_my_recipe"
-        android:name="cfgmm.ricettiamo.ui.myRecipes.MyRecipes"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.MyRecipesFragment"
         android:label="@string/my_recipes"
         tools:layout="@layout/fragment_my_recipes" />
+
+    <fragment
+        android:id="@+id/nav_add_new_recipe"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.AddNewRecipeFragment"
+        android:label="@string/add_new_recipe"
+        tools:layout="@layout/fragment_add_new_recipe" />
 
     <fragment
         android:id="@+id/nav_ranking"
@@ -59,13 +65,13 @@
 
     <fragment
         android:id="@+id/nav_upgrade"
-        android:name="cfgmm.ricettiamo.ui.upgradeAccount.UpgradeAccountFragment"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.UpgradeAccountFragment"
         android:label="@string/upgrade_button"
         tools:layout="@layout/fragment_upgrade_account" />
 
     <dialog
         android:id="@+id/nav_logout"
-        android:name="cfgmm.ricettiamo.ui.logout.LogoutDialogFragment"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.LogoutDialogFragment"
         android:label="@string/menu_logout" />
 
 </navigation>

@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.home;
+package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
 
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.adapter.HomeAdapter;
 
 /**
  * A simple {@link Fragment} subclass.

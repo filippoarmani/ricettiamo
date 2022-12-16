@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.shoppingList;
+package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
 
@@ -21,24 +21,30 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import cfgmm.ricettiamo.adapter.ShoppingListRecyclerAdapter;
+import cfgmm.ricettiamo.adapter.IngredientsRecyclerAdapter;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.IngredientApiResponse;
 
 
 
-public class ShoppingListFragment extends Fragment {
+public class FridgeFragment extends Fragment {
 
-    private final String TAG = ShoppingListFragment.class.getSimpleName();
+    private final String TAG = FridgeFragment.class.getSimpleName();
 
-    public ShoppingListFragment() {
+
+    public FridgeFragment() {
         // Required empty public constructor
     }
 
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
 
-    public static ShoppingListFragment newInstance() {
-        return new ShoppingListFragment();
+     */
+
+    public static FridgeFragment newInstance() {
+        return new FridgeFragment();
     }
 
     @Override
@@ -50,22 +56,23 @@ public class ShoppingListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shopping_list, container, false);
+        return inflater.inflate(R.layout.fragment_fridge, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients_shopping);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext(),
                 LinearLayoutManager.VERTICAL,  false);
 
         recyclerView.setLayoutManager(layoutManager);
-        List<Ingredient> shoppingList = getIngredientListWithWithGSon();
+        List<Ingredient> ingredientList = getIngredientListWithWithGSon();
 
+        IngredientsRecyclerAdapter adapter = new
+                IngredientsRecyclerAdapter(ingredientList,
+                new IngredientsRecyclerAdapter.OnItemClickListener()  {
 
-        ShoppingListRecyclerAdapter adapter = new ShoppingListRecyclerAdapter(shoppingList,
-                new ShoppingListRecyclerAdapter.OnItemClickListener() {
 
                     @Override
                     public void onIngredientItemClick(Ingredient ingredient) {
@@ -74,10 +81,17 @@ public class ShoppingListFragment extends Fragment {
 
                     @Override
             public void onDeleteButtonPressed(int position) {
-                Snackbar.make(view, getString(R.string.list_size_message) + shoppingList.size(),
+                Snackbar.make(view, getString(R.string.list_size_message) + ingredientList.size(),
+                        Snackbar.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAddButtonPressed(int position) {
+                Snackbar.make(view, getString(R.string.list_size_message) + ingredientList.size(),
                         Snackbar.LENGTH_SHORT).show();
             }
         });
+
 
     }
 
@@ -94,4 +108,5 @@ public class ShoppingListFragment extends Fragment {
                 Gson().fromJson(bufferedReader, IngredientApiResponse.class);
         return ingredientApiResponse.getArticles();
     }
+
 }

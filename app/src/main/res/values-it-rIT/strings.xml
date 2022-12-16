@@ -113,6 +113,7 @@
     <string name="top_10_chef">Top 10 Cuochi</string>
     <string name="min">minuti</string>
     <string name="people">persone</string>
+    <string name="add_new_recipe">Inserisci una nuova ricetta</string>
 
 
 </resources>

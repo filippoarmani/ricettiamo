@@ -28,7 +28,7 @@
             android:id="@+id/imageRecipe"
             android:layout_width="match_parent"
             android:layout_height="248dp"
-            android:background="@drawable/carbonara"
+            android:background="@drawable/esempio_carbonara"
             android:contentDescription="@string/toDo" />
 
     </LinearLayout>
@@ -266,7 +266,7 @@
                 android:layout_height="248dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/carb_1"
+                android:background="@drawable/esempio_carbonara_1"
                 android:layout_below="@+id/prep_1"
                 android:contentDescription="@string/toDo"/>
 
@@ -294,7 +294,7 @@
                 android:layout_height="248dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/carb_2"
+                android:background="@drawable/esempio_carbonara_2"
                 android:layout_below="@+id/prep_2"
                 android:contentDescription="@string/toDo"/>
 
@@ -322,7 +322,7 @@
                 android:layout_height="248dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/carb_3"
+                android:background="@drawable/esempio_carbonara_3"
                 android:layout_below="@+id/prep_3"
                 android:contentDescription="@string/toDo"/>
 

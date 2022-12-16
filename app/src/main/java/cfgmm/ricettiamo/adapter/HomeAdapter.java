@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.home;
+package cfgmm.ricettiamo.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

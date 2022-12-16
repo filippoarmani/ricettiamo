@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.logout;
+package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -10,8 +10,8 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import cfgmm.ricettiamo.LoginActivity;
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.ui.authentication.AuthenticationActivity;
 
 public class LogoutDialogFragment extends DialogFragment {
 
@@ -23,7 +23,7 @@ public class LogoutDialogFragment extends DialogFragment {
         builder.setMessage(R.string.confirmation)
                 .setPositiveButton(android.R.string.ok, (dialog, id) -> {
                     FirebaseAuth.getInstance().signOut();
-                    Intent intent = new Intent(builder.getContext() , LoginActivity.class);
+                    Intent intent = new Intent(builder.getContext() , AuthenticationActivity.class);
                     startActivity(intent);
                     dialog.cancel();
                 })

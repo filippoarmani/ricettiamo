@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.ui.profile;
+package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +17,8 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import cfgmm.ricettiamo.LoginActivity;
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.ui.authentication.AuthenticationActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,8 +71,9 @@ public class ProfileFragment extends Fragment {
             email.setVisibility(View.GONE);
 
             buttonLogin.setOnClickListener(v -> {
-                Intent intent = new Intent(v.getContext(), LoginActivity.class);
+                Intent intent = new Intent(v.getContext(), AuthenticationActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             });
         } else {
             buttonLogin.setVisibility(View.GONE);

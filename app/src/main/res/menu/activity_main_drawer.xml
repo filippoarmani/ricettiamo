@@ -55,6 +55,11 @@
             android:title="@string/my_recipes" />
 
         <item
+            android:id="@+id/nav_add_new_recipe"
+            android:icon="@drawable/ic_add"
+            android:title="@string/add_new_recipe" />
+
+        <item
             android:id="@+id/nav_ranking"
             android:icon="@drawable/ic_trophy"
             android:title="@string/top_10_chef" />
