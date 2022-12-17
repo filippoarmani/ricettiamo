@@ -7,19 +7,19 @@ import com.google.gson.annotations.SerializedName;
 
 public class Ingredient implements Parcelable {
     private String name;
-    private int qta;
+    private float qta;
     private String size;
     //opzionale
     private String urlToImage;
 
-    public Ingredient(String name, int qta, String size, String urlToImage) {
+    public Ingredient(String name, float qta, String size, String urlToImage) {
         this.name = name;
         this.qta = qta;
         this.size = size;
         this.urlToImage = urlToImage;
     }
 
-    public Ingredient(String name, int qta, String size) {
+    public Ingredient(String name, float qta, String size) {
         this(name, qta, size, null);
     }
 
@@ -51,11 +51,11 @@ public class Ingredient implements Parcelable {
         this.name = nome;
     }
 
-    public int getQta() {
+    public float getQta() {
         return qta;
     }
 
-    public void setQta(int qta) {
+    public void setQta(float qta) {
         this.qta = qta;
     }
 
@@ -79,7 +79,7 @@ public class Ingredient implements Parcelable {
 
     public Ingredient(Parcel in) {
         this.name = in.readString();
-        this.qta = in.readInt();
+        this.qta = in.readFloat();
         this.size = in.readString();
         this.urlToImage = in.readString();
     }
@@ -92,7 +92,7 @@ public class Ingredient implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
-        dest.writeInt(this.qta);
+        dest.writeFloat(this.qta);
         dest.writeString(this.size);
         dest.writeString(this.urlToImage);
 

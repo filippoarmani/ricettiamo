@@ -92,7 +92,7 @@ public class IngredientsRecyclerAdapter extends
         @Override
         public void onClick(View v) {
             if(v.getId() == R.id.button_less) {
-                int qta = ingredientList.get(getBindingAdapterPosition()).getQta();
+                float qta = ingredientList.get(getBindingAdapterPosition()).getQta();
                 if (qta == 1) {
                     ingredientList.remove(getBindingAdapterPosition());
                     notifyItemRemoved(getBindingAdapterPosition());
@@ -102,7 +102,7 @@ public class IngredientsRecyclerAdapter extends
                 }
             }
             if(v.getId() == R.id.button_add) {
-                int qta = (ingredientList.get(getBindingAdapterPosition()).getQta());
+                float qta = (ingredientList.get(getBindingAdapterPosition()).getQta());
                 ingredientList.get(getBindingAdapterPosition()).setQta(qta + 1);
                 notifyItemChanged(getBindingAdapterPosition());
             }

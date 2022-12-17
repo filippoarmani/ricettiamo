@@ -1,5 +1,6 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,10 +9,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
@@ -31,17 +36,17 @@ import cfgmm.ricettiamo.model.IngredientApiResponse;
 public class FridgeFragment extends Fragment {
 
     private final String TAG = FridgeFragment.class.getSimpleName();
+    Button button;
+    EditText editText_name;
+    EditText editText_qta;
+    FloatingActionButton floatingActionButton;
+    AlertDialog.Builder builder;
 
 
     public FridgeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-
-     */
 
     public static FridgeFragment newInstance() {
         return new FridgeFragment();
@@ -62,12 +67,44 @@ public class FridgeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        builder = new AlertDialog.Builder(view.getContext());
+        button = view.findViewById(R.id.button);
+        floatingActionButton = view.findViewById(R.id.delete_floating_button);
+
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext(),
                 LinearLayoutManager.VERTICAL,  false);
 
         recyclerView.setLayoutManager(layoutManager);
         List<Ingredient> ingredientList = getIngredientListWithWithGSon();
+
+        button.setOnClickListener(new View.OnClickListener() {
+            EditText editText_name = view.findViewById(R.id.text_product);
+            EditText editText_qta = view.findViewById(R.id.text_qtaAdd);
+
+            @Override
+            public void onClick(View v){
+                if(editText_name.getText().toString().trim().isEmpty()) {
+                    editText_name.setError("error");
+                }
+                if(editText_qta.getText().toString().trim().isEmpty()) {
+                    editText_qta.setError("error");
+                }
+                try{
+                    Float qta =  Float.valueOf(editText_qta.getText().toString());
+                    ingredientList.add(new Ingredient(editText_name.getText().toString(),
+                            qta,"l"));}
+                catch (Exception e){
+                    Log.v("error", editText_qta.getText().toString());
+                }
+
+                IngredientsRecyclerAdapter adapter = createAdapater(v, ingredientList);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(adapter);
+            }
+        });
+
 
         IngredientsRecyclerAdapter adapter = new
                 IngredientsRecyclerAdapter(ingredientList,
@@ -108,5 +145,25 @@ public class FridgeFragment extends Fragment {
                 Gson().fromJson(bufferedReader, IngredientApiResponse.class);
         return ingredientApiResponse.getArticles();
     }
+    private  IngredientsRecyclerAdapter createAdapater(View view, List<Ingredient> ingredientList){
+        IngredientsRecyclerAdapter adapter = new
+                IngredientsRecyclerAdapter(ingredientList,
+                new IngredientsRecyclerAdapter.OnItemClickListener() {
+
+                    @Override
+                    public void onIngredientItemClick(Ingredient ingredient) {
+                    }
+
+                    @Override
+                    public void onDeleteButtonPressed(int position) {
+
+                    }
+
+                    @Override
+                    public void onAddButtonPressed(int position) {
+
+                    }
+                });
+        return adapter;}
 
 }
