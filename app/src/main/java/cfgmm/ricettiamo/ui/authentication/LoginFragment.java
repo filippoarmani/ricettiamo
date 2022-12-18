@@ -5,10 +5,6 @@ import static android.text.TextUtils.isEmpty;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +13,27 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
-import cfgmm.ricettiamo.ui.navigation_drawer.MainActivity;
+import java.util.Objects;
+
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.ui.navigation_drawer.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +46,8 @@ public class LoginFragment extends Fragment {
     private TextInputLayout password_layout;
 
     private FirebaseAuth mAuth;
+    private static final int RC_SIGN_IN = 100;
+    private GoogleSignInClient googleSignInClient;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -142,8 +154,18 @@ public class LoginFragment extends Fragment {
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registrationFragment);
         });
 
-        login_google.setOnClickListener(v -> {
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                        .requestEmail()
+                                .build();
 
+        googleSignInClient = GoogleSignIn.getClient(this.getActivity(), googleSignInOptions);
+
+        login_google.setOnClickListener(v -> {
+            Log.d(TAG, "onClick: begin Google SignIn");
+            Intent intent = googleSignInClient.getSignInIntent();
+            intent.putExtra("RC_SIGN_IN", RC_SIGN_IN);
+            startActivity(intent);
         });
     }
 
@@ -162,9 +184,41 @@ public class LoginFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.action_loginFragment_self);
         else {
             Intent intent = new Intent(v.getContext(), MainActivity.class);
-            getActivity().startActivity(intent);
-            getActivity().finish();
+            requireActivity().startActivity(intent);
+            requireActivity().finish();
         }
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RC_SIGN_IN) {
+            Log.d(TAG, "onActivityResult: Google Signin intent result");
+            Task<GoogleSignInAccount> accountTask = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = accountTask.getResult(ApiException.class);
+                firebaseAuthWithGoogleAccount(account);
+            } catch (Exception e) {
+                Log.d(TAG, "onActivityResult: " + e.getMessage());
+            }
+        }
+    }
+
+    private void firebaseAuthWithGoogleAccount(GoogleSignInAccount account) {
+        Log.d(TAG, "firebaseAuthWithGoogleAccount: begin firebase auth with google account");
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnSuccessListener(authResult -> {
+                    Log.d(TAG, "onSuccess: Logged In");
+
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+                    requireActivity().finish();
+                })
+                .addOnFailureListener(e ->
+                        Log.d(TAG, "onFailure: Loggin failed " + e.getMessage())
+                )
+        ;
     }
 }
