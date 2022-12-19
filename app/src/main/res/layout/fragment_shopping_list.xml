@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.navigation_drawer.ShoppingListFragment">
+    tools:context=".ui.navigation_drawer.ShoppingListFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/inserimento_shopping_list"
@@ -19,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/ShopList_buttonAdd"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -35,7 +44,7 @@
                 android:layout_weight="1" />
 
             <EditText
-                android:id="@+id/text_product"
+                android:id="@+id/Shoplist_textName"
                 android:layout_width="160dp"
                 android:layout_height="50dp"
                 android:background="@drawable/back"
@@ -54,7 +63,7 @@
                 android:layout_weight="1" />
 
             <EditText
-                android:id="@+id/text"
+                android:id="@+id/ShopList_textQta"
                 android:layout_width="60dp"
                 android:layout_height="50dp"
                 android:background="@drawable/back"
@@ -96,3 +105,5 @@
         android:layout_marginTop="10dp" />
 
     </RelativeLayout>
+    </ScrollView>
+</FrameLayout>

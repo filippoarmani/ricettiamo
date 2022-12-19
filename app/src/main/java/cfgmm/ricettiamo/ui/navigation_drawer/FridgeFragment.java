@@ -37,8 +37,6 @@ public class FridgeFragment extends Fragment {
 
     private final String TAG = FridgeFragment.class.getSimpleName();
     Button button;
-    EditText editText_name;
-    EditText editText_qta;
     FloatingActionButton floatingActionButton;
     AlertDialog.Builder builder;
 
@@ -69,7 +67,7 @@ public class FridgeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         builder = new AlertDialog.Builder(view.getContext());
-        button = view.findViewById(R.id.button);
+        button = view.findViewById(R.id.Fridge_buttonAdd);
         floatingActionButton = view.findViewById(R.id.delete_floating_button);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients);
@@ -80,8 +78,8 @@ public class FridgeFragment extends Fragment {
         List<Ingredient> ingredientList = getIngredientListWithWithGSon();
 
         button.setOnClickListener(new View.OnClickListener() {
-            EditText editText_name = view.findViewById(R.id.text_product);
-            EditText editText_qta = view.findViewById(R.id.text_qtaAdd);
+            final EditText editText_name = view.findViewById(R.id.Fridge_textName);
+            final EditText editText_qta = view.findViewById(R.id.Fridge_textQta);
 
             @Override
             public void onClick(View v){
@@ -92,7 +90,7 @@ public class FridgeFragment extends Fragment {
                     editText_qta.setError("error");
                 }
                 try{
-                    Float qta =  Float.valueOf(editText_qta.getText().toString());
+                    float qta =  Float.valueOf(editText_qta.getText().toString());
                     ingredientList.add(new Ingredient(editText_name.getText().toString(),
                             qta,"l"));}
                 catch (Exception e){
@@ -146,6 +144,7 @@ public class FridgeFragment extends Fragment {
         return ingredientApiResponse.getArticles();
     }
     private  IngredientsRecyclerAdapter createAdapater(View view, List<Ingredient> ingredientList){
+
         IngredientsRecyclerAdapter adapter = new
                 IngredientsRecyclerAdapter(ingredientList,
                 new IngredientsRecyclerAdapter.OnItemClickListener() {
