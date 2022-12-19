@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo;
+package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cfgmm.ricettiamo.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Ranking#newInstance} factory method to
+ * Use the {@link RankingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Ranking extends Fragment {
+public class RankingFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class Ranking extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Ranking() {
+    public RankingFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +39,8 @@ public class Ranking extends Fragment {
      * @return A new instance of fragment ranking.
      */
     // TODO: Rename and change types and number of parameters
-    public static Ranking newInstance(String param1, String param2) {
-        Ranking fragment = new Ranking();
+    public static RankingFragment newInstance(String param1, String param2) {
+        RankingFragment fragment = new RankingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

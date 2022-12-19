@@ -59,7 +59,7 @@
 
     <fragment
         android:id="@+id/nav_ranking"
-        android:name="cfgmm.ricettiamo.Ranking"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.RankingFragment"
         android:label="@string/top_10_chef"
         tools:layout="@layout/fragment_ranking" />
 
