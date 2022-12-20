@@ -1,6 +1,7 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -66,6 +68,7 @@ public class FridgeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         builder = new AlertDialog.Builder(view.getContext());
         button = view.findViewById(R.id.Fridge_buttonAdd);
         floatingActionButton = view.findViewById(R.id.delete_floating_button);
@@ -80,6 +83,7 @@ public class FridgeFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             final EditText editText_name = view.findViewById(R.id.Fridge_textName);
             final EditText editText_qta = view.findViewById(R.id.Fridge_textQta);
+            final Spinner spinner = view.findViewById(R.id.Fridge_spinner);
 
             @Override
             public void onClick(View v){
@@ -92,7 +96,7 @@ public class FridgeFragment extends Fragment {
                 try{
                     float qta =  Float.valueOf(editText_qta.getText().toString());
                     ingredientList.add(new Ingredient(editText_name.getText().toString(),
-                            qta,"l"));}
+                            qta,spinner.getSelectedItem().toString() ));}
                 catch (Exception e){
                     Log.v("error", editText_qta.getText().toString());
                 }
@@ -103,29 +107,29 @@ public class FridgeFragment extends Fragment {
             }
         });
 
-
-        IngredientsRecyclerAdapter adapter = new
-                IngredientsRecyclerAdapter(ingredientList,
-                new IngredientsRecyclerAdapter.OnItemClickListener()  {
-
-
-                    @Override
-                    public void onIngredientItemClick(Ingredient ingredient) {
-                        Snackbar.make(view, ingredient.getName(), Snackbar.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-            public void onDeleteButtonPressed(int position) {
-                Snackbar.make(view, getString(R.string.list_size_message) + ingredientList.size(),
-                        Snackbar.LENGTH_SHORT).show();
-            }
-
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onAddButtonPressed(int position) {
-                Snackbar.make(view, getString(R.string.list_size_message) + ingredientList.size(),
-                        Snackbar.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                Snackbar snackbar = Snackbar
+                        .make(v, "Do you want delete all?", Snackbar.LENGTH_SHORT)
+                        .setAction("DELETE ALL", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                ingredientList.clear();
+                                IngredientsRecyclerAdapter adapter =
+                                        createAdapater(view, ingredientList);
+                                recyclerView.setLayoutManager(layoutManager);
+                                recyclerView.setAdapter(adapter);
+                            }
+                        });
+                snackbar.setActionTextColor(Color.RED);
+                snackbar.show();
             }
         });
+
+        IngredientsRecyclerAdapter adapter = createAdapater(view, ingredientList);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
 
 
     }
