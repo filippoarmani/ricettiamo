@@ -3,6 +3,7 @@ package cfgmm.ricettiamo.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ import cfgmm.ricettiamo.model.Recipe;
 public class RecipesRecyclerAdapter  extends
         RecyclerView.Adapter<RecipesRecyclerAdapter.RecipeViewHolder>{
 
+    private static final int RECIPES_VIEW_TYPE = 0;
+    private static final int LOADING_VIEW_TYPE = 1;
 
 
     public interface OnItemClickListener {
@@ -30,10 +33,18 @@ public class RecipesRecyclerAdapter  extends
         this.onItemClickListener = onItemClickListener;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (recipeList.get(position) == null) {
+            return LOADING_VIEW_TYPE;
+        } else {
+            return RECIPES_VIEW_TYPE;
+        }
+    }
+
     @NonNull
     @Override
-    public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
-                                                                      int viewType) {
+    public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.fragment_list_item_top_recipe, parent, false);
 
@@ -74,6 +85,19 @@ public class RecipesRecyclerAdapter  extends
         @Override
         public void onClick(View v) {
             //LINK pagina ricetta
+        }
+    }
+
+    public static class LoadingNewsViewHolder extends RecyclerView.ViewHolder {
+        private final ProgressBar progressBar;
+
+        LoadingNewsViewHolder(View view) {
+            super(view);
+            progressBar = view.findViewById(R.id.progressbar_loading_recipes);
+        }
+
+        public void activate() {
+            progressBar.setIndeterminate(true);
         }
     }
 }
