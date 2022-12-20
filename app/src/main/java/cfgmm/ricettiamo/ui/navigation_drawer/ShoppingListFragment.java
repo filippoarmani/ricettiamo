@@ -33,7 +33,7 @@ import cfgmm.ricettiamo.model.IngredientApiResponse;
 
 
 public class ShoppingListFragment extends Fragment {
-    Button buttonAdd;
+
 
     private final String TAG = ShoppingListFragment.class.getSimpleName();
 
@@ -61,7 +61,7 @@ public class ShoppingListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        buttonAdd = view.findViewById(R.id.ShopList_buttonAdd);
+        Button buttonAdd = view.findViewById(R.id.ShopList_buttonAdd);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients_shopping);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext(),

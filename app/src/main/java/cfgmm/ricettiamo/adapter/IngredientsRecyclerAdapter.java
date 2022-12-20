@@ -68,11 +68,12 @@ public class IngredientsRecyclerAdapter extends
         private final TextView textViewQta;
         private final  TextView textViewSize;
 
+
         public IngredientViewHolder(@NonNull View itemView ){
             super(itemView);
-            this.textViewName = itemView.findViewById(R.id.text_ricette);
-            this.textViewQta = itemView.findViewById(R.id.text_qta);
-            this.textViewSize = itemView.findViewById(R.id.text_size);
+            this.textViewName = itemView.findViewById(R.id.Fridge_textName);
+            this.textViewQta = itemView.findViewById(R.id.Fridge_textQta);
+            this.textViewSize = itemView.findViewById(R.id.Fridge_textSize);
 
             Button buttonAdd = itemView.findViewById(R.id.button_add);
             Button buttonLess = itemView.findViewById(R.id.button_less);

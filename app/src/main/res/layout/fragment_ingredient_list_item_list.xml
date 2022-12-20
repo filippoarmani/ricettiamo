@@ -23,41 +23,43 @@
 
 
     <TextView
-        android:id="@+id/text_ricette"
+        android:id="@+id/Fridge_textName"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/text"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:layout_marginStart="25dp"
         android:fontFamily="@font/montserrat"
-        app:layout_constraintStart_toEndOf="@id/list_item_icon"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/list_item_icon"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
-            android:id="@+id/text_qta"
+            android:id="@id/Fridge_textQta"
+            android:layout_marginStart="200dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
             android:text="@string/text"
             android:fontFamily="@font/montserrat"
             android:textColor="@color/black"
-            android:textSize="18sp"
-
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/list_item_icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/text_size"/>
+            app:layout_constraintEnd_toStartOf="@id/Fridge_textSize"/>
 
     <TextView
-        android:id="@+id/text_size"
+        android:id="@+id/Fridge_textSize"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginEnd="20dp"
+        android:paddingRight="10dp"
         android:fontFamily="@font/montserrat"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="@string/text"
@@ -70,6 +72,7 @@
         android:layout_height="48dp"
         android:linksClickable="false"
         android:text="@string/add"
+
         app:layout_constraintEnd_toStartOf="@id/button_less"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
