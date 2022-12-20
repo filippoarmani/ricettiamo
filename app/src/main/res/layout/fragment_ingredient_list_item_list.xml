@@ -24,13 +24,13 @@
 
     <TextView
         android:id="@+id/text_ricette"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="@string/text"
         android:textColor="@color/black"
         android:textSize="18sp"
+        android:layout_marginStart="25dp"
         android:fontFamily="@font/montserrat"
-        android:layout_marginStart="15dp"
         app:layout_constraintStart_toEndOf="@id/list_item_icon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
@@ -45,6 +45,7 @@
             android:fontFamily="@font/montserrat"
             android:textColor="@color/black"
             android:textSize="18sp"
+
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/text_size"/>
