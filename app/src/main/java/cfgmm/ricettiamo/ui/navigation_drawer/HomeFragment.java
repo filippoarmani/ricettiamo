@@ -1,8 +1,11 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -97,5 +100,49 @@ public class HomeFragment extends Fragment {
         rv_first.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false));
         rv_second.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false));
         rv_desserts.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false));
+
+        rv_first.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+           /* @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                boolean isConnected = isConnected();
+                if (isConnected && totalItemCount != newsViewModel.getTotalResults()) {
+
+                    totalItemCount = layoutManager.getItemCount();
+                    lastVisibleItem = layoutManager.findLastVisibleItemPosition();
+                    visibleItemCount = layoutManager.getChildCount();
+
+                    // Condition to enable the loading of other news while the user is scrolling the list
+                    if (totalItemCount == visibleItemCount ||
+                            (totalItemCount <= (lastVisibleItem + threshold) &&
+                                    dy > 0 &&
+                                    !newsViewModel.isLoading()
+                            ) &&
+                                    newsViewModel.getNewsResponseLiveData().getValue() != null &&
+                                    newsViewModel.getCurrentResults() != newsViewModel.getTotalResults()
+                    ) {
+                        MutableLiveData<Result> newsListMutableLiveData = newsViewModel.getNewsResponseLiveData();
+
+                        if (newsListMutableLiveData.getValue() != null &&
+                                newsListMutableLiveData.getValue().isSuccess()) {
+
+                            newsViewModel.setLoading(true);
+                            newsList.add(null);
+                            newsRecyclerViewAdapter.notifyItemRangeInserted(newsList.size(),
+                                    newsList.size() + 1);
+
+                            int page = newsViewModel.getPage() + 1;
+                            newsViewModel.setPage(page);
+                            newsViewModel.fetchNews(country);
+                        }
+                    }
+                }
+            }*/
+        });
+
     }
+
+
+
 }
