@@ -1,5 +1,11 @@
 package cfgmm.ricettiamo.data.source.user;
 
+import static cfgmm.ricettiamo.util.Constants.INVALID_CREDENTIALS_ERROR;
+import static cfgmm.ricettiamo.util.Constants.INVALID_USER_ERROR;
+import static cfgmm.ricettiamo.util.Constants.UNEXPECTED_ERROR;
+import static cfgmm.ricettiamo.util.Constants.USER_COLLISION_ERROR;
+import static cfgmm.ricettiamo.util.Constants.WEAK_PASSWORD_ERROR;
+
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -21,12 +27,6 @@ import cfgmm.ricettiamo.model.User;
 public class UserAuthenticationRemoteDataSource extends BaseUserAuthenticationRemoteDataSource {
 
     private static final String TAG = UserAuthenticationRemoteDataSource.class.getSimpleName();
-
-    public static final String UNEXPECTED_ERROR = "unexpected_error";
-    public static final String INVALID_USER_ERROR = "invalidUserError";
-    public static final String INVALID_CREDENTIALS_ERROR = "invalidCredentials";
-    public static final String USER_COLLISION_ERROR = "userCollisionError";
-    public static final String WEAK_PASSWORD_ERROR = "passwordIsWeak";
 
     private final FirebaseAuth firebaseAuth;
 

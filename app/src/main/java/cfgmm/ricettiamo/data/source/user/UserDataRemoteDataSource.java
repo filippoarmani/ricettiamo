@@ -1,5 +1,8 @@
 package cfgmm.ricettiamo.data.source.user;
 
+import static cfgmm.ricettiamo.util.Constants.FIREBASE_REALTIME_DATABASE;
+import static cfgmm.ricettiamo.util.Constants.FIREBASE_USERS_COLLECTION;
+
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -27,9 +30,6 @@ import cfgmm.ricettiamo.model.User;
 public class UserDataRemoteDataSource extends BaseUserDataRemoteDataSource {
 
     private static final String TAG = UserDataRemoteDataSource.class.getSimpleName();
-
-    public static final String FIREBASE_REALTIME_DATABASE = "https://ricettiamo-8cacf-default-rtdb.europe-west1.firebasedatabase.app/";
-    public static final String FIREBASE_USERS_COLLECTION = "users";
 
     private final DatabaseReference databaseReference;
 
