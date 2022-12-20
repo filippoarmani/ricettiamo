@@ -1,53 +1,19 @@
 package cfgmm.ricettiamo.model;
 
-import android.net.Uri;
-import android.telephony.PhoneNumberUtils;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import java.util.Date;
+import com.google.firebase.database.Exclude;
 
-import cfgmm.ricettiamo.R;
-
-public class User {
-
-    private int id;
-
-    private Uri photo;
-
+public class User implements Parcelable {
     private String name;
-    private String surname;
-    private String displayName;
-
     private String email;
+    private String idToken;
 
-    private String description;
-
-    private Date dateBirth;
-    private PhoneNumberUtils number;
-
-    public User(String name, String surname, String email, Date dateBirth, PhoneNumberUtils number) {
-        this.photo = Uri.parse(String.valueOf(R.id.user));
+    public User(String name, String email, String idToken) {
         this.name = name;
-        this.surname = surname;
-        this.displayName = name + " " + surname;
         this.email = email;
-        this.dateBirth = dateBirth;
-        this.number = number;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Uri getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(Uri photo) {
-        this.photo = photo;
+        this.idToken = idToken;
     }
 
     public String getName() {
@@ -58,22 +24,6 @@ public class User {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -82,27 +32,57 @@ public class User {
         this.email = email;
     }
 
-    public String getDescription() {
-        return description;
+    @Exclude
+    public String getIdToken() {
+        return idToken;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setIdToken(String idToken) {
+        this.idToken = idToken;
     }
 
-    public Date getDateBirth() {
-        return dateBirth;
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", idToken='" + idToken + '\'' +
+                '}';
     }
 
-    public void setDateBirth(Date dateBirth) {
-        this.dateBirth = dateBirth;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public PhoneNumberUtils getNumber() {
-        return number;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.email);
+        dest.writeString(this.idToken);
     }
 
-    public void setNumber(PhoneNumberUtils number) {
-        this.number = number;
+    public void readFromParcel(Parcel source) {
+        this.name = source.readString();
+        this.email = source.readString();
+        this.idToken = source.readString();
     }
+
+    protected User(Parcel in) {
+        this.name = in.readString();
+        this.email = in.readString();
+        this.idToken = in.readString();
+    }
+
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel source) {
+            return new User(source);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }
