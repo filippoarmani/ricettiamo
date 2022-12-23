@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,6 @@ public class IngredientsRecyclerAdapter extends
     public interface OnItemClickListener {
         void onIngredientItemClick(Ingredient ingredient);
         void onDeleteButtonPressed(int position);
-        void onAddButtonPressed(int position);
     }
     private final List<Ingredient> ingredientList;
     private final OnItemClickListener onItemClickListener;
@@ -67,13 +67,16 @@ public class IngredientsRecyclerAdapter extends
         private final TextView textViewName;
         private final TextView textViewQta;
         private final  TextView textViewSize;
-
+        private final ImageView list_icon;
+        private final Button deleteButton;
 
         public IngredientViewHolder(@NonNull View itemView ){
             super(itemView);
             this.textViewName = itemView.findViewById(R.id.Fridge_textName);
             this.textViewQta = itemView.findViewById(R.id.Fridge_textQta);
             this.textViewSize = itemView.findViewById(R.id.Fridge_textSize);
+            list_icon = itemView.findViewById(R.id.list_item_icon);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
 
             Button buttonAdd = itemView.findViewById(R.id.button_add);
             Button buttonLess = itemView.findViewById(R.id.button_less);
@@ -81,6 +84,7 @@ public class IngredientsRecyclerAdapter extends
             itemView.setOnClickListener(this);
             buttonAdd.setOnClickListener(this);
             buttonLess.setOnClickListener(this);
+            deleteButton.setOnClickListener(this);
         }
 
 
@@ -102,11 +106,23 @@ public class IngredientsRecyclerAdapter extends
                     notifyItemChanged(getBindingAdapterPosition());
                 }
             }
+            if(v.getId() == R.id.deleteButton){
+                ingredientList.remove(getBindingAdapterPosition());
+                notifyItemRemoved(getBindingAdapterPosition());
+            }
             if(v.getId() == R.id.button_add) {
                 float qta = (ingredientList.get(getBindingAdapterPosition()).getQta());
                 ingredientList.get(getBindingAdapterPosition()).setQta(qta + 1);
                 notifyItemChanged(getBindingAdapterPosition());
             }
+            if(deleteButton.getVisibility() == View.VISIBLE){
+                deleteButton.setVisibility(View.GONE);
+                list_icon.setVisibility(View.VISIBLE);
+            }else{
+                deleteButton.setVisibility(View.VISIBLE);
+                list_icon.setVisibility(View.GONE);
+            }
+
         }
     }
 }

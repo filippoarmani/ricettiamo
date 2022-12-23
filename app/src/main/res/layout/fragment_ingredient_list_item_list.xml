@@ -10,6 +10,18 @@
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp">
 
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="25dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/toDo"
+        android:background="@drawable/ic_remove_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
+    </Button>
+
     <ImageView
         android:id="@+id/list_item_icon"
         android:layout_width="15dp"
@@ -21,11 +33,11 @@
         app:layout_constraintStart_toStartOf="parent">
     </ImageView>
 
-
     <TextView
         android:id="@+id/Fridge_textName"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:minWidth="200dp"
         android:text="@string/text"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -38,16 +50,15 @@
 
         <TextView
             android:id="@id/Fridge_textQta"
-            android:layout_marginStart="200dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
             android:text="@string/text"
             android:fontFamily="@font/montserrat"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/list_item_icon"
+           app:layout_constraintLeft_toRightOf="@id/Fridge_textName"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/Fridge_textSize"/>
 
@@ -55,8 +66,8 @@
         android:id="@+id/Fridge_textSize"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginEnd="20dp"
-        android:paddingRight="10dp"
+        android:layout_marginEnd="15dp"
+
         android:fontFamily="@font/montserrat"
         android:textColor="@color/black"
         android:textSize="20sp"

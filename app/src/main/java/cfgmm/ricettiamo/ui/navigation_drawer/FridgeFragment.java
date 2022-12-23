@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,6 +42,9 @@ public class FridgeFragment extends Fragment {
     Button button;
     FloatingActionButton floatingActionButton;
     AlertDialog.Builder builder;
+    Button deleteButton;
+    ImageView list_icon;
+
 
 
     public FridgeFragment() {
@@ -159,11 +163,6 @@ public class FridgeFragment extends Fragment {
 
                     @Override
                     public void onDeleteButtonPressed(int position) {
-
-                    }
-
-                    @Override
-                    public void onAddButtonPressed(int position) {
 
                     }
                 });
