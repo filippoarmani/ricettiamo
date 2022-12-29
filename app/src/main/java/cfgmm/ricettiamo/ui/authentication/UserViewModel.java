@@ -2,7 +2,7 @@ package cfgmm.ricettiamo.ui.authentication;
 
 import androidx.lifecycle.MutableLiveData;
 
-import cfgmm.ricettiamo.data.repository.IUserRepository;
+import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.User;
 

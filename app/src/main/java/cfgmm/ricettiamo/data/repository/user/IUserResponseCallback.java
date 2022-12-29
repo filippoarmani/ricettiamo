@@ -1,4 +1,4 @@
-package cfgmm.ricettiamo.data.repository;
+package cfgmm.ricettiamo.data.repository.user;
 
 import cfgmm.ricettiamo.model.User;
 

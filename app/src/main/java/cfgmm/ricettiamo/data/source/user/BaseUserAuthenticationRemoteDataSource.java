@@ -1,6 +1,6 @@
 package cfgmm.ricettiamo.data.source.user;
 
-import cfgmm.ricettiamo.data.repository.IUserResponseCallback;
+import cfgmm.ricettiamo.data.repository.user.IUserResponseCallback;
 import cfgmm.ricettiamo.model.User;
 
 /**

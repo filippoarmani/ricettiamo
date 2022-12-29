@@ -164,5 +164,6 @@
     <!-- top -->
     <string name="top_chef">Top 3 Chefs</string>
     <string name="top_10_chef">Top 10 Chefs</string>
+    <string name="recipes_api_key" translatable="false">02817c2dcd744b73bb0cd25814f1bce9</string>
 
 </resources>

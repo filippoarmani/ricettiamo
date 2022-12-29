@@ -3,9 +3,18 @@ package cfgmm.ricettiamo.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/*import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;*/
+
 import androidx.annotation.NonNull;
 
 public class Recipe implements Parcelable {
+    //used for room
+    //@PrimaryKey(autoGenerate = true)
+    //private long id;
+
     private String author;
     private String name;
     private int score;
