@@ -123,7 +123,7 @@
     <string name="instruction_reset3">Can\'t find the email? Try looking in spam</string>
 
     <!-- Java Strings -->
-    <string name="empty_fields">The fields must be empty</string>
+    <string name="empty_fields">The fields must not be empty</string>
     <string name="short_password">Choose a longer password</string>
     <string name="weak_password">Weak password</string>
     <string name="auth_f">Authentication Failed</string>
@@ -165,5 +165,8 @@
     <string name="top_chef">Top 3 Chefs</string>
     <string name="top_10_chef">Top 10 Chefs</string>
     <string name="recipes_api_key" translatable="false">02817c2dcd744b73bb0cd25814f1bce9</string>
+
+    <!-- Example of a description with all the 250 characters -->
+    <string name="character250" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac risus in augue fringilla vestibulum. Suspendisse tempor sem quis tortor blandit aliquam. Pellentesque vulputate lorem in dui aliquet, eu tincidunt mi finibus. Morbi bibendum fusce.</string>
 
 </resources>

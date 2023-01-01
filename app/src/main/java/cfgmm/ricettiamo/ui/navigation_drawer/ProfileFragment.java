@@ -1,36 +1,29 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
-import android.content.Intent;
+import static android.text.TextUtils.isEmpty;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
-import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.ui.authentication.AuthenticationActivity;
+import cfgmm.ricettiamo.data.repository.user.IUserRepository;
+import cfgmm.ricettiamo.databinding.FragmentProfileBinding;
+import cfgmm.ricettiamo.util.ServiceLocator;
+import cfgmm.ricettiamo.viewmodel.UserViewModel;
+import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the  factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private UserViewModel userViewModel;
+    private FragmentProfileBinding binding;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -39,45 +32,46 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            // TODO: Rename and change types of parameters
-            String mParam1 = getArguments().getString(ARG_PARAM1);
-            String mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
+        IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
+        userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        TextView fullName = view.findViewById(R.id.nomeCognome);
-        TextView email = view.findViewById(R.id.email);
-        ImageView ph_profile = view.findViewById(R.id.user);
-        Button myRecipes = view.findViewById(R.id.ric);
+        userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), user -> {
+            binding.user.setImageURI(Uri.parse(user.getPhoto()));
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String userFullName = user.getName() + " " + user.getSurname();
+            binding.fullName.setText(userFullName);
+            binding.displayName.setText(user.getDisplayName());
+            binding.email.setText(user.getEmail());
 
-        if(user == null) {
-            fullName.setVisibility(View.GONE);
-            email.setVisibility(View.GONE);
+            String userDescription = user.getDescription();
+            if(isEmpty(userDescription)) {
+                binding.descriptionCardView.setVisibility(GONE);
+                binding.description.setVisibility(GONE);
+            } else {
+                binding.descriptionCardView.setVisibility(VISIBLE);
+                binding.description.setVisibility(VISIBLE);
+                binding.description.setText(userDescription);
+            }
 
-        } else {
-            fullName.setVisibility(View.VISIBLE);
-            email.setVisibility(View.VISIBLE);
-            myRecipes.setOnClickListener(v ->{
-                Navigation.findNavController(requireView()).navigate(R.id.action_nav_profile_to_nav_my_recipe2);
-            });
+            binding.totalStars.setText("" + user.getTotalStars());
+            binding.position.setText("" + user.getPositions());
+        });
+    }
 
-            fullName.setText(user.getDisplayName());
-            email.setText(user.getEmail());
-            ph_profile.setImageURI(user.getPhotoUrl());
-        }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

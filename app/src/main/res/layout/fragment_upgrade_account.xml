@@ -70,7 +70,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/starlayout"
+            android:id="@+id/starsCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/templayout"
@@ -104,7 +104,7 @@
             android:id="@+id/troplayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/starlayout"
+            android:layout_below="@id/starsCardView"
             tools:ignore="UseCompoundDrawables">
 
             <ImageView

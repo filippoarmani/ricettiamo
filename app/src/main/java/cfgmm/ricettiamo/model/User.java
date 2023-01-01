@@ -35,7 +35,7 @@ public class User {
         this.displayName = name + " " + surname;
         this.description = "";
         this.totalStars = 0;
-        this.positions = -1;
+        this.positions = 0;
         this.email = email;
     }
 

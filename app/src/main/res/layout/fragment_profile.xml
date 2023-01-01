@@ -22,7 +22,7 @@
         app:layout_constraintGuide_end="20dp" />
 
     <TextView
-        android:id="@+id/nomeCognome"
+        android:id="@+id/fullName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/user" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/displayName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -45,7 +45,7 @@
         android:text="Display Name"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/nomeCognome" />
+        app:layout_constraintTop_toBottomOf="@+id/fullName" />
 
     <ImageView
         android:id="@+id/user"
@@ -58,7 +58,7 @@
         android:elevation="10dp"
         android:fitsSystemWindows="true"
         app:srcCompat="@drawable/user"
-        app:layout_constraintBottom_toTopOf="@+id/nomeCognome"
+        app:layout_constraintBottom_toTopOf="@+id/fullName"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toTopOf="parent" />
@@ -74,13 +74,13 @@
         android:text="@string/email"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionCardView"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/displayName" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/descriptionCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -93,13 +93,13 @@
         app:layout_constraintStart_toStartOf="@+id/left_guideline">
 
         <TextView
-            android:id="@+id/descrText"
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/montserrat"
             android:maxLength="250"
             android:layout_margin="20dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac risus in augue fringilla vestibulum. Suspendisse tempor sem quis tortor blandit aliquam. Pellentesque vulputate lorem in dui aliquet, eu tincidunt mi finibus. Morbi bibendum fusce."
+            android:text="@string/character250"
             android:textColor="@color/black"
             android:textSize="14sp" />
     </androidx.cardview.widget.CardView>
@@ -113,9 +113,9 @@
         android:elevation="10dp"
         android:orientation="vertical"
         app:cardCornerRadius="@dimen/fab_margin"
-        app:layout_constraintBottom_toTopOf="@+id/starlayout"
+        app:layout_constraintBottom_toTopOf="@+id/starsCardView"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-        app:layout_constraintStart_toStartOf="@+id/starlayout">
+        app:layout_constraintStart_toStartOf="@+id/starsCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -125,17 +125,17 @@
 
             <TextView
                 android:id="@+id/myrecipe"
+                style="@style/title"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
 
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/my_recipes"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/title" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/recipe"
@@ -214,7 +214,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/starlayout"
+        android:id="@+id/starsCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="26dp"
@@ -224,7 +224,7 @@
         android:orientation="vertical"
         app:cardCornerRadius="@dimen/fab_margin"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/poslayout"
+        app:layout_constraintEnd_toStartOf="@+id/positionCardView"
         app:layout_constraintStart_toStartOf="@+id/left_guideline">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -234,7 +234,7 @@
             android:focusable="auto">
 
             <TextView
-                android:id="@+id/miestelle"
+                android:id="@+id/myStars"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
 
@@ -259,10 +259,10 @@
                 android:elevation="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/miestelle" />
+                app:layout_constraintTop_toBottomOf="@+id/myStars" />
 
             <TextView
-                android:id="@+id/stelleTot"
+                android:id="@+id/totalStars"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="10dp"
@@ -280,17 +280,17 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/poslayout"
+        android:id="@+id/positionCardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/orange_w"
         android:elevation="10dp"
         android:orientation="vertical"
         app:cardCornerRadius="@dimen/fab_margin"
-        app:layout_constraintBottom_toBottomOf="@+id/starlayout"
+        app:layout_constraintBottom_toBottomOf="@+id/starsCardView"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-        app:layout_constraintStart_toEndOf="@+id/starlayout"
-        app:layout_constraintTop_toTopOf="@+id/starlayout">
+        app:layout_constraintStart_toEndOf="@+id/starsCardView"
+        app:layout_constraintTop_toTopOf="@+id/starsCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -327,7 +327,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/miapos" />
 
             <TextView
-                android:id="@+id/pos"
+                android:id="@+id/position"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:elevation="10dp"
