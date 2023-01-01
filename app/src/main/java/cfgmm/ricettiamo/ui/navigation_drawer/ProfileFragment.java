@@ -60,23 +60,15 @@ public class ProfileFragment extends Fragment {
         TextView fullName = view.findViewById(R.id.nomeCognome);
         TextView email = view.findViewById(R.id.email);
         ImageView ph_profile = view.findViewById(R.id.user);
-        Button buttonLogin = view.findViewById(R.id.buttonLogin);
         Button myRecipes = view.findViewById(R.id.ric);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if(user == null) {
-            buttonLogin.setVisibility(View.VISIBLE);
             fullName.setVisibility(View.GONE);
             email.setVisibility(View.GONE);
 
-            buttonLogin.setOnClickListener(v -> {
-                Intent intent = new Intent(v.getContext(), AuthenticationActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            });
         } else {
-            buttonLogin.setVisibility(View.GONE);
             fullName.setVisibility(View.VISIBLE);
             email.setVisibility(View.VISIBLE);
             myRecipes.setOnClickListener(v ->{

@@ -2,18 +2,17 @@ package cfgmm.ricettiamo.data.repository.user;
 
 import androidx.lifecycle.MutableLiveData;
 
-import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.User;
 
 public interface IUserRepository {
 
-    MutableLiveData<Result> getUser(String email, String password, boolean isUserRegistered);
-    MutableLiveData<Result> getGoogleUser(String idToken);
-    MutableLiveData<Result> logout();
-
-    User getLoggedUser();
-    void signUp(String email, String password);
+    void signUp(User newUser, String email, String password);
     void signIn(String email, String password);
-    void signInWithGoogle(String token);
 
+    void resetPassword(String email);
+    void updateEmail(String email);
+    void updatePassword(String oldPassword, String newPassword);
+    MutableLiveData<User> getLoggedUser();
+
+    boolean isLoggedUser();
 }

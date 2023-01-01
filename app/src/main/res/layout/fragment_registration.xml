@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
 
             app:errorEnabled="true"
-            app:layout_constraintBottom_toTopOf="@id/r_date_layout"
+            app:layout_constraintBottom_toTopOf="@id/r_email_layout"
             app:layout_constraintEnd_toStartOf="@id/right_guideline"
             app:layout_constraintStart_toStartOf="@id/left_guideline"
 
@@ -103,53 +103,6 @@
                 android:fontFamily="@font/montserrat"
                 android:hint="@string/surname"
                 android:inputType="text" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/r_date_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
-            app:layout_constraintBottom_toTopOf="@id/r_phone_layout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/left_guideline"
-            app:layout_constraintEnd_toStartOf="@id/right_guideline"
-            app:startIconDrawable="@drawable/ic_calendar">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/r_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/back"
-                android:fontFamily="@font/montserrat"
-                android:hint="@string/date"
-                android:inputType="date" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/r_phone_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            app:errorEnabled="true"
-            app:layout_constraintBottom_toTopOf="@id/r_email_layout"
-            app:layout_constraintEnd_toStartOf="@id/right_guideline"
-            app:layout_constraintStart_toStartOf="@id/left_guideline"
-
-            app:startIconDrawable="@drawable/ic_phone">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/r_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/back"
-                android:fontFamily="@font/montserrat"
-                android:hint="@string/phone_number"
-                android:inputType="phone" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -6,7 +6,12 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
+import cfgmm.ricettiamo.data.repository.user.UserRepository;
 import cfgmm.ricettiamo.data.service.RecipeApiService;
+import cfgmm.ricettiamo.data.source.user.BaseDatabaseDataSource;
+import cfgmm.ricettiamo.data.source.user.BaseFirebaseAuthDataSource;
+import cfgmm.ricettiamo.data.source.user.DatabaseDataSource;
+import cfgmm.ricettiamo.data.source.user.FirebaseAuthDataSource;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -97,23 +102,13 @@ public class ServiceLocator {
      * Creates an instance of IUserRepository.
      * @return An instance of IUserRepository.
      */
-    public IUserRepository getUserRepository(Application application) {
-        /*SharedPreferencesUtil sharedPreferencesUtil = new SharedPreferencesUtil(application);
+    public IUserRepository getUserRepository() {
+        BaseFirebaseAuthDataSource firebaseAuthDataSource =
+                new FirebaseAuthDataSource();
 
-        BaseUserAuthenticationRemoteDataSource userRemoteAuthenticationDataSource =
-                new UserAuthenticationRemoteDataSource();
+        BaseDatabaseDataSource databaseDataSource =
+                new DatabaseDataSource();
 
-        BaseUserDataRemoteDataSource userDataRemoteDataSource =
-                new UserDataRemoteDataSource(sharedPreferencesUtil);
-
-        DataEncryptionUtil dataEncryptionUtil = new DataEncryptionUtil(application);
-
-        BaseNewsLocalDataSource newsLocalDataSource =
-                new NewsLocalDataSource(getNewsDao(application), sharedPreferencesUtil,
-                        dataEncryptionUtil);
-
-        return new UserRepository(userRemoteAuthenticationDataSource,
-                userDataRemoteDataSource, newsLocalDataSource);*/
-        return null; //temp
+        return new UserRepository(firebaseAuthDataSource, databaseDataSource);
     }
 }

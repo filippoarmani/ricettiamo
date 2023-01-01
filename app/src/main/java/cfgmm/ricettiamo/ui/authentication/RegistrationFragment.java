@@ -1,34 +1,30 @@
 package cfgmm.ricettiamo.ui.authentication;
 
-import static android.content.ContentValues.TAG;
 import static android.text.TextUtils.isEmpty;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
-import java.util.Calendar;
-
-import cfgmm.ricettiamo.ui.navigation_drawer.MainActivity;
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.data.repository.user.IUserRepository;
+import cfgmm.ricettiamo.model.User;
+import cfgmm.ricettiamo.ui.navigation_drawer.MainActivity;
+import cfgmm.ricettiamo.util.ServiceLocator;
+import cfgmm.ricettiamo.viewmodel.UserViewModel;
+import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,54 +33,26 @@ import cfgmm.ricettiamo.R;
  */
 public class RegistrationFragment extends Fragment {
 
-    private FirebaseAuth mAuth;
-    final Calendar myCalendar= Calendar.getInstance();
+    private UserViewModel userViewModel;
 
     private TextInputLayout e_name;
     private TextInputLayout e_surname;
-    private TextInputLayout e_birthDate;
     private TextInputLayout e_email;
-    private TextInputLayout e_phoneNumber;
     private TextInputLayout e_password;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public RegistrationFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RegistrationFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RegistrationFragment newInstance(String param1, String param2) {
-        RegistrationFragment fragment = new RegistrationFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static RegistrationFragment newInstance() {
+        return new RegistrationFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
+        userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
     }
 
     @Override
@@ -96,13 +64,9 @@ public class RegistrationFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        mAuth = FirebaseAuth.getInstance();
-
         e_name = view.findViewById(R.id.r_nome_layout);
         e_surname = view.findViewById(R.id.r_cognome_layout);
-        e_birthDate = view.findViewById(R.id.r_date_layout);
         e_email = view.findViewById(R.id.r_email_layout);
-        e_phoneNumber = view.findViewById(R.id.r_phone_layout);
         e_password = view.findViewById(R.id.r_password_layout);
 
         Button registration = view.findViewById(R.id.r_creaAccount);
@@ -111,49 +75,26 @@ public class RegistrationFragment extends Fragment {
 
             String name = e_name.getEditText().getText().toString().trim();
             String surname = e_surname.getEditText().getText().toString().trim();
-            String birthDate = e_birthDate.getEditText().getText().toString().trim();
-            String phoneNumber = e_phoneNumber.getEditText().getText().toString().trim();
-
             String email = e_email.getEditText().getText().toString().trim();
             String password = e_password.getEditText().getText().toString().trim();
 
 
-            if(checkOk(v, name, surname, birthDate, phoneNumber, email, password)) {
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(getActivity(), task -> {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d(TAG, "createUserWithEmail:success");
-                                Toast.makeText(v.getContext(), R.string.reg_s,
-                                        Toast.LENGTH_SHORT).show();
-                                FirebaseUser user = mAuth.getCurrentUser();
-
-                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(name + " " + surname)
-                                        .setPhotoUri(Uri.parse(String.valueOf(R.drawable.user)))
-                                        .build();
-
-                                user.updateProfile(profileUpdates);
-
-                                Toast.makeText(v.getContext(), R.string.reg_s,
-                                        Toast.LENGTH_SHORT).show();
-
-                                updateUI(view, user);
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(v.getContext(), R.string.reg_f,
-                                        Toast.LENGTH_SHORT).show();
-                                updateUI(view,null);
-                            }
-                        });
+            if(checkOk(v, name, surname, email, password)) {
+                User newUser = new User(
+                        null,
+                        Uri.parse(String.valueOf(R.drawable.user)).getPath(),
+                        name,
+                        surname,
+                        email
+                );
+                userViewModel.signUp(newUser, email, password);
+                updateUI();
             }
         });
     }
 
-    private boolean checkOk(View v, String name, String surname, String birthDate, String phoneNumber, String email, String password) {
-        if(isEmpty(name) || isEmpty(surname) || isEmpty(birthDate) ||
-                isEmpty(phoneNumber) || isEmpty(email) || isEmpty(password)) {
+    private boolean checkOk(View v, String name, String surname, String email, String password) {
+        if(isEmpty(name) || isEmpty(surname) || isEmpty(email) || isEmpty(password)) {
             Snackbar.make(v, R.string.empty_fields, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             return false;
@@ -201,26 +142,9 @@ public class RegistrationFragment extends Fragment {
         return true;
     }
 
-    /*
-        @Override
-        public void onStart() {
-            super.onStart();
-            // Check if user is signed in (non-null) and update UI accordingly.
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-            if(currentUser != null){
-                currentUser.reload();
-            }
-        }
-    */
-    private void updateUI(View v, FirebaseUser currentUser) {
-
-        if (currentUser == null)
-            Navigation.findNavController(v).navigate(R.id.action_registrationFragment_self);
-        else {
-            Intent intent = new Intent(v.getContext(), MainActivity.class);
-            getActivity().startActivity(intent);
-            getActivity().finish();
-        }
-
+    private void updateUI() {
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        requireActivity().startActivity(intent);
+        requireActivity().finish();
     }
 }

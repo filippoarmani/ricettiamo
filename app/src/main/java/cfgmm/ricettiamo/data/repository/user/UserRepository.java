@@ -1,96 +1,115 @@
 package cfgmm.ricettiamo.data.repository.user;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
-import cfgmm.ricettiamo.data.source.user.BaseUserAuthenticationRemoteDataSource;
-import cfgmm.ricettiamo.data.source.user.BaseUserDataRemoteDataSource;
-import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.data.source.user.BaseDatabaseDataSource;
+import cfgmm.ricettiamo.data.source.user.BaseFirebaseAuthDataSource;
 import cfgmm.ricettiamo.model.User;
 
 public class UserRepository implements IUserRepository, IUserResponseCallback {
 
-    private final BaseUserAuthenticationRemoteDataSource userRemoteDataSource;
-    private final BaseUserDataRemoteDataSource userDataRemoteDataSource;
-    private final MutableLiveData<Result> userMutableLiveData;
+    BaseFirebaseAuthDataSource firebaseAuthDataSource;
+    BaseDatabaseDataSource databaseDataSource;
 
-    public UserRepository(BaseUserAuthenticationRemoteDataSource userRemoteDataSource,
-                          BaseUserDataRemoteDataSource userDataRemoteDataSource) {
-        this.userRemoteDataSource = userRemoteDataSource;
-        this.userDataRemoteDataSource = userDataRemoteDataSource;
-        this.userMutableLiveData = new MutableLiveData<>();
+    MutableLiveData<User> currentUser;
 
-        this.userRemoteDataSource.setUserResponseCallback(this);
+    public UserRepository(BaseFirebaseAuthDataSource firebaseAuthDataSource,
+                          BaseDatabaseDataSource databaseDataSource) {
+        this.firebaseAuthDataSource = firebaseAuthDataSource;
+        this.databaseDataSource = databaseDataSource;
+        this.currentUser = new MutableLiveData<>();
+
+        this.firebaseAuthDataSource.setCallBack(this);
+        this.databaseDataSource.setCallBack(this);
     }
 
-    @Override
-    public MutableLiveData<Result> getUser(String email, String password, boolean isUserRegistered) {
-        if (isUserRegistered) {
-            signIn(email, password);
-        } else {
-            signUp(email, password);
-        }
-        return userMutableLiveData;
+    public void signUp(User newUser, String email, String password) {
+        firebaseAuthDataSource.signUp(newUser, email, password);
     }
 
-    @Override
-    public MutableLiveData<Result> getGoogleUser(String idToken) {
-        signInWithGoogle(idToken);
-        return userMutableLiveData;
-    }
-
-    @Override
-    public MutableLiveData<Result> logout() {
-        userRemoteDataSource.logout();
-        return userMutableLiveData;
-    }
-
-    @Override
-    public User getLoggedUser() {
-        return userRemoteDataSource.getLoggedUser();
-    }
-
-    @Override
-    public void signUp(String email, String password) {
-        userRemoteDataSource.signUp(email, password);
-    }
-
-    @Override
     public void signIn(String email, String password) {
-        userRemoteDataSource.signIn(email, password);
+        firebaseAuthDataSource.signIn(email, password);
+    }
+
+    public void resetPassword(String email) {
+        firebaseAuthDataSource.resetPassword(email);
+    }
+
+    public void updateEmail(String email) {
+        firebaseAuthDataSource.updateEmail(email);
+    }
+
+    public void updatePassword(String oldPassword, String newPassword) {
+        firebaseAuthDataSource.updatePassword(oldPassword, newPassword);
+    }
+
+    public boolean isLoggedUser() {
+        return firebaseAuthDataSource.isLoggedUser();
+    }
+
+    public void writeUser(User newUser) {
+        databaseDataSource.writeUser(newUser);
+    }
+
+    public void readUser(String id) {
+        databaseDataSource.readUser(id);
+    }
+
+    public MutableLiveData<User> getLoggedUser() {
+        String id = firebaseAuthDataSource.getCurrentId();
+        readUser(id);
+        return currentUser;
     }
 
     @Override
-    public void signInWithGoogle(String token) {
-        userRemoteDataSource.signInWithGoogle(token);
+    public void onSuccessRegistration(User newUser) {
+        writeUser(newUser);
     }
 
     @Override
-    public void onSuccessFromAuthentication(User user) {
-        if (user != null) {
-            userDataRemoteDataSource.saveUserData(user);
+    public void onFailureRegistration(String localizedMessage) { }
+
+    @Override
+    public void onSuccessLogin(String uid) {
+        readUser(uid);
+    }
+
+    @Override
+    public void onFailureLogin(String localizedMessage) { }
+
+    @Override
+    public void onSuccessResetPassword() { }
+
+    @Override
+    public void onFailureResetPassword(String localizedMessage) { }
+
+    @Override
+    public void onSuccessUpdateEmail() { }
+
+    @Override
+    public void onFailureUpdateEmail(String localizedMessage) { }
+
+    @Override
+    public void onSuccessUpdatePassword() { }
+
+    @Override
+    public void onFailureUpdatePassword(String localizedMessage) { }
+
+    @Override
+    public void onSuccessWriteDatabase() { }
+
+    @Override
+    public void onFailureWriteDatabase(String localizedMessage) { }
+
+    @Override
+    public void onSuccessReadDatabase(User user) {
+        if(user != null) {
+            currentUser.postValue(user);
         }
     }
 
     @Override
-    public void onFailureFromAuthentication(String message) {
-        Result.Error result = new Result.Error(message);
-        userMutableLiveData.postValue(result);
-    }
-
-    @Override
-    public void onSuccessFromRemoteDatabase(User user) {
-        Result.UserResponseSuccess result = new Result.UserResponseSuccess(user);
-        userMutableLiveData.postValue(result);
-    }
-
-    @Override
-    public void onFailureFromRemoteDatabase(String message) {
-        Result.Error result = new Result.Error(message);
-        userMutableLiveData.postValue(result);
-    }
-
-    @Override
-    public void onSuccessLogout() {
-
-    }
+    public void onFailureReadDatabase(String localizedMessage) { }
 }
