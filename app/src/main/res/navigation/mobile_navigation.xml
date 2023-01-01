@@ -41,8 +41,11 @@
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_nav_profile_to_nav_my_recipe2"
+            android:id="@+id/action_nav_profile_to_nav_my_recipe"
             app:destination="@id/nav_my_recipe" />
+        <action
+            android:id="@+id/action_nav_profile_to_nav_ranking"
+            app:destination="@id/nav_ranking" />
     </fragment>
 
     <fragment

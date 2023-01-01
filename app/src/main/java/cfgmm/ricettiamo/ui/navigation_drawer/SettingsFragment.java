@@ -26,6 +26,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
@@ -40,6 +41,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.data.repository.user.IUserRepository;
+import cfgmm.ricettiamo.util.ServiceLocator;
+import cfgmm.ricettiamo.viewmodel.UserViewModel;
+import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,10 +54,7 @@ import cfgmm.ricettiamo.R;
 
 public class SettingsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private UserViewModel userViewModel;
 
     private TextInputLayout change_display_name;
     private TextInputLayout change_description;
@@ -77,28 +79,19 @@ public class SettingsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
      * @param param2 Parameter 2.
      * @return A new instance of fragment settingsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SettingsFragment newInstance(String param1, String param2) {
-        SettingsFragment fragment = new SettingsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static SettingsFragment newInstance(String param2) {
+        return new SettingsFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            // TODO: Rename and change types of parameters
-            String mParam1 = getArguments().getString(ARG_PARAM1);
-            String mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
+        userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
     }
 
     @Override

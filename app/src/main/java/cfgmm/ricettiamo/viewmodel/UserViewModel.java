@@ -33,4 +33,8 @@ public class UserViewModel extends ViewModel {
     public boolean isLoggedUser() {
         return userRepository.isLoggedUser();
     }
+
+    public void resetPassword(String email) {
+        userRepository.resetPassword(email);
+    }
 }

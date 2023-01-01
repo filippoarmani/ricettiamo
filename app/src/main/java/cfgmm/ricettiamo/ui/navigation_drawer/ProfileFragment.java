@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
+import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentProfileBinding;
 import cfgmm.ricettiamo.util.ServiceLocator;
@@ -46,6 +48,7 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        binding.recipeCardView.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_nav_profile_to_nav_my_recipe));
         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), user -> {
             binding.user.setImageURI(Uri.parse(user.getPhoto()));
 
