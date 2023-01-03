@@ -1,12 +1,14 @@
 package cfgmm.ricettiamo.data.repository.recipe;
 
-//TODO
 import android.app.Application;
 
 import java.util.List;
 
+import cfgmm.ricettiamo.data.database.RecipesDao;
+import cfgmm.ricettiamo.data.database.RecipesRoomDatabase;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.util.JSONParserUtil;
+import cfgmm.ricettiamo.util.ServiceLocator;
 
 /* to implement*/
 /**
@@ -16,14 +18,15 @@ import cfgmm.ricettiamo.util.JSONParserUtil;
 public class RecipesMockRepository implements IRecipesRepository {
     private final Application application;
     private final RecipesResponseCallback recipesResponseCallback;
+    private final RecipesDao recipesDao;
     private final JSONParserUtil.JsonParserType jsonParserType;
 
     public RecipesMockRepository(Application application, RecipesResponseCallback recipesResponseCallback,
                                  RecipesResponseCallback recpiesResponseCallback, JSONParserUtil.JsonParserType jsonParserType) {
         this.application = application;
         this.recipesResponseCallback = recpiesResponseCallback;
-        /*NewsRoomDatabase newsRoomDatabase = ServiceLocator.getInstance().getNewsDao(application);
-        this.newsDao = newsRoomDatabase.newsDao();*/
+        RecipesRoomDatabase newsRoomDatabase = ServiceLocator.getInstance().getRecipesDao(application);
+        this.recipesDao = newsRoomDatabase.recipesDao();
         this.jsonParserType = jsonParserType;
     }
 
@@ -68,91 +71,91 @@ public class RecipesMockRepository implements IRecipesRepository {
     }
 
     /**
-     * Update the news changing the status of "favorite"
+     * Update the recipes changing the status of "favorite"
      * in the local database.
      * @param recipe The news to be updated.
      */
     @Override
     public void updateRecipes(Recipe recipe) {
-        /*NewsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            newsDao.updateSingleFavoriteNews(recipe);
-            newsResponseCallback.onNewsFavoriteStatusChanged(recipe);
-        });*/
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            recipesDao.updateSingleFavoriteRecipes(recipe);
+            recipesResponseCallback.onNewsFavoriteStatusChanged(recipe);
+        });
     }
 
     /**
-     * Gets the list of favorite news from the local database.
+     * Gets the list of favorite recipes from the local database.
      */
     @Override
     public void getFavoriteRecipes() {
-        /*NewsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            newsResponseCallback.onSuccess(newsDao.getFavoriteNews(), System.currentTimeMillis());
-        });*/
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            recipesResponseCallback.onSuccess(recipesDao.getFavoriteRecipes(), System.currentTimeMillis());
+        });
     }
 
     /**
-     * Marks the favorite news as not favorite.
+     * Marks the favorite recipes as not favorite.
      */
     @Override
     public void deleteFavoriteRecipes() {
-        /*NewsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            List<News> favoriteNews = newsDao.getFavoriteNews();
-            for (News news : favoriteNews) {
-                news.setFavorite(false);
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            List<Recipe> favoriteRecipes = recipesDao.getFavoriteRecipes();
+            for (Recipe recipe : favoriteRecipes) {
+                recipe.setIsFavorite(false);
             }
-            newsDao.updateListFavoriteNews(favoriteNews);
-            newsResponseCallback.onSuccess(newsDao.getFavoriteNews(), System.currentTimeMillis());
-        });*/
+            recipesDao.updateListFavoriteRecipes(favoriteRecipes);
+            recipesResponseCallback.onSuccess(recipesDao.getFavoriteRecipes(), System.currentTimeMillis());
+        });
     }
 
     /**
-     * Saves the news in the local database.
+     * Saves the recipes in the local database.
      * The method is executed with an ExecutorService defined in NewsRoomDatabase class
      * because the database access cannot been executed in the main thread.
-     * @param newsList the list of news to be written in the local database.
+     * @param recipeList the list of news to be written in the local database.
      */
-    private void saveDataInDatabase(List<Recipe> newsList) {
-        /*NewsRoomDatabase.databaseWriteExecutor.execute(() -> {
+    private void saveDataInDatabase(List<Recipe> recipeList) {
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
             // Reads the news from the database
-            List<News> allNews = newsDao.getAll();
+            List<Recipe> allRecipes = recipesDao.getAll();
 
             // Checks if the news just downloaded has already been downloaded earlier
             // in order to preserve the news status (marked as favorite or not)
-            for (News news : allNews) {
-                // This check works because News and NewsSource classes have their own
+            for (Recipe recipe : allRecipes) {
+                // This check works because Recipe and NewsSource classes have their own
                 // implementation of equals(Object) and hashCode() methods
-                if (newsList.contains(news)) {
+                if (recipeList.contains(recipe)) {
                     // The primary key and the favorite status is contained only in the News objects
                     // retrieved from the database, and not in the News objects downloaded from the
                     // Web Service. If the same news was already downloaded earlier, the following
                     // line of code replaces the the News object in newsList with the corresponding
                     // News object saved in the database, so that it has the primary key and the
                     // favorite status.
-                    newsList.set(newsList.indexOf(news), news);
+                    recipeList.set(recipeList.indexOf(recipe), recipe);
                 }
             }
 
             // Writes the news in the database and gets the associated primary keys
-            List<Long> insertedNewsIds = newsDao.insertNewsList(newsList);
-            for (int i = 0; i < newsList.size(); i++) {
+            List<Long> insertedNewsIds = recipesDao.insertRecipeList(recipeList);
+            for (int i = 0; i < recipeList.size(); i++) {
                 // Adds the primary key to the corresponding object News just downloaded so that
                 // if the user marks the news as favorite (and vice-versa), we can use its id
                 // to know which news in the database must be marked as favorite/not favorite
-                newsList.get(i).setId(insertedNewsIds.get(i));
+                recipeList.get(i).setId(insertedNewsIds.get(i));
             }
 
-            newsResponseCallback.onSuccess(newsList, System.currentTimeMillis());
-        });*/
+            recipesResponseCallback.onSuccess(recipeList, System.currentTimeMillis());
+        });
     }
 
     /**
-     * Gets the news from the local database.
+     * Gets the recipes from the local database.
      * The method is executed with an ExecutorService defined in NewsRoomDatabase class
      * because the database access cannot been executed in the main thread.
      */
     private void readDataFromDatabase(long lastUpdate) {
-        /*NewsRoomDatabase.databaseWriteExecutor.execute(() -> {
-            newsResponseCallback.onSuccess(newsDao.getAll(), lastUpdate);
-        });*/
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            recipesResponseCallback.onSuccess(recipesDao.getAll(), lastUpdate);
+        });
     }
 }

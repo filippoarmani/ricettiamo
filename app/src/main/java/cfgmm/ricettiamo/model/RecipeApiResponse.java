@@ -14,6 +14,9 @@ public class RecipeApiResponse implements Parcelable {
     private int totalResults;
     private List<Recipe> listRecipes;
 
+    public RecipeApiResponse() {
+        super();
+    }
     public RecipeApiResponse(String status, int totalResults, List<Recipe> listRecipes) {
         this.status = status;
         this.totalResults = totalResults;

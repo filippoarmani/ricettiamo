@@ -1,5 +1,5 @@
 package cfgmm.ricettiamo.util;
-//TODO
+
 import android.app.Application;
 
 import java.io.IOException;

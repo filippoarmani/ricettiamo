@@ -3,9 +3,17 @@ package cfgmm.ricettiamo.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class Ingredient implements Parcelable {
+    //used for room
+    @PrimaryKey (autoGenerate = true)
+    private long id;
+
     private String name;
     private float qta;
     private String size;
@@ -34,6 +42,12 @@ public class Ingredient implements Parcelable {
             return new Ingredient[size];
         }
     };
+
+    public long getId() { return id; }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getSize() {
         return size;
@@ -70,7 +84,8 @@ public class Ingredient implements Parcelable {
     @Override
     public String toString() {
         return "Ingredient{" +
-                "nome='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", nome='" + name + '\'' +
                 ", qta='" + qta + '\'' +
                 ", size='" + size + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
@@ -78,6 +93,7 @@ public class Ingredient implements Parcelable {
     }
 
     public Ingredient(Parcel in) {
+        this.id = in.readLong();
         this.name = in.readString();
         this.qta = in.readFloat();
         this.size = in.readString();
@@ -91,6 +107,7 @@ public class Ingredient implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.id);
         dest.writeString(this.name);
         dest.writeFloat(this.qta);
         dest.writeString(this.size);

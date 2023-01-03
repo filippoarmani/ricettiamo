@@ -36,12 +36,15 @@ public class Recipe implements Parcelable {
         this.date = date;
         this.url = url;
         this.urlToImage = urlToImage;
-        this.isFavorite = false;
+        this.isFavorite = isFavorite;
     }
 
-    public long getId() {
-        return id;
+    public Recipe(String author, String name, int score, String description, String date) {
+        this(author, name, score, description, date,null, null, false);
     }
+
+    public long getId() { return id; }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -104,7 +107,7 @@ public class Recipe implements Parcelable {
 
     public boolean getIsFavorite() { return isFavorite; }
 
-    public void setIsFavourite() { this.isFavorite = isFavorite; }
+    public void setIsFavorite(boolean isFavorite) { this.isFavorite = isFavorite; }
 
     @Override
     public String toString() {
