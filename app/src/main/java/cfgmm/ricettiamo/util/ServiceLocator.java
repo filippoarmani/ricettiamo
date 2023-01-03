@@ -5,6 +5,7 @@ import android.app.Application;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
+import cfgmm.ricettiamo.data.database.RecipesRoomDatabase;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.data.repository.user.UserRepository;
 import cfgmm.ricettiamo.data.service.RecipeApiService;
@@ -45,7 +46,7 @@ public class ServiceLocator {
      * @return an instance of NewsApiService.
      */
     public RecipeApiService getRecipeApiService() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.NEWS_API_BASE_URL).
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Constants.RECIPES_API_BASE_URL).
                 addConverterFactory(GsonConverterFactory.create()).build();
         return retrofit.create(RecipeApiService.class);
     }
@@ -55,9 +56,9 @@ public class ServiceLocator {
      * @param application Param for accessing the global application state.
      * @return An instance of NewsRoomDatabase.
      */
-    /*public RecipesRoomDatabase getNewsDao(Application application) {
+    public RecipesRoomDatabase getRecipesDao(Application application) {
         return RecipesRoomDatabase.getDatabase(application);
-    }*/
+    }
 
     /**
      * Returns an instance of INewsRepositoryWithLiveData.

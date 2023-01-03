@@ -11,5 +11,11 @@ public class Constants {
     public static final String INVALID_CREDENTIALS_ERROR = "invalidCredentials";
     public static final String USER_COLLISION_ERROR = "userCollisionError";
     public static final String WEAK_PASSWORD_ERROR = "passwordIsWeak";
-    public static final String NEWS_API_BASE_URL = "https://spoonacular.com/";
+
+    //for room database
+    public static final String RECIPES_DATABASE_NAME = "recipes_db";
+    public static final int DATABASE_VERSION = 1;
+
+    //for spoonacular api (https://spoonacular.com/)
+    public static final String RECIPES_API_BASE_URL = "https://api.spoonacular.com/";
 }

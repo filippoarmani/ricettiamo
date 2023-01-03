@@ -9,11 +9,14 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;*/
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class Recipe implements Parcelable {
     //used for room
-    //@PrimaryKey(autoGenerate = true)
-    //private long id;
+    @PrimaryKey(autoGenerate = true)
+    private long id;
 
     private String author;
     private String name;
@@ -22,9 +25,10 @@ public class Recipe implements Parcelable {
     private String date;
     private String url;
     private String urlToImage;
+    private boolean isFavorite;
 
     public Recipe(String author, String name, int score, String description, String date,
-                  String url, String urlToImage) {
+                  String url, String urlToImage, boolean isFavorite) {
         this.author = author;
         this.name = name;
         this.score = score;
@@ -32,8 +36,15 @@ public class Recipe implements Parcelable {
         this.date = date;
         this.url = url;
         this.urlToImage = urlToImage;
+        this.isFavorite = false;
     }
 
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getAuthor() {
         return author;
@@ -91,20 +102,27 @@ public class Recipe implements Parcelable {
         this.urlToImage = urlToImage;
     }
 
+    public boolean getIsFavorite() { return isFavorite; }
+
+    public void setIsFavourite() { this.isFavorite = isFavorite; }
+
     @Override
     public String toString() {
         return "Recipe{" +
-                "author='" + author + '\'' +
+                "id=' " + id + '\'' +
+                ", author='" + author + '\'' +
                 ", name='" + name + '\'' +
                 ", score=" + score +
                 ", description='" + description + '\'' +
                 ", date='" + date + '\'' +
                 ", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
+                ", isFavorite=" + isFavorite + '\'' +
                 '}';
     }
 
     protected Recipe(Parcel in) {
+        id = in.readLong();
         author = in.readString();
         name = in.readString();
         score = in.readInt();
@@ -112,6 +130,7 @@ public class Recipe implements Parcelable {
         date = in.readString();
         url = in.readString();
         urlToImage = in.readString();
+        isFavorite = in.readByte() != 0;
 
     }
 
@@ -134,12 +153,14 @@ public class Recipe implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(author);
-        dest.writeString(name);
-        dest.writeInt(score);
-        dest.writeString(description);
-        dest.writeString(date);
-        dest.writeString(url);
-        dest.writeString(urlToImage);
+        dest.writeLong(this.id);
+        dest.writeString(this.author);
+        dest.writeString(this.name);
+        dest.writeInt(this.score);
+        dest.writeString(this.description);
+        dest.writeString(this.date);
+        dest.writeString(this.url);
+        dest.writeString(this.urlToImage);
+        dest.writeByte(this.isFavorite ? (byte) 1 : (byte) 0);
     }
 }
