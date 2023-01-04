@@ -8,6 +8,8 @@ import android.util.Log;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Map;
+
 import cfgmm.ricettiamo.model.User;
 
 public class DatabaseDataSource extends BaseDatabaseDataSource {
@@ -44,6 +46,20 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "readUser: failure");
                     userResponseCallBack.onFailureReadDatabase(error.getLocalizedMessage());
+                });
+    }
+
+    @Override
+    public void updateData(Map<String, Object> newInfo, String id) {
+        databaseReference.child(FIREBASE_USERS_COLLECTION).child(id)
+                .updateChildren(newInfo)
+                .addOnSuccessListener(task -> {
+                    Log.d(TAG, "updateUser: success");
+                    userResponseCallBack.onSuccessWriteDatabase();
+                })
+                .addOnFailureListener(error -> {
+                    Log.d(TAG, "updateUser: failure");
+                    userResponseCallBack.onFailureWriteDatabase(error.getLocalizedMessage());
                 });
     }
 

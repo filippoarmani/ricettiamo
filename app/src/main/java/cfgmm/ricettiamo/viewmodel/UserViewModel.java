@@ -3,6 +3,8 @@ package cfgmm.ricettiamo.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.Map;
+
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.model.User;
 
@@ -36,5 +38,15 @@ public class UserViewModel extends ViewModel {
 
     public void resetPassword(String email) {
         userRepository.resetPassword(email);
+    }
+
+
+    public void updatePassword(String cPassword, String nPassword1) {
+        userRepository.updatePassword(cPassword, nPassword1);
+    }
+
+    public void updateData(Map<String, Object> newInfo) {
+        userRepository.updateData(newInfo);
+        currentUserLiveData = userRepository.getLoggedUser();
     }
 }

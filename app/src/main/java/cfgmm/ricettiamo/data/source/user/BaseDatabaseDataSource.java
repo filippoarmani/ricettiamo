@@ -1,5 +1,7 @@
 package cfgmm.ricettiamo.data.source.user;
 
+import java.util.Map;
+
 import cfgmm.ricettiamo.data.repository.user.IUserResponseCallback;
 import cfgmm.ricettiamo.model.User;
 
@@ -13,4 +15,6 @@ public abstract class BaseDatabaseDataSource {
 
     public abstract void writeUser(User user);
     public abstract void readUser(String id);
+
+    public abstract void updateData(Map<String, Object> newInfo, String id);
 }

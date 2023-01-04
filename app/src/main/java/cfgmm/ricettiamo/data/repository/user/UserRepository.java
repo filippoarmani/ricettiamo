@@ -4,6 +4,8 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.Map;
+
 import cfgmm.ricettiamo.data.source.user.BaseDatabaseDataSource;
 import cfgmm.ricettiamo.data.source.user.BaseFirebaseAuthDataSource;
 import cfgmm.ricettiamo.model.User;
@@ -47,6 +49,15 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
 
     public boolean isLoggedUser() {
         return firebaseAuthDataSource.isLoggedUser();
+    }
+
+    @Override
+    public void updateData(Map<String, Object> newInfo) {
+        if(newInfo.containsKey("email")) {
+            firebaseAuthDataSource.updateEmail((String) newInfo.get("email"));
+        }
+
+        databaseDataSource.updateData(newInfo, firebaseAuthDataSource.getCurrentId());
     }
 
     public void writeUser(User newUser) {

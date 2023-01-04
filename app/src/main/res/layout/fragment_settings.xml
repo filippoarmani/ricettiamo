@@ -23,15 +23,16 @@
         app:layout_constraintGuide_end="20dp" />
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@+id/salva"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        android:scrollbars="none">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,7 +50,7 @@
                 android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/change_user"
+                android:id="@+id/change_userPhoto"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_gravity="center"
@@ -72,8 +73,8 @@
                     android:id="@+id/i_dName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
                     android:background="@drawable/back"
+                    android:fontFamily="@font/montserrat"
                     android:hint="@string/name"
                     android:inputType="text" />
 
@@ -83,17 +84,18 @@
                 android:id="@+id/modificaDescr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:elevation="10dp"
                 android:hint="@string/description_chef"
                 app:counterEnabled="true"
-                app:counterMaxLength="250"
-                android:elevation="10dp">
+                app:counterMaxLength="250">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
                     android:background="@drawable/back"
-                    android:maxLength="250"/>
+                    android:fontFamily="@font/montserrat"
+                    android:maxLength="250" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,12 +103,12 @@
                 android:id="@+id/modPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/change_password"
                 android:textColor="@color/orange"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginTop="20dp"
                 tools:layout_conversion_absoluteHeight="31dp"
                 tools:layout_conversion_absoluteWidth="351dp"
                 tools:layout_editor_absoluteX="30dp"
@@ -139,8 +141,8 @@
                     android:id="@+id/i_cPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
                     android:background="@drawable/back"
+                    android:fontFamily="@font/montserrat"
                     android:hint="@string/my_password"
                     android:inputType="textPassword" />
 
@@ -160,8 +162,8 @@
                     android:id="@+id/i_nPassword1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
                     android:background="@drawable/back"
+                    android:fontFamily="@font/montserrat"
                     android:hint="@string/new_password"
                     android:inputType="textPassword" />
 
@@ -181,8 +183,8 @@
                     android:id="@+id/i_nPassword2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
                     android:background="@drawable/back"
+                    android:fontFamily="@font/montserrat"
                     android:hint="@string/new_password_again"
                     android:inputType="textPassword" />
 
@@ -207,17 +209,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
+                android:layout_marginTop="20dp"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                android:layout_marginTop="20dp"
                 app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/i_cEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
                     android:background="@drawable/back"
+                    android:fontFamily="@font/montserrat"
                     android:hint="@string/my_email"
                     android:inputType="textEmailAddress" />
 
@@ -234,11 +236,11 @@
                 app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/n_nEmail1"
+                    android:id="@+id/i_nEmail1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
                     android:background="@drawable/back"
+                    android:fontFamily="@font/montserrat"
                     android:hint="@string/new_email"
                     android:inputType="textEmailAddress" />
 
@@ -257,8 +259,8 @@
                     android:id="@+id/i_nEmail2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
                     android:background="@drawable/back"
+                    android:fontFamily="@font/montserrat"
                     android:hint="@string/new_email_again"
                     android:inputType="textEmailAddress" />
 
@@ -281,5 +283,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/right_guideline"
         app:layout_constraintStart_toStartOf="@id/left_guideline" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

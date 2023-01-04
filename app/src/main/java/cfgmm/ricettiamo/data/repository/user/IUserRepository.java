@@ -2,6 +2,8 @@ package cfgmm.ricettiamo.data.repository.user;
 
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.Map;
+
 import cfgmm.ricettiamo.model.User;
 
 public interface IUserRepository {
@@ -15,4 +17,6 @@ public interface IUserRepository {
     MutableLiveData<User> getLoggedUser();
 
     boolean isLoggedUser();
+
+    void updateData(Map<String, Object> newInfo);
 }
