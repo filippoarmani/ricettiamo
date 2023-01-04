@@ -63,11 +63,10 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_settings,
 
                 R.id.nav_profile,
-                //R.id.nav_my_recipe,
+
                 R.id.nav_add_new_recipe,
                 R.id.nav_ranking,
 
-                R.id.nav_upgrade,
                 R.id.nav_logout
                 )
                 .setOpenableLayout(drawer)

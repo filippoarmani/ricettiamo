@@ -66,12 +66,6 @@
         android:label="@string/top_10_chef"
         tools:layout="@layout/fragment_ranking" />
 
-    <fragment
-        android:id="@+id/nav_upgrade"
-        android:name="cfgmm.ricettiamo.ui.navigation_drawer.UpgradeAccountFragment"
-        android:label="@string/upgrade_button"
-        tools:layout="@layout/fragment_upgrade_account" />
-
     <dialog
         android:id="@+id/nav_logout"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.LogoutDialogFragment"
