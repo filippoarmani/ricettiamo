@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -74,7 +75,7 @@ public class LoginFragment extends Fragment {
                 userViewModel.signIn(email, password);
                 updateUI();
             } else {
-
+                Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
             }
         });
 
@@ -87,8 +88,12 @@ public class LoginFragment extends Fragment {
         login_google.setOnClickListener(v -> { });
     }
 
+    @Override
     public void onStart() {
         super.onStart();
+        if(userViewModel.isLoggedUser()) {
+            updateUI();
+        }
     }
 
     private void updateUI() {

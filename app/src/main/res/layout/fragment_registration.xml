@@ -59,6 +59,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:id="@+id/r_nome_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -73,14 +74,18 @@
             app:startIconDrawable="@drawable/ic_user">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/r_nome"
                 android:hint="@string/name"
-                android:inputType="text"
-                style="@style/TextInputEditText" />
+                android:label="@string/name"
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:id="@+id/r_cognome_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -93,14 +98,18 @@
             app:startIconDrawable="@drawable/ic_user">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/r_cognome"
                 android:hint="@string/surname"
-                android:inputType="text"
-                style="@style/TextInputEditText" />
+                android:label="@string/surname"
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:id="@+id/r_email_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -114,14 +123,18 @@
             app:startIconDrawable="@drawable/ic_email">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/r_email"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                style="@style/TextInputEditText" />
+                android:label="@string/email"
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:id="@+id/r_password_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -135,26 +148,24 @@
             app:startIconDrawable="@drawable/ic_password">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/r_password"
                 android:hint="@string/password"
-                android:inputType="textPassword"
-                style="@style/TextInputEditText" />
+                android:label="@string/password"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            style="@style/Widget.Material3.Button.IconButton.Filled"
             android:id="@+id/r_creaAccount"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_alignEnd="@id/r_password_layout"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="22dp"
-            android:backgroundTint="@color/orange"
-            android:fontFamily="@font/montserrat"
             android:text="@string/create_account"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/r_password_layout" />
 

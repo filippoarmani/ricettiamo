@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 menu.setGroupVisible(R.id.with_login, true);
                 menu.setGroupVisible(R.id.with_login2, true);
                 menu.setGroupVisible(R.id.with_login3, true);
+
                 login.setVisibility(View.GONE);
                 nome.setVisibility(View.VISIBLE);
 
