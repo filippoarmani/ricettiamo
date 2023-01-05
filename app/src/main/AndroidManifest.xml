@@ -19,7 +19,7 @@
         <activity
             android:name=".ui.authentication.AuthenticationActivity"
             android:exported="true"
-            android:theme="@style/Theme.RicettiAmo.NoActionBar">
+            android:theme="@style/Theme.RicettiAmo">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,11 +34,11 @@
         <activity
             android:name=".ui.navigation_drawer.MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.RicettiAmo.NoActionBar">
+            android:theme="@style/Theme.RicettiAmo">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-    </application>
 
+    </application>
 </manifest>

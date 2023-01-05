@@ -85,16 +85,20 @@ public class MainActivity extends AppCompatActivity {
         Button login = header.findViewById(R.id.nh_login);
 
         userViewModel.getCurrentUserLiveData().observe(this, user -> {
-            if(userViewModel.isLoggedUser()) {
+            if(user != null) {
+                menu.setGroupVisible(R.id.with_login, true);
+                menu.setGroupVisible(R.id.with_login2, true);
+                menu.setGroupVisible(R.id.with_login3, true);
                 login.setVisibility(View.GONE);
                 nome.setVisibility(View.VISIBLE);
 
                 nome.setText(user.getDisplayName());
                 photo.setImageURI(Uri.parse(user.getPhoto()));
             } else {
-                menu.removeGroup(R.id.with_login);
-                menu.removeGroup(R.id.with_login2);
-                menu.removeGroup(R.id.with_login3);
+                menu.setGroupVisible(R.id.with_login, true);
+                menu.setGroupVisible(R.id.with_login2, true);
+                menu.setGroupVisible(R.id.with_login3, true);
+
                 login.setVisibility(View.VISIBLE);
                 nome.setVisibility(View.GONE);
 

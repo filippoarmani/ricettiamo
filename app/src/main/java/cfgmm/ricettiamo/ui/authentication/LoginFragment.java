@@ -62,9 +62,9 @@ public class LoginFragment extends Fragment {
 
         Button login_password = view.findViewById(R.id.l_login);
         Button login_google = view.findViewById(R.id.button_Login_Google);
-        TextView f_password = view.findViewById(R.id.l_forgotPassword);
+        Button f_password = view.findViewById(R.id.l_forgotPassword);
         Button login_later = view.findViewById(R.id.btn_noLogIn);
-        TextView sign_up = view.findViewById(R.id.l_registration);
+        Button sign_up = view.findViewById(R.id.l_registration);
 
         login_password.setOnClickListener(v -> {
             String email = email_layout.getEditText().getText().toString().trim();
@@ -84,9 +84,7 @@ public class LoginFragment extends Fragment {
 
         sign_up.setOnClickListener(v -> Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registrationFragment));
 
-        login_google.setOnClickListener(v -> {
-
-        });
+        login_google.setOnClickListener(v -> { });
     }
 
     public void onStart() {

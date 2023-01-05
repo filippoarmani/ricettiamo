@@ -26,8 +26,13 @@ public class UserViewModel extends ViewModel {
     }
 
     public MutableLiveData<User> getCurrentUserLiveData() {
-        if(currentUserLiveData == null)
-            currentUserLiveData = userRepository.getLoggedUser();
+        if(currentUserLiveData == null) {
+            if(isLoggedUser()) {
+                currentUserLiveData = userRepository.getLoggedUser();
+            } else {
+                currentUserLiveData = new MutableLiveData<>(null);
+            }
+        }
 
         return currentUserLiveData;
     }

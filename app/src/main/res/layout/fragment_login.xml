@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_page"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/left_guideline"
@@ -41,6 +41,7 @@
             android:contentDescription="@string/logo_image" />
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:id="@+id/pd_email_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -53,14 +54,18 @@
             app:startIconDrawable="@drawable/ic_email">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/pd_email"
+                android:label="@string/email"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                style="@style/TextInputEditText" />
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:id="@+id/l_password_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -75,66 +80,54 @@
             app:startIconDrawable="@drawable/ic_password">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/l_password"
                 android:hint="@string/password"
-                android:inputType="textPassword"
-                style="@style/TextInputEditText" />
+                android:label="@string/password"
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+        <Button
             android:id="@+id/l_forgotPassword"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:focusable="true"
-            android:clickable="true"
-
             android:fontFamily="@font/montserrat"
             android:text="@string/p_lost"
-            android:textColor="@color/orange"
-            android:textSize="14sp"
+
             app:layout_constraintEnd_toStartOf="@id/right_guideline"
             app:layout_constraintTop_toBottomOf="@id/l_password_layout"
             app:textAllCaps="false" />
 
         <Button
+            style="@style/Widget.Material3.Button"
             android:id="@+id/l_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-
-            android:backgroundTint="@color/orange"
-            android:fontFamily="@font/montserrat"
             android:text="@string/login"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
 
-            app:cornerRadius="20dp"
             app:layout_constraintBottom_toTopOf="@id/button_Login_Google"
             app:layout_constraintEnd_toStartOf="@id/right_guideline"
             app:layout_constraintStart_toStartOf="@id/left_guideline" />
 
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:id="@+id/button_Login_Google"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
             android:layout_marginBottom="12dp"
-            android:fontFamily="@font/montserrat"
             android:text="@string/login_google"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
 
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/orange_w"
-            app:cornerRadius="20dp"
+            android:fontFamily="@font/montserrat"
+
             app:icon="@drawable/ic_google"
             app:iconGravity="textStart"
-            app:iconSize="20dp"
             app:iconTint="@null"
+
             app:layout_constraintBottom_toTopOf="@id/l_or"
             app:layout_constraintEnd_toStartOf="@id/right_guideline"
             app:layout_constraintStart_toStartOf="@id/left_guideline" />
@@ -174,20 +167,15 @@
         </RelativeLayout>
 
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:id="@+id/btn_noLogIn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
             android:layout_marginBottom="12dp"
+
             android:fontFamily="@font/montserrat"
             android:text="@string/login_later"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
 
-            app:backgroundTint="@color/orange_w"
-            app:cornerRadius="20dp"
             app:layout_constraintBottom_toTopOf="@id/linear_layout"
             app:layout_constraintEnd_toStartOf="@id/right_guideline"
             app:layout_constraintStart_toStartOf="@id/left_guideline" />
@@ -211,20 +199,15 @@
                 android:fontFamily="@font/montserrat"
                 android:text="@string/txt_nUser" />
 
-            <TextView
+            <Button
+                style="@style/Widget.Material3.Button.TextButton"
                 android:id="@+id/l_registration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:clickable="true"
-                android:focusable="true"
                 android:fontFamily="@font/montserrat"
-                android:text="@string/sign_in"
-                android:textColor="@color/orange"
-                android:textSize="12sp"
-                app:textAllCaps="false"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:text="@string/sign_in" />
 
         </LinearLayout>
 
