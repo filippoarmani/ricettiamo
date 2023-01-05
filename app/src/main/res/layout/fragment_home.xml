@@ -175,6 +175,8 @@
                             android:textStyle="bold" />
 
                         <!-- aggiungere onClick o far diventare bottoni i quattro seguenti-->
+                        <!-- in about us bisogna aggiungere https://spoonacular.com/ per poter
+                        usare la api-->
 
                         <TextView
                             android:id="@+id/textView_ChiSiamo"

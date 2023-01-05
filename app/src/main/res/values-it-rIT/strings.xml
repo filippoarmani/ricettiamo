@@ -114,6 +114,7 @@
     <string name="min">minuti</string>
     <string name="people">persone</string>
     <string name="add_new_recipe">Inserisci una nuova ricetta</string>
+    <string name="search">Cerca</string>
 
 
 </resources>

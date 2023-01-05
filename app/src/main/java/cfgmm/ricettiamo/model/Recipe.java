@@ -39,9 +39,9 @@ public class Recipe implements Parcelable {
         this.isFavorite = isFavorite;
     }
 
-    public Recipe(String author, String name, int score, String description, String date) {
+    /*public Recipe(String author, String name, int score, String description, String date) {
         this(author, name, score, description, date,null, null, false);
-    }
+    }*/
 
     public long getId() { return id; }
 

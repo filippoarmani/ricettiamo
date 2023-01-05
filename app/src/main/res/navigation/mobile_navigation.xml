@@ -9,7 +9,11 @@
         android:id="@+id/nav_home"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_search_recipes2"
+            app:destination="@id/search_recipes2" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_fridge"
@@ -70,5 +74,10 @@
         android:id="@+id/nav_logout"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.LogoutDialogFragment"
         android:label="@string/menu_logout" />
+    <fragment
+        android:id="@+id/search_recipes2"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipes"
+        android:label="fragment_search_recipes2"
+        tools:layout="@layout/fragment_search_recipes" />
 
 </navigation>
