@@ -77,7 +77,6 @@ public class RegistrationFragment extends Fragment {
             if(checkOk(v, name, surname, email, password)) {
                 User newUser = new User(
                         null,
-                        Uri.parse(String.valueOf(R.drawable.user)).getPath(),
                         name,
                         surname,
                         email
@@ -101,40 +100,7 @@ public class RegistrationFragment extends Fragment {
             return false;
         }
 
-        if(password.length() < 8) {
-            Snackbar.make(v, R.string.short_password, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-            return false;
-        }
-
-        int i = 0;
-        boolean noUpper = true;
-        boolean noLower = true;
-        boolean noNumber = true;
-        boolean noSpecial = true;
-
-        while(i < password.length() && (noUpper || noLower || noNumber || noSpecial)) {
-            char c = password.charAt(i);
-
-            if(c >= 'a' && c <= 'z')
-                noLower = false;
-            else if(c >= 'A' && c <= 'Z')
-                noUpper = false;
-            else if(c >= '0' && c <= '0')
-                noNumber = false;
-            else
-                noSpecial = false;
-
-            i++;
-        }
-
-        if(noUpper || noLower || noNumber || noSpecial) {
-            Snackbar.make(v, R.string.weak_password, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-            return false;
-        }
-
-        return true;
+        return userViewModel.strongPassword(password);
     }
 
     private void updateUI() {

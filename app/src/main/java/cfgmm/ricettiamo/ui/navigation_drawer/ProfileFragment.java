@@ -49,9 +49,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         binding.recipeCardView.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_nav_profile_to_nav_my_recipe));
+        userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), photo -> binding.user.setImageURI(photo));
         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), user -> {
-            binding.user.setImageURI(Uri.parse(user.getPhoto()));
-
             String userFullName = user.getName() + " " + user.getSurname();
             binding.fullName.setText(userFullName);
             binding.displayName.setText(user.getDisplayName());

@@ -1,12 +1,19 @@
 package cfgmm.ricettiamo.data.source.user;
 
+import android.net.Uri;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
+import java.util.Objects;
+
+import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.User;
 
 public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
@@ -26,6 +33,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                     if(isLoggedUser()) {
                         Log.d(TAG, "signUp: success");
                         newUser.setId(getCurrentId());
+                        updatePhoto(Uri.parse(String.valueOf(R.drawable.user)));
                         userResponseCallBack.onSuccessRegistration(newUser);
                     } else {
                         Log.d(TAG, "signUp: user null");
@@ -58,6 +66,22 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
     }
 
     @Override
+    public void signOut() {
+        FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() == null) {
+                    firebaseAuth.removeAuthStateListener(this);
+                    Log.d(TAG, "User logged out");
+                    userResponseCallBack.onSuccessLogout();
+                }
+            }
+        };
+        firebaseAuth.addAuthStateListener(authStateListener);
+        firebaseAuth.signOut();
+    }
+
+    @Override
     public void resetPassword(String email) {
         firebaseAuth.sendPasswordResetEmail(email)
                 .addOnSuccessListener(task -> {
@@ -65,7 +89,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                     userResponseCallBack.onSuccessResetPassword();
                 })
                 .addOnFailureListener(error -> {
-                    Log.d(TAG, "resetPassword: success");
+                    Log.d(TAG, "resetPassword: failure");
                     userResponseCallBack.onFailureResetPassword(error.getLocalizedMessage());
                 });
     }
@@ -116,10 +140,32 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
     }
 
     @Override
+    public Uri getCurrentPhoto() {
+        return firebaseAuth.getCurrentUser().getPhotoUrl();
+    }
+
+    @Override
+    public void updatePhoto(Uri uri) {
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setPhotoUri(uri)
+                .build();
+
+        Objects.requireNonNull(firebaseAuth.getCurrentUser()).updateProfile(profileUpdates)
+                .addOnSuccessListener(task -> {
+                    Log.d(TAG, "setCurrentPhoto: success");
+                    userResponseCallBack.onSuccessSetPhoto(uri);
+                })
+                .addOnFailureListener(error -> {
+                    Log.d(TAG, "setCurrentPhoto: failure");
+                    userResponseCallBack.onFailureSetPhoto(error.getLocalizedMessage());
+                });
+    }
+
+    @Override
     public boolean isLoggedUser() {
         return firebaseAuth.getCurrentUser() != null;
     }
 
     @Override
-    public String getCurrentId() { return firebaseAuth.getCurrentUser().getUid(); }
+    public String getCurrentId() { return Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid(); }
 }

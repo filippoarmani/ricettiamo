@@ -1,5 +1,7 @@
 package cfgmm.ricettiamo.data.repository.user;
 
+import android.net.Uri;
+
 import cfgmm.ricettiamo.model.User;
 
 public interface IUserResponseCallback {
@@ -23,4 +25,9 @@ public interface IUserResponseCallback {
 
     void onSuccessReadDatabase(User user);
     void onFailureReadDatabase(String localizedMessage);
+
+    void onSuccessLogout();
+
+    void onSuccessSetPhoto(Uri uri);
+    void onFailureSetPhoto(String localizedMessage);
 }

@@ -1,11 +1,13 @@
 package cfgmm.ricettiamo.data.repository.user;
 
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.Map;
 
+import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.source.user.BaseDatabaseDataSource;
 import cfgmm.ricettiamo.data.source.user.BaseFirebaseAuthDataSource;
 import cfgmm.ricettiamo.model.User;
@@ -16,12 +18,14 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     BaseDatabaseDataSource databaseDataSource;
 
     MutableLiveData<User> currentUser;
+    MutableLiveData<Uri> currentPhoto;
 
     public UserRepository(BaseFirebaseAuthDataSource firebaseAuthDataSource,
                           BaseDatabaseDataSource databaseDataSource) {
         this.firebaseAuthDataSource = firebaseAuthDataSource;
         this.databaseDataSource = databaseDataSource;
         this.currentUser = new MutableLiveData<>();
+        this.currentPhoto = new MutableLiveData<>();
 
         this.firebaseAuthDataSource.setCallBack(this);
         this.databaseDataSource.setCallBack(this);
@@ -60,6 +64,11 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
         databaseDataSource.updateData(newInfo, firebaseAuthDataSource.getCurrentId());
     }
 
+    @Override
+    public void updatePhoto(Uri uri) {
+        firebaseAuthDataSource.updatePhoto(uri);
+    }
+
     public void writeUser(User newUser) {
         databaseDataSource.writeUser(newUser);
     }
@@ -71,6 +80,20 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     public MutableLiveData<User> getLoggedUser() {
         String id = firebaseAuthDataSource.getCurrentId();
         readUser(id);
+        return currentUser;
+    }
+
+    public MutableLiveData<Uri> getCurrentPhoto() {
+        Uri uri = firebaseAuthDataSource.getCurrentPhoto();
+        if(uri == null) {
+            uri = Uri.parse(String.valueOf(R.drawable.user));
+        }
+        currentPhoto.postValue(uri);
+        return currentPhoto;
+    }
+
+    public MutableLiveData<User> signOut() {
+        firebaseAuthDataSource.signOut();
         return currentUser;
     }
 
@@ -123,4 +146,18 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
 
     @Override
     public void onFailureReadDatabase(String localizedMessage) { }
+
+    @Override
+    public void onSuccessLogout() {
+        currentUser.postValue(null);
+        currentPhoto.postValue(Uri.parse(String.valueOf(R.drawable.user)));
+    }
+
+    @Override
+    public void onSuccessSetPhoto(Uri uri) {
+        currentPhoto.postValue(uri);
+    }
+
+    @Override
+    public void onFailureSetPhoto(String localizedMessage) {}
 }

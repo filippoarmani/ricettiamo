@@ -1,5 +1,7 @@
 package cfgmm.ricettiamo.data.repository.user;
 
+import android.net.Uri;
+
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.Map;
@@ -14,9 +16,13 @@ public interface IUserRepository {
     void resetPassword(String email);
     void updateEmail(String email);
     void updatePassword(String oldPassword, String newPassword);
+    void updateData(Map<String, Object> newInfo);
+    void updatePhoto(Uri uri);
+
     MutableLiveData<User> getLoggedUser();
+    MutableLiveData<User> signOut();
 
     boolean isLoggedUser();
 
-    void updateData(Map<String, Object> newInfo);
+    MutableLiveData<Uri> getCurrentPhoto();
 }

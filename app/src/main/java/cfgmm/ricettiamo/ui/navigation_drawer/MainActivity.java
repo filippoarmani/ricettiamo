@@ -81,12 +81,14 @@ public class MainActivity extends AppCompatActivity {
         View header = navigationView.getHeaderView(0);
 
         TextView nome = header.findViewById(R.id.nh_nome);
-        ImageView photo = header.findViewById(R.id.nh_foto);
+        ImageView photoProfile = header.findViewById(R.id.nh_foto);
 
         Button login = header.findViewById(R.id.nh_login);
 
+        userViewModel.getCurrentPhotoLiveData().observe(this, photoProfile::setImageURI);
+
         userViewModel.getCurrentUserLiveData().observe(this, user -> {
-            if(user != null) {
+            if(userViewModel.isLoggedUser()) {
                 menu.setGroupVisible(R.id.with_login, true);
                 menu.setGroupVisible(R.id.with_login2, true);
                 menu.setGroupVisible(R.id.with_login3, true);
@@ -95,11 +97,10 @@ public class MainActivity extends AppCompatActivity {
                 nome.setVisibility(View.VISIBLE);
 
                 nome.setText(user.getDisplayName());
-                photo.setImageURI(Uri.parse(user.getPhoto()));
             } else {
-                menu.setGroupVisible(R.id.with_login, true);
-                menu.setGroupVisible(R.id.with_login2, true);
-                menu.setGroupVisible(R.id.with_login3, true);
+                menu.setGroupVisible(R.id.with_login, false);
+                menu.setGroupVisible(R.id.with_login2, false);
+                menu.setGroupVisible(R.id.with_login3, false);
 
                 login.setVisibility(View.VISIBLE);
                 nome.setVisibility(View.GONE);

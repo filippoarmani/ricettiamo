@@ -10,8 +10,6 @@ public class User {
 
     private String id;
 
-    private String photo;
-
     private String name;
     private String surname;
 
@@ -27,9 +25,8 @@ public class User {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String id, String photo, String name, String surname, String email) {
+    public User(String id, String name, String surname, String email) {
         this.id = id;
-        this.photo = photo;
         this.name = name;
         this.surname = surname;
         this.displayName = name + " " + surname;
@@ -43,7 +40,6 @@ public class User {
     public String toString() {
         return "User{" +
                 "idUser='" + id + '\'' +
-                ", photo='" + photo + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", displayName='" + displayName + '\'' +
@@ -56,7 +52,6 @@ public class User {
         Map<String, Object> data = new HashMap<>();
 
         data.put("id", id);
-        data.put("photo", photo);
         data.put("name", name);
         data.put("surname", surname);
         data.put("displayName", displayName);
@@ -69,10 +64,6 @@ public class User {
 
     public String getId() {
         return id;
-    }
-
-    public String getPhoto() {
-        return photo;
     }
 
     public String getName() {
@@ -105,10 +96,6 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 
     public void setName(String name) {

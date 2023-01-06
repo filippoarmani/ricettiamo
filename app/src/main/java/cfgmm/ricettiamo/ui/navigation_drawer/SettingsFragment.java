@@ -33,6 +33,9 @@ public class SettingsFragment extends Fragment {
     private FragmentSettingsBinding binding;
     private Map<String, Object> newInfo;
 
+    private Boolean changed;
+    private Uri photoProfile;
+
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -47,6 +50,8 @@ public class SettingsFragment extends Fragment {
         IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
         userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
         newInfo = new HashMap<>();
+        photoProfile = Uri.parse(String.valueOf(R.drawable.user));
+        changed = false;
     }
 
     @Override
@@ -60,7 +65,11 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        binding.changeUserPhoto.setImageURI(Uri.parse(userViewModel.getCurrentUserLiveData().getValue().getPhoto()));
+        userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), photo -> {
+            binding.changeUserPhoto.setImageURI(photo);
+            photoProfile = photo;
+        });
+
         binding.changeUserPhoto.setOnClickListener(v -> mGetContent.launch("image/*"));
 
         binding.salva.setOnClickListener(v -> {
@@ -82,6 +91,11 @@ public class SettingsFragment extends Fragment {
             String nEmail1 = binding.iNEmail1.getText().toString().trim();
             String nEmail2 = binding.iNEmail2.getText().toString().trim();
 
+            if(changed) {
+                userViewModel.updatePhoto(photoProfile);
+                changed = false;
+            }
+
             if(!isEmpty(displayName)) {
                 newInfo.put("displayName", displayName);
             }
@@ -92,7 +106,7 @@ public class SettingsFragment extends Fragment {
 
             if(!(isEmpty(cPassword) || isEmpty(nPassword1) || isEmpty(nPassword2))) {
                 if(nPassword1.equals(nPassword2)) {
-                    if(strongPassword(nPassword1)) {
+                    if(userViewModel.strongPassword(nPassword1)) {
                         userViewModel.updatePassword(cPassword, nPassword1);
                     }
                 }
@@ -113,17 +127,14 @@ public class SettingsFragment extends Fragment {
         });
     }
 
-    private boolean strongPassword(String nPassword1) {
-        return true;
-    }
-
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {
                     try {
                         binding.changeUserPhoto.setImageURI(uri);
-                        newInfo.put("photo", uri.getPath());
+                        photoProfile = uri;
+                        changed = true;
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
