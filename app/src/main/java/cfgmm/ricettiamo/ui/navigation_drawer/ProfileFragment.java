@@ -15,6 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
+
+import java.util.Objects;
+
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentProfileBinding;
@@ -49,7 +53,13 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         binding.recipeCardView.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_nav_profile_to_nav_my_recipe));
-        userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), photo -> binding.user.setImageURI(photo));
+        userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), photo -> {
+            //binding.user.setImageURI(photo);
+            Glide.with(this)
+                    .load(photo)
+                    .circleCrop()
+                    .into(binding.user);
+        });
         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), user -> {
             String userFullName = user.getName() + " " + user.getSurname();
             binding.fullName.setText(userFullName);

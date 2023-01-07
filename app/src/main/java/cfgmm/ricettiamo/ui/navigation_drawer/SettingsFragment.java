@@ -15,6 +15,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
+
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.HashMap;
@@ -66,7 +68,11 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), photo -> {
-            binding.changeUserPhoto.setImageURI(photo);
+            //binding.changeUserPhoto.setImageURI(photo);
+            Glide.with(this)
+                    .load(photo)
+                    .circleCrop()
+                    .into(binding.changeUserPhoto);
             photoProfile = photo;
         });
 
@@ -132,7 +138,11 @@ public class SettingsFragment extends Fragment {
                 @Override
                 public void onActivityResult(Uri uri) {
                     try {
-                        binding.changeUserPhoto.setImageURI(uri);
+                        //binding.changeUserPhoto.setImageURI(uri);
+                        Glide.with(requireContext())
+                                .load(uri)
+                                .circleCrop()
+                                .into(binding.changeUserPhoto);
                         photoProfile = uri;
                         changed = true;
                     } catch (Exception e) {

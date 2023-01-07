@@ -19,6 +19,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -85,7 +86,12 @@ public class MainActivity extends AppCompatActivity {
 
         Button login = header.findViewById(R.id.nh_login);
 
-        userViewModel.getCurrentPhotoLiveData().observe(this, photoProfile::setImageURI);
+        userViewModel.getCurrentPhotoLiveData().observe(this, photo -> {
+            Glide.with(this)
+                    .load(photo)
+                    .circleCrop()
+                    .into(photoProfile);
+        });
 
         userViewModel.getCurrentUserLiveData().observe(this, user -> {
             if(userViewModel.isLoggedUser()) {
