@@ -1,11 +1,14 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,8 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.HomeAdapter;
+import cfgmm.ricettiamo.adapter.IngredientsRecyclerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +31,7 @@ import cfgmm.ricettiamo.adapter.HomeAdapter;
 public class HomeFragment extends Fragment {
 
     RecyclerView rv_starters, rv_first, rv_second, rv_desserts;
+    FloatingActionButton floatingActionButton;
 
     private final int[] st_i = {R.drawable.esempio_guacamole, R.drawable.esempio_mozzarella, R.drawable.esempio_antipasto, R.drawable.esempio_finger};
     private final int[] p_i = {R.drawable.esempio_pasta_forno, R.drawable.esempio_pasta_ricotta_zafferano_speck, R.drawable.esempio_risotto, R.drawable.esempio_ravioli};
@@ -81,6 +89,9 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        floatingActionButton = view.findViewById(R.id.search_floating_button);
+
         rv_starters = view.findViewById(R.id.rv_starters);
         rv_first = view.findViewById(R.id.rv_first);
         rv_second = view.findViewById(R.id.rv_second);
@@ -101,6 +112,7 @@ public class HomeFragment extends Fragment {
         rv_second.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false));
         rv_desserts.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false));
 
+        floatingActionButton.setOnClickListener(v -> Navigation.findNavController(requireView()).navigate(R.id.action_nav_home_to_search_recipes));
         rv_first.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
            /* @Override

@@ -11,7 +11,7 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_nav_home_to_search_recipes2"
+            android:id="@+id/action_nav_home_to_search_recipes"
             app:destination="@id/search_recipes2" />
     </fragment>
 
@@ -77,7 +77,7 @@
     <fragment
         android:id="@+id/search_recipes2"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipes"
-        android:label="fragment_search_recipes2"
+        android:label="fragment_search_recipes"
         tools:layout="@layout/fragment_search_recipes" />
 
 </navigation>

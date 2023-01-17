@@ -1,45 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="bottom|clip_horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.navigation_drawer.SearchRecipes">
 
     <TextView
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_alignParentTop="true"
         android:fontFamily="@font/montserrat"
         android:text="@string/search_recipe"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/search_recipes"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/back"
-        android:fontFamily="@font/montserrat"
-        android:layout_below="@id/search"
+
+        app:errorEnabled="true"
+        app:layout_constraintTop_toBottomOf="@+id/search"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="@string/search"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"/>
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pd_search"
+            style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search"
+            android:inputType="text"
+            android:label="@string/search" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <ImageButton
+        android:id="@+id/btn_search"
+        android:layout_width="43dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/search_recipes"
+        app:layout_constraintStart_toEndOf="@+id/search_recipes"
+        app:layout_constraintTop_toBottomOf="@+id/search" />
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/search_recipes"
+        android:layout_alignParentBottom="true"
+        android:drawSelectorOnTop="false"
+        app:layout_constraintBottom_toBottomOf="@id/search_recipes"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:drawSelectorOnTop="false" />
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
