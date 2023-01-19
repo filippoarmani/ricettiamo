@@ -23,26 +23,27 @@ public class Recipe implements Parcelable {
     private int score;
     private String description;
 
-    private String[] ingredients;
+    //private String[] ingredients;
     private String date;
     private String url;
     private String urlToImage;
     private boolean isFavorite;
 
-    public Recipe(String author, String name, int score, String description, String date,
-                  String url, String urlToImage, boolean isFavorite) {
+    public Recipe(String author, String name, int score, String description,/* String[] ingredients,*/
+                  String date, String url, String urlToImage, boolean isFavorite) {
         this.author = author;
         this.name = name;
         this.score = score;
         this.description = description;
+        //this.ingredients = ingredients;
         this.date = date;
         this.url = url;
         this.urlToImage = urlToImage;
         this.isFavorite = isFavorite;
     }
 
-    /*public Recipe(String author, String name, int score, String description, String date) {
-        this(author, name, score, description, date,null, null, false);
+    /*public Recipe(String author, String name, int score, String description, String[] ingredients, String date) {
+        this(author, name, score, description, ingredients, date,null, null, false);
     }*/
 
     public long getId() { return id; }
@@ -77,7 +78,7 @@ public class Recipe implements Parcelable {
 
     public String getDescription() { return description; }
 
-    public String[] getIngredients() { return ingredients; }
+    //public String[] getIngredients() { return ingredients; }
 
     public void setDescription(String description) {
         this.description = description;
@@ -119,7 +120,7 @@ public class Recipe implements Parcelable {
                 ", name='" + name + '\'' +
                 ", score=" + score +
                 ", description='" + description + '\'' +
-                ", ingredients='" + ingredients + '\'' +
+                //", ingredients='" + ingredients + '\'' +
                 ", date='" + date + '\'' +
                 ", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
@@ -165,7 +166,7 @@ public class Recipe implements Parcelable {
         dest.writeString(this.name);
         dest.writeInt(this.score);
         dest.writeString(this.description);
-        dest.writeArray(this.ingredients);
+        //dest.writeArray(this.ingredients);
         dest.writeString(this.date);
         dest.writeString(this.url);
         dest.writeString(this.urlToImage);

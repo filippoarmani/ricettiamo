@@ -45,7 +45,6 @@ public class SearchRecipesAdapter extends ArrayAdapter<Recipe> {
         //textViewIngredients.setText(recipesArray[position].getIngredients());
 
 
-
         return convertView;
     }
 }

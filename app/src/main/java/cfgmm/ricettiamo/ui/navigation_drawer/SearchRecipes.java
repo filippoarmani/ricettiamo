@@ -9,12 +9,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.adapter.SearchRecipesAdapter;
+import cfgmm.ricettiamo.model.Recipe;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,5 +87,22 @@ public class SearchRecipes extends Fragment {
             else
                 Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
         });
+
+        Recipe[] recipesArray = new Recipe[10];
+        for (int i = 0; i < 10; i++){
+            recipesArray[i] = new Recipe("author " + i, "title " + i, 0, null,
+                    /*null,*/ null, null, null, false);
+        }
+
+        ListView listViewSearchRecipes = view.findViewById(R.id.search_list);
+
+        /*ArrayAdapter<Recipe> adapter = new ArrayAdapter<Recipe>(requireContext(),
+                android.R.layout.simple_list_item_1, recipesArray);*/
+
+        SearchRecipesAdapter adapter = new SearchRecipesAdapter(requireContext(),
+                R.layout.recipe_item, recipesArray);
+
+        listViewSearchRecipes.setAdapter(adapter);
     }
+
 }
