@@ -22,6 +22,8 @@ public class Recipe implements Parcelable {
     private String name;
     private int score;
     private String description;
+
+    private String[] ingredients;
     private String date;
     private String url;
     private String urlToImage;
@@ -73,9 +75,9 @@ public class Recipe implements Parcelable {
         this.score = score;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description; }
+
+    public String[] getIngredients() { return ingredients; }
 
     public void setDescription(String description) {
         this.description = description;
@@ -117,6 +119,7 @@ public class Recipe implements Parcelable {
                 ", name='" + name + '\'' +
                 ", score=" + score +
                 ", description='" + description + '\'' +
+                ", ingredients='" + ingredients + '\'' +
                 ", date='" + date + '\'' +
                 ", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
@@ -130,6 +133,7 @@ public class Recipe implements Parcelable {
         name = in.readString();
         score = in.readInt();
         description = in.readString();
+        //ingredients = in.readArray(ingredients);
         date = in.readString();
         url = in.readString();
         urlToImage = in.readString();
@@ -161,6 +165,7 @@ public class Recipe implements Parcelable {
         dest.writeString(this.name);
         dest.writeInt(this.score);
         dest.writeString(this.description);
+        dest.writeArray(this.ingredients);
         dest.writeString(this.date);
         dest.writeString(this.url);
         dest.writeString(this.urlToImage);
