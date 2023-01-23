@@ -115,6 +115,9 @@
     <string name="people">persone</string>
     <string name="add_new_recipe">Inserisci una nuova ricetta</string>
     <string name="search">Cerca</string>
+    <string name="unexpected_error">Errore Inaspettato</string>
+    <string name="api_key_error">Chiave API non valida oppure è stato raggiunto il numero massimo di chiamate</string>
+    <string name="error_retrieving_recipe">Errore nel recupero delle ricette</string>
 
 
 </resources>

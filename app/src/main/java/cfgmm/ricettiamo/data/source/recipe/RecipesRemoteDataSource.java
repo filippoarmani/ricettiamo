@@ -1,23 +1,9 @@
 package cfgmm.ricettiamo.data.source.recipe;
 
 import static cfgmm.ricettiamo.util.Constants.API_KEY_ERROR;
-import static cfgmm.ricettiamo.util.Constants.FIREBASE_FAVORITE_RECIPES_COLLECTION;
-import static cfgmm.ricettiamo.util.Constants.FIREBASE_REALTIME_DATABASE;
-import static cfgmm.ricettiamo.util.Constants.FIREBASE_USERS_COLLECTION;
 import static cfgmm.ricettiamo.util.Constants.RETROFIT_ERROR;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import cfgmm.ricettiamo.data.service.RecipeApiService;
 import cfgmm.ricettiamo.model.RecipeApiResponse;
@@ -40,8 +26,8 @@ public class RecipesRemoteDataSource extends BaseRecipesRemoteDataSource{
     }
 
     @Override
-    public void getRecipes() {
-        Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipes(apiKey);
+    public void getRecipes(String user_input) {
+        Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipes(user_input, apiKey);
 
         recipeResponseCall.enqueue(new Callback<RecipeApiResponse>() {
             @Override

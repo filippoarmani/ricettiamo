@@ -7,11 +7,11 @@ import cfgmm.ricettiamo.model.Recipe;
  */
 public interface IRecipesRepository {
 
-    void fetchRecipes();
+    void fetchRecipes(String user_input);
 
     void updateRecipes(Recipe recipe);
 
-    void getFavoriteRecipes();
+    void getFavoriteRecipes(Boolean firstLoading);
 
     void deleteFavoriteRecipes();
 }

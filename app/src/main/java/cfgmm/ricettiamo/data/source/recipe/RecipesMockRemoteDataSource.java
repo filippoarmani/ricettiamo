@@ -26,28 +26,27 @@ public class RecipesMockRemoteDataSource extends BaseRecipesRemoteDataSource{
     }
 
     @Override
-    public void getRecipes() {
+    public void getRecipes(String user_input) {
         RecipeApiResponse recipeApiResponse = null;
-//TODO
         /*switch (jsonParserType) {
             case JSON_READER:
                 try {
                     recipeApiResponse =
-                            jsonParserUtil.parseJSONFileWithJsonReader(NEWS_API_TEST_JSON_FILE);
+                            jsonParserUtil.parseJSONFileWithJsonReader(RECIPES_API_TEST_JSON_FILE);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
             case JSON_OBJECT_ARRAY:
                 try {
-                    recipeApiResponse = jsonParserUtil.parseJSONFileWithJSONObjectArray(NEWS_API_TEST_JSON_FILE);
+                    recipeApiResponse = jsonParserUtil.parseJSONFileWithJSONObjectArray(RECIPES_API_TEST_JSON_FILE);
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
                 break;
             case GSON:
                 try {
-                    recipeApiResponse = jsonParserUtil.parseJSONFileWithGSon(NEWS_API_TEST_JSON_FILE);
+                    recipeApiResponse = jsonParserUtil.parseJSONFileWithGSon(RECIPES_API_TEST_JSON_FILE);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -55,12 +54,12 @@ public class RecipesMockRemoteDataSource extends BaseRecipesRemoteDataSource{
             case JSON_ERROR:
                 recipesCallback.onFailureFromRemote(new Exception(UNEXPECTED_ERROR));
                 break;
-        }*/
+        }
 
         if (recipeApiResponse != null) {
             recipesCallback.onSuccessFromRemote(recipeApiResponse, System.currentTimeMillis());
         } else {
             recipesCallback.onFailureFromRemote(new Exception(API_KEY_ERROR));
-        }
+        }*/
     }
 }

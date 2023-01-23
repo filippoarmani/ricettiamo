@@ -169,5 +169,8 @@
     <!-- Example of a description with all the 250 characters -->
     <string name="character250" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac risus in augue fringilla vestibulum. Suspendisse tempor sem quis tortor blandit aliquam. Pellentesque vulputate lorem in dui aliquet, eu tincidunt mi finibus. Morbi bibendum fusce.</string>
     <string name="search">Search</string>
+    <string name="unexpected_error">Unexpected Error</string>
+    <string name="api_key_error">API Key not valid or maximum number of request reached</string>
+    <string name="error_retrieving_recipe">Error in retrieving recipes</string>
 
 </resources>

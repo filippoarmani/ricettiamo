@@ -6,9 +6,9 @@ package cfgmm.ricettiamo.data.source.recipe;
 public abstract class BaseRecipesRemoteDataSource {
     protected RecipesCallback recipesCallback;
 
-    public void setNewsCallback(RecipesCallback recipesCallback) {
+    public void setRecipesCallback(RecipesCallback recipesCallback) {
         this.recipesCallback = recipesCallback;
     }
 
-    public abstract void getRecipes();
+    public abstract void getRecipes(String user_input);
 }

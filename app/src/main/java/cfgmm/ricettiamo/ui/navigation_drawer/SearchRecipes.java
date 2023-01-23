@@ -16,9 +16,16 @@ import android.widget.ListView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.List;
+
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.SearchRecipesAdapter;
 import cfgmm.ricettiamo.model.Recipe;
+import cfgmm.ricettiamo.model.RecipeApiResponse;
+import cfgmm.ricettiamo.model.RecipeResponse;
+import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.util.ErrorMessagesUtil;
+import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +41,11 @@ public class SearchRecipes extends Fragment {
 
     // TODO: Rename and change types of parameters
     private TextInputLayout inputRecipe;
+    private List<Recipe> recipeList;
+    private SearchRecipesAdapter searchRecipesAdapter;
+    private
+    String search;
+    private RecipeViewModel recipeViewModel;
     private String mParam1;
     private String mParam2;
 
@@ -81,7 +93,7 @@ public class SearchRecipes extends Fragment {
         ImageButton btnSearch = view.findViewById(R.id.btn_search);
 
         btnSearch.setOnClickListener(v -> {
-            String search = inputRecipe.getEditText().getText().toString().trim();
+            search = inputRecipe.getEditText().getText().toString().trim();
             if (search.length() != 0)
                 Snackbar.make(getView(), search, Snackbar.LENGTH_LONG).show();
             else
@@ -99,10 +111,46 @@ public class SearchRecipes extends Fragment {
         /*ArrayAdapter<Recipe> adapter = new ArrayAdapter<Recipe>(requireContext(),
                 android.R.layout.simple_list_item_1, recipesArray);*/
 
-        SearchRecipesAdapter adapter = new SearchRecipesAdapter(requireContext(),
+        searchRecipesAdapter = new SearchRecipesAdapter(requireContext(),
                 R.layout.recipe_item, recipesArray);
 
-        listViewSearchRecipes.setAdapter(adapter);
+        listViewSearchRecipes.setAdapter(searchRecipesAdapter);
+
+        /*recipeViewModel.getRecipes(search).observe(getViewLifecycleOwner(),
+                result -> {
+                    if (result.isSuccess()) {
+
+                        RecipeResponse recipeResponse = ((Result.RecipeResponseSuccess) result).getData();
+                        List<Recipe> fetchedRecipes = recipeResponse.getRecipesList();
+
+                        if (!recipeViewModel.isLoading()) {
+                            if (recipeViewModel.isFirstLoading()) {
+                                recipeViewModel.setFirstLoading(false);
+                                this.recipeList.addAll(fetchedRecipes);
+                            } else {
+                                // Updates related to the favorite status of the news
+                                recipeList.clear();
+                                recipeList.addAll(fetchedRecipes);
+                            }
+                        } else {
+                            recipeViewModel.setLoading(false);
+
+                            int initialSize = recipeList.size();
+
+                            for (int i = 0; i < recipeList.size(); i++) {
+                                if (recipeList.get(i) == null) {
+                                    recipeList.remove(recipeList.get(i));
+                                }
+                            }
+                        }
+                    } else {
+                        ErrorMessagesUtil errorMessagesUtil =
+                                new ErrorMessagesUtil(requireActivity().getApplication());
+                        Snackbar.make(view, errorMessagesUtil.
+                                        getErrorMessage(((Result.Error)result).getMessage()),
+                                Snackbar.LENGTH_SHORT).show();
+                    }
+        });*/
     }
 
 }

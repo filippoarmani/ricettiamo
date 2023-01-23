@@ -31,7 +31,7 @@ public class RecipesMockRepository implements IRecipesRepository {
     }
 
     @Override
-    public void fetchRecipes() {
+    public void fetchRecipes(String user_input) {
 
         /*NewsApiResponse newsApiResponse = null;
         JSONParserUtil jsonParserUtil = new JSONParserUtil(application);
@@ -87,7 +87,7 @@ public class RecipesMockRepository implements IRecipesRepository {
      * Gets the list of favorite recipes from the local database.
      */
     @Override
-    public void getFavoriteRecipes() {
+    public void getFavoriteRecipes(Boolean firstLoading) {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
             recipesResponseCallback.onSuccess(recipesDao.getFavoriteRecipes(), System.currentTimeMillis());
         });

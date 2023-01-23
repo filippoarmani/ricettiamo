@@ -15,10 +15,13 @@ public class Constants {
 
     //for room database
     public static final String RECIPES_DATABASE_NAME = "recipes_db";
+    public static final String RECIPES_API_TEST_JSON_FILE = "recipes-test.json";
     public static final int DATABASE_VERSION = 1;
 
     //for spoonacular api (https://spoonacular.com/)
     public static final String RECIPES_API_BASE_URL = "https://api.spoonacular.com/";
+    public static final String SEARCH_RECIPES = "recipes/complexSearch";
+    public static final String RECIPE_PARAMETER = "query";
 
     //for errors
     public static final String API_KEY_ERROR = "api_key_error";

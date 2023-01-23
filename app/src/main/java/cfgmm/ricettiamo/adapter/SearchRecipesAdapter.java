@@ -37,7 +37,7 @@ public class SearchRecipesAdapter extends ArrayAdapter<Recipe> {
         ImageView imageRecipe = convertView.findViewById(R.id.src_imageRecipe);
         TextView textViewName = convertView.findViewById(R.id.src_nameRecipe);
         TextView textViewInformations = convertView.findViewById(R.id.src_info);
-        TextView textViewIngredients = convertView.findViewById(R.id.src_ingredient_1);
+        //TextView textViewIngredients = convertView.findViewById(R.id.src_ingredient_1);
 
         //imageRecipe.setImageUrl(recipesArray[position].getUrlToImage());
         textViewName.setText(recipesArray[position].getName());
