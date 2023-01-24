@@ -32,7 +32,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "writeUser: failure");
-                    userResponseCallBack.onFailureWriteDatabase(error.getLocalizedMessage());
+                    userResponseCallBack.onFailureWriteDatabase("write: failed");
                 });
     }
 
@@ -45,7 +45,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "readUser: failure");
-                    userResponseCallBack.onFailureReadDatabase(error.getLocalizedMessage());
+                    userResponseCallBack.onFailureReadDatabase("read: failed");
                 });
     }
 
@@ -59,7 +59,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "updateUser: failure");
-                    userResponseCallBack.onFailureWriteDatabase(error.getLocalizedMessage());
+                    userResponseCallBack.onFailureWriteDatabase("update data: failed");
                 });
     }
 

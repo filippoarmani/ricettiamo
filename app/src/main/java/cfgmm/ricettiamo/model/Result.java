@@ -1,24 +1,20 @@
 package cfgmm.ricettiamo.model;
 
-/**
- * Class that represents the result of an action that requires
- * the use of a Web Service or a local database.
- */
+import android.net.Uri;
+
 public abstract class Result {
     private Result() {}
 
     public boolean isSuccess() {
-        if (this instanceof RecipeResponseSuccess || this instanceof UserResponseSuccess) {
+        if (this instanceof RecipeResponseSuccess ||
+                this instanceof UserResponseSuccess ||
+                this instanceof PhotoResponseSuccess) {
             return true;
         } else {
             return false;
         }
     }
 
-    /**
-     * Class that represents a successful action during the interaction
-     * with a Web Service or a local database.
-     */
     public static final class RecipeResponseSuccess extends Result {
         private final RecipeResponse recipeResponse;
         public RecipeResponseSuccess(RecipeResponse recipeResponse) {
@@ -29,10 +25,6 @@ public abstract class Result {
         }
     }
 
-    /**
-     * Class that represents a successful action during the interaction
-     * with a Web Service or a local database.
-     */
     public static final class UserResponseSuccess extends Result {
         private final User user;
         public UserResponseSuccess(User user) {
@@ -43,10 +35,16 @@ public abstract class Result {
         }
     }
 
-    /**
-     * Class that represents an error occurred during the interaction
-     * with a Web Service or a local database.
-     */
+    public static final class PhotoResponseSuccess extends Result {
+        private final Uri uri;
+        public PhotoResponseSuccess(Uri uri) {
+            this.uri = uri;
+        }
+        public Uri getData() {
+            return uri;
+        }
+    }
+
     public static final class Error extends Result {
         private final String message;
         public Error(String message) {

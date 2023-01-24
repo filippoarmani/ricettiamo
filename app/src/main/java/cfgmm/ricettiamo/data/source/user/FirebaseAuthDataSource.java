@@ -42,7 +42,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "signUp: failure");
-                    userResponseCallBack.onFailureRegistration(error.getLocalizedMessage());
+                    userResponseCallBack.onFailureRegistration("sign Up: failed");
                 });
     }
 
@@ -61,7 +61,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "signIn: failure");
-                    userResponseCallBack.onFailureLogin(error.getLocalizedMessage());
+                    userResponseCallBack.onFailureLogin("signIn: failed");
                 });
     }
 
@@ -104,7 +104,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                     })
                     .addOnFailureListener(error -> {
                         Log.d(TAG, "updateEmail: failure");
-                        userResponseCallBack.onFailureUpdateEmail(error.getLocalizedMessage());
+                        userResponseCallBack.onFailureUpdateEmail("Update email: failed");
                     });
         }
     }
@@ -124,12 +124,12 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                                 })
                                 .addOnFailureListener(error -> {
                                     Log.d(TAG, "updatePassword: failure");
-                                    userResponseCallBack.onFailureUpdatePassword(error.getLocalizedMessage());
+                                    userResponseCallBack.onFailureUpdatePassword("Update password: failed");
                                 });
                     })
                     .addOnFailureListener(error -> {
                         Log.d(TAG, "reauthenticate: failure");
-                        userResponseCallBack.onFailureUpdatePassword(error.getLocalizedMessage());
+                        userResponseCallBack.onFailureUpdatePassword("Update password: failed");
                     });
         } else {
             Log.d(TAG, "updatePassword: user null");
@@ -138,8 +138,12 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
     }
 
     @Override
-    public Uri getCurrentPhoto() {
-        return firebaseAuth.getCurrentUser().getPhotoUrl();
+    public void getCurrentPhoto() {
+        Uri uri = firebaseAuth.getCurrentUser().getPhotoUrl();
+        if(uri != null)
+            userResponseCallBack.onSuccessGetPhoto(uri);
+        else
+            userResponseCallBack.onFailureGetPhoto("Error with profile photo");
     }
 
     @Override
@@ -155,7 +159,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "setCurrentPhoto: failure");
-                    userResponseCallBack.onFailureSetPhoto(error.getLocalizedMessage());
+                    userResponseCallBack.onFailureSetPhoto("Error setting new User Photo");
                 });
     }
 

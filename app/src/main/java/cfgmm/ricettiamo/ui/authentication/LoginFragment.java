@@ -3,13 +3,11 @@ package cfgmm.ricettiamo.ui.authentication;
 import static android.text.TextUtils.isEmpty;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,12 +15,10 @@ import androidx.navigation.Navigation;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Objects;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
+import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.ui.navigation_drawer.MainActivity;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.UserViewModel;
@@ -75,10 +71,15 @@ public class LoginFragment extends Fragment {
 
             if (!(isEmpty(email) || isEmpty(password))) {
                 userViewModel.signIn(email, password);
+
+                Result result = userViewModel.getCurrentUserLiveData().getValue();
                 if(userViewModel.isLoggedUser()) {
                     updateUI();
                 } else {
-                    Snackbar.make(requireView(), R.string.generalError, Snackbar.LENGTH_LONG).show();
+                    if(!result.isSuccess()) {
+                        Result.Error error = (Result.Error) result;
+                        Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                    }
                 }
             } else {
                 Snackbar.make(requireView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();

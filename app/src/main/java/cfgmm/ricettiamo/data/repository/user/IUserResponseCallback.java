@@ -25,6 +25,9 @@ public interface IUserResponseCallback {
 
     void onSuccessLogout();
 
+    void onSuccessGetPhoto(Uri uri);
+    void onFailureGetPhoto(String localizedMessage);
+
     void onSuccessSetPhoto(Uri uri);
     void onFailureSetPhoto(String localizedMessage);
 }

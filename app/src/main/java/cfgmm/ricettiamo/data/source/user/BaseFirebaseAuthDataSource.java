@@ -22,7 +22,7 @@ public abstract class BaseFirebaseAuthDataSource {
     public abstract void updateEmail(String email);
     public abstract void updatePassword(String oldPassword, String newPassword);
 
-    public abstract Uri getCurrentPhoto();
+    public abstract void getCurrentPhoto();
     public abstract void updatePhoto(Uri uri);
 
     public abstract boolean isLoggedUser();

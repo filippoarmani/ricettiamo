@@ -28,6 +28,8 @@ import com.google.firebase.auth.FirebaseUser;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.ActivityMainBinding;
+import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.model.User;
 import cfgmm.ricettiamo.ui.authentication.AuthenticationActivity;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.UserViewModel;
@@ -94,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         userViewModel.getCurrentUserLiveData().observe(this, user -> {
-            if(userViewModel.isLoggedUser()) {
+            if(userViewModel.isLoggedUser() && user.isSuccess()) {
+                User currentuser = ((Result.UserResponseSuccess) user).getData();
                 menu.setGroupVisible(R.id.with_login, true);
                 menu.setGroupVisible(R.id.with_login2, true);
                 menu.setGroupVisible(R.id.with_login3, true);
@@ -102,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 login.setVisibility(View.GONE);
                 nome.setVisibility(View.VISIBLE);
 
-                nome.setText(user.getDisplayName());
+                nome.setText(currentuser.getDisplayName());
             } else {
                 menu.setGroupVisible(R.id.with_login, false);
                 menu.setGroupVisible(R.id.with_login2, false);

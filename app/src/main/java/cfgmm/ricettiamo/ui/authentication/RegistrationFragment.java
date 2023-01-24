@@ -19,6 +19,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
+import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.User;
 import cfgmm.ricettiamo.ui.navigation_drawer.MainActivity;
 import cfgmm.ricettiamo.util.ServiceLocator;
@@ -82,10 +83,14 @@ public class RegistrationFragment extends Fragment {
                 );
                 userViewModel.signUp(newUser, email, password);
 
+                Result result = userViewModel.getCurrentUserLiveData().getValue();
                 if(userViewModel.isLoggedUser()) {
                     updateUI();
                 } else {
-                    Snackbar.make(requireView(), R.string.generalError, Snackbar.LENGTH_LONG).show();
+                    if(!result.isSuccess()) {
+                        Result.Error error = (Result.Error) result;
+                        Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                    }
                 }
             }
         });

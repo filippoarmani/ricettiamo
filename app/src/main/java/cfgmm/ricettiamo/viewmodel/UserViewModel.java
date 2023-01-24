@@ -11,42 +11,46 @@ import java.util.Map;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
+import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.User;
 
 public class UserViewModel extends ViewModel {
 
     IUserRepository userRepository;
-    MutableLiveData<User> currentUserLiveData;
-    MutableLiveData<Uri> currentPhotoLiveData;
+    MutableLiveData<Result> currentUserLiveData;
+    MutableLiveData<Result> currentPhotoLiveData;
 
     public UserViewModel(IUserRepository userRepository) {
         this.userRepository = userRepository;
+        currentUserLiveData = new MutableLiveData<>();
     }
 
-    public void signUp(User newUser, String email, String password) { userRepository.signUp(newUser, email, password); }
+    public void signUp(User newUser, String email, String password) {
+        currentUserLiveData = userRepository.signUp(newUser, email, password); }
 
     public void signIn(String email, String password) {
-        userRepository.signIn(email, password);
+        currentUserLiveData = userRepository.signIn(email, password);
     }
 
-    public MutableLiveData<User> getCurrentUserLiveData() {
-        if(currentUserLiveData == null) {
+    public MutableLiveData<Result> getCurrentUserLiveData() {
+        if(currentUserLiveData.getValue() == null) {
             if(isLoggedUser()) {
                 currentUserLiveData = userRepository.getLoggedUser();
             } else {
-                currentUserLiveData = new MutableLiveData<>(null);
+                currentUserLiveData = new MutableLiveData<>(new Result.UserResponseSuccess(null));
             }
         }
 
         return currentUserLiveData;
     }
 
-    public MutableLiveData<Uri> getCurrentPhotoLiveData() {
+    public MutableLiveData<Result> getCurrentPhotoLiveData() {
         if(currentPhotoLiveData == null) {
             if(isLoggedUser()) {
                 currentPhotoLiveData = userRepository.getCurrentPhoto();
             } else {
-                currentPhotoLiveData = new MutableLiveData<>(Uri.parse(String.valueOf(R.drawable.user)));
+                currentPhotoLiveData = new MutableLiveData<>(
+                        new Result.PhotoResponseSuccess(Uri.parse(String.valueOf(R.drawable.user))));
             }
         }
 

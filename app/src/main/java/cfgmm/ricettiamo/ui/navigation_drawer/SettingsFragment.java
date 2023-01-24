@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -25,6 +26,7 @@ import java.util.Map;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentSettingsBinding;
+import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.UserViewModel;
 import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
@@ -67,24 +69,20 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), photo -> {
-            //binding.changeUserPhoto.setImageURI(photo);
-            Glide.with(this)
-                    .load(photo)
-                    .circleCrop()
-                    .into(binding.changeUserPhoto);
-            photoProfile = photo;
+        userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), result -> {
+            if(result.isSuccess()) {
+                Uri photo = ((Result.PhotoResponseSuccess) result).getData();
+                Glide.with(this)
+                        .load(photo)
+                        .circleCrop()
+                        .into(binding.changeUserPhoto);
+                photoProfile = photo;
+            }
         });
 
         binding.changeUserPhoto.setOnClickListener(v -> mGetContent.launch("image/*"));
 
         binding.salva.setOnClickListener(v -> {
-            ProgressDialog progress = new ProgressDialog(v.getContext());
-            progress.setTitle(R.string.progress_title);
-            progress.setMessage(String.valueOf(R.string.progress_message));
-            progress.setCancelable(false);
-            progress.show();
-
             String displayName = binding.iDName.getText().toString().trim();
 
             String description = binding.description.getText().toString().trim();
@@ -129,7 +127,12 @@ public class SettingsFragment extends Fragment {
             if(newInfo.size() > 0) {
                 userViewModel.updateData(newInfo);
             }
-            progress.dismiss();
+
+            Result result = userViewModel.getCurrentUserLiveData().getValue();
+            if(!result.isSuccess()) {
+                Result.Error error = (Result.Error) result;
+                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG);
+            }
         });
     }
 
