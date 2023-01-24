@@ -86,11 +86,9 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
         firebaseAuth.sendPasswordResetEmail(email)
                 .addOnSuccessListener(task -> {
                     Log.d(TAG, "resetPassword: success");
-                    userResponseCallBack.onSuccessResetPassword();
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "resetPassword: failure");
-                    userResponseCallBack.onFailureResetPassword(error.getLocalizedMessage());
                 });
     }
 

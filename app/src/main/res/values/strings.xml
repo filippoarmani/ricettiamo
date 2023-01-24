@@ -23,13 +23,6 @@
     <string name="recipe_position" translatable="false">1</string>
     <string name="ranking">Ranking</string>
 
-    <string name="upgrade_1">Share your recipes with the community and become a successful chef!</string>
-    <string name="upgrade_2">You will have a predefinte template for your recipe; where tou can add your photo.</string>
-    <string name="upgrade_3">Your recipes can be evaluated by the community through rating stars.</string>
-    <string name="upgrade_4">Reach succes by climbing the ranking among the top chefs of RicettiAmo.</string>
-    <string name="upgrade_5">What are you waiting for?</string>
-    <string name="upgrade_6">Join the Chef Community of RicettiAmo!</string>
-
     <!--upgradechef-->
     <string name="upgrade_button">Upgrade Chef</string>
 
@@ -117,7 +110,7 @@
     <string name="write_review">Write a review</string>
 
     <string name="confirmation">Are you sure?</string>
-    <string name="reset_password">reset password</string>
+    <string name="reset_password">Reset Password</string>
     <string name="instruction_reset">All you need to reset your password is your email address!</string>
     <string name="instruction_reset2">You will receive an email containing instructions for resetting your password</string>
     <string name="instruction_reset3">Can\'t find the email? Try looking in spam</string>
@@ -168,9 +161,12 @@
 
     <!-- Example of a description with all the 250 characters -->
     <string name="character250" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac risus in augue fringilla vestibulum. Suspendisse tempor sem quis tortor blandit aliquam. Pellentesque vulputate lorem in dui aliquet, eu tincidunt mi finibus. Morbi bibendum fusce.</string>
+
     <string name="search">Search</string>
     <string name="unexpected_error">Unexpected Error</string>
     <string name="api_key_error">API Key not valid or maximum number of request reached</string>
     <string name="error_retrieving_recipe">Error in retrieving recipes</string>
+
+    <string name="generalError">An error has occurred. Try again!</string>
 
 </resources>

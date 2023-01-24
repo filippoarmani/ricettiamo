@@ -118,6 +118,7 @@
     <string name="unexpected_error">Errore Inaspettato</string>
     <string name="api_key_error">Chiave API non valida oppure è stato raggiunto il numero massimo di chiamate</string>
     <string name="error_retrieving_recipe">Errore nel recupero delle ricette</string>
+    <string name="generalError">Si è verificato un errore. Riprova!</string>
 
 
 </resources>

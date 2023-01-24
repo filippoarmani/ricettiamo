@@ -1,7 +1,6 @@
 package cfgmm.ricettiamo.data.repository.user;
 
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -112,12 +111,6 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
 
     @Override
     public void onFailureLogin(String localizedMessage) { }
-
-    @Override
-    public void onSuccessResetPassword() { }
-
-    @Override
-    public void onFailureResetPassword(String localizedMessage) { }
 
     @Override
     public void onSuccessUpdateEmail() { }

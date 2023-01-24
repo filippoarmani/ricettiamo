@@ -3,7 +3,6 @@ package cfgmm.ricettiamo.ui.authentication;
 import static android.text.TextUtils.isEmpty;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,7 +73,7 @@ public class RegistrationFragment extends Fragment {
             String password = e_password.getEditText().getText().toString().trim();
 
 
-            if(checkOk(v, name, surname, email, password)) {
+            if(checkOk(name, surname, email, password)) {
                 User newUser = new User(
                         null,
                         name,
@@ -82,21 +81,24 @@ public class RegistrationFragment extends Fragment {
                         email
                 );
                 userViewModel.signUp(newUser, email, password);
-                updateUI();
+
+                if(userViewModel.isLoggedUser()) {
+                    updateUI();
+                } else {
+                    Snackbar.make(requireView(), R.string.generalError, Snackbar.LENGTH_LONG).show();
+                }
             }
         });
     }
 
-    private boolean checkOk(View v, String name, String surname, String email, String password) {
+    private boolean checkOk(String name, String surname, String email, String password) {
         if(isEmpty(name) || isEmpty(surname) || isEmpty(email) || isEmpty(password)) {
-            Snackbar.make(v, R.string.empty_fields, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Snackbar.make(requireView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
             return false;
         }
 
         if(!EmailValidator.getInstance().isValid(email)) {
-            Snackbar.make(v, "Invalid Email", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Snackbar.make(requireView(), "Invalid Email", Snackbar.LENGTH_LONG).show();
             return false;
         }
 

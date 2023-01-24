@@ -16,8 +16,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+
+import org.apache.commons.validator.routines.EmailValidator;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
@@ -60,19 +64,17 @@ public class ForgotPasswordFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Button cancel = view.findViewById(R.id.pd_cancel);
         Button reset = view.findViewById(R.id.pd_reset);
         email_layout = view.findViewById(R.id.pd_email_layout);
-
-        cancel.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_forgotPasswordFragment_to_loginFragment);
-        });
 
         reset.setOnClickListener(v -> {
             String email = email_layout.getEditText().getText().toString().trim();
 
             if (!isEmpty(email)) {
-                userViewModel.resetPassword(email);
+                if(EmailValidator.getInstance().isValid(email))
+                    userViewModel.resetPassword(email);
+                else
+                    Snackbar.make(requireView(), "Invalid Email", Snackbar.LENGTH_LONG).show();
             }
         });
     }

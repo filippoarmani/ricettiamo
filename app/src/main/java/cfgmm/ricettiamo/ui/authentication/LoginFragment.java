@@ -19,6 +19,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.ui.navigation_drawer.MainActivity;
@@ -73,9 +75,13 @@ public class LoginFragment extends Fragment {
 
             if (!(isEmpty(email) || isEmpty(password))) {
                 userViewModel.signIn(email, password);
-                updateUI();
+                if(userViewModel.isLoggedUser()) {
+                    updateUI();
+                } else {
+                    Snackbar.make(requireView(), R.string.generalError, Snackbar.LENGTH_LONG).show();
+                }
             } else {
-                Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(requireView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
             }
         });
 

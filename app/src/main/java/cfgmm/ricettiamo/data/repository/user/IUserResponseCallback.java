@@ -11,9 +11,6 @@ public interface IUserResponseCallback {
     void onSuccessLogin(String uid);
     void onFailureLogin(String localizedMessage);
 
-    void onSuccessResetPassword();
-    void onFailureResetPassword(String localizedMessage);
-
     void onSuccessUpdateEmail();
     void onFailureUpdateEmail(String localizedMessage);
 
