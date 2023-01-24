@@ -37,12 +37,12 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                         userResponseCallBack.onSuccessRegistration(newUser);
                     } else {
                         Log.d(TAG, "signUp: user null");
-                        userResponseCallBack.onFailureRegistration("User null");
+                        userResponseCallBack.onFailureRegistration(R.string.registration_error);
                     }
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "signUp: failure");
-                    userResponseCallBack.onFailureRegistration("sign Up: failed");
+                    userResponseCallBack.onFailureRegistration(R.string.registration_error);
                 });
     }
 
@@ -56,12 +56,12 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                         userResponseCallBack.onSuccessLogin(user.getUid());
                     } else {
                         Log.d(TAG, "signIn: user null");
-                        userResponseCallBack.onFailureLogin("User null");
+                        userResponseCallBack.onFailureLogin(R.string.login_error);
                     }
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "signIn: failure");
-                    userResponseCallBack.onFailureLogin("signIn: failed");
+                    userResponseCallBack.onFailureLogin(R.string.login_error);
                 });
     }
 
@@ -104,7 +104,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                     })
                     .addOnFailureListener(error -> {
                         Log.d(TAG, "updateEmail: failure");
-                        userResponseCallBack.onFailureUpdateEmail("Update email: failed");
+                        userResponseCallBack.onFailureUpdateEmail(R.string.updateEmail_error);
                     });
         }
     }
@@ -124,16 +124,16 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                                 })
                                 .addOnFailureListener(error -> {
                                     Log.d(TAG, "updatePassword: failure");
-                                    userResponseCallBack.onFailureUpdatePassword("Update password: failed");
+                                    userResponseCallBack.onFailureUpdatePassword(R.string.updatePassword_error);
                                 });
                     })
                     .addOnFailureListener(error -> {
                         Log.d(TAG, "reauthenticate: failure");
-                        userResponseCallBack.onFailureUpdatePassword("Update password: failed");
+                        userResponseCallBack.onFailureUpdatePassword(R.string.updatePassword_error);
                     });
         } else {
             Log.d(TAG, "updatePassword: user null");
-            userResponseCallBack.onFailureUpdatePassword("User null");
+            userResponseCallBack.onFailureUpdatePassword(R.string.updatePassword_error);
         }
     }
 
@@ -143,7 +143,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
         if(uri != null)
             userResponseCallBack.onSuccessGetPhoto(uri);
         else
-            userResponseCallBack.onFailureGetPhoto("Error with profile photo");
+            userResponseCallBack.onFailureGetPhoto(R.string.getPhoto_error);
     }
 
     @Override
@@ -159,7 +159,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "setCurrentPhoto: failure");
-                    userResponseCallBack.onFailureSetPhoto("Error setting new User Photo");
+                    userResponseCallBack.onFailureSetPhoto(R.string.updatePhoto_error);
                 });
     }
 
@@ -169,5 +169,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
     }
 
     @Override
-    public String getCurrentId() { return Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid(); }
+    public String getCurrentId() {
+        return Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
+    }
 }

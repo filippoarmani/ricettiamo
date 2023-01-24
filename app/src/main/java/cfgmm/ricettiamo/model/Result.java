@@ -46,11 +46,11 @@ public abstract class Result {
     }
 
     public static final class Error extends Result {
-        private final String message;
-        public Error(String message) {
+        private final int message;
+        public Error(int message) {
             this.message = message;
         }
-        public String getMessage() {
+        public int getMessage() {
             return message;
         }
     }

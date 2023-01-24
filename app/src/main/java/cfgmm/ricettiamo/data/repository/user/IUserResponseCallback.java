@@ -6,28 +6,28 @@ import cfgmm.ricettiamo.model.User;
 
 public interface IUserResponseCallback {
     void onSuccessRegistration(User newUser);
-    void onFailureRegistration(String localizedMessage);
+    void onFailureRegistration(int idError);
 
     void onSuccessLogin(String uid);
-    void onFailureLogin(String localizedMessage);
+    void onFailureLogin(int idError);
 
     void onSuccessUpdateEmail();
-    void onFailureUpdateEmail(String localizedMessage);
+    void onFailureUpdateEmail(int idError);
 
     void onSuccessUpdatePassword();
-    void onFailureUpdatePassword(String localizedMessage);
+    void onFailureUpdatePassword(int idError);
 
     void onSuccessWriteDatabase();
-    void onFailureWriteDatabase(String localizedMessage);
+    void onFailureWriteDatabase(int idError);
 
     void onSuccessReadDatabase(User user);
-    void onFailureReadDatabase(String localizedMessage);
+    void onFailureReadDatabase(int idError);
 
     void onSuccessLogout();
 
     void onSuccessGetPhoto(Uri uri);
-    void onFailureGetPhoto(String localizedMessage);
+    void onFailureGetPhoto(int idError);
 
     void onSuccessSetPhoto(Uri uri);
-    void onFailureSetPhoto(String localizedMessage);
+    void onFailureSetPhoto(int idError);
 }

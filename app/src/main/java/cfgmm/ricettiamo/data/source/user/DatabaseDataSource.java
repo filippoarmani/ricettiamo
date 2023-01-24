@@ -10,6 +10,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Map;
 
+import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.User;
 
 public class DatabaseDataSource extends BaseDatabaseDataSource {
@@ -32,7 +33,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "writeUser: failure");
-                    userResponseCallBack.onFailureWriteDatabase("write: failed");
+                    userResponseCallBack.onFailureWriteDatabase(R.string.writeDatabase_error);
                 });
     }
 
@@ -45,7 +46,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "readUser: failure");
-                    userResponseCallBack.onFailureReadDatabase("read: failed");
+                    userResponseCallBack.onFailureReadDatabase(R.string.readDatabase_error);
                 });
     }
 
@@ -59,7 +60,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "updateUser: failure");
-                    userResponseCallBack.onFailureWriteDatabase("update data: failed");
+                    userResponseCallBack.onFailureWriteDatabase(R.string.updateData_error);
                 });
     }
 

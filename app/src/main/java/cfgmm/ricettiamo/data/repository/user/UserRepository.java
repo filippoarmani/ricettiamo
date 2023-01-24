@@ -101,8 +101,8 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
-    public void onFailureRegistration(String localizedMessage) {
-        currentUser.postValue(new Result.Error(localizedMessage));
+    public void onFailureRegistration(int idError) {
+        currentUser.postValue(new Result.Error(idError));
     }
 
     @Override
@@ -111,32 +111,32 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
-    public void onFailureLogin(String localizedMessage) {
-        currentUser.postValue(new Result.Error(localizedMessage));
+    public void onFailureLogin(int idError) {
+        currentUser.postValue(new Result.Error(idError));
     }
 
     @Override
     public void onSuccessUpdateEmail() { }
 
     @Override
-    public void onFailureUpdateEmail(String localizedMessage) {
-        currentUser.postValue(new Result.Error(localizedMessage));
+    public void onFailureUpdateEmail(int idError) {
+        currentUser.postValue(new Result.Error(idError));
     }
 
     @Override
     public void onSuccessUpdatePassword() { }
 
     @Override
-    public void onFailureUpdatePassword(String localizedMessage) {
-        currentUser.postValue(new Result.Error(localizedMessage));
+    public void onFailureUpdatePassword(int idError) {
+        currentUser.postValue(new Result.Error(idError));
     }
 
     @Override
     public void onSuccessWriteDatabase() { }
 
     @Override
-    public void onFailureWriteDatabase(String localizedMessage) {
-        currentUser.postValue(new Result.Error(localizedMessage));
+    public void onFailureWriteDatabase(int idError) {
+        currentUser.postValue(new Result.Error(idError));
     }
 
     @Override
@@ -145,8 +145,8 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
-    public void onFailureReadDatabase(String localizedMessage) {
-        currentUser.postValue(new Result.Error(localizedMessage));
+    public void onFailureReadDatabase(int idError) {
+        currentUser.postValue(new Result.Error(idError));
     }
 
     @Override
@@ -161,8 +161,8 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
-    public void onFailureGetPhoto(String localizedMessage) {
-        currentPhoto.postValue(new Result.Error(localizedMessage));
+    public void onFailureGetPhoto(int idError) {
+        currentPhoto.postValue(new Result.Error(idError));
     }
 
     @Override
@@ -171,7 +171,7 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
-    public void onFailureSetPhoto(String localizedMessage) {
-        currentPhoto.postValue(new Result.Error(localizedMessage));
+    public void onFailureSetPhoto(int idError) {
+        currentPhoto.postValue(new Result.Error(idError));
     }
 }
