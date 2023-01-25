@@ -1,15 +1,18 @@
 package cfgmm.ricettiamo.viewmodel;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
 
-public class RecipeViewModel {
+public class RecipeViewModel extends ViewModel {
     private static final String TAG = RecipeViewModel.class.getSimpleName();
-
     private final IRecipesRepository recipesRepository;
+    private int page;
+    private int currentResult;
+    private int totalResult;
     private boolean isLoading;
     private boolean firstLoading;
     private MutableLiveData<Result> recipesList;
@@ -17,6 +20,8 @@ public class RecipeViewModel {
 
     public RecipeViewModel(IRecipesRepository iRecipesRepository) {
         this.recipesRepository = iRecipesRepository;
+        this.page = 1;
+        this.totalResult = 0;
         this.firstLoading = true;
     }
 
