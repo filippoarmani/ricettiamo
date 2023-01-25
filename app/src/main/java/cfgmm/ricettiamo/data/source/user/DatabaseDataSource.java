@@ -103,7 +103,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
         topTen.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int i = 1;
+                int i = 0;
                 for (DataSnapshot snapshot:  dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
                     assert user != null;
@@ -113,6 +113,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                         i++;
                     }
                 }
+                i = (int) dataSnapshot.getChildrenCount() - i;
                 Log.d(TAG, "getPosition: success");
                 userResponseCallBack.onSuccessGetPosition(i);
             }
@@ -120,7 +121,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "getPosition: failure");
-                userResponseCallBack.onFailureGetTopTen(R.string.retrievingDatabase_error);
+                userResponseCallBack.onFailureGetPosition(R.string.retrievingDatabase_error);
             }
         });
     }
