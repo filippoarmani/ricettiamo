@@ -87,7 +87,6 @@
     <string name="new_email_again">Digita nuovamente la nuova Email</string>
     <string name="list_size_message">"la dimensione della lista è "</string>
     <string name="search_recipe">Cerca Ricetta</string>
-    <string name="top_chef">Top 3 Cuochi</string>
     <string name="top_10_chef">Top 10 Cuochi</string>
     <string name="min">minuti</string>
     <string name="people">persone</string>
@@ -102,7 +101,7 @@
     <string name="updatePassword_error">Si è verificato un errore in fase di aggiornamento della password. Per favore controlla i tuoi dati e la connessione e riprova</string>
     <string name="updatePhoto_error">Si è verificato un errore in fase di aggiornamento della foto. Per favore controlla la connessione e riprova</string>
     <string name="getPhoto_error">Si è verificato un errore in fase di caricamento della foto. Per favore controlla la connessione e riprova</string>
-    <string name="readDatabase_error">Si è verificato un errore in fase di recupero dei dati. Per favore controlla la connessione e riprova</string>
+    <string name="retrievingDatabase_error">Si è verificato un errore in fase di recupero dei dati. Per favore controlla la connessione e riprova</string>
     <string name="writeDatabase_error">Si è verificato un errore in fase di salvataggio dei dati. Per favore controlla la connessione e riprova</string>
     <string name="updateData_error">Si è verificato un errore in fase di aggiornamento dei dati. Per favore controlla la connessione e riprova</string>
 

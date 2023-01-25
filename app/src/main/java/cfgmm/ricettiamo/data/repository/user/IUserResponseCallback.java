@@ -2,6 +2,8 @@ package cfgmm.ricettiamo.data.repository.user;
 
 import android.net.Uri;
 
+import java.util.List;
+
 import cfgmm.ricettiamo.model.User;
 
 public interface IUserResponseCallback {
@@ -30,4 +32,10 @@ public interface IUserResponseCallback {
 
     void onSuccessSetPhoto(Uri uri);
     void onFailureSetPhoto(int idError);
+
+    void onSuccessGetTopTen(List<User> topTen);
+    void onFailureGetTopTen(int idError);
+
+    void onSuccessGetPosition(int i);
+    void onFailureGetPosition(int idError);
 }

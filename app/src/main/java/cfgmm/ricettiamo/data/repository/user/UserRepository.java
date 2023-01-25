@@ -4,6 +4,7 @@ import android.net.Uri;
 
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.List;
 import java.util.Map;
 
 import cfgmm.ricettiamo.R;
@@ -19,6 +20,8 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
 
     MutableLiveData<Result> currentUser;
     MutableLiveData<Result> currentPhoto;
+    MutableLiveData<Result> topTenList;
+    MutableLiveData<Result> position;
 
     public UserRepository(BaseFirebaseAuthDataSource firebaseAuthDataSource,
                           BaseDatabaseDataSource databaseDataSource) {
@@ -26,33 +29,41 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
         this.databaseDataSource = databaseDataSource;
         this.currentUser = new MutableLiveData<>();
         this.currentPhoto = new MutableLiveData<>();
+        this.topTenList = new MutableLiveData<>();
+        this.position = new MutableLiveData<>();
 
         this.firebaseAuthDataSource.setCallBack(this);
         this.databaseDataSource.setCallBack(this);
     }
 
+    @Override
     public MutableLiveData<Result> signUp(User newUser, String email, String password) {
         firebaseAuthDataSource.signUp(newUser, email, password);
         return currentUser;
     }
 
+    @Override
     public MutableLiveData<Result> signIn(String email, String password) {
         firebaseAuthDataSource.signIn(email, password);
         return currentUser;
     }
 
+    @Override
     public void resetPassword(String email) {
         firebaseAuthDataSource.resetPassword(email);
     }
 
+    @Override
     public void updateEmail(String email) {
         firebaseAuthDataSource.updateEmail(email);
     }
 
+    @Override
     public void updatePassword(String oldPassword, String newPassword) {
         firebaseAuthDataSource.updatePassword(oldPassword, newPassword);
     }
 
+    @Override
     public boolean isLoggedUser() {
         return firebaseAuthDataSource.isLoggedUser();
     }
@@ -71,10 +82,12 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
         firebaseAuthDataSource.updatePhoto(uri);
     }
 
+    @Override
     public void writeUser(User newUser) {
         databaseDataSource.writeUser(newUser);
     }
 
+    @Override
     public void readUser(String id) {
         databaseDataSource.readUser(id);
     }
@@ -85,14 +98,28 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
         return currentUser;
     }
 
+    @Override
     public MutableLiveData<Result> getCurrentPhoto() {
         firebaseAuthDataSource.getCurrentPhoto();
         return currentPhoto;
     }
 
+    @Override
     public MutableLiveData<Result> signOut() {
         firebaseAuthDataSource.signOut();
         return currentUser;
+    }
+
+    @Override
+    public MutableLiveData<Result> getTopTen() {
+        databaseDataSource.getTopTen();
+        return topTenList;
+    }
+
+    @Override
+    public MutableLiveData<Result> getPosition() {
+        databaseDataSource.getPosition(firebaseAuthDataSource.getCurrentId());
+        return position;
     }
 
     @Override
@@ -173,5 +200,25 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     @Override
     public void onFailureSetPhoto(int idError) {
         currentPhoto.postValue(new Result.Error(idError));
+    }
+
+    @Override
+    public void onSuccessGetTopTen(List<User> topTen) {
+        topTenList.postValue(new Result.TopTenResponseSuccess(topTen));
+    }
+
+    @Override
+    public void onFailureGetTopTen(int idError) {
+        topTenList.postValue(new Result.Error(idError));
+    }
+
+    @Override
+    public void onSuccessGetPosition(int i) {
+        position.postValue(new Result.PositionResponseSuccess(i));
+    }
+
+    @Override
+    public void onFailureGetPosition(int idError) {
+        position.postValue(new Result.Error(idError));
     }
 }

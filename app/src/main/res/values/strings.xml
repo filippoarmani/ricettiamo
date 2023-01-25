@@ -113,7 +113,7 @@
     <string name="updateData_error">An error occurred while updating your data. Please check your connection and try again</string>
     <string name="updatePhoto_error">An error occurred while updating your photo. Please check your connection and try again</string>
     <string name="getPhoto_error">An error occurred while retrieving your photo. Please check your connection and try again</string>
-    <string name="readDatabase_error">There was an error retrieving your data. Please check your connection and try again</string>
+    <string name="retrievingDatabase_error">There was an error retrieving your data. Please check your connection and try again</string>
     <string name="writeDatabase_error">There was an error saving your data. Please check your connection and try again</string>
 
     <!-- inserisci_ricetta -->
@@ -145,7 +145,6 @@
     <string name="list_size_message">The size of the list is</string>
 
     <!-- top -->
-    <string name="top_chef">Top 3 Chefs</string>
     <string name="top_10_chef">Top 10 Chefs</string>
     <string name="recipes_api_key" translatable="false">02817c2dcd744b73bb0cd25814f1bce9</string>
 

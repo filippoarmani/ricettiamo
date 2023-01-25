@@ -2,65 +2,120 @@ package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.data.repository.user.IUserRepository;
+import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.model.User;
+import cfgmm.ricettiamo.util.ServiceLocator;
+import cfgmm.ricettiamo.viewmodel.UserViewModel;
+import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RankingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class RankingFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private UserViewModel userViewModel;
 
     public RankingFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ranking.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static RankingFragment newInstance(String param1, String param2) {
         RankingFragment fragment = new RankingFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
+        userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ranking, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        CardView[] cardViews = {
+                view.findViewById(R.id.card1),
+                view.findViewById(R.id.card2),
+                view.findViewById(R.id.card3),
+                view.findViewById(R.id.card4),
+                view.findViewById(R.id.card5),
+                view.findViewById(R.id.card6),
+                view.findViewById(R.id.card7),
+                view.findViewById(R.id.card8),
+                view.findViewById(R.id.card9),
+                view.findViewById(R.id.card10)
+        };
+
+        TextView[] displayNameTextViews = {
+                view.findViewById(R.id.displayName1),
+                view.findViewById(R.id.displayName2),
+                view.findViewById(R.id.displayName3),
+                view.findViewById(R.id.displayName4),
+                view.findViewById(R.id.displayName5),
+                view.findViewById(R.id.displayName6),
+                view.findViewById(R.id.displayName7),
+                view.findViewById(R.id.displayName8),
+                view.findViewById(R.id.displayName9),
+                view.findViewById(R.id.displayName10)
+        };
+
+        TextView[] starsTextViews = {
+                view.findViewById(R.id.star1),
+                view.findViewById(R.id.star2),
+                view.findViewById(R.id.star3),
+                view.findViewById(R.id.star4),
+                view.findViewById(R.id.star5),
+                view.findViewById(R.id.star6),
+                view.findViewById(R.id.star7),
+                view.findViewById(R.id.star8),
+                view.findViewById(R.id.star9),
+                view.findViewById(R.id.star10)
+        };
+
+        userViewModel.getTopTen().observe(getViewLifecycleOwner(), result -> {
+            int i = 0;
+            if(result.isSuccess()) {
+                List<User> topTen = ((Result.TopTenResponseSuccess) result).getData();
+                for(User user: topTen) {
+                    cardViews[i].setVisibility(View.VISIBLE);
+                    displayNameTextViews[i].setText(user.getDisplayName());
+                    starsTextViews[i].setText(user.getTotalStars());
+                    i++;
+                }
+
+                for(int j=i; j<10; j++) {
+                    cardViews[j].setVisibility(View.GONE);
+                }
+
+            } else {
+                Result.Error error = ((Result.Error) result);
+                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+
+                for(int j=i; j<10; j++) {
+                    cardViews[j].setVisibility(View.GONE);
+                }
+            }
+        });
     }
 }
