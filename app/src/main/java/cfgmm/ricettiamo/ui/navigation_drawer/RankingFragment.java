@@ -94,26 +94,26 @@ public class RankingFragment extends Fragment {
         };
 
         userViewModel.getTopTen().observe(getViewLifecycleOwner(), result -> {
-            int i = 0;
             if(result.isSuccess()) {
-                List<User> topTen = ((Result.TopTenResponseSuccess) result).getData();
-                for(User user: topTen) {
-                    cardViews[i].setVisibility(View.VISIBLE);
-                    displayNameTextViews[i].setText(user.getDisplayName());
-                    starsTextViews[i].setText(user.getTotalStars());
-                    i++;
+                User[] topTen = ((Result.TopTenResponseSuccess) result).getData();
+                for(int i=0; i<10; i++) {
+                    if(topTen[i] != null) {
+                        cardViews[i].setVisibility(View.VISIBLE);
+                        displayNameTextViews[i].setText(topTen[i].getDisplayName());
+                        String star = "" + topTen[i].getTotalStars();
+                        starsTextViews[i].setText(star);
+                    } else {
+                        cardViews[i].setVisibility(View.GONE);
+                    }
                 }
-
-                for(int j=i; j<10; j++) {
-                    cardViews[j].setVisibility(View.GONE);
-                }
-
             } else {
                 Result.Error error = ((Result.Error) result);
-                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG)
+                        .setAction(R.string.retry, v -> userViewModel.getTopTen())
+                        .show();
 
-                for(int j=i; j<10; j++) {
-                    cardViews[j].setVisibility(View.GONE);
+                for(int i=0; i<10; i++) {
+                    cardViews[i].setVisibility(View.GONE);
                 }
             }
         });

@@ -172,4 +172,17 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
     public String getCurrentId() {
         return Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
     }
+
+    @Override
+    public void delete() {
+        firebaseAuth.getCurrentUser().delete()
+                .addOnSuccessListener( task -> {
+                    Log.d(TAG, "deleted: success");
+                    userResponseCallBack.onSuccessDelete();
+                })
+                .addOnFailureListener(error -> {
+                    Log.d(TAG, "deleted: failure");
+                    userResponseCallBack.onFailureDelete();
+                });
+    }
 }

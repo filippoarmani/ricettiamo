@@ -50,11 +50,11 @@ public abstract class Result {
     }
 
     public static final class TopTenResponseSuccess extends Result {
-        private final List<User> topTen;
-        public TopTenResponseSuccess(List<User> topTen) {
+        private final User[] topTen;
+        public TopTenResponseSuccess(User[] topTen) {
             this.topTen = topTen;
         }
-        public List<User> getData() {
+        public User[] getData() {
             return topTen;
         }
     }

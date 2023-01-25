@@ -3,11 +3,15 @@ package cfgmm.ricettiamo.data.source.user;
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_REALTIME_DATABASE;
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_USERS_COLLECTION;
 
+import android.graphics.Path;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,44 +75,54 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
 
     @Override
     public void getTopTen() {
-        databaseReference.child(FIREBASE_USERS_COLLECTION).orderByChild("totalStars").get()
-                .addOnSuccessListener(task -> {
-                    List<User> topTen = new ArrayList<>();
-                    for (DataSnapshot snapshot:  task.getChildren()) {
-                        topTen.add(snapshot.getValue(User.class));
+        Query topTen = databaseReference.child(FIREBASE_USERS_COLLECTION).orderByChild("totalStars").limitToFirst(10);
+        topTen.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User[] topTen = new User[10];
+                int i = (int) dataSnapshot.getChildrenCount() - 1;
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    topTen[i] = postSnapshot.getValue(User.class);
+                    i--;
+                }
+                Log.d(TAG, "getTopTen: success");
+                userResponseCallBack.onSuccessGetTopTen(topTen);
+            }
 
-                        if(topTen.size() == 10) {
-                            break;
-                        }
-                    }
-                    userResponseCallBack.onSuccessGetTopTen(topTen);
-                })
-                .addOnFailureListener(error -> {
-                   Log.d(TAG, "getTopTen: failure");
-                   userResponseCallBack.onFailureGetTopTen(R.string.retrievingDatabase_error);
-                });
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "getTopTen: failure");
+                userResponseCallBack.onFailureGetTopTen(R.string.retrievingDatabase_error);
+            }
+        });
     }
 
     @Override
     public void getPosition(String id) {
-        databaseReference.child(FIREBASE_USERS_COLLECTION).orderByChild("totalStars").get()
-                .addOnSuccessListener(task -> {
-                    int i = 1;
-                    for (DataSnapshot snapshot:  task.getChildren()) {
-                        User user = snapshot.getValue(User.class);
-                        assert user != null;
-                        if(id.equals(user.getId())) {
-                            break;
-                        } else {
-                            i++;
-                        }
+        Query topTen = databaseReference.child(FIREBASE_USERS_COLLECTION).orderByChild("totalStars");
+        topTen.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int i = 1;
+                for (DataSnapshot snapshot:  dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
+                    assert user != null;
+                    if(id.equals(user.getId())) {
+                        break;
+                    } else {
+                        i++;
                     }
-                    userResponseCallBack.onSuccessGetPosition(i);
-                })
-                .addOnFailureListener(error -> {
-                    Log.d(TAG, "getTopTen: failure");
-                    userResponseCallBack.onFailureGetPosition(R.string.retrievingDatabase_error);
-                });
+                }
+                Log.d(TAG, "getPosition: success");
+                userResponseCallBack.onSuccessGetPosition(i);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "getPosition: failure");
+                userResponseCallBack.onFailureGetTopTen(R.string.retrievingDatabase_error);
+            }
+        });
     }
 
 }

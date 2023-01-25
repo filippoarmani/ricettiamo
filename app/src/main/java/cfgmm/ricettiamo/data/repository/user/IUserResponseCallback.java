@@ -33,9 +33,12 @@ public interface IUserResponseCallback {
     void onSuccessSetPhoto(Uri uri);
     void onFailureSetPhoto(int idError);
 
-    void onSuccessGetTopTen(List<User> topTen);
+    void onSuccessGetTopTen(User[] topTen);
     void onFailureGetTopTen(int idError);
 
     void onSuccessGetPosition(int i);
     void onFailureGetPosition(int idError);
+
+    void onSuccessDelete();
+    void onFailureDelete();
 }

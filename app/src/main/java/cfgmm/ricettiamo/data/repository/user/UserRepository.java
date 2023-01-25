@@ -163,6 +163,7 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
 
     @Override
     public void onFailureWriteDatabase(int idError) {
+        firebaseAuthDataSource.delete();
         currentUser.postValue(new Result.Error(idError));
     }
 
@@ -203,7 +204,7 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
-    public void onSuccessGetTopTen(List<User> topTen) {
+    public void onSuccessGetTopTen(User[] topTen) {
         topTenList.postValue(new Result.TopTenResponseSuccess(topTen));
     }
 
@@ -220,5 +221,13 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     @Override
     public void onFailureGetPosition(int idError) {
         position.postValue(new Result.Error(idError));
+    }
+
+    @Override
+    public void onSuccessDelete() { }
+
+    @Override
+    public void onFailureDelete() {
+        firebaseAuthDataSource.delete();
     }
 }

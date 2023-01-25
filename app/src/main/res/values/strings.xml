@@ -115,6 +115,7 @@
     <string name="getPhoto_error">An error occurred while retrieving your photo. Please check your connection and try again</string>
     <string name="retrievingDatabase_error">There was an error retrieving your data. Please check your connection and try again</string>
     <string name="writeDatabase_error">There was an error saving your data. Please check your connection and try again</string>
+    <string name="retry">Retry</string>
 
     <!-- inserisci_ricetta -->
     <string name="add_photo">Add the main picture</string>
