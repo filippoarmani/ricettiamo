@@ -106,6 +106,7 @@
 
     <!-- Java Strings -->
     <string name="empty_fields">The fields must not be empty</string>
+    <string name="field_not_match">The fields do not match</string>
     <string name="login_error">An error occurred while logging in. Please check your data and connection and try again</string>
     <string name="registration_error">An error occurred while creating your account. Please check your data and connection and try again</string>
     <string name="updateEmail_error">An error occurred while updating your email. Please check your data and connection and try again</string>

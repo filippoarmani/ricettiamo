@@ -2,8 +2,6 @@ package cfgmm.ricettiamo.data.repository.user;
 
 import android.net.Uri;
 
-import java.util.List;
-
 import cfgmm.ricettiamo.model.User;
 
 public interface IUserResponseCallback {
@@ -41,4 +39,7 @@ public interface IUserResponseCallback {
 
     void onSuccessDelete();
     void onFailureDelete();
+
+    void onSuccessUpdateDatabase();
+    void onFailureUpdateDatabase(int idError);
 }

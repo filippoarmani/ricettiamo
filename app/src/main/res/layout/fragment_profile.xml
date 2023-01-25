@@ -29,7 +29,6 @@
         android:fontFamily="@font/montserrat"
         android:gravity="center"
         android:text="@string/full_name"
-        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
@@ -43,6 +42,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Display Name"
+        android:fontFamily="@font/montserrat"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/fullName" />
@@ -72,7 +72,6 @@
         android:fontFamily="@font/montserrat"
         android:gravity="center"
         android:text="@string/email"
-        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/descriptionCardView"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
@@ -118,10 +117,11 @@
         app:layout_constraintStart_toStartOf="@+id/starsCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recipeCL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
-            android:focusable="auto">
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/myrecipe"
@@ -145,6 +145,8 @@
                 android:background="@drawable/ic_book"
                 android:contentDescription="@string/my_stars"
                 android:elevation="10dp"
+                android:outlineAmbientShadowColor="@color/black"
+                android:outlineSpotShadowColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/myrecipe" />
@@ -228,24 +230,25 @@
         app:layout_constraintStart_toStartOf="@+id/left_guideline">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/starsCL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
-            android:focusable="auto">
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/myStars"
+                style="@style/title"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
 
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/my_stars"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/title" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/stella"
@@ -293,24 +296,25 @@
         app:layout_constraintTop_toTopOf="@+id/starsCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/positionCL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
-            android:focusable="auto">
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/miapos"
+                style="@style/title"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
 
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/my_position"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/title" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/trophy"
@@ -322,6 +326,8 @@
                 android:background="@drawable/ic_trophy"
                 android:contentDescription="@string/my_stars"
                 android:elevation="10dp"
+                android:outlineAmbientShadowColor="@color/black"
+                android:outlineSpotShadowColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/miapos" />

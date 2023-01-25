@@ -4,7 +4,6 @@ import android.net.Uri;
 
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.List;
 import java.util.Map;
 
 import cfgmm.ricettiamo.R;
@@ -146,9 +145,7 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     public void onSuccessUpdateEmail() { }
 
     @Override
-    public void onFailureUpdateEmail(int idError) {
-        currentUser.postValue(new Result.Error(idError));
-    }
+    public void onFailureUpdateEmail(int idError) { currentUser.postValue(new Result.Error(idError)); }
 
     @Override
     public void onSuccessUpdatePassword() { }
@@ -229,5 +226,15 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     @Override
     public void onFailureDelete() {
         firebaseAuthDataSource.delete();
+    }
+
+    @Override
+    public void onSuccessUpdateDatabase() {
+
+    }
+
+    @Override
+    public void onFailureUpdateDatabase(int idError) {
+
     }
 }

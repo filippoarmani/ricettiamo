@@ -3,7 +3,6 @@ package cfgmm.ricettiamo.data.source.user;
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_REALTIME_DATABASE;
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_USERS_COLLECTION;
 
-import android.graphics.Path;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -13,8 +12,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import cfgmm.ricettiamo.R;
@@ -47,16 +44,22 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
 
     @Override
     public void readUser(String id) {
-        databaseReference.child(FIREBASE_USERS_COLLECTION).child(id)
-                .get()
-                .addOnSuccessListener(task -> {
-                    Log.d(TAG, "readUser: success");
-                    userResponseCallBack.onSuccessReadDatabase(task.getValue(User.class));
-                })
-                .addOnFailureListener(error -> {
-                    Log.d(TAG, "readUser: failure");
-                    userResponseCallBack.onFailureReadDatabase(R.string.retrievingDatabase_error);
-                });
+        Query user = databaseReference.child(FIREBASE_USERS_COLLECTION).child(id);
+
+        user.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "readUser: success");
+                userResponseCallBack.onSuccessReadDatabase(dataSnapshot.getValue(User.class));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "readUser: failure");
+                userResponseCallBack.onFailureReadDatabase(R.string.retrievingDatabase_error);
+            }
+        });
+
     }
 
     @Override
@@ -65,11 +68,11 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                 .updateChildren(newInfo)
                 .addOnSuccessListener(task -> {
                     Log.d(TAG, "updateUser: success");
-                    userResponseCallBack.onSuccessWriteDatabase();
+                    userResponseCallBack.onSuccessUpdateDatabase();
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "updateUser: failure");
-                    userResponseCallBack.onFailureWriteDatabase(R.string.updateData_error);
+                    userResponseCallBack.onFailureUpdateDatabase(R.string.updateData_error);
                 });
     }
 

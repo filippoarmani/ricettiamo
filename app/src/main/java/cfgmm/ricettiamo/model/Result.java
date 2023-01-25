@@ -2,8 +2,6 @@ package cfgmm.ricettiamo.model;
 
 import android.net.Uri;
 
-import java.util.List;
-
 public abstract class Result {
     private Result() {}
 

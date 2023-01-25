@@ -2,17 +2,18 @@ package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,10 +21,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
@@ -64,12 +62,9 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_shoppingList,
                 R.id.nav_favourites,
 
-                R.id.nav_settings,
-
                 R.id.nav_profile,
-
                 R.id.nav_add_new_recipe,
-                R.id.nav_ranking,
+                R.id.nav_settings,
 
                 R.id.nav_logout
                 )
@@ -98,18 +93,16 @@ public class MainActivity extends AppCompatActivity {
         userViewModel.getCurrentUserLiveData().observe(this, user -> {
             if(userViewModel.isLoggedUser() && user.isSuccess()) {
                 User currentuser = ((Result.UserResponseSuccess) user).getData();
-                menu.setGroupVisible(R.id.with_login, true);
+                menu.setGroupVisible(R.id.with_login1, true);
                 menu.setGroupVisible(R.id.with_login2, true);
-                menu.setGroupVisible(R.id.with_login3, true);
 
                 login.setVisibility(View.GONE);
                 nome.setVisibility(View.VISIBLE);
 
                 nome.setText(currentuser.getDisplayName());
             } else {
-                menu.setGroupVisible(R.id.with_login, false);
+                menu.setGroupVisible(R.id.with_login1, false);
                 menu.setGroupVisible(R.id.with_login2, false);
-                menu.setGroupVisible(R.id.with_login3, false);
 
                 login.setVisibility(View.VISIBLE);
                 nome.setVisibility(View.GONE);

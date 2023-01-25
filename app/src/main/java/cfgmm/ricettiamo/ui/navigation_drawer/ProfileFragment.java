@@ -1,8 +1,8 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import static android.text.TextUtils.isEmpty;
-import static android.view.View.VISIBLE;
 import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -52,7 +52,8 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        binding.recipeCardView.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_nav_profile_to_nav_my_recipe));
+        binding.recipeCL.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_nav_profile_to_nav_my_recipe));
+        binding.positionCL.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_nav_profile_to_nav_ranking));
         userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), photo -> {
             //binding.user.setImageURI(photo);
             Glide.with(this)
