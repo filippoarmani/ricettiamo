@@ -2,11 +2,9 @@
     <string name="app_name" translatable="false">RicettiAmo</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_homepage" translatable="false">Homepage</string>
     <string name="menu_home" translatable="false">Home</string>
     <string name="text">Text</string>
 
-    <string name="menu_search_recipe">Search Recipe</string>
     <string name="menu_fridge">Fridge</string>
     <string name="shopping_list">Shopping List</string>
     <string name="menu_favourites">Favourites</string>
@@ -20,18 +18,6 @@
     <string name="my_position">My Position</string>
     <string name="position" translatable="false">#46</string>
     <string name="add" translatable="false">+</string>
-    <string name="recipe_position" translatable="false">1</string>
-    <string name="ranking">Ranking</string>
-
-    <string name="upgrade_1">Share your recipes with the community and become a successful chef!</string>
-    <string name="upgrade_2">You will have a predefinte template for your recipe; where tou can add your photo.</string>
-    <string name="upgrade_3">Your recipes can be evaluated by the community through rating stars.</string>
-    <string name="upgrade_4">Reach succes by climbing the ranking among the top chefs of RicettiAmo.</string>
-    <string name="upgrade_5">What are you waiting for?</string>
-    <string name="upgrade_6">Join the Chef Community of RicettiAmo!</string>
-
-    <!--upgradechef-->
-    <string name="upgrade_button">Upgrade Chef</string>
 
     <!--login/register-->
     <string name="email" translatable="false">Email</string>
@@ -44,13 +30,10 @@
     <string name="txt_nUser">"New on RicettiAmo? "</string>
     <string name="name">Name</string>
     <string name="surname">Surname</string>
-    <string name="date">Date of Birth</string>
-    <string name="phone_number">Phone Number</string>
     <string name="create_account">Create Account</string>
     <string name="login_google" translatable="false">Login with Google</string>
 
     <!--homepage-->
-    <string name="favourite_dishes">Favourite Dishes</string>
     <string name="starters">Starters</string>
     <string name="info" translatable="false">Info</string>
     <string name="about_us">About Us</string>
@@ -59,7 +42,6 @@
     <string name="dessert">Dessert</string>
     <string name="first_dishes">First Dishes</string>
     <string name="second_dishes">Second Dishes</string>
-    <string name="chef">Chef</string>
     <string name="toDo" translatable="false">TempModify</string>
 
     <!--settings-->
@@ -117,21 +99,22 @@
     <string name="write_review">Write a review</string>
 
     <string name="confirmation">Are you sure?</string>
-    <string name="reset_password">reset password</string>
+    <string name="reset_password">Reset Password</string>
     <string name="instruction_reset">All you need to reset your password is your email address!</string>
     <string name="instruction_reset2">You will receive an email containing instructions for resetting your password</string>
     <string name="instruction_reset3">Can\'t find the email? Try looking in spam</string>
 
     <!-- Java Strings -->
     <string name="empty_fields">The fields must not be empty</string>
-    <string name="short_password">Choose a longer password</string>
-    <string name="weak_password">Weak password</string>
-    <string name="auth_f">Authentication Failed</string>
-    <string name="auth_s">Authentication Succeeded</string>
-    <string name="reg_f">Registration Failed</string>
-    <string name="reg_s">Registration Succeeded</string>
-    <string name="progress_title">Upgrading Informations</string>
-    <string name="progress_message">I\'m upgrading your informations</string>
+    <string name="login_error">An error occurred while logging in. Please check your data and connection and try again</string>
+    <string name="registration_error">An error occurred while creating your account. Please check your data and connection and try again</string>
+    <string name="updateEmail_error">An error occurred while updating your email. Please check your data and connection and try again</string>
+    <string name="updatePassword_error">An error occurred while updating your password. Please check your data and connection and try again</string>
+    <string name="updateData_error">An error occurred while updating your data. Please check your connection and try again</string>
+    <string name="updatePhoto_error">An error occurred while updating your photo. Please check your connection and try again</string>
+    <string name="getPhoto_error">An error occurred while retrieving your photo. Please check your connection and try again</string>
+    <string name="readDatabase_error">There was an error retrieving your data. Please check your connection and try again</string>
+    <string name="writeDatabase_error">There was an error saving your data. Please check your connection and try again</string>
 
     <!-- inserisci_ricetta -->
     <string name="add_photo">Add the main picture</string>
@@ -168,6 +151,7 @@
 
     <!-- Example of a description with all the 250 characters -->
     <string name="character250" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac risus in augue fringilla vestibulum. Suspendisse tempor sem quis tortor blandit aliquam. Pellentesque vulputate lorem in dui aliquet, eu tincidunt mi finibus. Morbi bibendum fusce.</string>
+
     <string name="search">Search</string>
     <string name="unexpected_error">Unexpected Error</string>
     <string name="api_key_error">API Key not valid or maximum number of request reached</string>

@@ -1,7 +1,6 @@
 package cfgmm.ricettiamo.data.repository.user;
 
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -10,6 +9,7 @@ import java.util.Map;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.source.user.BaseDatabaseDataSource;
 import cfgmm.ricettiamo.data.source.user.BaseFirebaseAuthDataSource;
+import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.User;
 
 public class UserRepository implements IUserRepository, IUserResponseCallback {
@@ -17,8 +17,8 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     BaseFirebaseAuthDataSource firebaseAuthDataSource;
     BaseDatabaseDataSource databaseDataSource;
 
-    MutableLiveData<User> currentUser;
-    MutableLiveData<Uri> currentPhoto;
+    MutableLiveData<Result> currentUser;
+    MutableLiveData<Result> currentPhoto;
 
     public UserRepository(BaseFirebaseAuthDataSource firebaseAuthDataSource,
                           BaseDatabaseDataSource databaseDataSource) {
@@ -31,12 +31,14 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
         this.databaseDataSource.setCallBack(this);
     }
 
-    public void signUp(User newUser, String email, String password) {
+    public MutableLiveData<Result> signUp(User newUser, String email, String password) {
         firebaseAuthDataSource.signUp(newUser, email, password);
+        return currentUser;
     }
 
-    public void signIn(String email, String password) {
+    public MutableLiveData<Result> signIn(String email, String password) {
         firebaseAuthDataSource.signIn(email, password);
+        return currentUser;
     }
 
     public void resetPassword(String email) {
@@ -77,22 +79,18 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
         databaseDataSource.readUser(id);
     }
 
-    public MutableLiveData<User> getLoggedUser() {
+    public MutableLiveData<Result> getLoggedUser() {
         String id = firebaseAuthDataSource.getCurrentId();
         readUser(id);
         return currentUser;
     }
 
-    public MutableLiveData<Uri> getCurrentPhoto() {
-        Uri uri = firebaseAuthDataSource.getCurrentPhoto();
-        if(uri == null) {
-            uri = Uri.parse(String.valueOf(R.drawable.user));
-        }
-        currentPhoto.postValue(uri);
+    public MutableLiveData<Result> getCurrentPhoto() {
+        firebaseAuthDataSource.getCurrentPhoto();
         return currentPhoto;
     }
 
-    public MutableLiveData<User> signOut() {
+    public MutableLiveData<Result> signOut() {
         firebaseAuthDataSource.signOut();
         return currentUser;
     }
@@ -103,7 +101,9 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
-    public void onFailureRegistration(String localizedMessage) { }
+    public void onFailureRegistration(int idError) {
+        currentUser.postValue(new Result.Error(idError));
+    }
 
     @Override
     public void onSuccessLogin(String uid) {
@@ -111,53 +111,67 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
-    public void onFailureLogin(String localizedMessage) { }
-
-    @Override
-    public void onSuccessResetPassword() { }
-
-    @Override
-    public void onFailureResetPassword(String localizedMessage) { }
+    public void onFailureLogin(int idError) {
+        currentUser.postValue(new Result.Error(idError));
+    }
 
     @Override
     public void onSuccessUpdateEmail() { }
 
     @Override
-    public void onFailureUpdateEmail(String localizedMessage) { }
+    public void onFailureUpdateEmail(int idError) {
+        currentUser.postValue(new Result.Error(idError));
+    }
 
     @Override
     public void onSuccessUpdatePassword() { }
 
     @Override
-    public void onFailureUpdatePassword(String localizedMessage) { }
+    public void onFailureUpdatePassword(int idError) {
+        currentUser.postValue(new Result.Error(idError));
+    }
 
     @Override
     public void onSuccessWriteDatabase() { }
 
     @Override
-    public void onFailureWriteDatabase(String localizedMessage) { }
-
-    @Override
-    public void onSuccessReadDatabase(User user) {
-        if(user != null) {
-            currentUser.postValue(user);
-        }
+    public void onFailureWriteDatabase(int idError) {
+        currentUser.postValue(new Result.Error(idError));
     }
 
     @Override
-    public void onFailureReadDatabase(String localizedMessage) { }
+    public void onSuccessReadDatabase(User user) {
+        currentUser.postValue(new Result.UserResponseSuccess(user));
+    }
+
+    @Override
+    public void onFailureReadDatabase(int idError) {
+        currentUser.postValue(new Result.Error(idError));
+    }
 
     @Override
     public void onSuccessLogout() {
-        currentUser.postValue(null);
-        currentPhoto.postValue(Uri.parse(String.valueOf(R.drawable.user)));
+        currentUser.postValue(new Result.UserResponseSuccess(null));
+        currentPhoto.postValue(new Result.PhotoResponseSuccess(Uri.parse(String.valueOf(R.drawable.user))));
+    }
+
+    @Override
+    public void onSuccessGetPhoto(Uri uri) {
+        currentPhoto.postValue(new Result.PhotoResponseSuccess(uri));
+    }
+
+    @Override
+    public void onFailureGetPhoto(int idError) {
+        currentPhoto.postValue(new Result.Error(idError));
     }
 
     @Override
     public void onSuccessSetPhoto(Uri uri) {
-        currentPhoto.postValue(uri);
+        currentPhoto.postValue(new Result.PhotoResponseSuccess(uri));
     }
 
     @Override
-    public void onFailureSetPhoto(String localizedMessage) {}
+    public void onFailureSetPhoto(int idError) {
+        currentPhoto.postValue(new Result.Error(idError));
+    }
 }

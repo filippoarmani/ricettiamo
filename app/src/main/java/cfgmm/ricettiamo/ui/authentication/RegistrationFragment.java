@@ -3,7 +3,6 @@ package cfgmm.ricettiamo.ui.authentication;
 import static android.text.TextUtils.isEmpty;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +19,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
+import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.User;
 import cfgmm.ricettiamo.ui.navigation_drawer.MainActivity;
 import cfgmm.ricettiamo.util.ServiceLocator;
@@ -74,7 +74,7 @@ public class RegistrationFragment extends Fragment {
             String password = e_password.getEditText().getText().toString().trim();
 
 
-            if(checkOk(v, name, surname, email, password)) {
+            if(checkOk(name, surname, email, password)) {
                 User newUser = new User(
                         null,
                         name,
@@ -82,21 +82,28 @@ public class RegistrationFragment extends Fragment {
                         email
                 );
                 userViewModel.signUp(newUser, email, password);
-                updateUI();
+
+                Result result = userViewModel.getCurrentUserLiveData().getValue();
+                if(userViewModel.isLoggedUser()) {
+                    updateUI();
+                } else {
+                    if(!result.isSuccess()) {
+                        Result.Error error = (Result.Error) result;
+                        Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                    }
+                }
             }
         });
     }
 
-    private boolean checkOk(View v, String name, String surname, String email, String password) {
+    private boolean checkOk(String name, String surname, String email, String password) {
         if(isEmpty(name) || isEmpty(surname) || isEmpty(email) || isEmpty(password)) {
-            Snackbar.make(v, R.string.empty_fields, Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Snackbar.make(requireView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
             return false;
         }
 
         if(!EmailValidator.getInstance().isValid(email)) {
-            Snackbar.make(v, "Invalid Email", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Snackbar.make(requireView(), "Invalid Email", Snackbar.LENGTH_LONG).show();
             return false;
         }
 

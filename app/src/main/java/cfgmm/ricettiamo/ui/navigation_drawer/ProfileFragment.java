@@ -22,6 +22,8 @@ import java.util.Objects;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentProfileBinding;
+import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.model.User;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.UserViewModel;
 import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
@@ -60,24 +62,28 @@ public class ProfileFragment extends Fragment {
                     .circleCrop()
                     .into(binding.user);
         });
-        userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), user -> {
-            String userFullName = user.getName() + " " + user.getSurname();
-            binding.fullName.setText(userFullName);
-            binding.displayName.setText(user.getDisplayName());
-            binding.email.setText(user.getEmail());
+        userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
+            if(result.isSuccess()) {
+                User user = ((Result.UserResponseSuccess) result).getData();
+                String userFullName = user.getName() + " " + user.getSurname();
+                binding.fullName.setText(userFullName);
+                binding.displayName.setText(user.getDisplayName());
+                binding.email.setText(user.getEmail());
 
-            String userDescription = user.getDescription();
-            if(isEmpty(userDescription)) {
-                binding.descriptionCardView.setVisibility(GONE);
-                binding.description.setVisibility(GONE);
-            } else {
-                binding.descriptionCardView.setVisibility(VISIBLE);
-                binding.description.setVisibility(VISIBLE);
-                binding.description.setText(userDescription);
+                String userDescription = user.getDescription();
+                if(isEmpty(userDescription)) {
+                    binding.descriptionCardView.setVisibility(GONE);
+                    binding.description.setVisibility(GONE);
+                } else {
+                    binding.descriptionCardView.setVisibility(VISIBLE);
+                    binding.description.setVisibility(VISIBLE);
+                    binding.description.setText(userDescription);
+                }
+
+                binding.totalStars.setText("" + user.getTotalStars());
+                binding.position.setText("" + user.getPositions());
             }
 
-            binding.totalStars.setText("" + user.getTotalStars());
-            binding.position.setText("" + user.getPositions());
         });
     }
 

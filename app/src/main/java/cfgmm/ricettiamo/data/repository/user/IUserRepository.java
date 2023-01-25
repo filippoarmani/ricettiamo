@@ -6,12 +6,13 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.Map;
 
+import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.User;
 
 public interface IUserRepository {
 
-    void signUp(User newUser, String email, String password);
-    void signIn(String email, String password);
+    MutableLiveData<Result> signUp(User newUser, String email, String password);
+    MutableLiveData<Result> signIn(String email, String password);
 
     void resetPassword(String email);
     void updateEmail(String email);
@@ -19,10 +20,10 @@ public interface IUserRepository {
     void updateData(Map<String, Object> newInfo);
     void updatePhoto(Uri uri);
 
-    MutableLiveData<User> getLoggedUser();
-    MutableLiveData<User> signOut();
+    MutableLiveData<Result> getLoggedUser();
+    MutableLiveData<Result> signOut();
 
     boolean isLoggedUser();
 
-    MutableLiveData<Uri> getCurrentPhoto();
+    MutableLiveData<Result> getCurrentPhoto();
 }
