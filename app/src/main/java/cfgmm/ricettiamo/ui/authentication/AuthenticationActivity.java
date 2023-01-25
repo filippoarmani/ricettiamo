@@ -1,8 +1,8 @@
 package cfgmm.ricettiamo.ui.authentication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import cfgmm.ricettiamo.R;
 

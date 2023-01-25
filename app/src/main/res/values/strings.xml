@@ -106,6 +106,7 @@
 
     <!-- Java Strings -->
     <string name="empty_fields">The fields must not be empty</string>
+    <string name="field_not_match">The fields do not match</string>
     <string name="login_error">An error occurred while logging in. Please check your data and connection and try again</string>
     <string name="registration_error">An error occurred while creating your account. Please check your data and connection and try again</string>
     <string name="updateEmail_error">An error occurred while updating your email. Please check your data and connection and try again</string>
@@ -113,8 +114,9 @@
     <string name="updateData_error">An error occurred while updating your data. Please check your connection and try again</string>
     <string name="updatePhoto_error">An error occurred while updating your photo. Please check your connection and try again</string>
     <string name="getPhoto_error">An error occurred while retrieving your photo. Please check your connection and try again</string>
-    <string name="readDatabase_error">There was an error retrieving your data. Please check your connection and try again</string>
+    <string name="retrievingDatabase_error">There was an error retrieving your data. Please check your connection and try again</string>
     <string name="writeDatabase_error">There was an error saving your data. Please check your connection and try again</string>
+    <string name="retry">Retry</string>
 
     <!-- inserisci_ricetta -->
     <string name="add_photo">Add the main picture</string>
@@ -145,7 +147,6 @@
     <string name="list_size_message">The size of the list is</string>
 
     <!-- top -->
-    <string name="top_chef">Top 3 Chefs</string>
     <string name="top_10_chef">Top 10 Chefs</string>
     <string name="recipes_api_key" translatable="false">02817c2dcd744b73bb0cd25814f1bce9</string>
 

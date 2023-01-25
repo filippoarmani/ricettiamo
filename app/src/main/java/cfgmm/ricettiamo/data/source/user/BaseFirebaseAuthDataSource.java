@@ -27,4 +27,6 @@ public abstract class BaseFirebaseAuthDataSource {
 
     public abstract boolean isLoggedUser();
     public abstract String getCurrentId();
+
+    public abstract void delete();
 }

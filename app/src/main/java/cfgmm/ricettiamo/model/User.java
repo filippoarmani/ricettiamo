@@ -17,7 +17,6 @@ public class User {
     private String description;
 
     private int totalStars;
-    private int positions;
 
     private String email;
 
@@ -32,7 +31,6 @@ public class User {
         this.displayName = name + " " + surname;
         this.description = "";
         this.totalStars = 0;
-        this.positions = 0;
         this.email = email;
     }
 
@@ -45,6 +43,7 @@ public class User {
                 ", displayName='" + displayName + '\'' +
                 ", description='" + description + '\'' +
                 ", email='" + email + '\'' +
+                ", totalStars='" + totalStars + '\'' +
                 '}';
     }
 
@@ -58,6 +57,7 @@ public class User {
         data.put("description", description);
 
         data.put("email", email);
+        data.put("totalStars", totalStars);
 
         return data;
     }
@@ -86,10 +86,6 @@ public class User {
         return totalStars;
     }
 
-    public int getPositions() {
-        return positions;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -116,10 +112,6 @@ public class User {
 
     public void setTotalStars(int totalStars) {
         this.totalStars = totalStars;
-    }
-
-    public void setPositions(int positions) {
-        this.positions = positions;
     }
 
     public void setEmail(String email) {

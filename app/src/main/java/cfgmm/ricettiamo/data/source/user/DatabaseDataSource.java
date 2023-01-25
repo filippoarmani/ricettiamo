@@ -5,8 +5,12 @@ import static cfgmm.ricettiamo.util.Constants.FIREBASE_USERS_COLLECTION;
 
 import android.util.Log;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
 
@@ -24,6 +28,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
         databaseReference = firebaseDatabase.getReference().getRef();
     }
 
+    @Override
     public void writeUser(User user) {
         databaseReference.child(FIREBASE_USERS_COLLECTION).child(user.getId())
                 .setValue(user.toMap())
@@ -37,17 +42,24 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                 });
     }
 
+    @Override
     public void readUser(String id) {
-        databaseReference.child(FIREBASE_USERS_COLLECTION).child(id)
-                .get()
-                .addOnSuccessListener(task -> {
-                    Log.d(TAG, "readUser: success");
-                    userResponseCallBack.onSuccessReadDatabase(task.getValue(User.class));
-                })
-                .addOnFailureListener(error -> {
-                    Log.d(TAG, "readUser: failure");
-                    userResponseCallBack.onFailureReadDatabase(R.string.readDatabase_error);
-                });
+        Query user = databaseReference.child(FIREBASE_USERS_COLLECTION).child(id);
+
+        user.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "readUser: success");
+                userResponseCallBack.onSuccessReadDatabase(dataSnapshot.getValue(User.class));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "readUser: failure");
+                userResponseCallBack.onFailureReadDatabase(R.string.retrievingDatabase_error);
+            }
+        });
+
     }
 
     @Override
@@ -56,12 +68,65 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                 .updateChildren(newInfo)
                 .addOnSuccessListener(task -> {
                     Log.d(TAG, "updateUser: success");
-                    userResponseCallBack.onSuccessWriteDatabase();
+                    userResponseCallBack.onSuccessUpdateDatabase();
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "updateUser: failure");
-                    userResponseCallBack.onFailureWriteDatabase(R.string.updateData_error);
+                    userResponseCallBack.onFailureUpdateDatabase(R.string.updateData_error);
                 });
+    }
+
+    @Override
+    public void getTopTen() {
+        Query topTen = databaseReference.child(FIREBASE_USERS_COLLECTION).orderByChild("totalStars").limitToFirst(10);
+        topTen.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User[] topTen = new User[10];
+                int i = (int) dataSnapshot.getChildrenCount() - 1;
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    topTen[i] = postSnapshot.getValue(User.class);
+                    i--;
+                }
+                Log.d(TAG, "getTopTen: success");
+                userResponseCallBack.onSuccessGetTopTen(topTen);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "getTopTen: failure");
+                userResponseCallBack.onFailureGetTopTen(R.string.retrievingDatabase_error);
+            }
+        });
+    }
+
+    @Override
+    public void getPosition(String id) {
+        Query topTen = databaseReference.child(FIREBASE_USERS_COLLECTION).orderByChild("totalStars");
+        topTen.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int i = 0;
+                for (DataSnapshot snapshot:  dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
+                    assert user != null;
+                    if(id.equals(user.getId())) {
+                        break;
+                    } else {
+                        i++;
+                    }
+                }
+                i = (int) dataSnapshot.getChildrenCount() - i;
+                Log.d(TAG, "getPosition: success");
+                userResponseCallBack.onSuccessGetPosition(i);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "getPosition: failure");
+                userResponseCallBack.onFailureGetPosition(R.string.retrievingDatabase_error);
+            }
+        });
     }
 
 }

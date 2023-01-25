@@ -20,10 +20,18 @@ public interface IUserRepository {
     void updateData(Map<String, Object> newInfo);
     void updatePhoto(Uri uri);
 
+    void writeUser(User newUser);
+
+    void readUser(String id);
+
     MutableLiveData<Result> getLoggedUser();
     MutableLiveData<Result> signOut();
 
     boolean isLoggedUser();
 
     MutableLiveData<Result> getCurrentPhoto();
+
+    MutableLiveData<Result> getTopTen();
+
+    MutableLiveData<Result> getPosition();
 }

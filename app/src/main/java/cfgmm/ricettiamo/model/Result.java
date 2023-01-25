@@ -7,8 +7,10 @@ public abstract class Result {
 
     public boolean isSuccess() {
         if (this instanceof RecipeResponseSuccess ||
-                this instanceof UserResponseSuccess ||
-                this instanceof PhotoResponseSuccess) {
+                this instanceof UserResponseSuccess  ||
+                this instanceof PhotoResponseSuccess ||
+                this instanceof TopTenResponseSuccess||
+                this instanceof PositionResponseSuccess) {
             return true;
         } else {
             return false;
@@ -42,6 +44,26 @@ public abstract class Result {
         }
         public Uri getData() {
             return uri;
+        }
+    }
+
+    public static final class TopTenResponseSuccess extends Result {
+        private final User[] topTen;
+        public TopTenResponseSuccess(User[] topTen) {
+            this.topTen = topTen;
+        }
+        public User[] getData() {
+            return topTen;
+        }
+    }
+
+    public static final class PositionResponseSuccess extends Result {
+        private final int position;
+        public PositionResponseSuccess(int position) {
+            this.position = position;
+        }
+        public int getData() {
+            return position;
         }
     }
 

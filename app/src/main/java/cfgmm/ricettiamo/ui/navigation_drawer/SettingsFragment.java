@@ -2,7 +2,6 @@ package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import static android.text.TextUtils.isEmpty;
 
-import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -110,17 +109,24 @@ public class SettingsFragment extends Fragment {
 
             if(!(isEmpty(cPassword) || isEmpty(nPassword1) || isEmpty(nPassword2))) {
                 if(nPassword1.equals(nPassword2)) {
-                    if(userViewModel.strongPassword(nPassword1)) {
+                    if(userViewModel.strongPassword(nPassword1) && !cPassword.equals(nPassword1)) {
                         userViewModel.updatePassword(cPassword, nPassword1);
                     }
+                } else {
+
+                    binding.iNPassword1Layout.setError(getResources().getString(R.string.field_not_match));
+                    binding.iNPassword2Layout.setError(getResources().getString(R.string.field_not_match));
                 }
             }
 
             if(!(isEmpty(cEmail) || isEmpty(nEmail1) || isEmpty(nEmail2))) {
                 if(nEmail1.equals(nEmail2)) {
-                    if(EmailValidator.getInstance().isValid(nEmail1)) {
+                    if(EmailValidator.getInstance().isValid(nEmail1) && !cEmail.equals(nEmail1)) {
                         newInfo.put("email", nEmail1);
                     }
+                } else {
+                    binding.iNEmail1Layout.setError(getResources().getString(R.string.field_not_match));
+                    binding.iNEmail2Layout.setError(getResources().getString(R.string.field_not_match));
                 }
             }
 
@@ -141,7 +147,6 @@ public class SettingsFragment extends Fragment {
                 @Override
                 public void onActivityResult(Uri uri) {
                     try {
-                        //binding.changeUserPhoto.setImageURI(uri);
                         Glide.with(requireContext())
                                 .load(uri)
                                 .circleCrop()

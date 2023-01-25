@@ -113,7 +113,7 @@
                 tools:layout_editor_absoluteX="30dp"
                 tools:layout_editor_absoluteY="350dp" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/consiglio"
                 style="@style/subtitle"
                 android:layout_width="match_parent"

@@ -1,17 +1,15 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ListView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -21,10 +19,6 @@ import java.util.List;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.SearchRecipesAdapter;
 import cfgmm.ricettiamo.model.Recipe;
-import cfgmm.ricettiamo.model.RecipeApiResponse;
-import cfgmm.ricettiamo.model.RecipeResponse;
-import cfgmm.ricettiamo.model.Result;
-import cfgmm.ricettiamo.util.ErrorMessagesUtil;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 
 /**

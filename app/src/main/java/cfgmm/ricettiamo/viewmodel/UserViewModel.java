@@ -5,8 +5,6 @@ import android.net.Uri;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.Map;
 
 import cfgmm.ricettiamo.R;
@@ -19,6 +17,8 @@ public class UserViewModel extends ViewModel {
     IUserRepository userRepository;
     MutableLiveData<Result> currentUserLiveData;
     MutableLiveData<Result> currentPhotoLiveData;
+    MutableLiveData<Result> topTenLiveData;
+    MutableLiveData<Result> positionLiveData;
 
     public UserViewModel(IUserRepository userRepository) {
         this.userRepository = userRepository;
@@ -55,6 +55,16 @@ public class UserViewModel extends ViewModel {
         }
 
         return currentPhotoLiveData;
+    }
+
+    public MutableLiveData<Result> getTopTen() {
+        topTenLiveData = userRepository.getTopTen();
+        return topTenLiveData;
+    }
+
+    public MutableLiveData<Result> getPosition(){
+        positionLiveData = userRepository.getPosition();
+        return positionLiveData;
     }
 
     public void signOut() {

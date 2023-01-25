@@ -17,4 +17,7 @@ public abstract class BaseDatabaseDataSource {
     public abstract void readUser(String id);
 
     public abstract void updateData(Map<String, Object> newInfo, String id);
+
+    public abstract void getTopTen();
+    public abstract void getPosition(String id);
 }

@@ -1,19 +1,18 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
@@ -24,9 +23,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import cfgmm.ricettiamo.adapter.IngredientsRecyclerAdapter;
-import cfgmm.ricettiamo.adapter.ShoppingListRecyclerAdapter;
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.adapter.ShoppingListRecyclerAdapter;
 import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.IngredientApiResponse;
 
