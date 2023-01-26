@@ -1,5 +1,7 @@
 package cfgmm.ricettiamo.model;
 
+import androidx.annotation.Nullable;
+
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.util.HashMap;
@@ -9,9 +11,9 @@ import java.util.Map;
 public class User {
 
     private String id;
+    private String provider;
 
-    private String name;
-    private String surname;
+    private String fullName;
 
     private String displayName;
     private String description;
@@ -24,11 +26,11 @@ public class User {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String id, String name, String surname, String email) {
+    public User(String id, String provider, String fullName, String email) {
         this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.displayName = name + " " + surname;
+        this.provider = provider;
+        this.fullName = fullName;
+        this.displayName = fullName;
         this.description = "";
         this.totalStars = 0;
         this.email = email;
@@ -38,8 +40,8 @@ public class User {
     public String toString() {
         return "User{" +
                 "idUser='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                ", provider='" + provider + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", displayName='" + displayName + '\'' +
                 ", description='" + description + '\'' +
                 ", email='" + email + '\'' +
@@ -51,8 +53,8 @@ public class User {
         Map<String, Object> data = new HashMap<>();
 
         data.put("id", id);
-        data.put("name", name);
-        data.put("surname", surname);
+        data.put("provider", provider);
+        data.put("fullName", fullName);
         data.put("displayName", displayName);
         data.put("description", description);
 
@@ -66,12 +68,8 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
+    public String getFullName() {
+        return fullName;
     }
 
     public String getDescription() {
@@ -94,12 +92,8 @@ public class User {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFullName(String name) {
+        this.fullName = fullName;
     }
 
     public void setDisplayName(String displayName) {
@@ -116,5 +110,40 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+
+        if (!(obj instanceof User))
+            return false;
+
+        User other = (User) obj;
+        if (email == null) {
+            if (other.email != null)
+                return false;
+        } else if (!email.equals(other.email))
+            return false;
+        if (provider == null) {
+            if (other.provider != null)
+                return false;
+        } else if (!provider.equals(other.provider))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
     }
 }

@@ -34,4 +34,6 @@ public interface IUserRepository {
     MutableLiveData<Result> getTopTen();
 
     MutableLiveData<Result> getPosition();
+
+    MutableLiveData<Result> signInGoogle(String idToken);
 }

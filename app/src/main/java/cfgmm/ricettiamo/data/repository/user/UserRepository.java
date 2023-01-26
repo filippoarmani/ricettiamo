@@ -122,6 +122,12 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
+    public MutableLiveData<Result> signInGoogle(String idToken) {
+        firebaseAuthDataSource.signInGoogle(idToken);
+        return currentUser;
+    }
+
+    @Override
     public void onSuccessRegistration(User newUser) {
         writeUser(newUser);
     }
@@ -229,12 +235,17 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
-    public void onSuccessUpdateDatabase() {
-
-    }
+    public void onSuccessUpdateDatabase() { }
 
     @Override
-    public void onFailureUpdateDatabase(int idError) {
+    public void onFailureUpdateDatabase(int idError) { }
 
+    @Override
+    public void onSuccessLoginGoogle(User user) {
+        if(databaseDataSource.alreadyExist(user)) {
+            readUser(user.getId());
+        } else {
+            writeUser(user);
+        }
     }
 }

@@ -29,4 +29,6 @@ public abstract class BaseFirebaseAuthDataSource {
     public abstract String getCurrentId();
 
     public abstract void delete();
+
+    public abstract void signInGoogle(String idToken);
 }

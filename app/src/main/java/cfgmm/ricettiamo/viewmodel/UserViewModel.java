@@ -26,10 +26,13 @@ public class UserViewModel extends ViewModel {
     }
 
     public void signUp(User newUser, String email, String password) {
-        currentUserLiveData = userRepository.signUp(newUser, email, password); }
+        currentUserLiveData = userRepository.signUp(newUser, email, password);
+        currentPhotoLiveData = getCurrentPhotoLiveData();
+    }
 
     public void signIn(String email, String password) {
         currentUserLiveData = userRepository.signIn(email, password);
+        currentPhotoLiveData = getCurrentPhotoLiveData();
     }
 
     public MutableLiveData<Result> getCurrentUserLiveData() {
@@ -123,5 +126,10 @@ public class UserViewModel extends ViewModel {
         }
 
         return true;
+    }
+
+    public void signInGoogle(String idToken) {
+        currentUserLiveData = userRepository.signInGoogle(idToken);
+        currentPhotoLiveData = getCurrentPhotoLiveData();
     }
 }

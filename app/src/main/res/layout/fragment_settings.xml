@@ -101,170 +101,191 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:id="@+id/noGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/modEmail"
+                    style="@style/sectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/change_email"
+                    tools:layout_conversion_absoluteHeight="31dp"
+                    tools:layout_conversion_absoluteWidth="351dp"
+                    tools:layout_editor_absoluteX="30dp"
+                    tools:layout_editor_absoluteY="350dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/i_cEmail_layout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="20dp"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+                    app:startIconDrawable="@drawable/ic_email">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/i_cEmail"
+                        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/my_email"
+                        android:inputType="textEmailAddress"
+                        android:label="@string/my_email" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/i_nEmail2_layout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+                    app:startIconDrawable="@drawable/ic_email">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/i_nEmail2"
+                        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/new_email_again"
+                        android:inputType="textEmailAddress"
+                        android:label="@string/new_email_again" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/i_nEmail1_layout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+
+                    app:startIconDrawable="@drawable/ic_email">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/i_nEmail1"
+                        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/new_email"
+                        android:inputType="textEmailAddress"
+                        android:label="@string/new_email" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/modPass"
+                    style="@style/sectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/change_password"
+                    tools:layout_conversion_absoluteHeight="31dp"
+                    tools:layout_conversion_absoluteWidth="351dp"
+                    tools:layout_editor_absoluteX="30dp"
+                    tools:layout_editor_absoluteY="350dp" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/consiglio"
+                    style="@style/subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/advice"
+                    tools:layout_conversion_absoluteHeight="44dp"
+                    tools:layout_conversion_absoluteWidth="351dp"
+                    tools:layout_editor_absoluteX="30dp"
+                    tools:layout_editor_absoluteY="386dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/i_cPassword_layout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+
+                    app:errorEnabled="true"
+                    app:passwordToggleEnabled="true"
+                    app:startIconDrawable="@drawable/ic_password">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/i_cPassword"
+                        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/my_password"
+                        android:inputType="textPassword"
+                        android:label="@string/my_password" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/i_nPassword1_layout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    app:errorEnabled="true"
+
+                    app:passwordToggleEnabled="true"
+                    app:startIconDrawable="@drawable/ic_password">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/i_nPassword1"
+                        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/new_password"
+                        android:inputType="textPassword"
+                        android:label="@string/new_password" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/i_nPassword2_layout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    app:errorEnabled="true"
+
+                    app:passwordToggleEnabled="true"
+                    app:startIconDrawable="@drawable/ic_password">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/i_nPassword2"
+                        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/new_password_again"
+                        android:inputType="textPassword"
+                        android:label="@string/new_password_again" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
             <TextView
-                android:id="@+id/modPass"
+                android:id="@+id/warning"
                 style="@style/sectionTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/change_password"
+                android:text="@string/googleWarning"
+                android:gravity="center"
                 tools:layout_conversion_absoluteHeight="31dp"
                 tools:layout_conversion_absoluteWidth="351dp"
                 tools:layout_editor_absoluteX="30dp"
                 tools:layout_editor_absoluteY="350dp" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/consiglio"
-                style="@style/subtitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/advice"
-                tools:layout_conversion_absoluteHeight="44dp"
-                tools:layout_conversion_absoluteWidth="351dp"
-                tools:layout_editor_absoluteX="30dp"
-                tools:layout_editor_absoluteY="386dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:id="@+id/i_cPassword_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-
-                app:errorEnabled="true"
-                app:passwordToggleEnabled="true"
-                app:startIconDrawable="@drawable/ic_password">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/i_cPassword"
-                    android:hint="@string/my_password"
-                    android:label="@string/my_password"
-                    android:inputType="textPassword" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:id="@+id/i_nPassword1_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                app:errorEnabled="true"
-
-                app:passwordToggleEnabled="true"
-                app:startIconDrawable="@drawable/ic_password">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/i_nPassword1"
-                    android:hint="@string/new_password"
-                    android:label="@string/new_password"
-                    android:inputType="textPassword" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:id="@+id/i_nPassword2_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                app:errorEnabled="true"
-
-                app:passwordToggleEnabled="true"
-                app:startIconDrawable="@drawable/ic_password">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/i_nPassword2"
-                    android:hint="@string/new_password_again"
-                    android:label="@string/new_password_again"
-                    android:inputType="textPassword" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/modEmail"
-                style="@style/sectionTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/change_email"
-                tools:layout_conversion_absoluteHeight="31dp"
-                tools:layout_conversion_absoluteWidth="351dp"
-                tools:layout_editor_absoluteX="30dp"
-                tools:layout_editor_absoluteY="350dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:id="@+id/i_cEmail_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginTop="20dp"
-                app:endIconMode="clear_text"
-                app:errorEnabled="true"
-                app:startIconDrawable="@drawable/ic_email">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/i_cEmail"
-                    android:hint="@string/my_email"
-                    android:label="@string/my_email"
-                    android:inputType="textEmailAddress" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:id="@+id/i_nEmail1_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                app:endIconMode="clear_text"
-                app:errorEnabled="true"
-
-                app:startIconDrawable="@drawable/ic_email">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/i_nEmail1"
-                    android:hint="@string/new_email"
-                    android:label="@string/new_email"
-                    android:inputType="textEmailAddress" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                android:id="@+id/i_nEmail2_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                app:endIconMode="clear_text"
-                app:errorEnabled="true"
-                app:startIconDrawable="@drawable/ic_email">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/i_nEmail2"
-                    android:hint="@string/new_email_again"
-                    android:label="@string/new_email_again"
-                    android:inputType="textEmailAddress" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
     </ScrollView>

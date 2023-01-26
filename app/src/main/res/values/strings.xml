@@ -56,6 +56,7 @@
     <string name="my_email">Current email</string>
     <string name="new_email">New email</string>
     <string name="new_email_again">Type new email again</string>
+    <string name="googleWarning">For users who have logged in with Google we do not allow the change of email and password.</string>
 
     <!--fridge/Shopping List-->
     <string-array name="qta_array">
@@ -107,6 +108,7 @@
     <!-- Java Strings -->
     <string name="empty_fields">The fields must not be empty</string>
     <string name="field_not_match">The fields do not match</string>
+    <string name="error_no_google_account_found_message">"No Google accounts have been found"</string>
     <string name="login_error">An error occurred while logging in. Please check your data and connection and try again</string>
     <string name="registration_error">An error occurred while creating your account. Please check your data and connection and try again</string>
     <string name="updateEmail_error">An error occurred while updating your email. Please check your data and connection and try again</string>

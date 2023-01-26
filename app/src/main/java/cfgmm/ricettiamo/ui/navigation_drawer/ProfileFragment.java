@@ -64,8 +64,7 @@ public class ProfileFragment extends Fragment {
         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
             if(result.isSuccess()) {
                 User user = ((Result.UserResponseSuccess) result).getData();
-                String userFullName = user.getName() + " " + user.getSurname();
-                binding.fullName.setText(userFullName);
+                binding.fullName.setText(user.getFullName());
                 binding.displayName.setText(user.getDisplayName());
                 binding.email.setText(user.getEmail());
 
