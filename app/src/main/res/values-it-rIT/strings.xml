@@ -106,6 +106,8 @@
     <string name="writeDatabase_error">Si è verificato un errore in fase di salvataggio dei dati. Per favore controlla la connessione e riprova</string>
     <string name="updateData_error">Si è verificato un errore in fase di aggiornamento dei dati. Per favore controlla la connessione e riprova</string>
     <string name="field_not_match">I campi non corrispondono</string>
+    <string name="error_no_google_account_found_message">Non è stato trovato alcun account Google. Per favore riprova.</string>
+    <string name="googleWarning">Agli utenti che hanno effettuato l\'accesso con Google non permettiamo il cambio email e password.</string>
 
 
 </resources>

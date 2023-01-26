@@ -26,6 +26,7 @@ import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentSettingsBinding;
 import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.model.User;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.UserViewModel;
 import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
@@ -76,6 +77,19 @@ public class SettingsFragment extends Fragment {
                         .circleCrop()
                         .into(binding.changeUserPhoto);
                 photoProfile = photo;
+            }
+        });
+
+        userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
+            if(result.isSuccess()) {
+                User user = ((Result.UserResponseSuccess) result).getData();
+                if(user.getProvider().equals("google")) {
+                    binding.noGoogle.setVisibility(View.GONE);
+                    binding.warning.setVisibility(View.VISIBLE);
+                } else {
+                    binding.noGoogle.setVisibility(View.VISIBLE);
+                    binding.warning.setVisibility(View.GONE);
+                }
             }
         });
 
