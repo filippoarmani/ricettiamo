@@ -5,11 +5,16 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
+import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.database.RecipesDao;
 import cfgmm.ricettiamo.data.database.RecipesRoomDatabase;
 import cfgmm.ricettiamo.data.service.RecipeApiService;
 import cfgmm.ricettiamo.model.Recipe;
+import cfgmm.ricettiamo.model.RecipeApiResponse;
 import cfgmm.ricettiamo.util.ServiceLocator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Repository to get the recipes using the API
@@ -32,39 +37,31 @@ public class RecipesRepository implements IRecipesRepository{
     }
 
     @Override
-    public void fetchRecipes(String user_input) {
+    public void getRecipes(String user_input) {
 
-        /*long currentTime = System.currentTimeMillis();
+        // It gets the recipies from the Web Service
+        Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipes(user_input,
+                application.getString(R.string.recipes_api_key));
 
-        // It gets the news from the Web Service if the last download
-        // of the news has been performed more than FRESH_TIMEOUT value ago
-        if (currentTime - lastUpdate > FRESH_TIMEOUT) {
-            Call<NewsApiResponse> newsResponseCall = newsApiService.getNews(country,
-                    TOP_HEADLINES_PAGE_SIZE_VALUE, page, application.getString(R.string.news_api_key));
+        recipeResponseCall.enqueue(new Callback<RecipeApiResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<RecipeApiResponse> call,
+                                   @NonNull Response<RecipeApiResponse> response) {
 
-            newsResponseCall.enqueue(new Callback<NewsApiResponse>() {
-                @Override
-                public void onResponse(@NonNull Call<NewsApiResponse> call,
-                                       @NonNull Response<NewsApiResponse> response) {
-
-                    if (response.body() != null && response.isSuccessful() &&
-                            !response.body().getStatus().equals("error")) {
-                        List<News> newsList = response.body().getNewsList();
-                        saveDataInDatabase(newsList);
-                    } else {
-                        newsResponseCallback.onFailure(application.getString(R.string.error_retrieving_news));
-                    }
+                if (response.body() != null && response.isSuccessful() &&
+                        !response.body().getStatus().equals("error")) {
+                    List<Recipe> recipesList = response.body().getListRecipes();
+                    saveDataInDatabase(recipesList);
+                } else {
+                    recipesResponseCallback.onFailure(application.getString(R.string.error_retrieving_recipe));
                 }
+            }
 
-                @Override
-                public void onFailure(@NonNull Call<NewsApiResponse> call, @NonNull Throwable t) {
-                    newsResponseCallback.onFailure(t.getMessage());
-                }
-            });
-        } else {
-            Log.d(TAG, application.getString(R.string.data_read_from_local_database));
-            readDataFromDatabase(lastUpdate);
-        }*/
+            @Override
+            public void onFailure(@NonNull Call<RecipeApiResponse> call, @NonNull Throwable t) {
+                recipesResponseCallback.onFailure(t.getMessage());
+            }
+        });
     }
 
     /**
@@ -91,7 +88,7 @@ public class RecipesRepository implements IRecipesRepository{
     public void updateRecipes(Recipe recipe) {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
             recipesDao.updateSingleFavoriteRecipes(recipe);
-            recipesResponseCallback.onNewsFavoriteStatusChanged(recipe);
+            recipesResponseCallback.onRecipesFavoriteStatusChanged(recipe);
         });
     }
 

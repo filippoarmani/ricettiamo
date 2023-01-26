@@ -1,50 +1,140 @@
 package cfgmm.ricettiamo.adapter;
 
+import android.app.Application;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+
+import java.util.List;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Recipe;
 
-public class SearchRecipesAdapter extends ArrayAdapter<Recipe> {
+public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Recipe[] recipesArray;
-    private int layout;
+    private static final int RECIPES_VIEW_TYPE = 0;
+    /**
+     * Interface to associate a click listener with
+     * a RecyclerView item.
+     */
+    public interface OnItemClickListener {
+        void onRecipeItemClick(Recipe recipe);
+        void onFavoriteButtonPressed(int position);
+    }
+    private List<Recipe> recipeList;
+    private final Application application;
+    private final OnItemClickListener onItemClickListener;
 
-
-    public SearchRecipesAdapter(@NonNull Context context, int resource, @NonNull Recipe[] objects) {
-        super(context, resource, objects);
-        this.recipesArray = objects;
-        this.layout = resource;
+    public SearchRecipesAdapter(List<Recipe> recipeList, Application application,
+                                OnItemClickListener onItemClickListener) {
+        this.application = application;
+        this.recipeList = recipeList;
+        this.onItemClickListener = onItemClickListener;
+    }
+    public int getItemViewType(int position) {
+        return RECIPES_VIEW_TYPE;
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
+        // Create a new view, which defines the UI of the list item
+        View view = null;
+
+        view = LayoutInflater.from(parent.getContext()).
+                inflate(R.layout.recipe_item, parent, false);
+        return new RecipeViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof RecipeViewHolder) {
+            ((RecipeViewHolder) holder).bind(recipeList.get(position));
+        } /*else if (holder instanceof LoadingNewsViewHolder) {
+            ((LoadingNewsViewHolder) holder).activate();
+        }*/
+    }
+
+    @Override
+    public int getItemCount() {
+        if (recipeList != null) {
+            return recipeList.size();
+        }
+        return 0;
+    }
+    public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        private final TextView textViewName;
+        private final TextView textViewInformations;
+        private final ImageView imageViewRecipeImage;
+        private final ImageView imageViewFavoriteRecipes;
+
+        public RecipeViewHolder(@NonNull View itemView) {
+            super(itemView);
+            textViewName = itemView.findViewById(R.id.src_nameRecipe);
+            textViewInformations = itemView.findViewById(R.id.src_info);
+            imageViewRecipeImage = itemView.findViewById(R.id.src_imageRecipe);
+            imageViewFavoriteRecipes = itemView.findViewById(R.id.imageview_favorite_recipes);
+            itemView.setOnClickListener(this);
+            imageViewFavoriteRecipes.setOnClickListener(this);
         }
 
-        ImageView imageRecipe = convertView.findViewById(R.id.src_imageRecipe);
-        TextView textViewName = convertView.findViewById(R.id.src_nameRecipe);
-        TextView textViewInformations = convertView.findViewById(R.id.src_info);
-        //TextView textViewIngredients = convertView.findViewById(R.id.src_ingredient_1);
+        public void bind(Recipe recipe) {
+            textViewName.setText(recipe.getName());
+            textViewInformations.setText(recipe.getDescription());
+            setImageViewFavoriteRecipes(recipeList.get(getAdapterPosition()).getIsFavorite());
+            Glide.with(application)
+                    .load(recipe.getUrlToImage())
+                    .placeholder(R.drawable.ic_add)
+                    .into(imageViewRecipeImage);
+        }
 
-        //imageRecipe.setImageUrl(recipesArray[position].getUrlToImage());
-        textViewName.setText(recipesArray[position].getName());
-        textViewInformations.setText(recipesArray[position].getDescription());
-        //textViewIngredients.setText(recipesArray[position].getIngredients());
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == R.id.imageview_favorite_recipes) {
+                setImageViewFavoriteRecipes(!recipeList.get(getAdapterPosition()).getIsFavorite());
+                onItemClickListener.onFavoriteButtonPressed(getAdapterPosition());
+            } else {
+                onItemClickListener.onRecipeItemClick(recipeList.get(getAdapterPosition()));
+            }
+        }
 
-
-        return convertView;
+        private void setImageViewFavoriteRecipes(boolean isFavorite) {
+            if (isFavorite) {
+                imageViewFavoriteRecipes.setImageDrawable(
+                        AppCompatResources.getDrawable(application,
+                                R.drawable.ic_favourite_fill));
+            } else {
+                imageViewFavoriteRecipes.setImageDrawable(
+                        AppCompatResources.getDrawable(application,
+                                R.drawable.ic_favourite));
+            }
+        }
     }
+
+    /*public static class LoadingNewsViewHolder extends RecyclerView.ViewHolder {
+        private final ProgressBar progressBar;
+
+        LoadingNewsViewHolder(View view) {
+            super(view);
+            progressBar = view.findViewById(R.id.progressbar_loading_news);
+        }
+
+        public void activate() {
+            progressBar.setIndeterminate(true);
+        }
+    }*/
 }

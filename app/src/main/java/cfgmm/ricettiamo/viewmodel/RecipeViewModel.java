@@ -3,6 +3,8 @@ package cfgmm.ricettiamo.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.List;
+
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
@@ -10,39 +12,34 @@ import cfgmm.ricettiamo.model.Result;
 public class RecipeViewModel extends ViewModel {
     private static final String TAG = RecipeViewModel.class.getSimpleName();
     private final IRecipesRepository recipesRepository;
-    private int page;
-    private int currentResult;
-    private int totalResult;
     private boolean isLoading;
     private boolean firstLoading;
-    private MutableLiveData<Result> recipesList;
-    private MutableLiveData<Result> favoriteRecipes;
+    private List<Recipe> recipesList;
+    private List<Recipe> favoriteRecipes;
 
     public RecipeViewModel(IRecipesRepository iRecipesRepository) {
         this.recipesRepository = iRecipesRepository;
-        this.page = 1;
-        this.totalResult = 0;
         this.firstLoading = true;
     }
 
     /**
-     * Returns the LiveData object associated with the
+     * Returns the list associated with the
      * recipes list to the Fragment/Activity.
-     * @return The LiveData object associated with the news recipes.
+     * @return The list associated with the recipes.
      */
-    public MutableLiveData<Result> getRecipes(String user_input) {
+    public List<Recipe> getRecipes(String user_input) {
         if (recipesList == null) {
-            fetchRecipes(user_input);
+            getRecipes(user_input);
         }
         return recipesList;
     }
 
     /**
-     * Returns the LiveData object associated with the
-     * list of favorite recipes to the Fragment/Activity.
-     * @return The LiveData object associated with the list of favorite recipes.
+     * Returns the list associated with the
+     * favourite recipes list to the Fragment/Activity.
+     * @return The list associated with the recipes.
      */
-    public MutableLiveData<Result> getFavoriteRecipes(boolean isFirstLoading) {
+    public List<Recipe> getFavoriteRecipes(boolean isFirstLoading) {
         if (favoriteRecipes == null) {
             getFavoriteRecipes(isFirstLoading);
         }
@@ -55,10 +52,6 @@ public class RecipeViewModel extends ViewModel {
      */
     public void updateRecipes(Recipe recipe) {
         recipesRepository.updateRecipes(recipe);
-    }
-
-    public void fetchRecipes(String user_input) {
-        recipesRepository.fetchRecipes(user_input);
     }
 
     /**
@@ -92,7 +85,7 @@ public class RecipeViewModel extends ViewModel {
         this.firstLoading = firstLoading;
     }
 
-    public MutableLiveData<Result> getNewsResponseLiveData() {
+    /*public MutableLiveData<Result> getRecipesResponseLiveData() {
         return recipesList;
-    }
+    }*/
 }

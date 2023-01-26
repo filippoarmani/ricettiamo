@@ -56,7 +56,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/src_nameRecipe" />
 
             <ImageView
-                android:id="@+id/imageview_favorite_news"
+                android:id="@+id/imageview_favorite_recipes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"

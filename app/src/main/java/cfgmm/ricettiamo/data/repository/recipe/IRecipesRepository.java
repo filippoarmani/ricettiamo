@@ -7,7 +7,7 @@ import cfgmm.ricettiamo.model.Recipe;
  */
 public interface IRecipesRepository {
 
-    void fetchRecipes(String user_input);
+    void getRecipes(String user_input);
 
     void updateRecipes(Recipe recipe);
 

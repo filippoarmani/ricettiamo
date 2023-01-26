@@ -31,7 +31,11 @@
         android:id="@+id/nav_favourites"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.FavouritesFragment"
         android:label="@string/menu_favourites"
-        tools:layout="@layout/fragment_favourites" />
+        tools:layout="@layout/fragment_favourites" >
+        <action
+            android:id="@+id/action_nav_favourites_to_recipe_details"
+            app:destination="@id/recipe_details" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_settings"
@@ -78,6 +82,15 @@
         android:id="@+id/search_recipes2"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipes"
         android:label="fragment_search_recipes"
-        tools:layout="@layout/fragment_search_recipes" />
+        tools:layout="@layout/fragment_search_recipes" >
+        <action
+            android:id="@+id/action_search_recipes2_to_recipe_details"
+            app:destination="@id/recipe_details" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipe_details"
+        android:name="cfgmm.ricettiamo.RecipeDetails"
+        android:label="fragment_recipe_details"
+        tools:layout="@layout/fragment_recipe_details" />
 
 </navigation>

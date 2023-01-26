@@ -11,5 +11,5 @@ import cfgmm.ricettiamo.model.Recipe;
 public interface RecipesResponseCallback {
     void onSuccess(List<Recipe> recipesList, long lastUpdate);
     void onFailure(String errorMessage);
-    void onNewsFavoriteStatusChanged(Recipe recipe);
+    void onRecipesFavoriteStatusChanged(Recipe recipe);
 }

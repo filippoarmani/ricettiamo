@@ -57,8 +57,8 @@
         app:layout_constraintStart_toEndOf="@+id/search_recipes"
         app:layout_constraintTop_toBottomOf="@+id/search"/>
 
-    <ListView
-        android:id="@+id/search_list"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_search_recipes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
