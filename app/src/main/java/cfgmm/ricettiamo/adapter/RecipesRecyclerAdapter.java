@@ -1,5 +1,6 @@
 package cfgmm.ricettiamo.adapter;
 
+import android.app.Application;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,7 @@ import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Recipe;
 
 
-public class RecipesRecyclerAdapter  extends
-        RecyclerView.Adapter<RecipesRecyclerAdapter.RecipeViewHolder>{
+public class RecipesRecyclerAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private static final int RECIPES_VIEW_TYPE = 0;
     private static final int LOADING_VIEW_TYPE = 1;
@@ -26,10 +26,12 @@ public class RecipesRecyclerAdapter  extends
         void onRecipeItemClick(Recipe recipe);
     }
     private final List<Recipe> recipeList;
-    private final RecipesRecyclerAdapter.OnItemClickListener onItemClickListener;
+    //private final Application application;
+    private final OnItemClickListener onItemClickListener;
 
     public RecipesRecyclerAdapter(List<Recipe> recipeList, OnItemClickListener onItemClickListener) {
         this.recipeList = recipeList;
+        //this.application = application;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -44,17 +46,30 @@ public class RecipesRecyclerAdapter  extends
 
     @NonNull
     @Override
-    public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.fragment_list_item_top_recipe, parent, false);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = null;
 
-        return new RecipeViewHolder(view);
+        if(viewType == RECIPES_VIEW_TYPE){
+            view = LayoutInflater.from(parent.getContext()).
+                    inflate(R.layout.fragment_list_item_top_recipe, parent, false);
+            return new RecipeViewHolder(view);
+        }
+        else{
+            view = LayoutInflater.from(parent.getContext()).
+                    inflate(R.layout.recipes_loading_item, parent, false);
+            return new LoadingRecipeViewHolder(view);
+        }
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecipesRecyclerAdapter.RecipeViewHolder holder,
-                                 int position) {
-        holder.bind(recipeList.get(position));
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof RecipeViewHolder){
+            ((RecipeViewHolder) holder).bind(recipeList.get(position));
+        }
+        else if (holder instanceof LoadingRecipeViewHolder){
+            ((LoadingRecipeViewHolder) holder).activate();
+        }
     }
 
     @Override
@@ -88,10 +103,10 @@ public class RecipesRecyclerAdapter  extends
         }
     }
 
-    public static class LoadingNewsViewHolder extends RecyclerView.ViewHolder {
+    public static class LoadingRecipeViewHolder extends RecyclerView.ViewHolder {
         private final ProgressBar progressBar;
 
-        LoadingNewsViewHolder(View view) {
+        LoadingRecipeViewHolder(View view) {
             super(view);
             progressBar = view.findViewById(R.id.progressbar_loading_recipes);
         }

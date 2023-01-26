@@ -15,6 +15,8 @@ import cfgmm.ricettiamo.R;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
 
+
+
     final String[] title;
     final int[] image;
     final Context context;
