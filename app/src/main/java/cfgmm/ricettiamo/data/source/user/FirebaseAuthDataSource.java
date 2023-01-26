@@ -9,6 +9,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
@@ -33,6 +34,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                     if(isLoggedUser()) {
                         Log.d(TAG, "signUp: success");
                         newUser.setId(getCurrentId());
+                        newUser.setProvider("password");
                         updatePhoto(Uri.parse(String.valueOf(R.drawable.user)));
                         userResponseCallBack.onSuccessRegistration(newUser);
                     } else {
@@ -184,5 +186,26 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                     Log.d(TAG, "deleted: failure");
                     userResponseCallBack.onFailureDelete();
                 });
+    }
+
+    @Override
+    public void signInGoogle(String idToken) {
+        if (idToken !=  null) {
+            AuthCredential firebaseCredential = GoogleAuthProvider.getCredential(idToken, null);
+            firebaseAuth.signInWithCredential(firebaseCredential).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "signInGoogle: success");
+                    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                    if (firebaseUser != null) {
+                        userResponseCallBack.onSuccessLoginGoogle(new User(getCurrentId(), "google", firebaseUser.getDisplayName(), firebaseUser.getEmail()));
+                    } else {
+                        userResponseCallBack.onFailureLogin(R.string.login_error);}
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInGoogle: failure", task.getException());
+                    userResponseCallBack.onFailureLogin(R.string.login_error);
+                }
+            });
+        }
     }
 }

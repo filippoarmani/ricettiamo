@@ -120,7 +120,7 @@ public class HomeFragment extends Fragment {
 
                     // Condition to enable the loading of other news while the user is scrolling the list
                     if (totalItemCount == visibleItemCount ||
-                            (totalItemCount <= (lastVisibleItem + threshold) &&
+                                    (totalItemCount <= (lastVisibleItem + threshold) &&
                                     dy > 0 &&
                                     !newsViewModel.isLoading()
                             ) &&

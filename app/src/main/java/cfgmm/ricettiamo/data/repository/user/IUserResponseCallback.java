@@ -42,4 +42,6 @@ public interface IUserResponseCallback {
 
     void onSuccessUpdateDatabase();
     void onFailureUpdateDatabase(int idError);
+
+    void onSuccessLoginGoogle(User user);
 }

@@ -5,6 +5,8 @@ import static cfgmm.ricettiamo.util.Constants.FIREBASE_USERS_COLLECTION;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,6 +15,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.User;
@@ -127,6 +130,26 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                 userResponseCallBack.onFailureGetPosition(R.string.retrievingDatabase_error);
             }
         });
+    }
+
+    @Override
+    public boolean alreadyExist(User user) {
+        AtomicBoolean exist = new AtomicBoolean(false);
+        databaseReference.child(FIREBASE_USERS_COLLECTION).equalTo(user.getEmail()).get()
+                .addOnSuccessListener(dataSnapshot -> {
+                    for (DataSnapshot snapshot:  dataSnapshot.getChildren()) {
+                        User dUser = snapshot.getValue(User.class);
+                        assert dUser != null;
+                        if(dUser.equals(user)) {
+                            exist.set(true);
+                        }
+                    }
+                })
+                .addOnFailureListener(error -> {
+                   exist.set(false);
+                });
+
+        return exist.get();
     }
 
 }

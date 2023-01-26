@@ -20,4 +20,6 @@ public abstract class BaseDatabaseDataSource {
 
     public abstract void getTopTen();
     public abstract void getPosition(String id);
+
+    public abstract boolean alreadyExist(User user);
 }

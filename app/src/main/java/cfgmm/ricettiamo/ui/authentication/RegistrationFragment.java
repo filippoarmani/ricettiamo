@@ -77,8 +77,8 @@ public class RegistrationFragment extends Fragment {
             if(checkOk(name, surname, email, password)) {
                 User newUser = new User(
                         null,
-                        name,
-                        surname,
+                        null,
+                        name + " " + surname,
                         email
                 );
                 userViewModel.signUp(newUser, email, password);
