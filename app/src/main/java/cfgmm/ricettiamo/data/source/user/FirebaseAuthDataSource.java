@@ -2,9 +2,11 @@ package cfgmm.ricettiamo.data.source.user;
 
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,7 +36,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                     if(isLoggedUser()) {
                         Log.d(TAG, "signUp: success");
                         newUser.setId(getCurrentId());
-                        newUser.setProvider("password");
+                        newUser.setSignInMethod("password");
                         updatePhoto(Uri.parse(String.valueOf(R.drawable.user)));
                         userResponseCallBack.onSuccessRegistration(newUser);
                     } else {
@@ -197,7 +199,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
                     Log.d(TAG, "signInGoogle: success");
                     FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                     if (firebaseUser != null) {
-                        userResponseCallBack.onSuccessLoginGoogle(new User(getCurrentId(), "google", firebaseUser.getDisplayName(), firebaseUser.getEmail()));
+                        userResponseCallBack.onSuccessLoginGoogle(new User(getCurrentId(), "google", firebaseUser.getDisplayName(), null));
                     } else {
                         userResponseCallBack.onFailureLogin(R.string.login_error);}
                 } else {

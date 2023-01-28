@@ -1,7 +1,5 @@
 package cfgmm.ricettiamo.model;
 
-import androidx.annotation.Nullable;
-
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.util.HashMap;
@@ -11,7 +9,7 @@ import java.util.Map;
 public class User {
 
     private String id;
-    private String provider;
+    private String signInMethod;
 
     private String fullName;
 
@@ -26,9 +24,9 @@ public class User {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String id, String provider, String fullName, String email) {
+    public User(String id, String signInMethod, String fullName, String email) {
         this.id = id;
-        this.provider = provider;
+        this.signInMethod = signInMethod;
         this.fullName = fullName;
         this.displayName = fullName;
         this.description = "";
@@ -40,7 +38,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "idUser='" + id + '\'' +
-                ", provider='" + provider + '\'' +
+                ", signInMethod='" + signInMethod + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", displayName='" + displayName + '\'' +
                 ", description='" + description + '\'' +
@@ -53,7 +51,7 @@ public class User {
         Map<String, Object> data = new HashMap<>();
 
         data.put("id", id);
-        data.put("provider", provider);
+        data.put("signInMethod", signInMethod);
         data.put("fullName", fullName);
         data.put("displayName", displayName);
         data.put("description", description);
@@ -112,12 +110,12 @@ public class User {
         this.email = email;
     }
 
-    public String getProvider() {
-        return provider;
+    public String getSignInMethod() {
+        return signInMethod;
     }
 
-    public void setProvider(String provider) {
-        this.provider = provider;
+    public void setSignInMethod(String signInMethod) {
+        this.signInMethod = signInMethod;
     }
 
     @Override
@@ -134,10 +132,10 @@ public class User {
                 return false;
         } else if (!email.equals(other.email))
             return false;
-        if (provider == null) {
-            if (other.provider != null)
+        if (signInMethod == null) {
+            if (other.signInMethod != null)
                 return false;
-        } else if (!provider.equals(other.provider))
+        } else if (!signInMethod.equals(other.signInMethod))
             return false;
         if (id == null) {
             if (other.id != null)

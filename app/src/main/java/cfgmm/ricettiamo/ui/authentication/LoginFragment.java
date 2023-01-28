@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
@@ -27,6 +28,7 @@ import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -42,6 +44,8 @@ public class LoginFragment extends Fragment {
 
     private static final String TAG = LoginFragment.class.getSimpleName();
     private static final boolean USE_NAVIGATION_COMPONENT = true;
+
+    private CircularProgressIndicator progressIndicator;
 
     private ActivityResultLauncher<IntentSenderRequest> activityResultLauncher;
     private ActivityResultContracts.StartIntentSenderForResult startIntentSenderForResult;
@@ -93,13 +97,20 @@ public class LoginFragment extends Fragment {
                     String idToken = credential.getGoogleIdToken();
                     if (idToken !=  null) {
                         userViewModel.signInGoogle(idToken);
-                        Result result = userViewModel.getCurrentUserLiveData().getValue();
-                        if(result.isSuccess()) {
-                            updateUI();
-                        } else {
-                            Result.Error error = (Result.Error) result;
-                            Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
-                        }
+
+                        userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
+                            progressIndicator.setVisibility(View.GONE);
+                            if(result.isSuccess()) {
+                                if(userViewModel.isLoggedUser()) {
+                                    updateUI();
+                                }
+                            } else {
+                                if(!userViewModel.isLoggedUser()) {
+                                    Result.Error error = (Result.Error) result;
+                                    Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                                }
+                            }
+                        });
                     }
                 } catch (ApiException e) {
                     Snackbar.make(requireActivity().findViewById(android.R.id.content),
@@ -119,7 +130,6 @@ public class LoginFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-
         email_layout = view.findViewById(R.id.pd_email_layout);
         password_layout = view.findViewById(R.id.l_password_layout);
 
@@ -129,24 +139,32 @@ public class LoginFragment extends Fragment {
         Button login_later = view.findViewById(R.id.btn_noLogIn);
         Button sign_up = view.findViewById(R.id.l_registration);
 
+        progressIndicator = view.findViewById(R.id.l_progress_circular);
+
         login_password.setOnClickListener(v -> {
+            progressIndicator.setVisibility(View.VISIBLE);
             String email = email_layout.getEditText().getText().toString().trim();
             String password = password_layout.getEditText().getText().toString().trim();
 
             if (!(isEmpty(email) || isEmpty(password))) {
                 userViewModel.signIn(email, password);
 
-                Result result = userViewModel.getCurrentUserLiveData().getValue();
-                if(userViewModel.isLoggedUser()) {
-                    updateUI();
-                } else {
-                    if(!result.isSuccess()) {
-                        Result.Error error = (Result.Error) result;
-                        Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
+                    progressIndicator.setVisibility(View.GONE);
+                    if(result.isSuccess()) {
+                        if(userViewModel.isLoggedUser()) {
+                            updateUI();
+                        }
+                    } else {
+                        if(!userViewModel.isLoggedUser()) {
+                            Result.Error error = (Result.Error) result;
+                            Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                        }
                     }
-                }
+                });
             } else {
                 Snackbar.make(requireView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
+                progressIndicator.setVisibility(View.GONE);
             }
         });
 
@@ -156,47 +174,31 @@ public class LoginFragment extends Fragment {
 
         sign_up.setOnClickListener(v -> Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registrationFragment));
 
-        login_google.setOnClickListener(v -> oneTapClient.beginSignIn(signInRequest)
-                .addOnSuccessListener(requireActivity(), new OnSuccessListener<BeginSignInResult>() {
-                    @Override
-                    public void onSuccess(BeginSignInResult result) {
+        login_google.setOnClickListener(v -> {
+            progressIndicator.setVisibility(View.VISIBLE);
+            oneTapClient.beginSignIn(signInRequest)
+                    .addOnSuccessListener(requireActivity(), result -> {
                         Log.d(TAG, "onSuccess from oneTapClient.beginSignIn(BeginSignInRequest)");
                         IntentSenderRequest intentSenderRequest =
                                 new IntentSenderRequest.Builder(result.getPendingIntent()).build();
                         activityResultLauncher.launch(intentSenderRequest);
-                    }
-                })
-                .addOnFailureListener(requireActivity(), e -> {
-                    // No saved credentials found. Launch the One Tap sign-up flow, or
-                    // do nothing and continue presenting the signed-out UI.
-                    Log.d(TAG, e.getLocalizedMessage());
-                    Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                            requireActivity().getString(R.string.error_no_google_account_found_message),
-                            Snackbar.LENGTH_SHORT).show();
-                }));
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(userViewModel.isLoggedUser()) {
-            updateUI();
-        }
+                    })
+                    .addOnFailureListener(requireActivity(), e -> {
+                        // No saved credentials found. Launch the One Tap sign-up flow, or
+                        // do nothing and continue presenting the signed-out UI.
+                        Log.d(TAG, e.getLocalizedMessage());
+                        Snackbar.make(requireActivity().findViewById(android.R.id.content),
+                                requireActivity().getString(R.string.error_no_google_account_found_message),
+                                Snackbar.LENGTH_SHORT).show();
+                        progressIndicator.setVisibility(View.GONE);
+                    });
+        });
     }
 
     private void updateUI() {
         Intent intent = new Intent(getContext(), MainActivity.class);
         requireActivity().startActivity(intent);
-        requireActivity().finish();
-    }
-
-    private void startActivityBasedOnCondition(Class<?> destinationActivity, int destination) {
-        if (USE_NAVIGATION_COMPONENT) {
-            Navigation.findNavController(requireView()).navigate(destination);
-        } else {
-            Intent intent = new Intent(requireContext(), destinationActivity);
-            startActivity(intent);
-        }
         requireActivity().finish();
     }
 

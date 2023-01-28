@@ -2,18 +2,16 @@ package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -64,9 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
                 R.id.nav_profile,
                 R.id.nav_add_new_recipe,
-                R.id.nav_settings,
-
-                R.id.nav_logout
+                R.id.nav_settings
                 )
                 .setOpenableLayout(drawer)
                 .build();
@@ -83,26 +79,27 @@ public class MainActivity extends AppCompatActivity {
 
         Button login = header.findViewById(R.id.nh_login);
 
-        userViewModel.getCurrentPhotoLiveData().observe(this, photo -> {
-            Glide.with(this)
-                    .load(photo)
-                    .circleCrop()
-                    .into(photoProfile);
+        userViewModel.getCurrentPhotoLiveData().observe(this, result -> {
+            if(result.isSuccess()) {
+                Uri photo = ((Result.PhotoResponseSuccess) result).getData();
+                Glide.with(this)
+                        .load(photo)
+                        .circleCrop()
+                        .into(photoProfile);
+            }
         });
 
-        userViewModel.getCurrentUserLiveData().observe(this, user -> {
-            if(userViewModel.isLoggedUser() && user.isSuccess()) {
-                User currentuser = ((Result.UserResponseSuccess) user).getData();
-                menu.setGroupVisible(R.id.with_login1, true);
-                menu.setGroupVisible(R.id.with_login2, true);
+        userViewModel.getCurrentUserLiveData().observe(this, result -> {
+            if(userViewModel.isLoggedUser() && result.isSuccess()) {
+                User currentuser = ((Result.UserResponseSuccess) result).getData();
+                menu.setGroupVisible(R.id.with_login, true);
 
                 login.setVisibility(View.GONE);
                 nome.setVisibility(View.VISIBLE);
 
                 nome.setText(currentuser.getDisplayName());
             } else {
-                menu.setGroupVisible(R.id.with_login1, false);
-                menu.setGroupVisible(R.id.with_login2, false);
+                menu.setGroupVisible(R.id.with_login, false);
 
                 login.setVisibility(View.VISIBLE);
                 nome.setVisibility(View.GONE);

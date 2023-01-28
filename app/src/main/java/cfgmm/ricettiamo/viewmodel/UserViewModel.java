@@ -23,16 +23,19 @@ public class UserViewModel extends ViewModel {
     public UserViewModel(IUserRepository userRepository) {
         this.userRepository = userRepository;
         currentUserLiveData = new MutableLiveData<>();
+        currentPhotoLiveData = new MutableLiveData<>();
     }
 
     public void signUp(User newUser, String email, String password) {
         currentUserLiveData = userRepository.signUp(newUser, email, password);
-        currentPhotoLiveData = getCurrentPhotoLiveData();
     }
 
     public void signIn(String email, String password) {
         currentUserLiveData = userRepository.signIn(email, password);
-        currentPhotoLiveData = getCurrentPhotoLiveData();
+    }
+
+    public void signInGoogle(String idToken) {
+        currentUserLiveData = userRepository.signInGoogle(idToken);
     }
 
     public MutableLiveData<Result> getCurrentUserLiveData() {
@@ -48,7 +51,7 @@ public class UserViewModel extends ViewModel {
     }
 
     public MutableLiveData<Result> getCurrentPhotoLiveData() {
-        if(currentPhotoLiveData == null) {
+        if(currentPhotoLiveData.getValue() == null) {
             if(isLoggedUser()) {
                 currentPhotoLiveData = userRepository.getCurrentPhoto();
             } else {
@@ -73,6 +76,7 @@ public class UserViewModel extends ViewModel {
     public void signOut() {
         currentUserLiveData = userRepository.signOut();
     }
+
     public boolean isLoggedUser() {
         return userRepository.isLoggedUser();
     }
@@ -121,15 +125,6 @@ public class UserViewModel extends ViewModel {
             i++;
         }
 
-        if(noUpper || noLower || noNumber || noSpecial) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public void signInGoogle(String idToken) {
-        currentUserLiveData = userRepository.signInGoogle(idToken);
-        currentPhotoLiveData = getCurrentPhotoLiveData();
+        return !noUpper && !noLower && !noNumber && !noSpecial;
     }
 }

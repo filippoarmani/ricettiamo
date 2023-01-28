@@ -16,4 +16,8 @@
     <style name="Theme.RicettiAmo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.RicettiAmo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.RicettiAmo.TonalButton" parent="Widget.Material3.Button.TonalButton">
+        <item name="backgroundTint">@color/orange_w</item>
+    </style>
 </resources>

@@ -4,6 +4,7 @@ import static android.text.TextUtils.isEmpty;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,19 +55,42 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         binding.recipeCL.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_nav_profile_to_nav_my_recipe));
         binding.positionCL.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_nav_profile_to_nav_ranking));
-        userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), photo -> {
-            //binding.user.setImageURI(photo);
-            Glide.with(this)
-                    .load(photo)
-                    .circleCrop()
-                    .into(binding.user);
+
+        userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), result -> {
+            binding.pProgressCircular.setVisibility(VISIBLE);
+            if(result.isSuccess()) {
+                Uri photo = ((Result.PhotoResponseSuccess) result).getData();
+                Glide.with(this)
+                        .load(photo)
+                        .circleCrop()
+                        .into(binding.user);
+            } else {
+                Result.Error error = ((Result.Error) result);
+                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+            }
+            binding.pProgressCircular.setVisibility(View.GONE);
         });
         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
+            binding.pProgressCircular.setVisibility(VISIBLE);
             if(result.isSuccess()) {
                 User user = ((Result.UserResponseSuccess) result).getData();
-                binding.fullName.setText(user.getFullName());
                 binding.displayName.setText(user.getDisplayName());
-                binding.email.setText(user.getEmail());
+
+                String fullName = user.getFullName();
+                if(isEmpty(fullName)) {
+                    binding.fullName.setVisibility(View.GONE);
+                } else {
+                    binding.fullName.setVisibility(VISIBLE);
+                    binding.fullName.setText(fullName);
+                }
+
+                String userEmail = user.getEmail();
+                if(isEmpty(userEmail)) {
+                    binding.email.setVisibility(View.GONE);
+                } else {
+                    binding.email.setVisibility(VISIBLE);
+                    binding.email.setText(userEmail);
+                }
 
                 String userDescription = user.getDescription();
                 if(isEmpty(userDescription)) {
@@ -84,9 +108,11 @@ public class ProfileFragment extends Fragment {
                 Result.Error error = ((Result.Error) result);
                 Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
             }
+            binding.pProgressCircular.setVisibility(View.GONE);
         });
 
         userViewModel.getPosition().observe(getViewLifecycleOwner(), result -> {
+            binding.pProgressCircular.setVisibility(VISIBLE);
             if(result.isSuccess()) {
                 String position = "#" + ((Result.PositionResponseSuccess) result).getData();
                 binding.position.setText(position);
@@ -94,6 +120,7 @@ public class ProfileFragment extends Fragment {
                 Result.Error error = ((Result.Error) result);
                 Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
             }
+            binding.pProgressCircular.setVisibility(View.GONE);
         });
     }
 

@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
 
 import cfgmm.ricettiamo.R;
@@ -50,6 +51,8 @@ public class RankingFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        CircularProgressIndicator progressIndicator = view.findViewById(R.id.ra_progress_circular);
+
         CardView[] cardViews = {
                 view.findViewById(R.id.card1),
                 view.findViewById(R.id.card2),
@@ -90,6 +93,7 @@ public class RankingFragment extends Fragment {
         };
 
         userViewModel.getTopTen().observe(getViewLifecycleOwner(), result -> {
+            progressIndicator.setVisibility(View.VISIBLE);
             if(result.isSuccess()) {
                 User[] topTen = ((Result.TopTenResponseSuccess) result).getData();
                 for(int i=0; i<10; i++) {
@@ -112,6 +116,7 @@ public class RankingFragment extends Fragment {
                     cardViews[i].setVisibility(View.GONE);
                 }
             }
+            progressIndicator.setVisibility(View.GONE);
         });
     }
 }

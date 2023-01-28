@@ -165,9 +165,22 @@
             android:layout_alignEnd="@id/r_password_layout"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="22dp"
+
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+
             android:text="@string/create_account"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/r_password_layout" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/r_progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/right_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

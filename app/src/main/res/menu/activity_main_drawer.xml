@@ -31,7 +31,7 @@
     </group>
 
     <group
-        android:id="@+id/with_login1"
+        android:id="@+id/with_login"
         android:checkableBehavior="single">
 
         <item
@@ -51,16 +51,6 @@
 
     </group>
 
-    <group
-        android:id="@+id/with_login2"
-        android:checkableBehavior="single">
-
-        <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_exit"
-            android:title="@string/menu_logout" />
-
-    </group>
 </menu>
 
 

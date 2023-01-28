@@ -12,6 +12,7 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -59,6 +60,10 @@ public class RegistrationFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setFocusableInTouchMode(false);
+
         e_name = view.findViewById(R.id.r_nome_layout);
         e_surname = view.findViewById(R.id.r_cognome_layout);
         e_email = view.findViewById(R.id.r_email_layout);
@@ -67,6 +72,12 @@ public class RegistrationFragment extends Fragment {
         Button registration = view.findViewById(R.id.r_creaAccount);
 
         registration.setOnClickListener(v -> {
+            v.setFocusableInTouchMode(true);
+            v.requestFocus();
+            v.setFocusableInTouchMode(false);
+
+            CircularProgressIndicator progressIndicator = v.findViewById(R.id.r_progress_circular);
+            progressIndicator.setVisibility(View.VISIBLE);
 
             String name = e_name.getEditText().getText().toString().trim();
             String surname = e_surname.getEditText().getText().toString().trim();
@@ -93,6 +104,8 @@ public class RegistrationFragment extends Fragment {
                     }
                 }
             }
+
+            progressIndicator.setVisibility(View.GONE);
         });
     }
 

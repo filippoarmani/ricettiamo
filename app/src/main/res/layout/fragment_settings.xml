@@ -287,6 +287,15 @@
                 tools:layout_editor_absoluteX="30dp"
                 tools:layout_editor_absoluteY="350dp" />
 
+            <Button
+                style="@style/Theme.RicettiAmo.TonalButton"
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_logout"
+                android:textColor="@color/black"
+                android:layout_marginTop="30dp"/>
+
         </LinearLayout>
     </ScrollView>
 
@@ -302,5 +311,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/right_guideline"
         app:layout_constraintStart_toStartOf="@id/left_guideline" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/s_progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/right_guideline"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

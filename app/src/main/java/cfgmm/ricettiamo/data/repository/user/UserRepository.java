@@ -93,7 +93,7 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
 
     public MutableLiveData<Result> getLoggedUser() {
         String id = firebaseAuthDataSource.getCurrentId();
-        readUser(id);
+        this.readUser(id);
         return currentUser;
     }
 
@@ -243,9 +243,9 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     @Override
     public void onSuccessLoginGoogle(User user) {
         if(databaseDataSource.alreadyExist(user)) {
-            readUser(user.getId());
+            this.readUser(user.getId());
         } else {
-            writeUser(user);
+            this.writeUser(user);
         }
     }
 }

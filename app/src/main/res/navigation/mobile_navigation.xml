@@ -74,10 +74,6 @@
         android:label="@string/top_10_chef"
         tools:layout="@layout/fragment_ranking" />
 
-    <dialog
-        android:id="@+id/nav_logout"
-        android:name="cfgmm.ricettiamo.ui.navigation_drawer.LogoutDialogFragment"
-        android:label="@string/menu_logout" />
     <fragment
         android:id="@+id/search_recipes2"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipes"
@@ -87,6 +83,7 @@
             android:id="@+id/action_search_recipes2_to_recipe_details"
             app:destination="@id/recipe_details" />
     </fragment>
+
     <fragment
         android:id="@+id/recipe_details"
         android:name="cfgmm.ricettiamo.RecipeDetails"

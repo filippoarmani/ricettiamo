@@ -2,6 +2,7 @@ package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import static android.text.TextUtils.isEmpty;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +16,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
@@ -27,6 +31,7 @@ import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentSettingsBinding;
 import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.User;
+import cfgmm.ricettiamo.ui.authentication.AuthenticationActivity;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.UserViewModel;
 import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
@@ -69,7 +74,10 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
+        CircularProgressIndicator progressIndicator = view.findViewById(R.id.s_progress_circular);
+
         userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), result -> {
+            progressIndicator.setVisibility(View.VISIBLE);
             if(result.isSuccess()) {
                 Uri photo = ((Result.PhotoResponseSuccess) result).getData();
                 Glide.with(this)
@@ -78,19 +86,27 @@ public class SettingsFragment extends Fragment {
                         .into(binding.changeUserPhoto);
                 photoProfile = photo;
             }
+            progressIndicator.setVisibility(View.GONE);
         });
 
         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
+            progressIndicator.setVisibility(View.VISIBLE);
             if(result.isSuccess()) {
                 User user = ((Result.UserResponseSuccess) result).getData();
-                if(user.getProvider().equals("google")) {
-                    binding.noGoogle.setVisibility(View.GONE);
-                    binding.warning.setVisibility(View.VISIBLE);
+                if(userViewModel.isLoggedUser()){
+                    if (user.getSignInMethod().equals("google")) {
+                        binding.noGoogle.setVisibility(View.GONE);
+                        binding.warning.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.noGoogle.setVisibility(View.VISIBLE);
+                        binding.warning.setVisibility(View.GONE);
+                    }
                 } else {
-                    binding.noGoogle.setVisibility(View.VISIBLE);
-                    binding.warning.setVisibility(View.GONE);
+                    Intent intent = new Intent(requireContext() , AuthenticationActivity.class);
+                    startActivity(intent);
                 }
             }
+            progressIndicator.setVisibility(View.GONE);
         });
 
         binding.changeUserPhoto.setOnClickListener(v -> mGetContent.launch("image/*"));
@@ -153,6 +169,18 @@ public class SettingsFragment extends Fragment {
                 Result.Error error = (Result.Error) result;
                 Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG);
             }
+        });
+
+        binding.logout.setOnClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext());
+            builder.setMessage(R.string.confirmation)
+                    .setPositiveButton(android.R.string.ok, (dialog, id) -> {
+                        userViewModel.signOut();
+                        dialog.cancel();
+                    })
+                    .setNegativeButton(android.R.string.cancel, (dialog, id) -> {
+                        dialog.cancel();
+                    }).create().show();
         });
     }
 
