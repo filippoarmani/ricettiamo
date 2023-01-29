@@ -4,6 +4,7 @@ import static android.text.TextUtils.isEmpty;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -60,29 +61,23 @@ public class ProfileFragment extends Fragment {
             binding.pProgressCircular.setVisibility(VISIBLE);
             if(result.isSuccess()) {
                 Uri photo = ((Result.PhotoResponseSuccess) result).getData();
-                Glide.with(this)
-                        .load(photo)
-                        .circleCrop()
-                        .into(binding.user);
-            } else {
-                Result.Error error = ((Result.Error) result);
-                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                try {
+                    Glide.with(this)
+                            .load(photo)
+                            .circleCrop()
+                            .into(binding.user);
+                } catch (Exception e) { }
             }
             binding.pProgressCircular.setVisibility(View.GONE);
         });
+
         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
             binding.pProgressCircular.setVisibility(VISIBLE);
             if(result.isSuccess()) {
                 User user = ((Result.UserResponseSuccess) result).getData();
                 binding.displayName.setText(user.getDisplayName());
 
-                String fullName = user.getFullName();
-                if(isEmpty(fullName)) {
-                    binding.fullName.setVisibility(View.GONE);
-                } else {
-                    binding.fullName.setVisibility(VISIBLE);
-                    binding.fullName.setText(fullName);
-                }
+                binding.fullName.setText(user.getFullName());
 
                 String userEmail = user.getEmail();
                 if(isEmpty(userEmail)) {

@@ -28,7 +28,7 @@ public interface IUserResponseCallback {
     void onSuccessGetPhoto(Uri uri);
     void onFailureGetPhoto(int idError);
 
-    void onSuccessSetPhoto(Uri uri);
+    void onSuccessSetPhoto();
     void onFailureSetPhoto(int idError);
 
     void onSuccessGetTopTen(User[] topTen);

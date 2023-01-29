@@ -197,8 +197,8 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
-    public void onSuccessSetPhoto(Uri uri) {
-        currentPhoto.postValue(new Result.PhotoResponseSuccess(uri));
+    public void onSuccessSetPhoto() {
+        getCurrentPhoto();
     }
 
     @Override

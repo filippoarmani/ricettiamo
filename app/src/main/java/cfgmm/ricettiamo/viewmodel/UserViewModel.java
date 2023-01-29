@@ -23,7 +23,6 @@ public class UserViewModel extends ViewModel {
     public UserViewModel(IUserRepository userRepository) {
         this.userRepository = userRepository;
         currentUserLiveData = new MutableLiveData<>();
-        currentPhotoLiveData = new MutableLiveData<>();
     }
 
     public void signUp(User newUser, String email, String password) {
@@ -51,7 +50,7 @@ public class UserViewModel extends ViewModel {
     }
 
     public MutableLiveData<Result> getCurrentPhotoLiveData() {
-        if(currentPhotoLiveData.getValue() == null) {
+        if(currentPhotoLiveData == null) {
             if(isLoggedUser()) {
                 currentPhotoLiveData = userRepository.getCurrentPhoto();
             } else {

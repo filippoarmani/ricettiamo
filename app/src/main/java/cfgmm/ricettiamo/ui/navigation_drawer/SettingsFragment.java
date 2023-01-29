@@ -25,6 +25,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
@@ -44,6 +45,7 @@ public class SettingsFragment extends Fragment {
 
     private Boolean changed;
     private Uri photoProfile;
+    private final String[] image = {"image/*"};
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -80,10 +82,14 @@ public class SettingsFragment extends Fragment {
             progressIndicator.setVisibility(View.VISIBLE);
             if(result.isSuccess()) {
                 Uri photo = ((Result.PhotoResponseSuccess) result).getData();
-                Glide.with(this)
-                        .load(photo)
-                        .circleCrop()
-                        .into(binding.changeUserPhoto);
+                try {
+                    Glide.with(this)
+                            .load(photo)
+                            .circleCrop()
+                            .into(binding.changeUserPhoto);
+                } catch (Exception e) {
+
+                }
                 photoProfile = photo;
             }
             progressIndicator.setVisibility(View.GONE);
@@ -104,12 +110,15 @@ public class SettingsFragment extends Fragment {
                 } else {
                     Intent intent = new Intent(requireContext() , AuthenticationActivity.class);
                     startActivity(intent);
+                    requireActivity().finish();
                 }
             }
             progressIndicator.setVisibility(View.GONE);
         });
 
-        binding.changeUserPhoto.setOnClickListener(v -> mGetContent.launch("image/*"));
+        binding.changeUserPhoto.setOnClickListener(v -> {
+            mGetContent.launch(image);
+        });
 
         binding.salva.setOnClickListener(v -> {
             String displayName = binding.iDName.getText().toString().trim();
@@ -184,7 +193,8 @@ public class SettingsFragment extends Fragment {
         });
     }
 
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+
+    ActivityResultLauncher<String[]> mGetContent = registerForActivityResult(new ActivityResultContracts.OpenDocument(),
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {

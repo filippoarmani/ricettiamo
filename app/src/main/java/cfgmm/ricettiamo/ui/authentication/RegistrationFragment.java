@@ -125,6 +125,7 @@ public class RegistrationFragment extends Fragment {
 
     private void updateUI() {
         Intent intent = new Intent(getContext(), MainActivity.class);
+        intent.addCategory(Intent.ACTION_OPEN_DOCUMENT);
         requireActivity().startActivity(intent);
         requireActivity().finish();
     }

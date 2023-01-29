@@ -101,9 +101,7 @@ public class LoginFragment extends Fragment {
                         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
                             progressIndicator.setVisibility(View.GONE);
                             if(result.isSuccess()) {
-                                if(userViewModel.isLoggedUser()) {
-                                    updateUI();
-                                }
+                                updateUI(userViewModel.isLoggedUser());
                             } else {
                                 if(!userViewModel.isLoggedUser()) {
                                     Result.Error error = (Result.Error) result;
@@ -152,9 +150,7 @@ public class LoginFragment extends Fragment {
                 userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
                     progressIndicator.setVisibility(View.GONE);
                     if(result.isSuccess()) {
-                        if(userViewModel.isLoggedUser()) {
-                            updateUI();
-                        }
+                        updateUI(userViewModel.isLoggedUser());
                     } else {
                         if(!userViewModel.isLoggedUser()) {
                             Result.Error error = (Result.Error) result;
@@ -170,7 +166,7 @@ public class LoginFragment extends Fragment {
 
         f_password.setOnClickListener(v -> Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_forgotPasswordFragment));
 
-        login_later.setOnClickListener(v -> updateUI());
+        login_later.setOnClickListener(v -> updateUI(true));
 
         sign_up.setOnClickListener(v -> Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registrationFragment));
 
@@ -196,10 +192,19 @@ public class LoginFragment extends Fragment {
         });
     }
 
-    private void updateUI() {
-        Intent intent = new Intent(getContext(), MainActivity.class);
-        requireActivity().startActivity(intent);
-        requireActivity().finish();
+    private void updateUI(boolean start) {
+        if(start) {
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            intent.addCategory(Intent.ACTION_OPEN_DOCUMENT);
+            requireActivity().startActivity(intent);
+            requireActivity().finish();
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        updateUI(userViewModel.isLoggedUser());
     }
 
 }

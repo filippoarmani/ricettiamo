@@ -159,7 +159,7 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
         Objects.requireNonNull(firebaseAuth.getCurrentUser()).updateProfile(profileUpdates)
                 .addOnSuccessListener(task -> {
                     Log.d(TAG, "setCurrentPhoto: success");
-                    userResponseCallBack.onSuccessSetPhoto(uri);
+                    userResponseCallBack.onSuccessSetPhoto();
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "setCurrentPhoto: failure");

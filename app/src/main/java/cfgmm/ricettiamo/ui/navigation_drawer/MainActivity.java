@@ -20,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
@@ -82,10 +83,12 @@ public class MainActivity extends AppCompatActivity {
         userViewModel.getCurrentPhotoLiveData().observe(this, result -> {
             if(result.isSuccess()) {
                 Uri photo = ((Result.PhotoResponseSuccess) result).getData();
-                Glide.with(this)
-                        .load(photo)
-                        .circleCrop()
-                        .into(photoProfile);
+                try {
+                    Glide.with(this)
+                            .load(photo)
+                            .circleCrop()
+                            .into(photoProfile);
+                } catch (Exception e) { }
             }
         });
 

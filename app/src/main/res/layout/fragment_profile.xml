@@ -43,25 +43,28 @@
         android:gravity="center"
         android:text="Display Name"
         android:fontFamily="@font/montserrat"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/fullName" />
 
     <ImageView
         android:id="@+id/user"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="20dp"
         android:contentDescription="@string/full_name"
         android:elevation="10dp"
         android:fitsSystemWindows="true"
-        app:srcCompat="@drawable/user"
+        android:maxWidth="110dp"
+        android:maxHeight="110dp"
         app:layout_constraintBottom_toTopOf="@+id/fullName"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/user" />
 
     <TextView
         android:id="@+id/email"
@@ -95,12 +98,12 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="20dp"
             android:fontFamily="@font/montserrat"
             android:maxLength="250"
-            android:layout_margin="20dp"
             android:text="@string/character250"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

@@ -90,7 +90,7 @@ public class User {
         this.id = id;
     }
 
-    public void setFullName(String name) {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
