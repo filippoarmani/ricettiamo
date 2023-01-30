@@ -1,12 +1,17 @@
 package cfgmm.ricettiamo.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @IgnoreExtraProperties
-public class User {
+public class User implements Parcelable {
 
     private String id;
     private String signInMethod;
@@ -33,6 +38,28 @@ public class User {
         this.totalStars = 0;
         this.email = email;
     }
+
+    protected User(Parcel in) {
+        id = in.readString();
+        signInMethod = in.readString();
+        fullName = in.readString();
+        displayName = in.readString();
+        description = in.readString();
+        totalStars = in.readInt();
+        email = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     @Override
     public String toString() {
@@ -143,5 +170,21 @@ public class User {
         } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.signInMethod);
+        dest.writeString(this.fullName);
+        dest.writeString(this.displayName);
+        dest.writeString(this.description);
+        dest.writeInt(this.totalStars);
+        dest.writeString(this.email);
     }
 }

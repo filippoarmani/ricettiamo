@@ -128,6 +128,11 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
+    public User getUserById(String id) {
+        return databaseDataSource.getUserById(id);
+    }
+
+    @Override
     public void onSuccessRegistration(User newUser) {
         writeUser(newUser);
     }

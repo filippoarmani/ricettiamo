@@ -22,4 +22,6 @@ public abstract class BaseDatabaseDataSource {
     public abstract void getPosition(String id);
 
     public abstract boolean alreadyExist(User user);
+
+    public abstract User getUserById(String id);
 }

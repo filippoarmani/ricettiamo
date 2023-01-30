@@ -126,4 +126,9 @@ public class UserViewModel extends ViewModel {
 
         return !noUpper && !noLower && !noNumber && !noSpecial;
     }
+
+    public String getDisplayNameUser(String id) {
+        User user = userRepository.getUserById(id);
+        return user.getDisplayName();
+    }
 }

@@ -2,6 +2,8 @@ package cfgmm.ricettiamo.model;
 
 import android.net.Uri;
 
+import java.util.List;
+
 public abstract class Result {
     private Result() {}
 
@@ -10,7 +12,8 @@ public abstract class Result {
                 this instanceof UserResponseSuccess  ||
                 this instanceof PhotoResponseSuccess ||
                 this instanceof TopTenResponseSuccess||
-                this instanceof PositionResponseSuccess) {
+                this instanceof PositionResponseSuccess ||
+                this instanceof CommentResponseSuccess) {
             return true;
         } else {
             return false;
@@ -64,6 +67,16 @@ public abstract class Result {
         }
         public int getData() {
             return position;
+        }
+    }
+
+    public static final class CommentResponseSuccess extends Result {
+        private final List<Comment> commentList;
+        public CommentResponseSuccess(List<Comment> commentList) {
+            this.commentList = commentList;
+        }
+        public List<Comment> getData() {
+            return commentList;
         }
     }
 

@@ -152,4 +152,9 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
         return exist.get();
     }
 
+    @Override
+    public User getUserById(String id) {
+        return databaseReference.child(FIREBASE_USERS_COLLECTION).child(id).get().getResult().getValue(User.class);
+    }
+
 }

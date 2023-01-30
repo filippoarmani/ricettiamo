@@ -36,4 +36,6 @@ public interface IUserRepository {
     MutableLiveData<Result> getPosition();
 
     MutableLiveData<Result> signInGoogle(String idToken);
+
+    User getUserById(String id);
 }
