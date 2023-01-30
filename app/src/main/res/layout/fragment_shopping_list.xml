@@ -29,8 +29,8 @@
 
             <Button
                 android:id="@+id/ShopList_buttonAdd"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:background="@drawable/back_orange"
                 android:text="@string/add"
