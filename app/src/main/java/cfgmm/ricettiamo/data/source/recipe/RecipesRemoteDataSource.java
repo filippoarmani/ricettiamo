@@ -27,7 +27,7 @@ public class RecipesRemoteDataSource extends BaseRecipesRemoteDataSource{
 
     @Override
     public void getRecipes(String user_input) {
-        Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipes(user_input, apiKey);
+        Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipesByName(user_input, 20, apiKey);
 
         recipeResponseCall.enqueue(new Callback<RecipeApiResponse>() {
             @Override

@@ -45,13 +45,13 @@ public class FavoriteRecipesDataSource extends BaseFavoriteRecipesDataSource {
                     else {
                         Log.d(TAG, "Successful read: " + task.getResult().getValue());
 
-                        List<Recipe> newsList = new ArrayList<>();
+                        List<Recipe> recipeList = new ArrayList<>();
                         for(DataSnapshot ds : task.getResult().getChildren()) {
-                            Recipe news = ds.getValue(Recipe.class);
-                            newsList.add(news);
+                            Recipe recipe = ds.getValue(Recipe.class);
+                            recipeList.add(recipe);
                         }
 
-                        recipesCallback.onSuccessFromCloudReading(newsList);
+                        recipesCallback.onSuccessFromCloudReading(recipeList);
                     }
                 });
     }
@@ -75,7 +75,7 @@ public class FavoriteRecipesDataSource extends BaseFavoriteRecipesDataSource {
     }
 
     @Override
-    public void deleteFavoriteRecipes(Recipe recipe) {
+    public void deleteFavoriteRecipe(Recipe recipe) {
         databaseReference.child(FIREBASE_USERS_COLLECTION).child(idToken).
                 child(FIREBASE_FAVORITE_RECIPES_COLLECTION).child(String.valueOf(recipe.hashCode())).
                 removeValue().addOnSuccessListener(aVoid -> {

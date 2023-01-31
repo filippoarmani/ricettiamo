@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,10 @@ import java.util.List;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.SearchRecipesAdapter;
+import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
+import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
+import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
+import cfgmm.ricettiamo.data.source.recipe.RecipesCallback;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.RecipeResponse;
 import cfgmm.ricettiamo.model.Result;
@@ -37,7 +42,7 @@ import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
  * Use the {@link SearchRecipes#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchRecipes extends Fragment {
+public class SearchRecipes extends Fragment implements RecipesResponseCallback {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,6 +53,7 @@ public class SearchRecipes extends Fragment {
     private TextInputLayout inputRecipe;
     private List<Recipe> recipeList;
     private SearchRecipesAdapter searchRecipesAdapter;
+    private IRecipesRepository iRecipesRepository;
     private
     String search;
     private RecipeViewModel recipeViewModel;
@@ -82,6 +88,7 @@ public class SearchRecipes extends Fragment {
         if (getArguments() != null) {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
         recipeList = new ArrayList<>();
     }
 
@@ -101,7 +108,7 @@ public class SearchRecipes extends Fragment {
         btnSearch.setOnClickListener(v -> {
             search = inputRecipe.getEditText().getText().toString().trim();
             if (search.length() != 0)
-                Snackbar.make(getView(), search, Snackbar.LENGTH_LONG).show();
+                iRecipesRepository.getRecipes(search);
             else
                 Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
         });
@@ -206,5 +213,40 @@ public class SearchRecipes extends Fragment {
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+    }
+
+    @Override
+    public void onSuccess(List<Recipe> recipesList, long lastUpdate) {
+        if (recipesList != null) {
+            this.recipeList.clear();
+            this.recipeList.addAll(recipeList);
+        }
+
+        requireActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                searchRecipesAdapter.notifyDataSetChanged();
+                //progressBar.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    @Override
+    public void onFailure(String errorMessage) {
+        Snackbar.make(requireActivity().findViewById(android.R.id.content),
+                errorMessage, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onRecipesFavoriteStatusChanged(Recipe recipe) {
+        if (recipe.isFavorite()) {
+            Snackbar.make(requireActivity().findViewById(android.R.id.content),
+                    getString(R.string.recipes_removed_from_favorite_list_message),
+                    Snackbar.LENGTH_LONG).show();
+        } else {
+            Snackbar.make(requireActivity().findViewById(android.R.id.content),
+                    getString(R.string.recipes_removed_from_favorite_list_message),
+                    Snackbar.LENGTH_LONG).show();
+        }
     }
 }

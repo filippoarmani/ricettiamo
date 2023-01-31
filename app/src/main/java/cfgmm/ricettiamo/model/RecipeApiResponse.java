@@ -14,9 +14,7 @@ public class RecipeApiResponse implements Parcelable {
     private int totalResults;
     private List<Recipe> listRecipes;
 
-    public RecipeApiResponse() {
-        super();
-    }
+    public RecipeApiResponse() {}
     public RecipeApiResponse(String status, int totalResults, List<Recipe> listRecipes) {
         this.status = status;
         this.totalResults = totalResults;
@@ -24,6 +22,9 @@ public class RecipeApiResponse implements Parcelable {
     }
 
     protected RecipeApiResponse(Parcel in) {
+        this.status = in.readString();
+        this.totalResults = in.readInt();
+        this.listRecipes = in.createTypedArrayList(Recipe.CREATOR);
     }
 
     public String getStatus() {
@@ -59,7 +60,7 @@ public class RecipeApiResponse implements Parcelable {
                 '}';
     }
 
-    public static final Creator<RecipeApiResponse> CREATOR = new Creator<RecipeApiResponse>() {
+    public static final Parcelable.Creator<RecipeApiResponse> CREATOR = new Creator<RecipeApiResponse>() {
         @Override
         public RecipeApiResponse createFromParcel(Parcel in) {
             return new RecipeApiResponse(in);

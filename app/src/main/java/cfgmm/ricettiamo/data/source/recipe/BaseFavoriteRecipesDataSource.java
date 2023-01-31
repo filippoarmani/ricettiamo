@@ -15,6 +15,6 @@ public abstract class BaseFavoriteRecipesDataSource {
 
     public abstract void getFavoriteRecipes();
     public abstract void addFavoriteRecipes(Recipe news);
-    public abstract void deleteFavoriteRecipes(Recipe news);
+    public abstract void deleteFavoriteRecipe(Recipe news);
     public abstract void deleteAllFavoriteRecipes();
 }

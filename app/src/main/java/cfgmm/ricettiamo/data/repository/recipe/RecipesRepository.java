@@ -1,6 +1,8 @@
 package cfgmm.ricettiamo.data.repository.recipe;
 
 import android.app.Application;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import java.util.List;
@@ -40,7 +42,7 @@ public class RecipesRepository implements IRecipesRepository{
     public void getRecipes(String user_input) {
 
         // It gets the recipies from the Web Service
-        Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipes(user_input,
+        Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipesByName(user_input, 2,
                 application.getString(R.string.recipes_api_key));
 
         recipeResponseCall.enqueue(new Callback<RecipeApiResponse>() {
@@ -48,10 +50,9 @@ public class RecipesRepository implements IRecipesRepository{
             public void onResponse(@NonNull Call<RecipeApiResponse> call,
                                    @NonNull Response<RecipeApiResponse> response) {
 
-                if (response.body() != null && response.isSuccessful() &&
-                        !response.body().getStatus().equals("error")) {
+                if (response.body() != null && response.isSuccessful()) {
                     List<Recipe> recipesList = response.body().getListRecipes();
-                    saveDataInDatabase(recipesList);
+                    //saveDataInDatabase(recipesList);
                 } else {
                     recipesResponseCallback.onFailure(application.getString(R.string.error_retrieving_recipe));
                 }
@@ -110,7 +111,7 @@ public class RecipesRepository implements IRecipesRepository{
      */
     private void saveDataInDatabase(List<Recipe> recipeList) {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            // Reads the news from the database
+            // Reads the recipes from the database
             List<Recipe> allRecipe = recipesDao.getAll();
 
             // Checks if the news just downloaded has already been downloaded earlier

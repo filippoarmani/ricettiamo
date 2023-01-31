@@ -15,7 +15,8 @@ import retrofit2.http.Query;
  */
 public interface    RecipeApiService {
     @GET(SEARCH_RECIPES)
-    Call<RecipeApiResponse> getRecipes(
+    Call<RecipeApiResponse> getRecipesByName(
             @Query(RECIPE_PARAMETER) String name,
-            @Header("Authentication") String apiKey);
+            @Query("number") int number,
+            @Header("x-api-key") String apiKey);
 }

@@ -125,12 +125,12 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
-    /*public static class LoadingNewsViewHolder extends RecyclerView.ViewHolder {
+    /*public static class LoadingRecipesViewHolder extends RecyclerView.ViewHolder {
         private final ProgressBar progressBar;
 
-        LoadingNewsViewHolder(View view) {
+        LoadingRecipesViewHolder(View view) {
             super(view);
-            progressBar = view.findViewById(R.id.progressbar_loading_news);
+            progressBar = view.findViewById(R.id.progressbar_loading_recipes);
         }
 
         public void activate() {

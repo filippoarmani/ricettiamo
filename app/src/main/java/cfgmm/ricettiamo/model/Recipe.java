@@ -35,6 +35,7 @@ public class Recipe implements Parcelable {
     @ColumnInfo(name = "is_favorite")
     private boolean isFavorite;
 
+    public Recipe() {}
     public Recipe(String author, String name, int score, String description, String ingredients,
                   String date, String url, String urlToImage, boolean isFavorite) {
         this.author = author;
