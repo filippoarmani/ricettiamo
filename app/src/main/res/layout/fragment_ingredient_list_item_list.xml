@@ -84,10 +84,10 @@
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="4dp"
         android:linksClickable="false"
         android:text="@string/add"
         android:textSize="20sp"
-        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_less"
         app:layout_constraintTop_toTopOf="parent" />
