@@ -14,9 +14,9 @@
         <!--barra-->
         <RelativeLayout
             android:id="@+id/relativeLayout"
-            android:layout_width="13dp"
-            android:layout_height="820dp"
-            android:background="@color/orange"/>
+            android:layout_width="14dp"
+            android:layout_height="835dp"
+            android:background="@color/orange" />
 
         <RelativeLayout
             android:id="@+id/body"
@@ -46,7 +46,7 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:background="@drawable/heart"
+            android:background="@drawable/ic_favourite_fill"
             android:layout_marginTop="200dp"
             android:layout_marginStart="30dp"
             android:contentDescription="@string/toDo"/>
@@ -222,7 +222,7 @@
                 <!--ingrediente-->
                 <Button
                     android:id="@+id/add_ingredient"
-                    android:layout_width="wrap_content"
+                    android:layout_width="360dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ingredients"
                     android:fontFamily="@font/montserrat"
@@ -264,7 +264,7 @@
 
                     <Button
                         android:id="@+id/add_step"
-                        android:layout_width="wrap_content"
+                        android:layout_width="360dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/add_step"
@@ -277,7 +277,7 @@
 
                     <Button
                         android:id="@+id/add_image"
-                        android:layout_width="wrap_content"
+                        android:layout_width="360dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/add_step"
                         android:fontFamily="@font/montserrat"
