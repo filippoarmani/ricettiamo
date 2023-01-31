@@ -45,6 +45,7 @@
             android:layout_weight="1" />
 
         <EditText
+            style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
             android:id="@+id/Fridge_textName"
             android:layout_width="160dp"
             android:layout_height="50dp"
@@ -52,7 +53,6 @@
             android:fontFamily="@font/montserrat"
             android:padding="10dp"
             android:hint="@string/product_name"
-            android:textColor = "?android:textColorPrimary"
             android:textSize="18sp"
             android:layout_marginStart="10dp"
             android:importantForAutofill="no"
@@ -107,20 +107,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inserimento_fridge" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/delete_floating_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:backgroundTint="@color/orange"
-        app:layout_constraintTop_toBottomOf="@id/recyclerview_list_ingredients"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete"
-        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

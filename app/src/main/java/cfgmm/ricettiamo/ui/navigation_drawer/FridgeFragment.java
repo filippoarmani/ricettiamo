@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,10 +40,8 @@ public class FridgeFragment extends Fragment {
 
     private final String TAG = FridgeFragment.class.getSimpleName();
     Button button;
-    FloatingActionButton floatingActionButton;
     AlertDialog.Builder builder;
-    Button deleteButton;
-    ImageView list_icon;
+
 
 
 
@@ -74,7 +73,7 @@ public class FridgeFragment extends Fragment {
 
         builder = new AlertDialog.Builder(view.getContext());
         button = view.findViewById(R.id.Fridge_buttonAdd);
-        floatingActionButton = view.findViewById(R.id.delete_floating_button);
+
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext(),
@@ -110,30 +109,35 @@ public class FridgeFragment extends Fragment {
             }
         });
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar snackbar = Snackbar
-                        .make(v, "Do you want delete all?", Snackbar.LENGTH_SHORT)
-                        .setAction("DELETE ALL", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                ingredientList.clear();
-                                IngredientsRecyclerAdapter adapter =
-                                        createAdapater(view, ingredientList);
-                                recyclerView.setLayoutManager(layoutManager);
-                                recyclerView.setAdapter(adapter);
-                            }
-                        });
-                snackbar.setActionTextColor(Color.RED);
-                snackbar.show();
-            }
-        });
-
         IngredientsRecyclerAdapter adapter = createAdapater(view, ingredientList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull
+            RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                Ingredient deleteItem = ingredientList.get(viewHolder.getAdapterPosition());
+
+                int position = viewHolder.getAdapterPosition();
+                ingredientList.remove(position);
+                adapter.notifyItemRemoved(position);
+
+                Snackbar.make(recyclerView, deleteItem.getName(), Snackbar.LENGTH_SHORT).
+                        setAction("UNDO", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ingredientList.add(position,deleteItem);
+                                adapter.notifyItemInserted(position);
+                            }
+                        }).show();
+            }
+        }).attachToRecyclerView(recyclerView);
 
     }
 
