@@ -51,6 +51,7 @@ public class RecipesRepository implements IRecipesRepository{
                                    @NonNull Response<RecipeApiResponse> response) {
 
                 if (response.body() != null && response.isSuccessful()) {
+                    recipesResponseCallback.onFailure(response.toString());
                     List<Recipe> recipesList = response.body().getListRecipes();
                     //saveDataInDatabase(recipesList);
                 } else {
@@ -76,7 +77,7 @@ public class RecipesRepository implements IRecipesRepository{
                 recipe.setIsFavorite(false);
             }
             recipesDao.updateListFavoriteRecipes(favoriteRecipes);
-            recipesResponseCallback.onSuccess(recipesDao.getFavoriteRecipes(), System.currentTimeMillis());
+            recipesResponseCallback.onSuccess(recipesDao.getFavoriteRecipes());
         });
     }
 
@@ -99,7 +100,7 @@ public class RecipesRepository implements IRecipesRepository{
     @Override
     public void getFavoriteRecipes() {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            recipesResponseCallback.onSuccess(recipesDao.getFavoriteRecipes(), System.currentTimeMillis());
+            recipesResponseCallback.onSuccess(recipesDao.getFavoriteRecipes());
         });
     }
 
@@ -139,7 +140,7 @@ public class RecipesRepository implements IRecipesRepository{
                 recipeList.get(i).setId(insertedNewsIds.get(i));
             }
 
-            recipesResponseCallback.onSuccess(recipeList, System.currentTimeMillis());
+            recipesResponseCallback.onSuccess(recipeList);
         });
     }
 
@@ -148,9 +149,9 @@ public class RecipesRepository implements IRecipesRepository{
      * The method is executed with an ExecutorService defined in NewsRoomDatabase class
      * because the database access cannot been executed in the main thread.
      */
-    private void readDataFromDatabase(long lastUpdate) {
+    private void readDataFromDatabase() {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            recipesResponseCallback.onSuccess(recipesDao.getAll(), lastUpdate);
+            recipesResponseCallback.onSuccess(recipesDao.getAll());
         });
     }
 }

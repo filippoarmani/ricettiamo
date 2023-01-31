@@ -216,7 +216,7 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
     }
 
     @Override
-    public void onSuccess(List<Recipe> recipesList, long lastUpdate) {
+    public void onSuccess(List<Recipe> recipesList) {
         if (recipesList != null) {
             this.recipeList.clear();
             this.recipeList.addAll(recipeList);

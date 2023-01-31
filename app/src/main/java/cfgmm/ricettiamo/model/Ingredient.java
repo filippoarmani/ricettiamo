@@ -20,6 +20,7 @@ public class Ingredient implements Parcelable {
     //opzionale
     private String urlToImage;
 
+    public Ingredient() {}
     public Ingredient(String name, float qta, String size, String urlToImage) {
         this.name = name;
         this.qta = qta;
@@ -61,7 +62,7 @@ public class Ingredient implements Parcelable {
         return name;
     }
 
-    public void setNome(String nome) {
+    public void setName(String nome) {
         this.name = nome;
     }
 

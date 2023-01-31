@@ -159,6 +159,7 @@
     <string name="unexpected_error">Unexpected Error</string>
     <string name="api_key_error">API Key not valid or maximum number of request reached</string>
     <string name="error_retrieving_recipe">Error in retrieving recipes</string>
+    <string name="error_retrieving_ingredient">Error in retrieving recipes</string>
 
     <string name="_4" translatable="false">4</string>
     <string name="_5" translatable="false">5</string>

@@ -9,7 +9,7 @@ import cfgmm.ricettiamo.model.Recipe;
  * IRecipesRepository interface to Activity/Fragment.
  */
 public interface RecipesResponseCallback {
-    void onSuccess(List<Recipe> recipesList, long lastUpdate);
+    void onSuccess(List<Recipe> recipesList);
     void onFailure(String errorMessage);
     void onRecipesFavoriteStatusChanged(Recipe recipe);
 }

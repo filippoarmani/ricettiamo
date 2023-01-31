@@ -13,8 +13,9 @@ public class    IngredientApiResponse implements Parcelable {
 
     private String status;
     private int totalResults;
-    private List<Ingredient> articles;
+    private List<Ingredient> articles; //todo:convert in a string
 
+    public IngredientApiResponse() {}
     public IngredientApiResponse(String status, int totalResults, List<Ingredient> articles) {
         this.status = status;
         this.totalResults = totalResults;

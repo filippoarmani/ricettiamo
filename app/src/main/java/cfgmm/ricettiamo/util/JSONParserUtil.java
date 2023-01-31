@@ -19,6 +19,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import cfgmm.ricettiamo.model.Ingredient;
+import cfgmm.ricettiamo.model.IngredientApiResponse;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.RecipeApiResponse;
 
@@ -53,10 +55,10 @@ public class JSONParserUtil {
      * @return The NewsApiResponse object associated with the JSON file content.
      * @throws IOException
      */
-    public RecipeApiResponse parseJSONFileWithJsonReader(String fileName) throws IOException {
+    public RecipeApiResponse parseJSONFileWithJsonReaderRecipe(String fileName) throws IOException {
         InputStream inputStream = application.getAssets().open(fileName);
         JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream));
-        RecipeApiResponse newsApiResponse = new RecipeApiResponse();
+        RecipeApiResponse recipeApiResponse = new RecipeApiResponse();
         List<Recipe> recipeList = null;
 
         jsonReader.beginObject(); // Beginning of JSON root
@@ -103,9 +105,9 @@ public class JSONParserUtil {
         }
         jsonReader.endObject(); // End of JSON object
 
-        newsApiResponse.setListRecipes(recipeList);
+        recipeApiResponse.setListRecipes(recipeList);
 
-        return newsApiResponse;
+        return recipeApiResponse;
     }
 
     /**
@@ -117,7 +119,7 @@ public class JSONParserUtil {
      * @throws IOException
      * @throws JSONException
      */
-    public RecipeApiResponse parseJSONFileWithJSONObjectArray(String fileName)
+    public RecipeApiResponse parseJSONFileWithJSONObjectArrayRecipe(String fileName)
             throws IOException, JSONException {
 
         InputStream inputStream = application.getAssets().open(fileName);
@@ -154,16 +156,121 @@ public class JSONParserUtil {
     }
 
     /**
-     * Returns a list of Recipes from a JSON file parsed using Gson.
+     * Returns a list of Ingredients from a JSON file parsed using Gson.
      * Doc can be read here: https://github.com/google/gson
      * @param fileName The JSON file to be parsed.
-     * @return The RecipeApiResponse object associated with the JSON file content.
+     * @return The IngredientApiResponse object associated with the JSON file content.
      * @throws IOException
      */
-    public RecipeApiResponse parseJSONFileWithGSon(String fileName) throws IOException {
+    public RecipeApiResponse parseJSONFileWithGSonRecipe(String fileName) throws IOException {
         InputStream inputStream = application.getAssets().open(fileName);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
         return new Gson().fromJson(bufferedReader, RecipeApiResponse.class);
+    }
+
+
+    public IngredientApiResponse parseJSONFileWithJsonReaderIngredients(String fileName) throws IOException {
+        InputStream inputStream = application.getAssets().open(fileName);
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream));
+        IngredientApiResponse ingredientApiResponse = new IngredientApiResponse();
+        List<Ingredient> ingredientList = null;
+
+        jsonReader.beginObject(); // Beginning of JSON root
+
+        while (jsonReader.hasNext()) {
+            String rootJSONParam = jsonReader.nextName();
+            if (rootJSONParam.equals(resultsParameter)) {
+                jsonReader.beginArray(); // Beginning of recipes array
+                ingredientList = new ArrayList<>();
+                while (jsonReader.hasNext()) {
+                    jsonReader.beginObject(); // Beginning of article object
+                    Ingredient ingredient = new Ingredient();
+                    while (jsonReader.hasNext()) {
+                        String resultsJSONParam = jsonReader.nextName();
+                        if (jsonReader.peek() != JsonToken.NULL &&
+                                resultsJSONParam.equals(nameParameter)) {
+                            String name = jsonReader.nextString();
+                            ingredient.setName(name);
+                        } /*else if (jsonReader.peek() != JsonToken.NULL &&
+                                resultsJSONParam.equals(urlParameter)) {
+                            String url = jsonReader.nextString();
+                            ingredient.setUrl(url);
+                        }todo*/ else if (jsonReader.peek() != JsonToken.NULL &&
+                                resultsJSONParam.equals(urlToImageParameter)) {
+                            String urlToImage = jsonReader.nextString();
+                            ingredient.setUrlToImage(urlToImage);
+                        } else {
+                            jsonReader.skipValue();
+                        }
+                    }
+                    jsonReader.endObject(); // End of article object
+                    ingredientList.add(ingredient);
+                }
+                jsonReader.endArray(); // End of articles array
+            }
+        }
+        jsonReader.endObject(); // End of JSON object
+
+        ingredientApiResponse.setArticles(ingredientList);
+
+        return ingredientApiResponse;
+    }
+
+    /**
+     * Returns a list of Ingredients from a JSON file parsed using JSONObject and JSONReader classes.
+     * Doc of JSONObject: https://developer.android.com/reference/org/json/JSONObject
+     * Doc of JSONArray: https://developer.android.com/reference/org/json/JSONArray
+     * @param fileName The JSON file to be parsed.
+     * @return The IngredientApiResponse object associated with the JSON file content.
+     * @throws IOException
+     * @throws JSONException
+     */
+    public IngredientApiResponse parseJSONFileWithJSONObjectArrayIngredients(String fileName)
+            throws IOException, JSONException {
+
+        InputStream inputStream = application.getAssets().open(fileName);
+        String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+
+        JSONObject rootJSONObject = new JSONObject(content);
+
+        IngredientApiResponse ingredientApiResponse = new IngredientApiResponse();
+        ingredientApiResponse.setStatus(rootJSONObject.getString(nameParameter));
+        ingredientApiResponse.setTotalResults(rootJSONObject.getInt(totalResultsParameter));
+
+        JSONArray articlesJSONArray = rootJSONObject.getJSONArray(resultsParameter);
+
+        List<Ingredient> ingredientList = null;
+        int articlesCount = articlesJSONArray.length();
+
+        if (articlesCount > 0) {
+            ingredientList = new ArrayList<>();
+            Ingredient ingredient;
+            for (int i = 0; i < articlesCount; i++) {
+                JSONObject resultsJSONObject = articlesJSONArray.getJSONObject(i);
+                ingredient = new Ingredient();
+                ingredient.setName(resultsJSONObject.getString(nameParameter));
+                //ingredient.setUrl(resultsJSONObject.getString(urlParameter)); todo
+                ingredient.setUrlToImage(resultsJSONObject.getString(urlToImageParameter));
+                ingredientList.add(ingredient);
+            }
+        }
+        ingredientApiResponse.setArticles(ingredientList);
+
+        return ingredientApiResponse;
+    }
+
+    /**
+     * Returns a list of Ingredients from a JSON file parsed using Gson.
+     * Doc can be read here: https://github.com/google/gson
+     * @param fileName The JSON file to be parsed.
+     * @return The IngredientApiResponse object associated with the JSON file content.
+     * @throws IOException
+     */
+    public IngredientApiResponse parseJSONFileWithGSonIngredients(String fileName) throws IOException {
+        InputStream inputStream = application.getAssets().open(fileName);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+        return new Gson().fromJson(bufferedReader, IngredientApiResponse.class);
     }
 }

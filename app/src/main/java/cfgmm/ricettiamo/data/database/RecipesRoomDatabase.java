@@ -13,12 +13,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import cfgmm.ricettiamo.model.Recipe;
+import cfgmm.ricettiamo.model.Ingredient;
 
 /**
  * Main access point for the underlying connection to the local database.
  * https://developer.android.com/reference/kotlin/androidx/room/Database
  */
-@Database(entities = {Recipe.class}, version = DATABASE_VERSION)
+@Database(entities = {Recipe.class, Ingredient.class}, version = DATABASE_VERSION)
 public abstract class RecipesRoomDatabase extends RoomDatabase {
     public abstract RecipesDao recipesDao();
 

@@ -96,6 +96,7 @@
     <string name="unexpected_error">Errore Inaspettato</string>
     <string name="api_key_error">Chiave API non valida oppure è stato raggiunto il numero massimo di chiamate</string>
     <string name="error_retrieving_recipe">Errore nel recupero delle ricette</string>
+    <string name="error_retrieving_ingredient">Errore nel recupero degli ingredienti</string>
     <string name="login_error">Si è verificato un errore in fase di login. Per favore controlla i tuoi dati e la connessione e riprova</string>
     <string name="registration_error">Si è verificato un errore in fase di registrazione. Per favore controlla i tuoi dati e la connessione e riprova</string>
     <string name="updateEmail_error">Si è verificato un errore in fase di aggiornamento della mail. Per favore controlla i tuoi dati e la connessione e riprova</string>
