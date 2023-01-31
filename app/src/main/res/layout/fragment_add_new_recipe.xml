@@ -102,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
-                        android:text="@string/difficolty"
+                        android:text="@string/difficulty"
                         android:layout_marginTop="12dp"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginStart="150dp"
-                        android:entries="@array/difficolty_array"
+                        android:entries="@array/difficulty_array"
                         android:minWidth="30dp"
                         android:minHeight="40dp"/>
 

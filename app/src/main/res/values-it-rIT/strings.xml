@@ -74,7 +74,7 @@
     <string name="retry">Riprova</string>
     <string name="add_photo">Aggiungi la foto principale</string>
     <string name="type_nameRecipe">Scrivi il nome della ricetta</string>
-    <string name="difficolty">Difficoltà:</string>
+    <string name="difficulty">Difficoltà:</string>
     <string name="prep_time">Tempo di preparazione:</string>
     <string name="cost">Costo:</string>
     <string name="serving">Servito:</string>

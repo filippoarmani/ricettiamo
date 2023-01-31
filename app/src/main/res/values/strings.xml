@@ -123,8 +123,8 @@
     <!-- inserisci_ricetta -->
     <string name="add_photo">Add the main picture</string>
     <string name="type_nameRecipe">Type name of the recipe</string>
-    <string name="difficolty">Difficolty: </string>
-    <string-array name="difficolty_array">
+    <string name="difficulty">Difficulty: </string>
+    <string-array name="difficulty_array">
         <item>Easy</item>
         <item>Average</item>
         <item>Hard</item>
