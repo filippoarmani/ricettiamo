@@ -25,6 +25,8 @@ import java.util.List;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
+import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
+import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
 import cfgmm.ricettiamo.data.source.recipe.RecipesCallback;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.RecipeApiResponse;
@@ -34,7 +36,7 @@ import cfgmm.ricettiamo.model.RecipeApiResponse;
  * Use the {@link FavouritesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FavouritesFragment extends Fragment implements RecipesCallback {
+public class FavouritesFragment extends Fragment implements RecipesResponseCallback {
 
     private static final String TAG = FavouritesFragment.class.getSimpleName();
 
@@ -64,7 +66,8 @@ public class FavouritesFragment extends Fragment implements RecipesCallback {
         super.onCreate(savedInstanceState);
 
         iRecipesRepository =
-                (IRecipesRepository) new FavouritesFragment();
+                new RecipesRepository(requireActivity().getApplication(),
+                        this);
         recipesList = new ArrayList<>();
     }
 
@@ -116,7 +119,7 @@ public class FavouritesFragment extends Fragment implements RecipesCallback {
         listViewFavNews.setAdapter(adapter);
     }
 
-    public void onSuccess(List<Recipe> recipesList, long lastUpdate) {
+    public void onSuccess(List<Recipe> recipesList) {
         if (recipesList != null) {
             this.recipesList.clear();
             this.recipesList.addAll(recipesList);
@@ -134,14 +137,6 @@ public class FavouritesFragment extends Fragment implements RecipesCallback {
     }
 
     public void onRecipesFavoriteStatusChanged(Recipe recipe) {
-        recipesList.remove(recipe);
-        requireActivity().runOnUiThread(() -> recipesListAdapter.notifyDataSetChanged());
-        Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                getString(R.string.recipes_removed_from_favorite_list_message),
-                Snackbar.LENGTH_LONG).show();
-    }
-
-    public void onRecipeFavoriteStatusChanged(Recipe recipe) {
         if (recipe.isFavorite()) {
             Snackbar.make(requireActivity().findViewById(android.R.id.content),
                     getString(R.string.recipes_added_to_favorite_list_message),
@@ -151,65 +146,5 @@ public class FavouritesFragment extends Fragment implements RecipesCallback {
                     getString(R.string.recipes_removed_from_favorite_list_message),
                     Snackbar.LENGTH_LONG).show();
         }
-    }
-
-    @Override
-    public void onSuccessFromRemote(RecipeApiResponse recipeApiResponse, long lastUpdate) {
-
-    }
-
-    @Override
-    public void onFailureFromRemote(Exception exception) {
-
-    }
-
-    @Override
-    public void onSuccessFromLocal(RecipeApiResponse recipeApiResponse) {
-
-    }
-
-    @Override
-    public void onFailureFromLocal(Exception exception) {
-
-    }
-
-    @Override
-    public void onRecipesFavoriteStatusChanged(Recipe recipe, List<Recipe> favoriteRecipes) {
-
-    }
-
-    @Override
-    public void onRecipesFavoriteStatusChanged(List<Recipe> recipe) {
-
-    }
-
-    @Override
-    public void onDeleteFavoriteNewsSuccess(List<Recipe> favoriteRecipes) {
-
-    }
-
-    @Override
-    public void onSuccessFromCloudReading(List<Recipe> recipeList) {
-
-    }
-
-    @Override
-    public void onSuccessFromCloudWriting(Recipe recipe) {
-
-    }
-
-    @Override
-    public void onFailureFromCloud(Exception exception) {
-
-    }
-
-    @Override
-    public void onSuccessSynchronization() {
-
-    }
-
-    @Override
-    public void onSuccessDeletion() {
-
     }
 }
