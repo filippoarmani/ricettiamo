@@ -77,7 +77,7 @@
 
     <!--ricetta-->
     <string name="nameRecipe" translatable="false">Spaghetti alla carbonara</string>
-    <string name="informations">Difficolty: Easy \nPreparation time: 15min \nCost: Low \nServing: 4 people</string>
+    <string name="informations">Difficolty: Easy \nPrep time: 15min \nCost: Low \nServing: 4 ppl.</string>
     <string name="ingredients">Ingredients</string>
     <string name="ingredient_1" translatable="false">Spaghetti 320g</string>
     <string name="ingredient_2">Egg yolks 6</string>
@@ -129,7 +129,7 @@
         <item>Average</item>
         <item>Hard</item>
     </string-array>
-    <string name="prep_time">Preparation time:  </string>
+    <string name="prep_time">Prep time:  </string>
     <string name="min">minutes</string>
     <string name="cost">Cost: </string>
     <string-array name="cost_array">
@@ -138,7 +138,7 @@
         <item>High</item>
     </string-array>
     <string name="serving">Serving: </string>
-    <string name="people">people</string>
+    <string name="people">ppl.</string>
     <string name="add_ingredient">Add an ingredient</string>
     <string name="add_step">Add a step</string>
     <string name="add_photo_step">Add a photo</string>
@@ -167,5 +167,8 @@
     <string name="_8" translatable="false">8</string>
     <string name="_9" translatable="false">9</string>
     <string name="_10" translatable="false">10</string>
+
+    <string name="recipes_added_to_favorite_list_message">Recipe added to the favorite list</string>
+    <string name="recipes_removed_from_favorite_list_message">Recipe removed from the favorite list</string>
 
 </resources>

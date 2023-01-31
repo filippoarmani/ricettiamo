@@ -11,7 +11,7 @@ public interface IRecipesRepository {
 
     void updateRecipes(Recipe recipe);
 
-    void getFavoriteRecipes(Boolean firstLoading);
+    void getFavoriteRecipes();
 
     void deleteFavoriteRecipes();
 }

@@ -9,8 +9,13 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;*/
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.google.android.material.snackbar.Snackbar;
+
+import cfgmm.ricettiamo.R;
 
 @Entity
 public class Recipe implements Parcelable {
@@ -26,6 +31,8 @@ public class Recipe implements Parcelable {
     private String date;
     private String url;
     private String urlToImage;
+
+    @ColumnInfo(name = "is_favorite")
     private boolean isFavorite;
 
     public Recipe(String author, String name, int score, String description, String ingredients,
@@ -41,9 +48,9 @@ public class Recipe implements Parcelable {
         this.isFavorite = isFavorite;
     }
 
-    /*public Recipe(String author, String name, int score, String description, String ingredients, String date) {
+    public Recipe(String author, String name, int score, String description, String ingredients, String date) {
         this(author, name, score, description, ingredients, date,null, null, false);
-    }*/
+    }
 
     public long getId() { return id; }
 
@@ -109,10 +116,11 @@ public class Recipe implements Parcelable {
         this.urlToImage = urlToImage;
     }
 
-    public boolean getIsFavorite() { return isFavorite; }
+    public boolean isFavorite() { return isFavorite; }
 
     public void setIsFavorite(boolean isFavorite) { this.isFavorite = isFavorite; }
 
+    @NonNull
     @Override
     public String toString() {
         return "Recipe{" +

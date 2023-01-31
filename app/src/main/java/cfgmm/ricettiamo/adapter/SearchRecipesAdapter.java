@@ -95,7 +95,7 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
         public void bind(Recipe recipe) {
             textViewName.setText(recipe.getName());
             textViewInformations.setText(recipe.getDescription());
-            setImageViewFavoriteRecipes(recipeList.get(getAdapterPosition()).getIsFavorite());
+            setImageViewFavoriteRecipes(recipeList.get(getAbsoluteAdapterPosition()).isFavorite());
             Glide.with(application)
                     .load(recipe.getUrlToImage())
                     .placeholder(R.drawable.ic_add)
@@ -105,10 +105,10 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.imageview_favorite_recipes) {
-                setImageViewFavoriteRecipes(!recipeList.get(getAdapterPosition()).getIsFavorite());
-                onItemClickListener.onFavoriteButtonPressed(getAdapterPosition());
+                setImageViewFavoriteRecipes(!recipeList.get(getAbsoluteAdapterPosition()).isFavorite());
+                onItemClickListener.onFavoriteButtonPressed(getAbsoluteAdapterPosition());
             } else {
-                onItemClickListener.onRecipeItemClick(recipeList.get(getAdapterPosition()));
+                onItemClickListener.onRecipeItemClick(recipeList.get(getAbsoluteAdapterPosition()));
             }
         }
 

@@ -46,7 +46,7 @@ public class RecipesLocalDataSource extends BaseRecipesLocalDataSource {
     public void getFavoriteRecipes() {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
             List<Recipe> favoriteRecipes = recipesDao.getFavoriteRecipes();
-            recipesCallback.onNewsFavoriteStatusChanged(favoriteRecipes);
+            recipesCallback.onRecipesFavoriteStatusChanged(favoriteRecipes);
         });
     }
 
@@ -58,7 +58,7 @@ public class RecipesLocalDataSource extends BaseRecipesLocalDataSource {
                 // It means that the update succeeded because only one row had to be updated
                 if (rowUpdatedCounter == 1) {
                     Recipe updatedNews = recipesDao.getRecipes(recipe.getId());
-                    recipesCallback.onNewsFavoriteStatusChanged(updatedNews, recipesDao.getFavoriteRecipes());
+                    recipesCallback.onRecipesFavoriteStatusChanged(updatedNews, recipesDao.getFavoriteRecipes());
                 } else {
                     recipesCallback.onFailureFromLocal(new Exception(UNEXPECTED_ERROR));
                 }

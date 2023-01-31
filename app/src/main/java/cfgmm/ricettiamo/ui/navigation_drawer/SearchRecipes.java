@@ -129,7 +129,7 @@ public class SearchRecipes extends Fragment {
 
                     @Override
                     public void onFavoriteButtonPressed(int position) {
-                        recipeList.get(position).setIsFavorite(!recipeList.get(position).getIsFavorite());
+                        recipeList.get(position).setIsFavorite(!recipeList.get(position).isFavorite());
                         recipeViewModel.updateRecipes(recipeList.get(position));
                     }
                 });

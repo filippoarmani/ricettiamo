@@ -108,6 +108,8 @@
     <string name="field_not_match">I campi non corrispondono</string>
     <string name="error_no_google_account_found_message">Non è stato trovato alcun account Google. Per favore riprova.</string>
     <string name="googleWarning">Agli utenti che hanno effettuato l\'accesso con Google non permettiamo il cambio email e password.</string>
+    <string name="recipes_added_to_favorite_list_message">Ricetta aggiunta alla lista dei preferiti</string>
+    <string name="recipes_removed_from_favorite_list_message">Ricetta rimossa dalla lista dei preferiti</string>
 
 
 </resources>

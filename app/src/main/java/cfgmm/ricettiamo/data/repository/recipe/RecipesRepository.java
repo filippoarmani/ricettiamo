@@ -31,8 +31,8 @@ public class RecipesRepository implements IRecipesRepository{
     public RecipesRepository(Application application, RecipesResponseCallback recipesResponseCallback) {
         this.application = application;
         this.recipeApiService = ServiceLocator.getInstance().getRecipeApiService();
-        RecipesRoomDatabase newsRoomDatabase = ServiceLocator.getInstance().getRecipesDao(application);
-        this.recipesDao = newsRoomDatabase.recipesDao();
+        RecipesRoomDatabase recipesRoomDatabase = ServiceLocator.getInstance().getRecipesDao(application);
+        this.recipesDao = recipesRoomDatabase.recipesDao();
         this.recipesResponseCallback = recipesResponseCallback;
     }
 
@@ -96,7 +96,7 @@ public class RecipesRepository implements IRecipesRepository{
      * Gets the list of favorite recipes from the local database.
      */
     @Override
-    public void getFavoriteRecipes(Boolean firstLoading) {
+    public void getFavoriteRecipes() {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
             recipesResponseCallback.onSuccess(recipesDao.getFavoriteRecipes(), System.currentTimeMillis());
         });

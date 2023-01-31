@@ -1,5 +1,6 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,15 +61,6 @@ public class MyRecipesFragment extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
         List<Recipe> recipeList = getIngredientListWithWithGSon();
-
-        RecipesRecyclerAdapter adapter = new
-                RecipesRecyclerAdapter(recipeList,
-                new RecipesRecyclerAdapter.OnItemClickListener() {
-                    @Override
-                    public void onRecipeItemClick(Recipe recipe) {
-                        Snackbar.make(view, recipe.getName(), Snackbar.LENGTH_SHORT).show();
-                    }
-                });
     }
 
     private List<Recipe> getIngredientListWithWithGSon() {

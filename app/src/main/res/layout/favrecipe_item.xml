@@ -14,14 +14,13 @@
         android:layout_marginTop="90dp">
 
         <View
-            android:id="@+id/bottomFrame"
+            android:id="@+id/lasagna"
             android:layout_width="350dp"
             android:layout_height="140dp"
             android:background="#3DFFE5C2"
             />
 
         <ImageView
-            android:id="@+id/src_imageRecipe"
             android:layout_width="180dp"
             android:layout_height="140dp"
             android:background="@drawable/esempio_carbonara"
@@ -67,7 +66,7 @@
                 android:focusable="true"
                 android:padding="8dp"
                 android:layout_marginBottom="1dp"
-                android:src="@drawable/ic_favourite"
+                android:src="@drawable/ic_favourite_fill"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

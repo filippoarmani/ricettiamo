@@ -18,7 +18,7 @@ public interface RecipesDao {
     @Query("SELECT * FROM recipe WHERE id = :id")
     Recipe getRecipes(long id);
 
-    @Query("SELECT * FROM recipe WHERE isFavorite = 1")
+    @Query("SELECT * FROM recipe WHERE is_favorite = 1")
     List<Recipe> getFavoriteRecipes();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

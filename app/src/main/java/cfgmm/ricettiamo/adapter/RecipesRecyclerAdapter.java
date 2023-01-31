@@ -4,10 +4,12 @@ import android.app.Application;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -26,12 +28,12 @@ public class RecipesRecyclerAdapter  extends RecyclerView.Adapter<RecyclerView.V
         void onRecipeItemClick(Recipe recipe);
     }
     private final List<Recipe> recipeList;
-    //private final Application application;
+    private final Application application;
     private final OnItemClickListener onItemClickListener;
 
-    public RecipesRecyclerAdapter(List<Recipe> recipeList, OnItemClickListener onItemClickListener) {
+    public RecipesRecyclerAdapter(List<Recipe> recipeList, Application application, OnItemClickListener onItemClickListener) {
         this.recipeList = recipeList;
-        //this.application = application;
+        this.application = application;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -84,22 +86,42 @@ public class RecipesRecyclerAdapter  extends RecyclerView.Adapter<RecyclerView.V
             View.OnClickListener{
         private final TextView textViewName;
         private final  TextView textViewScore;
+        private final ImageView imageViewFavoriteRecipe;
 
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             this.textViewName = itemView.findViewById(R.id.text_topRecipe_name);
             this.textViewScore = itemView.findViewById(R.id.text_topRecipe_numberVote);
+            imageViewFavoriteRecipe = itemView.findViewById(R.id.imageview_favorite_recipes);
             itemView.setOnClickListener(this);
+            imageViewFavoriteRecipe.setOnClickListener(this);
         }
 
         public void bind(Recipe recipe) {
             textViewName.setText(recipe.getName());
             textViewScore.setText(String.valueOf(recipe.getScore()));
-
+            setImageViewFavoriteRecipe(recipeList.get(getAbsoluteAdapterPosition()).isFavorite());
         }
         @Override
         public void onClick(View v) {
             //LINK pagina ricetta
+            if (v.getId() == R.id.imageview_favorite_recipes) {
+                setImageViewFavoriteRecipe(!recipeList.get(getAbsoluteAdapterPosition()).isFavorite());
+            } else {
+                onItemClickListener.onRecipeItemClick(recipeList.get(getAbsoluteAdapterPosition()));
+            }
+        }
+
+        private void setImageViewFavoriteRecipe(boolean isFavorite) {
+            if (isFavorite) {
+                imageViewFavoriteRecipe.setImageDrawable(
+                        AppCompatResources.getDrawable(application,
+                                R.drawable.ic_favourite_fill));
+            } else {
+                imageViewFavoriteRecipe.setImageDrawable(
+                        AppCompatResources.getDrawable(application,
+                                R.drawable.ic_favourite));
+            }
         }
     }
 
@@ -115,4 +137,5 @@ public class RecipesRecyclerAdapter  extends RecyclerView.Adapter<RecyclerView.V
             progressBar.setIndeterminate(true);
         }
     }
+
 }
