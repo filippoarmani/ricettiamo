@@ -11,6 +11,9 @@ import androidx.room.PrimaryKey;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cfgmm.ricettiamo.R;
 
 @Entity
@@ -175,5 +178,22 @@ public class Recipe implements Parcelable {
         dest.writeString(this.url);
         dest.writeString(this.urlToImage);
         dest.writeByte(this.isFavorite ? (byte) 1 : (byte) 0);
+    }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> data = new HashMap<>();
+
+        data.put("id", this.id);
+        data.put("author", this.author);
+        data.put("name", this.name);
+        data.put("score", this.score);
+        data.put("description", this.description);
+        data.put("ingredients", this.ingredients);
+        data.put("date", this.date);
+        data.put("url", this.url);
+        data.put("urlToImage", this.urlToImage);
+        data.put("isFavorite", this.isFavorite);
+
+        return data;
     }
 }

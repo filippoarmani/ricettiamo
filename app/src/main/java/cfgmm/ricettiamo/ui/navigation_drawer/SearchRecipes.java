@@ -31,6 +31,7 @@ import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
 import cfgmm.ricettiamo.data.source.recipe.RecipesCallback;
+import cfgmm.ricettiamo.databinding.FragmentSearchRecipesBinding;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.RecipeResponse;
 import cfgmm.ricettiamo.model.Result;
@@ -48,6 +49,8 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private FragmentSearchRecipesBinding fragmentSearchRecipesBinding;
 
     // TODO: Rename and change types of parameters
     private TextInputLayout inputRecipe;
@@ -96,13 +99,14 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_recipes, container, false);
+        fragmentSearchRecipesBinding = FragmentSearchRecipesBinding.inflate(inflater, container, false);
+        return fragmentSearchRecipesBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        inputRecipe = view.findViewById(R.id.search_recipes);
+        inputRecipe = view.findViewById(R.id.search_recipes_input);
         ImageButton btnSearch = view.findViewById(R.id.btn_search);
 
         btnSearch.setOnClickListener(v -> {
@@ -118,36 +122,22 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
                 new LinearLayoutManager(requireContext(),
                         LinearLayoutManager.VERTICAL, false);
 
-        recipeList.add(new Recipe("mattia", "pollo", 5, "veloce", "banana",
+        /*recipeList.add(new Recipe("mattia", "pollo", 5, "veloce", "banana",
                 null, null, null, true));
         recipeList.add(new Recipe("gianni", "acqua", 5, "veloceissima", "banana",
                 null, null, null, false));
         recipeList.add(new Recipe("elisa", "salame", 3, "lungo", "banana",
-                null, null, null, true));
-        recipeList.add(new Recipe("mattia", "pollo", 5, "veloce", "banana",
-                null, null, null, true));
-        recipeList.add(new Recipe("gianni", "acqua", 5, "veloceissima", "banana",
-                null, null, null, false));
-        recipeList.add(new Recipe("elisa", "salame", 3, "lungo", "banana",
-                null, null, null, true));
-        recipeList.add(new Recipe("mattia", "pollo", 5, "veloce", "banana",
-                null, null, null, true));
-        recipeList.add(new Recipe("gianni", "acqua", 5, "veloceissima", "banana",
-                null, null, null, false));
-        recipeList.add(new Recipe("elisa", "salame", 3, "lungo", "banana",
-                null, null, null, true));
-        recipeList.add(new Recipe("mattia", "pollo", 5, "veloce", "banana",
-                null, null, null, true));
-        recipeList.add(new Recipe("gianni", "acqua", 5, "veloceissima", "banana",
-                null, null, null, false));
-        recipeList.add(new Recipe("elisa", "salame", 3, "lungo", "banana",
-                null, null, null, true));
+                null, null, null, true));*/
 
         searchRecipesAdapter = new SearchRecipesAdapter(recipeList, requireActivity().getApplication(),
                 new SearchRecipesAdapter.OnItemClickListener() {
                     @Override
                     public void onRecipeItemClick(Recipe recipe) {
                         Snackbar.make(view, recipe.getName(), Snackbar.LENGTH_SHORT).show();
+                        /*todo: aprire il fragment dettagli ricetta
+                        SearchRecipesDirections action =
+                                SearchRecipesDirections.actionCountryNewsFragmentToNewsDetailFragment(recipe);
+                        Navigation.findNavController(view).navigate(action);*/
                     }
 
                     @Override

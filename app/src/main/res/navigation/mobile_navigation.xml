@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_nav_home_to_search_recipes"
-            app:destination="@id/search_recipes2" />
+            app:destination="@id/search_recipes" />
     </fragment>
 
     <fragment
@@ -75,7 +75,7 @@
         tools:layout="@layout/fragment_ranking" />
 
     <fragment
-        android:id="@+id/search_recipes2"
+        android:id="@+id/search_recipes"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipes"
         android:label="fragment_search_recipes"
         tools:layout="@layout/fragment_search_recipes" >
@@ -88,6 +88,10 @@
         android:id="@+id/recipe_details"
         android:name="cfgmm.ricettiamo.RecipeDetails"
         android:label="fragment_recipe_details"
-        tools:layout="@layout/fragment_recipe_details" />
+        tools:layout="@layout/fragment_recipe_details" >
+        <argument
+            android:name="recipe"
+            app:argType="cfgmm.ricettiamo.model.Recipe" />
+    </fragment>
 
 </navigation>
