@@ -40,7 +40,7 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
 
     private static final String TAG = FavouritesFragment.class.getSimpleName();
 
-    private ListView listViewFavNews;
+    private ListView listViewFavRecipes;
     private Recipe[] recipesArray;
     private List<Recipe> recipesList;
     private IRecipesRepository iRecipesRepository;
@@ -102,13 +102,13 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
 
         progressBar = view.findViewById(R.id.progress_bar);
 
-        listViewFavNews = view.findViewById(R.id.listview_favrecipes);
+        listViewFavRecipes = view.findViewById(R.id.listview_favrecipes);
 
         progressBar.setVisibility(View.VISIBLE);
 
         iRecipesRepository.getFavoriteRecipes();
 
-        listViewFavNews.setOnItemClickListener((parent, view1, position, id) ->
+        listViewFavRecipes.setOnItemClickListener((parent, view1, position, id) ->
                 Snackbar.make(requireActivity().findViewById(android.R.id.content),
                         recipesList.get(position).getName(), Snackbar.LENGTH_SHORT).show());
     }
@@ -116,7 +116,7 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
     private void useDefaultLisAdapter() {
         ArrayAdapter<Recipe> adapter = new ArrayAdapter<Recipe>(requireContext(),
                 android.R.layout.simple_list_item_1, recipesArray);
-        listViewFavNews.setAdapter(adapter);
+        listViewFavRecipes.setAdapter(adapter);
     }
 
     public void onSuccess(List<Recipe> recipesList) {

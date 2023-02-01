@@ -12,7 +12,7 @@ public abstract class BaseRecipesLocalDataSource {
 
     protected RecipesCallback recipesCallback;
 
-    public void setNewsCallback(RecipesCallback newsCallback) {
+    public void setRecipesCallback(RecipesCallback newsCallback) {
         this.recipesCallback= newsCallback;
     }
 
