@@ -1,5 +1,7 @@
 package cfgmm.ricettiamo.data.repository.recipe;
 
+import static cfgmm.ricettiamo.util.Constants.NUMBER_OF_ELEMENTS;
+
 import android.app.Application;
 import android.util.Log;
 
@@ -42,7 +44,7 @@ public class RecipesRepository implements IRecipesRepository{
     public void getRecipes(String user_input) {
 
         // It gets the recipies from the Web Service
-        Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipesByName(user_input, 2,
+        Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipesByName(user_input, NUMBER_OF_ELEMENTS,
                 application.getString(R.string.recipes_api_key));
 
         recipeResponseCall.enqueue(new Callback<RecipeApiResponse>() {
@@ -51,9 +53,8 @@ public class RecipesRepository implements IRecipesRepository{
                                    @NonNull Response<RecipeApiResponse> response) {
 
                 if (response.body() != null && response.isSuccessful()) {
-                    recipesResponseCallback.onFailure(response.toString());
                     List<Recipe> recipesList = response.body().getListRecipes();
-                    //saveDataInDatabase(recipesList);
+                    saveDataInDatabase(recipesList);
                 } else {
                     recipesResponseCallback.onFailure(application.getString(R.string.error_retrieving_recipe));
                 }
@@ -84,7 +85,7 @@ public class RecipesRepository implements IRecipesRepository{
     /**
      * Update the recipes changing the status of "favorite"
      * in the local database.
-     * @param recipe The news to be updated.
+     * @param recipe The recipe to be updated.
      */
     @Override
     public void updateRecipes(Recipe recipe) {
@@ -106,38 +107,23 @@ public class RecipesRepository implements IRecipesRepository{
 
     /**
      * Saves the recipes in the local database.
-     * The method is executed with an ExecutorService defined in NewsRoomDatabase class
+     * The method is executed with an ExecutorService defined in RecipesRoomDatabase class
      * because the database access cannot been executed in the main thread.
      * @param recipeList the list of recipes to be written in the local database.
      */
     private void saveDataInDatabase(List<Recipe> recipeList) {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            // Reads the recipes from the database
             List<Recipe> allRecipe = recipesDao.getAll();
 
-            // Checks if the news just downloaded has already been downloaded earlier
-            // in order to preserve the news status (marked as favorite or not)
             for (Recipe recipe : allRecipe) {
-                // This check works because Recipe and NewsSource classes have their own
-                // implementation of equals(Object) and hashCode() methods
                 if (recipeList.contains(recipe)) {
-                    // The primary key and the favorite status is contained only in the News objects
-                    // retrieved from the database, and not in the News objects downloaded from the
-                    // Web Service. If the same news was already downloaded earlier, the following
-                    // line of code replaces the the News object in newsList with the corresponding
-                    // News object saved in the database, so that it has the primary key and the
-                    // favorite status.
                     recipeList.set(recipeList.indexOf(recipe), recipe);
                 }
             }
 
-            // Writes the news in the database and gets the associated primary keys
-            List<Long> insertedNewsIds = recipesDao.insertRecipeList(recipeList);
+            List<Long> insertedRecipeIds = recipesDao.insertRecipeList(recipeList);
             for (int i = 0; i < recipeList.size(); i++) {
-                // Adds the primary key to the corresponding object News just downloaded so that
-                // if the user marks the news as favorite (and vice-versa), we can use its id
-                // to know which news in the database must be marked as favorite/not favorite
-                recipeList.get(i).setId(insertedNewsIds.get(i));
+                recipeList.get(i).setId(insertedRecipeIds.get(i));
             }
 
             recipesResponseCallback.onSuccess(recipeList);
@@ -146,7 +132,7 @@ public class RecipesRepository implements IRecipesRepository{
 
     /**
      * Gets the recipes from the local database.
-     * The method is executed with an ExecutorService defined in NewsRoomDatabase class
+     * The method is executed with an ExecutorService defined in RecipesRoomDatabase class
      * because the database access cannot been executed in the main thread.
      */
     private void readDataFromDatabase() {

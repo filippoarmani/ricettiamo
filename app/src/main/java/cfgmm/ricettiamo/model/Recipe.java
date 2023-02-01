@@ -9,22 +9,25 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.annotations.SerializedName;
 
 import cfgmm.ricettiamo.R;
 
 @Entity
 public class Recipe implements Parcelable {
     //used for room
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private long id;
 
     private String author;
+    @SerializedName("title")
     private String name;
     private int score;
     private String description;
     private String ingredients;
     private String date;
     private String url;
+    @SerializedName("image")
     private String urlToImage;
 
     @ColumnInfo(name = "is_favorite")

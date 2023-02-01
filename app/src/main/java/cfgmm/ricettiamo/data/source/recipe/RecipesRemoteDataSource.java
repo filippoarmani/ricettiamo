@@ -34,9 +34,8 @@ public class RecipesRemoteDataSource extends BaseRecipesRemoteDataSource{
             public void onResponse(@NonNull Call<RecipeApiResponse> call,
                                    @NonNull Response<RecipeApiResponse> response) {
 
-                if (response.body() != null && response.isSuccessful() &&
-                        !response.body().getStatus().equals("error")) {
-                    recipesCallback.onSuccessFromRemote(response.body(), System.currentTimeMillis());
+                if (response.body() != null && response.isSuccessful()) {
+                    recipesCallback.onSuccessFromRemote(response.body());
 
                 } else {
                     recipesCallback.onFailureFromRemote(new Exception(API_KEY_ERROR));

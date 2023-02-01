@@ -21,11 +21,11 @@ public class Constants {
     public static final int DATABASE_VERSION = 1;
 
     //for spoonacular api (https://spoonacular.com/)
+    public static final int NUMBER_OF_ELEMENTS = 20;
     public static final String RECIPES_API_BASE_URL = "https://api.spoonacular.com/";
     public static final String SEARCH_RECIPES = "recipes/complexSearch";
     public static final String SEARCH_RECIPES_BY_INGREDIENT = "recipes/findByIngredients";
     public static final String SEARCH_INGREDIENT = "food/ingredients/search";
-    public static final String GET_INGREDIENT_INFORMATIONS = "food/ingredients/search";
     public static final String RECIPE_PARAMETER = "query";
     public static final String INGREDIENTS_LIST = "ingredients";
 

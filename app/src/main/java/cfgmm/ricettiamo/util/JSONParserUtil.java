@@ -128,7 +128,6 @@ public class JSONParserUtil {
         JSONObject rootJSONObject = new JSONObject(content);
 
         RecipeApiResponse recipeApiResponse = new RecipeApiResponse();
-        recipeApiResponse.setStatus(rootJSONObject.getString(nameParameter));
         recipeApiResponse.setTotalResults(rootJSONObject.getInt(totalResultsParameter));
 
         JSONArray resultsJSONArray = rootJSONObject.getJSONArray(resultsParameter);

@@ -28,7 +28,7 @@ public class IngredientsRepository implements IIngredientsRepository{
                                  RecipesDao recipesDao, JSONParserUtil.JsonParserType jsonParserType) {
         this.application = application;
         this.ingredientsResponseCallback = ingredientsResponseCallback;
-        RecipesRoomDatabase newsRoomDatabase = ServiceLocator.getInstance().getRecipesDao(application);
+        RecipesRoomDatabase recipesRoomDatabase = ServiceLocator.getInstance().getRecipesDao(application);
         this.recipesDao = recipesDao;
         this.jsonParserType = jsonParserType;
     }
@@ -74,37 +74,22 @@ public class IngredientsRepository implements IIngredientsRepository{
 
     @Override
     public void getIngredientById(int id) {
-
+        //todo
     }
 
     private void saveDataInDatabase(List<Ingredient> ingredientList) {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            // Reads the news from the database
             List<Ingredient> allIngredients = recipesDao.getAllIngredients();
 
-            // Checks if the news just downloaded has already been downloaded earlier
-            // in order to preserve the news status (marked as favorite or not)
             for (Ingredient ingredient : allIngredients) {
-                // This check works because News and NewsSource classes have their own
-                // implementation of equals(Object) and hashCode() methods
                 if (ingredientList.contains(ingredient)) {
-                    // The primary key and the favorite status is contained only in the News objects
-                    // retrieved from the database, and not in the News objects downloaded from the
-                    // Web Service. If the same news was already downloaded earlier, the following
-                    // line of code replaces the the News object in newsList with the corresponding
-                    // News object saved in the database, so that it has the primary key and the
-                    // favorite status.
                     ingredientList.set(ingredientList.indexOf(ingredient), ingredient);
                 }
             }
 
-            // Writes the news in the database and gets the associated primary keys
-            List<Long> insertedNewsIds = recipesDao.insertIngredientList(ingredientList);
+            List<Long> insertedIngredientsIds = recipesDao.insertIngredientList(ingredientList);
             for (int i = 0; i < ingredientList.size(); i++) {
-                // Adds the primary key to the corresponding object News just downloaded so that
-                // if the user marks the news as favorite (and vice-versa), we can use its id
-                // to know which news in the database must be marked as favorite/not favorite
-                ingredientList.get(i).setId(insertedNewsIds.get(i));
+                ingredientList.get(i).setId(insertedIngredientsIds.get(i));
             }
 
             ingredientsResponseCallback.onSuccess(ingredientList);

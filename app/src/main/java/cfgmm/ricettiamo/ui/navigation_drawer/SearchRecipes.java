@@ -107,9 +107,9 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
 
         btnSearch.setOnClickListener(v -> {
             search = inputRecipe.getEditText().getText().toString().trim();
-            if (search.length() != 0)
+            if (search.length() != 0) {
                 iRecipesRepository.getRecipes(search);
-            else
+            } else
                 Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
         });
 
@@ -124,14 +124,30 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
                 null, null, null, false));
         recipeList.add(new Recipe("elisa", "salame", 3, "lungo", "banana",
                 null, null, null, true));
+        recipeList.add(new Recipe("mattia", "pollo", 5, "veloce", "banana",
+                null, null, null, true));
+        recipeList.add(new Recipe("gianni", "acqua", 5, "veloceissima", "banana",
+                null, null, null, false));
+        recipeList.add(new Recipe("elisa", "salame", 3, "lungo", "banana",
+                null, null, null, true));
+        recipeList.add(new Recipe("mattia", "pollo", 5, "veloce", "banana",
+                null, null, null, true));
+        recipeList.add(new Recipe("gianni", "acqua", 5, "veloceissima", "banana",
+                null, null, null, false));
+        recipeList.add(new Recipe("elisa", "salame", 3, "lungo", "banana",
+                null, null, null, true));
+        recipeList.add(new Recipe("mattia", "pollo", 5, "veloce", "banana",
+                null, null, null, true));
+        recipeList.add(new Recipe("gianni", "acqua", 5, "veloceissima", "banana",
+                null, null, null, false));
+        recipeList.add(new Recipe("elisa", "salame", 3, "lungo", "banana",
+                null, null, null, true));
 
         searchRecipesAdapter = new SearchRecipesAdapter(recipeList, requireActivity().getApplication(),
                 new SearchRecipesAdapter.OnItemClickListener() {
                     @Override
                     public void onRecipeItemClick(Recipe recipe) {
-                        /*CountryNewsFragmentDirections.ActionCountryNewsFragmentToNewsDetailFragment action =
-                                CountryNewsFragmentDirections.actionCountryNewsFragmentToNewsDetailFragment(recipe);
-                        Navigation.findNavController(view).navigate(action);*/
+                        Snackbar.make(view, recipe.getName(), Snackbar.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -207,19 +223,19 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
      * See: https://developer.android.com/training/monitoring-device-state/connectivity-status-type#DetermineConnection
      * @return true if the device is connected to Internet; false otherwise.
      */
-    private boolean isConnected() {
+    /*private boolean isConnected() {
         ConnectivityManager cm =
                 (ConnectivityManager)requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-    }
+    }*/
 
     @Override
     public void onSuccess(List<Recipe> recipesList) {
         if (recipesList != null) {
             this.recipeList.clear();
-            this.recipeList.addAll(recipeList);
+            this.recipeList.addAll(recipesList);
         }
 
         requireActivity().runOnUiThread(new Runnable() {

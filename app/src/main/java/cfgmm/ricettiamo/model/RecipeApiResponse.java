@@ -5,34 +5,26 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeApiResponse implements Parcelable {
 
-    private String status;
-    private int totalResults;
+    @SerializedName("results")
     private List<Recipe> listRecipes;
+    private int totalResults;
 
     public RecipeApiResponse() {}
-    public RecipeApiResponse(String status, int totalResults, List<Recipe> listRecipes) {
-        this.status = status;
-        this.totalResults = totalResults;
+    public RecipeApiResponse(List<Recipe> listRecipes,int totalResults) {
         this.listRecipes = listRecipes;
+        this.totalResults = totalResults;
     }
 
     protected RecipeApiResponse(Parcel in) {
-        this.status = in.readString();
-        this.totalResults = in.readInt();
         this.listRecipes = in.createTypedArrayList(Recipe.CREATOR);
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+        this.totalResults = in.readInt();
     }
 
     public int getTotalResults() {
@@ -54,9 +46,8 @@ public class RecipeApiResponse implements Parcelable {
     @Override
     public String toString() {
         return "RecipeApiResponse{" +
-                "status='" + status + '\'' +
-                ", totalResults=" + totalResults +
                 ", listRecipes=" + listRecipes +
+                ", totalResults=" + totalResults +
                 '}';
     }
 
@@ -79,13 +70,11 @@ public class RecipeApiResponse implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(this.status);
-        dest.writeInt(this.totalResults);
         dest.writeTypedList(this.listRecipes);
+        dest.writeInt(this.totalResults);
     }
     public void readFromParcel(Parcel source) {
-        this.status = source.readString();
-        this.totalResults = source.readInt();
         this.listRecipes = source.createTypedArrayList(Recipe.CREATOR);
+        this.totalResults = source.readInt();
     }
 }
