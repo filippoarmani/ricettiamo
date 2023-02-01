@@ -4,6 +4,7 @@ public class Constants {
     //UserDataRemoteDataSource
     public static final String FIREBASE_REALTIME_DATABASE = "https://ricettiamo-8cacf-default-rtdb.europe-west1.firebasedatabase.app/";
     public static final String FIREBASE_USERS_COLLECTION = "users";
+    public static final String FIREBASE_RECIPES_COLLECTION = "recipes";
     public static final String FIREBASE_COMMENTS_COLLECTION = "comments";
     public static final String FIREBASE_FAVORITE_RECIPES_COLLECTION = "favorute_recipes";
 

@@ -7,386 +7,252 @@
     tools:context=".ui.navigation_drawer.AddNewRecipeFragment">
 
     <!--parent-->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!--barra-->
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="14dp"
-            android:layout_height="835dp"
-            android:background="@color/orange" />
-
-        <RelativeLayout
-            android:id="@+id/body"
+        <Button
+            android:id="@+id/imageRecipe"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="248dp"
+            android:background="@color/orange"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/add_photo"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
-        <!--foto-->
-        <LinearLayout
-            android:id="@+id/picture"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_title_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true" >
 
-            <Button
-                android:id="@+id/imageRecipe"
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="248dp"
-                android:background="@color/orange"
-                android:fontFamily="@font/montserrat"
-                android:text="@string/add_photo"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                android:id="@+id/pd_email"
+                android:label="@string/type_nameRecipe"
+                android:hint="@string/type_nameRecipe" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/difficolty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/difficulty"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:entries="@array/difficulty_array"
+                    android:minWidth="30dp"
+                    android:minHeight="40dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/prep_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/prep_time"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:padding="5dp"
+                    android:hint="@string/min"
+                    android:fontFamily="@font/montserrat"
+                    android:autofillHints="number"
+                    android:inputType="numberDecimal"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/prep_time">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/cost"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:entries="@array/cost_array"
+                    android:minWidth="30dp"
+                    android:minHeight="40dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/serving"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="@string/serving"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"/>
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:padding="5dp"
+                    android:hint="@string/people"
+                    android:fontFamily="@font/montserrat"
+                    android:autofillHints="number"
+                    android:inputType="numberDecimal"/>
+            </LinearLayout>
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@drawable/ic_favourite_fill"
-            android:layout_marginTop="200dp"
-            android:layout_marginStart="30dp"
-            android:contentDescription="@string/toDo"/>
-
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:background="@drawable/check"
-            android:layout_marginTop="200dp"
-            android:layout_marginStart="350dp"
-            android:contentDescription="@string/toDo"/>
-
-        <RelativeLayout
+        <TextView
+            android:id="@+id/ingredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/picture">
+            android:fontFamily="@font/montserrat"
+            android:text="@string/ingredients"
+            android:textSize="20sp"
+            android:layout_margin="15dp"
+            android:textStyle="bold"/>
 
-            <!--nome ricetta informazioni-->
-            <RelativeLayout
-                android:id="@+id/recipe_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/nameRecipe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/back"
-                    android:fontFamily="@font/montserrat"
-                    android:layout_marginTop="10dp"
-                    android:minHeight="48dp"
-                    android:padding="10dp"
-                    android:hint="@string/type_nameRecipe"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:importantForAutofill="no"
-                    android:inputType="text" />
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/nameRecipe"
-                    android:layout_marginTop="15dp">
-
-                    <RelativeLayout
-                        android:id="@+id/difficolty"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/difficulty"
-                        android:layout_marginTop="12dp"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="150dp"
-                        android:entries="@array/difficulty_array"
-                        android:minWidth="30dp"
-                        android:minHeight="40dp"/>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/prep_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/difficolty">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/prep_time"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
-
-                        <EditText
-                            android:layout_width="100dp"
-                            android:layout_height="48dp"
-                            android:padding="5dp"
-                            android:hint="@string/min"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_marginStart="150dp"
-                            android:autofillHints="number"
-                            android:inputType="numberDecimal" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/cost"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/prep_time">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/cost"
-                            android:layout_marginTop="12dp"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
-
-                        <Spinner
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:layout_marginStart="150dp"
-                            android:entries="@array/cost_array"
-                            android:minWidth="30dp"
-                            android:minHeight="40dp"/>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/serving"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/cost">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/serving"
-                            android:layout_marginTop="12dp"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
-
-                        <EditText
-                            android:layout_width="100dp"
-                            android:layout_height="48dp"
-                            android:padding="5dp"
-                            android:hint="@string/people"
-                            android:fontFamily="@font/montserrat"
-                            android:layout_marginStart="150dp"
-                            android:autofillHints="number"
-                            android:inputType="numberDecimal" />
-
-                    </RelativeLayout>
-
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-            <!--ingredienti-->
-            <RelativeLayout
-                android:id="@+id/recipe_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/recipe_1"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="15dp">
-
-                <TextView
-                    android:id="@+id/ingredients"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/ingredients"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <!--ingrediente-->
-                <Button
-                    android:id="@+id/add_ingredient"
-                    android:layout_width="360dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/ingredients"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/add_ingredient"
-                    android:background="@drawable/back"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="10dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
-                    app:cornerRadius="20dp"/>
-
-            </RelativeLayout>
-
-            <!--preparazione-->
-            <RelativeLayout
-                android:id="@+id/recipe_3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/recipe_2"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="15dp">
-
-                <TextView
-                    android:id="@+id/prep"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/preparation"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <RelativeLayout
-                    android:id="@+id/preparation_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/prep">
-
-                    <Button
-                        android:id="@+id/add_step"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/add_step"
-                        android:background="@drawable/back"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="10dp"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textAllCaps="false"/>
-
-                    <Button
-                        android:id="@+id/add_image"
-                        android:layout_width="360dp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/add_step"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/add_photo_step"
-                        android:background="@drawable/back"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="10dp"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textAllCaps="false"/>
-
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_ingredient_layout"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@color/orange"
-            android:orientation="vertical"
-            android:layout_below="@id/body"
-            android:layout_marginTop="40dp">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true" >
 
-            <ImageView
-                android:id="@+id/imageViewBottom"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="40dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logo_round"
-                android:contentDescription="@string/toDo"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageViewBottom"
-                app:layout_constraintTop_toTopOf="parent">
+                android:id="@+id/add_ingredient"
+                android:label="Type name of the ingredient"
+                android:hint="Type name of the ingredient" />
 
-                <TextView
-                    android:id="@+id/textViewInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_weight="1"
-                    android:text="@string/info"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/montserrat"
-                    android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- aggiungere onClick o far diventare bottoni i quattro seguenti-->
+        <Button
+            android:id="@+id/add_ingredient_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/add_ingredient"
+            android:layout_marginHorizontal="15dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:cornerRadius="20dp"/>
 
-                <TextView
-                    android:id="@+id/textView_ChiSiamo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="#00FFFFFF"
-                    android:text="@string/about_us"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/montserrat"
-                    android:textSize="16sp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"/>
 
-                <TextView
-                    android:id="@+id/textView_Accedi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="#00FFFFFF"
-                    android:text="@string/login"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/montserrat"
-                    android:textSize="16sp" />
+        <TextView
+            android:id="@+id/prep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/preparation"
+            android:layout_marginHorizontal="15dp"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
-                <TextView
-                    android:id="@+id/textView_UpgradeCuoco"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="#00FFFFFF"
-                    android:text="@string/upgrade_account"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/montserrat"
-                    android:textSize="16sp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_step_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true" >
 
-                <TextView
-                    android:id="@+id/textView_RitornaInAlto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_weight="1"
-                    android:background="#00FFFFFF"
-                    android:text="@string/return_up"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/montserrat"
-                    android:textSize="16sp" />
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_step"
+                android:label="Type new step"
+                android:hint="Type new step" />
 
-            </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/add_step_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/add_step"
+            android:layout_marginHorizontal="15dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:cornerRadius="20dp"/>
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/add_photo_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/add_photo_step"
+            android:layout_marginHorizontal="15dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:cornerRadius="20dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"/>
+
+        <Button
+            android:id="@+id/save_recipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="Save Recipe"
+            android:layout_marginHorizontal="15dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:cornerRadius="20dp"/>
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
