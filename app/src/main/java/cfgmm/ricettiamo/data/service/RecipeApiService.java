@@ -25,7 +25,7 @@ public interface    RecipeApiService {
             @Header("x-api-key") String apiKey);
 
     //A comma-separated list of ingredients that the recipes should contain.
-    //example: apples,+flour,+sugar
+    //example: apples,flour,sugar
     @GET(SEARCH_RECIPES_BY_INGREDIENT)
     Call<RecipeApiResponse> getRecipesByIngredient(
             @Query(INGREDIENTS_LIST) String listOfIngredients,
@@ -35,6 +35,7 @@ public interface    RecipeApiService {
     Call<RecipeApiResponse> getIngredientByName(
             @Query(RECIPE_PARAMETER) String name,
             @Header("x-api-key") String apiKey);
+
     @GET(GET_INGREDIENT_INFORMATIONS)
     Call<RecipeApiResponse> getIngredientById( //todo: è sbagliata la chiamata
             @Query("id") int id,

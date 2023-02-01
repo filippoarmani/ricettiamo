@@ -90,4 +90,14 @@ public class    IngredientApiResponse implements Parcelable {
         this.articles = source.createTypedArrayList(Ingredient.CREATOR);
     }
 
+    public String ListArticlesToString(List<Ingredient> articlesList) {
+        String articlesString = "";
+
+        for (int i = 0; i<articlesList.size(); i++) {
+            articlesString += articlesList.get(i) + ",";
+        }
+
+        return articlesString;
+    }
+
 }

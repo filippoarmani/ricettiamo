@@ -76,16 +76,16 @@ public class RecipesLocalDataSource extends BaseRecipesLocalDataSource {
     @Override
     public void deleteFavoriteRecipes() {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            List<Recipe> favoriteNews = recipesDao.getFavoriteRecipes();
-            for (Recipe news : favoriteNews) {
-                news.setIsFavorite(false);
+            List<Recipe> favoriteRecipes = recipesDao.getFavoriteRecipes();
+            for (Recipe recipe : favoriteRecipes) {
+                recipe.setIsFavorite(false);
             }
-            int updatedRowsNumber = recipesDao.updateListFavoriteRecipes(favoriteNews);
+            int updatedRowsNumber = recipesDao.updateListFavoriteRecipes(favoriteRecipes);
 
             // It means that the update succeeded because the number of updated rows is
             // equal to the number of the original favorite news
-            if (updatedRowsNumber == favoriteNews.size()) {
-                recipesCallback.onDeleteFavoriteNewsSuccess(favoriteNews);
+            if (updatedRowsNumber == favoriteRecipes.size()) {
+                recipesCallback.onDeleteFavoriteRecipeSuccess(favoriteRecipes);
             } else {
                 recipesCallback.onFailureFromLocal(new Exception(UNEXPECTED_ERROR));
             }

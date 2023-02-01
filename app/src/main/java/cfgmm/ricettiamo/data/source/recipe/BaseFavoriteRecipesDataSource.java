@@ -9,7 +9,7 @@ public abstract class BaseFavoriteRecipesDataSource {
 
     protected RecipesCallback recipesCallback;
 
-    public void setNewsCallback(RecipesCallback recipesCallback) {
+    public void setRecipesCallback(RecipesCallback recipesCallback) {
         this.recipesCallback = recipesCallback;
     }
 

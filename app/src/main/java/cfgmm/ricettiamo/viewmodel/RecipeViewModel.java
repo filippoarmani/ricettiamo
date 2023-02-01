@@ -65,7 +65,7 @@ public class RecipeViewModel extends ViewModel {
     /**
      * Clears the list of favorite recipes.
      */
-    public void deleteAllFavoriteNews() {
+    public void deleteAllFavoriteRecipes() {
         recipesRepository.deleteFavoriteRecipes();
     }
 
@@ -84,8 +84,4 @@ public class RecipeViewModel extends ViewModel {
     public void setFirstLoading(boolean firstLoading) {
         this.firstLoading = firstLoading;
     }
-
-    /*public MutableLiveData<Result> getRecipesResponseLiveData() {
-        return recipesList;
-    }*/
 }

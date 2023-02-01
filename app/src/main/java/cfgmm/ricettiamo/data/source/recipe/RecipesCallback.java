@@ -16,7 +16,7 @@ public interface RecipesCallback {
     void onFailureFromLocal(Exception exception);
     void onRecipesFavoriteStatusChanged(Recipe recipe, List<Recipe> favoriteRecipes);
     void onRecipesFavoriteStatusChanged(List<Recipe> recipes);
-    void onDeleteFavoriteNewsSuccess(List<Recipe> favoriteRecipes);
+    void onDeleteFavoriteRecipeSuccess(List<Recipe> favoriteRecipes);
     void onSuccessFromCloudReading(List<Recipe> recipeList);
     void onSuccessFromCloudWriting(Recipe recipe);
     void onFailureFromCloud(Exception exception);
