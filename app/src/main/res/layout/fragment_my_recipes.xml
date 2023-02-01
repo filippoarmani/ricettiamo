@@ -55,7 +55,7 @@
                         android:id="@+id/medal1"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/medal_1"
+                        android:background="@drawable/medal1"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -86,7 +86,7 @@
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
                             android:layout_toStartOf="@id/number1"
-                            android:background="@drawable/star"
+                            android:background="@drawable/ic_star"
                             android:contentDescription="@string/toDo"
                             android:gravity="center" />
 
@@ -133,7 +133,7 @@
                         android:id="@+id/medal2"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/medal_2"
+                        android:background="@drawable/medal2"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -164,7 +164,7 @@
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
                             android:layout_toStartOf="@id/number2"
-                            android:background="@drawable/star"
+                            android:background="@drawable/ic_star"
                             android:contentDescription="@string/toDo"
                             android:gravity="center" />
 
@@ -211,7 +211,7 @@
                         android:id="@+id/medal3"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/medal_3"
+                        android:background="@drawable/medal3"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
@@ -241,7 +241,7 @@
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
                             android:layout_toStartOf="@id/number3"
-                            android:background="@drawable/star"
+                            android:background="@drawable/ic_star"
                             android:contentDescription="@string/toDo"
                             android:gravity="center" />
 
