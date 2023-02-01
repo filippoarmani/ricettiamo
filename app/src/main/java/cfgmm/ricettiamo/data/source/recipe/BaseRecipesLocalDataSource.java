@@ -12,8 +12,8 @@ public abstract class BaseRecipesLocalDataSource {
 
     protected RecipesCallback recipesCallback;
 
-    public void setRecipesCallback(RecipesCallback newsCallback) {
-        this.recipesCallback= newsCallback;
+    public void setRecipesCallback(RecipesCallback recipesCallback) {
+        this.recipesCallback= recipesCallback;
     }
 
     public abstract void getRecipes();
