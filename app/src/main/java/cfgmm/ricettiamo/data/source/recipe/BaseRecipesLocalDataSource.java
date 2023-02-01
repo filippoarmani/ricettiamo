@@ -20,7 +20,7 @@ public abstract class BaseRecipesLocalDataSource {
     public abstract void getFavoriteRecipes();
     public abstract void updateRecipes(Recipe recipe);
     public abstract void deleteFavoriteRecipes();
-    public abstract void insertRecipes(RecipeApiResponse newsApiResponse);
+    public abstract void insertRecipes(RecipeApiResponse recipeApiResponse);
     public abstract void insertRecipes(List<Recipe> recipeList);
     public abstract void deleteAll();
 }
