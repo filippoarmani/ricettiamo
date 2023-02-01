@@ -244,24 +244,21 @@
             android:id="@+id/card4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
-            android:layout_marginTop="15dp"
-            app:cardBackgroundColor="@color/orange_w"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="7dp">
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <ImageView
                     android:id="@+id/medal4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="0dp"
-                    android:text="@string/_4"
+                    android:background="@drawable/number_4"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -314,22 +311,21 @@
             android:id="@+id/card5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
-            android:layout_marginTop="15dp"
-            app:cardBackgroundColor="@color/orange_w"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="7dp">
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <ImageView
                     android:id="@+id/medal5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:text="@string/_5"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/number_5"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -382,22 +378,21 @@
             android:id="@+id/card6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
-            android:layout_marginTop="15dp"
-            app:cardBackgroundColor="@color/orange_w"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="7dp">
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <ImageView
                     android:id="@+id/medal6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:text="@string/_6"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/number_6"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -450,22 +445,21 @@
             android:id="@+id/card7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
-            android:layout_marginTop="15dp"
-            app:cardBackgroundColor="@color/orange_w"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="7dp">
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <ImageView
                     android:id="@+id/medal7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:text="@string/_7"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/number_7"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -518,11 +512,8 @@
             android:id="@+id/card8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
-            android:layout_marginTop="15dp"
-            app:cardBackgroundColor="@color/orange_w"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="7dp">
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -530,13 +521,15 @@
 
                 <TextView
                     android:id="@+id/medal8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:text="@string/_8"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/number_8"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/displayName8"
@@ -586,11 +579,8 @@
             android:id="@+id/card9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
-            android:layout_marginTop="15dp"
-            app:cardBackgroundColor="@color/orange_w"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="7dp">
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -598,10 +588,12 @@
 
                 <TextView
                     android:id="@+id/medal9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:text="@string/_9"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/number_9"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -654,11 +646,8 @@
             android:id="@+id/card10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="60dp"
-            android:layout_marginTop="15dp"
-            app:cardBackgroundColor="@color/orange_w"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="7dp">
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -666,10 +655,12 @@
 
                 <TextView
                     android:id="@+id/medal10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:text="@string/_10"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/number_10"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

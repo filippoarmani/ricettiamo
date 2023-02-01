@@ -1,53 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="140dp"
+    style="@style/CardView.Light"
+    app:cardCornerRadius="22dp"
+    android:elevation="4dp"
+    android:layout_margin="10dp">
 
     <RelativeLayout
         android:id="@+id/picture"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp">
+        android:layout_height="match_parent">
 
         <View
             android:id="@+id/bottomFrame"
-            android:layout_width="350dp"
-            android:layout_height="140dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="#3DFFE5C2"
             />
 
         <ImageView
             android:id="@+id/src_imageRecipe"
             android:layout_width="180dp"
-            android:layout_height="140dp"
+            android:layout_height="match_parent"
             android:background="@drawable/esempio_carbonara"
             android:contentDescription="@string/nameRecipe" />
 
         <View
             android:id="@+id/frame"
-            android:layout_width="350dp"
-            android:layout_height="140dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/frame"
             android:elevation="4dp"
             />
 
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="210dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
 
         <!--nome ricetta informazioni-->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,9 +53,7 @@
             android:id="@+id/recipe_1"
             android:layout_width="354dp"
             android:layout_height="127dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_margin="5dp">
 
             <ImageView
                 android:id="@+id/imageview_favorite_recipes"
@@ -98,4 +94,4 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
