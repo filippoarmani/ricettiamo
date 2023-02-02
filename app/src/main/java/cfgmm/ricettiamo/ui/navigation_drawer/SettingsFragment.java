@@ -2,6 +2,8 @@ package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import static android.text.TextUtils.isEmpty;
 
+import static cfgmm.ricettiamo.util.Constants.IMAGE;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,13 +21,12 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 
 import org.apache.commons.validator.routines.EmailValidator;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
@@ -45,13 +46,12 @@ public class SettingsFragment extends Fragment {
 
     private Boolean changed;
     private Uri photoProfile;
-    private final String[] image = {"image/*"};
 
     public SettingsFragment() {
         // Required empty public constructor
     }
 
-    public static SettingsFragment newInstance(String param2) {
+    public static SettingsFragment newInstance() {
         return new SettingsFragment();
     }
 
@@ -66,11 +66,10 @@ public class SettingsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
-        return view;
+        return binding.getRoot();
     }
 
     @Override
@@ -88,7 +87,7 @@ public class SettingsFragment extends Fragment {
                             .circleCrop()
                             .into(binding.changeUserPhoto);
                 } catch (Exception e) {
-
+                    Snackbar.make(requireView(), getString(R.string.getPhoto_error), Snackbar.LENGTH_LONG).show();
                 }
                 photoProfile = photo;
             }
@@ -116,9 +115,7 @@ public class SettingsFragment extends Fragment {
             progressIndicator.setVisibility(View.GONE);
         });
 
-        binding.changeUserPhoto.setOnClickListener(v -> {
-            mGetContent.launch(image);
-        });
+        binding.changeUserPhoto.setOnClickListener(v -> mGetContent.launch(IMAGE));
 
         binding.salva.setOnClickListener(v -> {
             String displayName = binding.iDName.getText().toString().trim();
@@ -174,9 +171,9 @@ public class SettingsFragment extends Fragment {
             }
 
             Result result = userViewModel.getCurrentUserLiveData().getValue();
-            if(!result.isSuccess()) {
+            if(result != null && !result.isSuccess()) {
                 Result.Error error = (Result.Error) result;
-                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG);
+                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
             }
         });
 
@@ -187,9 +184,7 @@ public class SettingsFragment extends Fragment {
                         userViewModel.signOut();
                         dialog.cancel();
                     })
-                    .setNegativeButton(android.R.string.cancel, (dialog, id) -> {
-                        dialog.cancel();
-                    }).create().show();
+                    .setNegativeButton(android.R.string.cancel, (dialog, id) -> dialog.cancel()).create().show();
         });
     }
 
@@ -211,4 +206,9 @@ public class SettingsFragment extends Fragment {
                 }
             });
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

@@ -74,10 +74,10 @@
     <string name="retry">Riprova</string>
     <string name="add_photo">Aggiungi la foto principale</string>
     <string name="type_nameRecipe">Scrivi il nome della ricetta</string>
-    <string name="difficulty">Difficoltà:</string>
-    <string name="prep_time">Tempo di preparazione:</string>
-    <string name="cost">Costo:</string>
-    <string name="serving">Servito:</string>
+    <string name="difficulty">Difficoltà</string>
+    <string name="prep_time">Tempo di preparazione</string>
+    <string name="cost">Costo</string>
+    <string name="serving">Servito</string>
     <string name="add_ingredient">Aggiunti un ingrediente</string>
     <string name="add_step">Aggiunti un passaggio</string>
     <string name="add_photo_step">Aggiungi una foto</string>
@@ -111,6 +111,11 @@
     <string name="googleWarning">Agli utenti che hanno effettuato l\'accesso con Google non permettiamo il cambio email e password.</string>
     <string name="recipes_added_to_favorite_list_message">Ricetta aggiunta alla lista dei preferiti</string>
     <string name="recipes_removed_from_favorite_list_message">Ricetta rimossa dalla lista dei preferiti</string>
+    <string name="unit">Unità di misura</string>
+    <string name="type_new_step">Inserisci un nuovo step</string>
+    <string name="save_recipe">Salva ricetta</string>
+    <string name="_informations">Informazioni</string>
+    <string name="name_of_the_ingredient">Nome dell\'ingrediente</string>
 
 
 </resources>

@@ -33,4 +33,6 @@ public class Constants {
     //for errors
     public static final String API_KEY_ERROR = "api_key_error";
     public static final String RETROFIT_ERROR = "retrofit_error";
+
+    public static final String[] IMAGE = {"image/*"};
 }
