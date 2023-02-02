@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
@@ -21,6 +22,8 @@ public class Ingredient implements Parcelable {
     private String urlToImage;
 
     public Ingredient() {}
+
+    @Ignore
     public Ingredient(String name, float qta, String size, String urlToImage) {
         this.name = name;
         this.qta = qta;

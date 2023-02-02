@@ -171,5 +171,11 @@
 
     <string name="recipes_added_to_favorite_list_message">Recipe added to the favorite list</string>
     <string name="recipes_removed_from_favorite_list_message">Recipe removed from the favorite list</string>
+    <string name="main_picture">Main Picture of the recipe</string>
+    <string name="_informations">Informations</string>
+    <string name="name_of_the_ingredient">Name of the ingredient</string>
+    <string name="unit">Unit of measure</string>
+    <string name="type_new_step">Type new step</string>
+    <string name="save_recipe">Save recipe</string>
 
 </resources>

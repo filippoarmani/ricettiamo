@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -40,6 +41,8 @@ public class Recipe implements Parcelable {
     private boolean isFavorite;
 
     public Recipe() {}
+
+    @Ignore
     public Recipe(String author, String name, int score, int servings, float cost, int prepTime,
                   String ingredients, String date, /*String url, */String urlToImage, boolean isFavorite) {
         this.author = author;
