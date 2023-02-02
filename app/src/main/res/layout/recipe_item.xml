@@ -75,21 +75,76 @@
                 android:fontFamily="@font/montserrat"
                 android:text="@string/nameRecipe"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/src_info"
+                android:id="@+id/src_servings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:text="@string/informations"
+                android:text="@string/serving"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/src_nameRecipe" />
+
+            <TextView
+                android:id="@+id/src_servings_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/serving"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/src_servings"
+                app:layout_constraintTop_toBottomOf="@+id/src_nameRecipe" />
+
+            <TextView
+                android:id="@+id/src_prep_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/prep_time"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/src_servings" />
+
+            <TextView
+                android:id="@+id/src_prep_time_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/prep_time"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/src_prep_time"
+                app:layout_constraintTop_toBottomOf="@+id/src_servings" />
+
+            <TextView
+                android:id="@+id/src_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/cost"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/src_prep_time" />
+
+            <TextView
+                android:id="@+id/src_cost_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/cost"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/src_cost"
+                app:layout_constraintTop_toBottomOf="@+id/src_prep_time" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

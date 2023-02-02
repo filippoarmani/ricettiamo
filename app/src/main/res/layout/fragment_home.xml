@@ -135,7 +135,7 @@
                         android:layout_weight="1" />
 
                 </LinearLayout>
-
+                <!--
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
@@ -172,12 +172,12 @@
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             android:fontFamily="@font/montserrat"
-                            android:textStyle="bold" />
+                            android:textStyle="bold" /> -->
 
                         <!-- aggiungere onClick o far diventare bottoni i quattro seguenti-->
                         <!-- in about us bisogna aggiungere https://spoonacular.com/ per poter
                         usare la api-->
-
+                        <!--
                         <TextView
                             android:id="@+id/textView_ChiSiamo"
                             android:layout_width="wrap_content"
@@ -226,6 +226,7 @@
                     </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+                -->
 
             </LinearLayout>
 

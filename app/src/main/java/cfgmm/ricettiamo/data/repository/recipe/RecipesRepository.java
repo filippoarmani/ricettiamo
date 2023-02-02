@@ -1,5 +1,6 @@
 package cfgmm.ricettiamo.data.repository.recipe;
 
+import static cfgmm.ricettiamo.util.Constants.ADD_RECIPE_INFORMATIONS;
 import static cfgmm.ricettiamo.util.Constants.NUMBER_OF_ELEMENTS;
 
 import android.app.Application;
@@ -45,7 +46,7 @@ public class RecipesRepository implements IRecipesRepository{
 
         // It gets the recipies from the Web Service
         Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipesByName(user_input, NUMBER_OF_ELEMENTS,
-                application.getString(R.string.recipes_api_key));
+                ADD_RECIPE_INFORMATIONS, application.getString(R.string.recipes_api_key));
 
         recipeResponseCall.enqueue(new Callback<RecipeApiResponse>() {
             @Override

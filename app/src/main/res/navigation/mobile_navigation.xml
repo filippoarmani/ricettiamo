@@ -33,8 +33,8 @@
         android:label="@string/menu_favourites"
         tools:layout="@layout/fragment_favourites" >
         <action
-            android:id="@+id/action_nav_favourites_to_recipe_details"
-            app:destination="@id/recipe_details" />
+            android:id="@+id/action_nav_favourites_to_recipeDetailsFragment"
+            app:destination="@id/recipeDetailsFragment" />
     </fragment>
 
     <fragment
@@ -80,13 +80,12 @@
         android:label="fragment_search_recipes"
         tools:layout="@layout/fragment_search_recipes" >
         <action
-            android:id="@+id/action_search_recipes2_to_recipe_details"
-            app:destination="@id/recipe_details" />
+            android:id="@+id/action_search_recipes_to_recipeDetailsFragment"
+            app:destination="@id/recipeDetailsFragment" />
     </fragment>
-
     <fragment
-        android:id="@+id/recipe_details"
-        android:name="cfgmm.ricettiamo.RecipeDetails"
+        android:id="@+id/recipeDetailsFragment"
+        android:name="cfgmm.ricettiamo.RecipeDetailsFragment"
         android:label="fragment_recipe_details"
         tools:layout="@layout/fragment_recipe_details" >
         <argument

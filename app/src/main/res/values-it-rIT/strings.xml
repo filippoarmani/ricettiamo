@@ -50,7 +50,6 @@
 
     <!--ricetta-->
 
-    <string name="informations">Difficoltà: Facile\nPreparazione: 15min\nCosto: Basso\nDosi per: 4 persone</string>
     <string name="ingredients">Ingredienti</string>
     <string name="ingredient_2">Tuorli 6</string>
     <string name="ingredient_3">Pepe nero q.b.</string>
@@ -74,10 +73,9 @@
     <string name="retry">Riprova</string>
     <string name="add_photo">Aggiungi la foto principale</string>
     <string name="type_nameRecipe">Scrivi il nome della ricetta</string>
-    <string name="difficulty">Difficoltà:</string>
-    <string name="prep_time">Tempo di preparazione:</string>
-    <string name="cost">Costo:</string>
-    <string name="serving">Servito:</string>
+    <string name="prep_time">"Tempo di preparazione: "</string>
+    <string name="cost">"Costo: "</string>
+    <string name="serving">"Servito: "</string>
     <string name="add_ingredient">Aggiunti un ingrediente</string>
     <string name="add_step">Aggiunti un passaggio</string>
     <string name="add_photo_step">Aggiungi una foto</string>

@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:orientation="vertical">
-
+<!--
             <LinearLayout
                 android:id="@+id/difficolty"
                 android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
                     android:minWidth="30dp"
                     android:minHeight="40dp"/>
             </LinearLayout>
-
+-->
             <LinearLayout
                 android:id="@+id/prep_time"
                 android:layout_width="wrap_content"
@@ -105,13 +105,14 @@
                     android:text="@string/cost"
                     android:textColor="@color/black"
                     android:textSize="16sp"/>
-
+                <!--
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:entries="@array/cost_array"
                     android:minWidth="30dp"
                     android:minHeight="40dp"/>
+                    -->
             </LinearLayout>
 
             <LinearLayout

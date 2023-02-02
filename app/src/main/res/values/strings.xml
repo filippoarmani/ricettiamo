@@ -77,7 +77,6 @@
 
     <!--ricetta-->
     <string name="nameRecipe" translatable="false">Spaghetti alla carbonara</string>
-    <string name="informations">Difficolty: Easy \nPrep time: 15min \nCost: Low \nServing: 4 ppl.</string>
     <string name="ingredients">Ingredients</string>
     <string name="ingredient_1" translatable="false">Spaghetti 320g</string>
     <string name="ingredient_2">Egg yolks 6</string>
@@ -123,20 +122,10 @@
     <!-- inserisci_ricetta -->
     <string name="add_photo">Add the main picture</string>
     <string name="type_nameRecipe">Type name of the recipe</string>
-    <string name="difficulty">Difficulty: </string>
-    <string-array name="difficulty_array">
-        <item>Easy</item>
-        <item>Average</item>
-        <item>Hard</item>
-    </string-array>
-    <string name="prep_time">Prep time:  </string>
+    <string name="prep_time">"Prep time: "</string>
     <string name="min">minutes</string>
     <string name="cost">Cost: </string>
-    <string-array name="cost_array">
-        <item>Low</item>
-        <item>Average</item>
-        <item>High</item>
-    </string-array>
+
     <string name="serving">Serving: </string>
     <string name="people">ppl.</string>
     <string name="add_ingredient">Add an ingredient</string>
