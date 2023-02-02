@@ -4,6 +4,8 @@ import static android.text.TextUtils.isEmpty;
 
 import static cfgmm.ricettiamo.util.Constants.IMAGE;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,10 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,7 +60,21 @@ public class AddNewRecipeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         ingredientList = new ArrayList<>();
         stepList = new ArrayList<>();
-    }
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireActivity());
+
+                builder.setTitle(getString(R.string.delete_recipe));
+                builder.setMessage(getString(R.string.lose_data));
+                builder.setPositiveButton(getString(R.string.come_back), (dialog, id) -> NavHostFragment.findNavController(AddNewRecipeFragment.this).popBackStack());
+                builder.setNegativeButton(getString(R.string.cancel),null);
+                builder.show();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -117,7 +136,7 @@ public class AddNewRecipeFragment extends Fragment {
         });
 
         binding.saveRecipe.setOnClickListener(v -> {
-
+            Navigation.findNavController(v).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
         });
     }
 

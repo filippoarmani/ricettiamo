@@ -12,13 +12,16 @@ import com.google.gson.annotations.SerializedName;
 @Entity
 public class Ingredient implements Parcelable {
     //used for room
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey
     private long id;
 
     private String name;
+    @SerializedName("amount.metric.value") //todo: non so se funziona ancora correttamente
     private float qta;
+    @SerializedName("amount.metric.unit") //todo: non so se funziona ancora correttamente
     private String size;
     //opzionale
+    @SerializedName("image")
     private String urlToImage;
 
     public Ingredient() {}

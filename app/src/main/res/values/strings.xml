@@ -177,5 +177,9 @@
     <string name="unit">Unit of measure</string>
     <string name="type_new_step">Type new step</string>
     <string name="save_recipe">Save recipe</string>
+    <string name="delete_recipe">Delete recipe</string>
+    <string name="lose_data">Going back you will lose your changes</string>
+    <string name="come_back">Come back</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

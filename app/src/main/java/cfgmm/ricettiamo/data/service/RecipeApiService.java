@@ -43,14 +43,20 @@ public interface    RecipeApiService {
             @Header("x-api-key") String apiKey);
 
     //get ingredient informations
-    @GET("food/ingredients/{id}/informations")
+    @GET("food/ingredients/{idIngredient}/informations")
     Call<RecipeApiResponse> getIngredientById(
-            @Path("id") int id,
+            @Path("idIngredient") int idIngredient,
             @Header("x-api-key") String apiKey);
 
     //get recipe steps
-    @GET("recipes/{id}/analyzedInstructions")
+    @GET("recipes/{idRecipe}/analyzedInstructions")
     Call<RecipeApiResponse> getRecipeSteps(
-            @Path("id") int id,
+            @Path("idRecipe") int idRecipe,
+            @Header("x-api-key") String apiKey);
+
+    //get recipe ingredients
+    @GET("recipes/{idRecipe}/ingredientWidget.json")
+    Call<RecipeApiResponse> getRecipeIngredients(
+            @Path("idRecipe") int idRecipe,
             @Header("x-api-key") String apiKey);
 }
