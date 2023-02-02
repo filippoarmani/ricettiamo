@@ -18,9 +18,11 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +32,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.HomeAdapter;
@@ -42,6 +45,8 @@ import cfgmm.ricettiamo.model.Ingredient;
 public class AddNewRecipeFragment extends Fragment {
 
     private FragmentAddNewRecipeBinding binding;
+    private IngredientsRecyclerAdapter adapterIngredient;
+    private StepAdapter stepAdapter;
 
     private String mainPicture;
     private List<Ingredient> ingredientList;
@@ -74,21 +79,29 @@ public class AddNewRecipeFragment extends Fragment {
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
-    };
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentAddNewRecipeBinding.inflate(inflater, container, false);
-
-        binding.ingredientRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,  false));
-        binding.stepRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,  false));
-
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        //ingredient adapter
+        binding.ingredientRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,  false));
+        adapterIngredient = new IngredientsRecyclerAdapter(requireView(), ingredientList);
+        binding.ingredientRecyclerView.setAdapter(adapterIngredient);
+        adapterIngredient.getItemTouchHelper().attachToRecyclerView(binding.ingredientRecyclerView);
+
+        //step adapter
+        binding.stepRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,  false));
+        stepAdapter = new StepAdapter(requireView(), stepList);
+        binding.stepRecyclerView.setAdapter(stepAdapter);
+        stepAdapter.getItemTouchHelper().attachToRecyclerView(binding.stepRecyclerView);
 
         binding.addMainPicture.setOnClickListener(v -> {
             mainPictureActivity.launch(IMAGE);
@@ -102,17 +115,7 @@ public class AddNewRecipeFragment extends Fragment {
             if(!isEmpty(nameIngredient) && !isEmpty(quantity) && !isEmpty(unit)) {
                 Ingredient ingredient = new Ingredient(nameIngredient, Float.parseFloat(quantity), unit);
                 ingredientList.add(ingredient);
-
-                IngredientsRecyclerAdapter adapter = new IngredientsRecyclerAdapter(ingredientList, new IngredientsRecyclerAdapter.OnItemClickListener() {
-                    @Override
-                    public void onIngredientItemClick(Ingredient ingredient) { }
-
-                    @Override
-                    public void onDeleteButtonPressed(int position) { }
-                });
-
-                binding.ingredientRecyclerView.setAdapter(adapter);
-
+                adapterIngredient.notifyItemInserted(ingredientList.size()-1);
             } else {
                 binding.addIngredientLayout.setError(getString(R.string.empty_fields));
             }
@@ -123,9 +126,7 @@ public class AddNewRecipeFragment extends Fragment {
 
             if(!isEmpty(step)) {
                 stepList.add(step);
-
-                StepAdapter stepAdapter = new StepAdapter(requireContext(), stepList);
-                binding.stepRecyclerView.setAdapter(stepAdapter);
+                stepAdapter.notifyItemInserted(stepList.size()-1);
             } else {
                 binding.addStepLayout.setError(getString(R.string.empty_fields));
             }
@@ -136,6 +137,7 @@ public class AddNewRecipeFragment extends Fragment {
         });
 
         binding.saveRecipe.setOnClickListener(v -> {
+
             Navigation.findNavController(v).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
         });
     }
@@ -162,8 +164,7 @@ public class AddNewRecipeFragment extends Fragment {
                     try {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), uri);
                         stepList.add(bitmap);
-                        StepAdapter stepAdapter = new StepAdapter(requireContext(), stepList);
-                        binding.stepRecyclerView.setAdapter(stepAdapter);
+                        stepAdapter.notifyItemInserted(stepList.size()-1);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

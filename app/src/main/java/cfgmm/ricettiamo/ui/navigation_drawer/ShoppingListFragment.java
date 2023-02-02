@@ -28,17 +28,17 @@ import cfgmm.ricettiamo.adapter.ShoppingListRecyclerAdapter;
 import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.IngredientApiResponse;
 
-
-
 public class ShoppingListFragment extends Fragment {
 
-
     private final String TAG = ShoppingListFragment.class.getSimpleName();
+
+    private List<Ingredient> shoppingList;
+    private RecyclerView recyclerView;
+    private ShoppingListRecyclerAdapter adapter;
 
     public ShoppingListFragment() {
         // Required empty public constructor
     }
-
 
     public static ShoppingListFragment newInstance() {
         return new ShoppingListFragment();
@@ -61,12 +61,13 @@ public class ShoppingListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Button buttonAdd = view.findViewById(R.id.ShopList_buttonAdd);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients_shopping);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext(),
-                LinearLayoutManager.VERTICAL,  false);
+        recyclerView = view.findViewById(R.id.recyclerview_list_ingredients_shopping);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,  false));
+        adapter = new ShoppingListRecyclerAdapter(requireView(), shoppingList);
+        recyclerView.setAdapter(adapter);
+        adapter.getItemTouchHelper().attachToRecyclerView(recyclerView);
 
-        recyclerView.setLayoutManager(layoutManager);
-        List<Ingredient> shoppingList = getIngredientListWithWithGSon();
+        shoppingList = getIngredientListWithWithGSon();
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             final EditText editText_name = view.findViewById(R.id.Shoplist_textName);
@@ -80,53 +81,17 @@ public class ShoppingListFragment extends Fragment {
                 if(editText_qta.getText().toString().trim().isEmpty()) {
                     editText_qta.setError("error");
                 }
+
                 try{
-                    float qta =  Float.valueOf(editText_qta.getText().toString());
-                    shoppingList.add(new Ingredient(editText_name.getText().toString(),
-                            qta,"l"));}
+                    float qta =  Float.parseFloat(editText_qta.getText().toString());
+                    shoppingList.add(new Ingredient(editText_name.getText().toString(), qta,"l"));
+                    adapter.notifyItemInserted(shoppingList.size() - 1);
+                }
                 catch (Exception e){
                     Log.v("error", editText_qta.getText().toString());
                 }
-
-                ShoppingListRecyclerAdapter adapter = createAdapater(v, shoppingList);
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setAdapter(adapter);
             }
         });
-        ShoppingListRecyclerAdapter adapter = new ShoppingListRecyclerAdapter(shoppingList,
-                new ShoppingListRecyclerAdapter.OnItemClickListener() {
-
-                    @Override
-                    public void onIngredientItemClick(Ingredient ingredient) {
-                        Snackbar.make(view, ingredient.getName(), Snackbar.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-            public void onDeleteButtonPressed(int position) {
-                Snackbar.make(view, getString(R.string.list_size_message) + shoppingList.size(),
-                        Snackbar.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-
-
-
-
-    private ShoppingListRecyclerAdapter createAdapater(View v, List<Ingredient> shoppingList) {
-        ShoppingListRecyclerAdapter adapter = new ShoppingListRecyclerAdapter(shoppingList, new
-                ShoppingListRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onIngredientItemClick(Ingredient ingredient) {
-
-            }
-
-            @Override
-            public void onDeleteButtonPressed(int position) {
-
-            }
-        });
-        return adapter;
     }
 
     private List<Ingredient> getIngredientListWithWithGSon() {

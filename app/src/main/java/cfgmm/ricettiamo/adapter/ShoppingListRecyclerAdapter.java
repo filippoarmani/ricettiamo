@@ -1,5 +1,6 @@
 package cfgmm.ricettiamo.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,7 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -17,22 +21,13 @@ import cfgmm.ricettiamo.model.Ingredient;
 public class ShoppingListRecyclerAdapter extends
         RecyclerView.Adapter<ShoppingListRecyclerAdapter.ShoppingListViewHolder>{
 
-    //interfaccia
-    public interface OnItemClickListener {
-        void onIngredientItemClick(Ingredient ingredient);
-        void onDeleteButtonPressed(int position);
-    }
+    private final View view;
     private final List<Ingredient> shoppingList;
-    private final ShoppingListRecyclerAdapter.OnItemClickListener onItemClickListener;
 
-
-
-    public ShoppingListRecyclerAdapter (List<Ingredient> shoppingList,
-                                        OnItemClickListener onItemClickListener){
+    public ShoppingListRecyclerAdapter (View view, List<Ingredient> shoppingList){
+        this.view = view;
         this.shoppingList = shoppingList;
-        this.onItemClickListener = onItemClickListener;
     }
-
 
     @NonNull
     @Override
@@ -47,9 +42,7 @@ public class ShoppingListRecyclerAdapter extends
     public void onBindViewHolder(@NonNull ShoppingListRecyclerAdapter.ShoppingListViewHolder holder,
                                  int position) {
         holder.bind(shoppingList.get(position));
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -59,9 +52,35 @@ public class ShoppingListRecyclerAdapter extends
         return 0;
     }
 
+    public ItemTouchHelper getItemTouchHelper() {
+        return new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull
+            RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
 
-    public class ShoppingListViewHolder extends RecyclerView.ViewHolder implements
-            View.OnClickListener{
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                Ingredient deleteItem = shoppingList.get(viewHolder.getBindingAdapterPosition());
+
+                int position = viewHolder.getBindingAdapterPosition();
+                shoppingList.remove(position);
+                notifyItemRemoved(position);
+
+                Snackbar.make(view, "UNDO", Snackbar.LENGTH_SHORT).
+                        setAction("UNDO", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                shoppingList.add(position,deleteItem);
+                                notifyItemInserted(position);
+                            }
+                        }).show();
+            }
+        });
+    }
+
+    public class ShoppingListViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
         private final TextView textViewName;
         private final TextView textViewQta;
         private final  TextView textViewSize;
@@ -88,10 +107,9 @@ public class ShoppingListRecyclerAdapter extends
         @Override
         public void onClick(View v) {
             if(v.getId() == R.id.button_shoppList_delete) {
-                    notifyItemRemoved(getBindingAdapterPosition());
+                notifyItemRemoved(getBindingAdapterPosition());
             }
         }
-
 
     }
 }
