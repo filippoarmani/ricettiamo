@@ -35,30 +35,66 @@
 
     <!-- Style for Button -->
     <style name="Theme.RicettiAmo.App.Button" parent="Widget.Material3.Button.ElevatedButton">
-        <item name="android:backgroundTint">@color/md_theme_light_primary</item>
-        <item name="android:textColor">@color/md_theme_light_onPrimary</item>
+        <item name="android:backgroundTint">@color/md_theme_light_primaryContainer</item>
+        <item name="rippleColor">@color/md_theme_light_onPrimaryContainer</item>
+
     </style>
 
     <!-- Style for Material TextButton-->
     <style name="Theme.RicettiAmo.Button.TextButton" parent="Widget.Material3.Button.TextButton">
-        <item name="android:textColor">@color/md_theme_light_primary</item>
-        <item name="rippleColor">@color/md_theme_light_secondary</item>
+        <item name="android:backgroundTint">@color/md_theme_light_primary</item>
+        <item name="android:textColor">@color/md_theme_light_onPrimary</item>
     </style>
 
     <!-- Style for Toolbar -->
     <style name="Theme.RicettiAmo.Toolbar" parent="Widget.Material3.Toolbar">
         <item name="android:background">@color/md_theme_light_primary</item>
         <item name="titleTextColor">@color/md_theme_light_onPrimary</item>
+
     </style>
 
-    <style name="Theme.RicettiAmo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <!-- Style for Material Title-->
+    <style name="Theme.RicettiAmo.Title">
+        <item name="android:textColor">@color/md_theme_light_primary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:elevation">10dp</item>
+    </style>
 
-    <style name="Theme.RicettiAmo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!-- Style for Material Cardview-->
+    <style name="Theme.RicettiAmo.CardView">
+        <item name="android:backgroundTint">@color/md_theme_light_tertiaryContainer</item>
+        <item name="android:elevation">10dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <!-- Style for Material Title-->
+    <style name="Theme.RicettiAmo.TitleOnCardview">
+        <item name="android:textColor">@color/md_theme_light_onTertiaryContainer</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:elevation">10dp</item>
+    </style>
+
+    <style name="Theme.RicettiAmo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/bakerie</item>
+        <item name="android:elevation">10dp</item>
+    </style>
+
+    <style name="Theme.RicettiAmo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
+    </style>
 
     <style name="Theme.RicettiAmo.TonalButton" parent="Widget.Material3.Button.TonalButton">
         <item name="backgroundTint">@color/orange_w</item>
     </style>
 
-    <style name="Theme.Ricettiamo.Navigation" parent="Widget.Material3.NavigationView" />
+    <style name="Theme.Ricettiamo.Navigation" parent="Widget.Material3.NavigationView">
+        <item name="android:backgroundTint">@color/md_theme_light_primary</item>
+        <item name="itemTextColor">@color/md_theme_light_onPrimary</item>
+    </style>
+
 
 </resources>

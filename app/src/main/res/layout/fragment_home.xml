@@ -12,6 +12,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:theme="@style/Theme.RicettiAmo.App.Button"
             android:id="@+id/search_floating_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,12 +69,10 @@
                         android:id="@+id/textViewAntipasti"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/montserrat"
                         android:text="@string/starters"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:theme="@style/Theme.RicettiAmo.Title"
+                        />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_starters"
@@ -87,10 +86,8 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/montserrat"
                         android:text="@string/first_dishes"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:theme="@style/Theme.RicettiAmo.Title"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_first"
@@ -104,10 +101,9 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/montserrat"
                         android:text="@string/second_dishes"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:theme="@style/Theme.RicettiAmo.Title"
+                        />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_second"
@@ -123,10 +119,9 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/montserrat"
                         android:text="@string/dessert"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:theme="@style/Theme.RicettiAmo.Title"
+                        />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_dessert"

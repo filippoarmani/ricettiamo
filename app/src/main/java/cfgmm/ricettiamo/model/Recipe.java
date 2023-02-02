@@ -13,6 +13,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +37,7 @@ public class Recipe implements Parcelable {
     @SerializedName("readyInMinutes")
     private int prepTime;
     @SerializedName("ingredients")
-    private List<Ingredient> ingredientsList;
+    private /*List<Ingredient>*/ String ingredientsList;
     private String date;
     //private String url;
     @SerializedName("image")
@@ -54,7 +56,7 @@ public class Recipe implements Parcelable {
         this.servings = servings;
         this.cost = cost;
         this.prepTime = prepTime;
-        this.ingredientsList = ingredientsList;
+        this.ingredientsList = ingredientsList.toString();
         this.date = date;
         //this.url = url;
         this.urlToImage = urlToImage;
@@ -103,9 +105,9 @@ public class Recipe implements Parcelable {
 
     public void setPrepTime(int prepTime) { this.prepTime = prepTime; }
 
-    public List<Ingredient> getIngredientsList() { return ingredientsList; }
+    public /*List<Ingredient>*/ String getIngredientsList() { return ingredientsList; }
 
-    public void setIngredientsList(List<Ingredient> ingredientsList) { this.ingredientsList = ingredientsList; }
+    public void setIngredientsList(/*List<Ingredient>*/ String ingredientsList) { this.ingredientsList = ingredientsList; }
 
     public String getDate() {
         return date;
@@ -163,8 +165,8 @@ public class Recipe implements Parcelable {
         cost = in.readFloat();
         prepTime = in.readInt();
         if(in.readByte() == 0x01) {
-            ingredientsList = new ArrayList<Ingredient>();
-            in.readList(ingredientsList, Ingredient.class.getClassLoader());
+            ingredientsList = new /*ArrayList<Ingredient>()*/ String();
+            in.readList(Arrays.asList(ingredientsList.getBytes())/*ingredientsList*/, Ingredient.class.getClassLoader());
         }
         else ingredientsList = null;
         date = in.readString();
@@ -204,7 +206,7 @@ public class Recipe implements Parcelable {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
-            dest.writeList(ingredientsList);
+            dest.writeList(Collections.singletonList(ingredientsList)/*ingredientsList*/);
         }
         dest.writeString(this.date);
         //dest.writeString(this.url);
