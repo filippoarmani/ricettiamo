@@ -30,8 +30,25 @@
 
     <!-- Style for TextInputLayout -->
     <style name="Theme.Ricettiamo.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="colorOutline">@color/md_theme_light_outline</item>
-        <item name="hintTextColor">@color/md_theme_dark_errorContainer</item>
+        <item name="hintTextColor">@color/md_theme_light_outline</item>
+    </style>
+
+    <!-- Style for Button -->
+    <style name="Theme.RicettiAmo.App.Button" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:backgroundTint">@color/md_theme_light_primary</item>
+        <item name="android:textColor">@color/md_theme_light_onPrimary</item>
+    </style>
+
+    <!-- Style for Material TextButton-->
+    <style name="Theme.RicettiAmo.Button.TextButton" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/md_theme_light_primary</item>
+        <item name="rippleColor">@color/md_theme_light_secondary</item>
+    </style>
+
+    <!-- Style for Toolbar -->
+    <style name="Theme.RicettiAmo.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/md_theme_light_primary</item>
+        <item name="titleTextColor">@color/md_theme_light_onPrimary</item>
     </style>
 
     <style name="Theme.RicettiAmo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
