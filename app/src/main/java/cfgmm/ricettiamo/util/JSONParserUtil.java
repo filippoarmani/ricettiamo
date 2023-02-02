@@ -39,8 +39,10 @@ public class JSONParserUtil {
     private final String resultsParameter = "results";
     private final String totalResultsParameter = "totalResults";
     private final String authorParameter = "author";
-    private final String descriptionParameter = "description";
-    private final String urlParameter = "url";
+    private final int servingsParameter = Integer.parseInt("servings");
+    private final int costParameter = Integer.parseInt("pricePerServing");
+    private final int prepTimeParameter = Integer.parseInt("readyInMinutes");
+    //private final String urlParameter = "url";
     private final String urlToImageParameter = "urlToImage";
     private final String nameParameter = "name";
 
@@ -82,14 +84,22 @@ public class JSONParserUtil {
                             String name = jsonReader.nextString();
                             recipe.setName(name);
                         } else if (jsonReader.peek() != JsonToken.NULL &&
-                                resultsJSONParam.equals(descriptionParameter)) {
-                            String description = jsonReader.nextString();
-                            recipe.setDescription(description);
+                                resultsJSONParam.equals(servingsParameter)) {
+                            int servings = jsonReader.nextInt();
+                            recipe.setServings(servings);
                         } else if (jsonReader.peek() != JsonToken.NULL &&
+                                resultsJSONParam.equals(costParameter)) {
+                            int cost = jsonReader.nextInt();
+                            recipe.setServings(cost);
+                        } else if (jsonReader.peek() != JsonToken.NULL &&
+                                resultsJSONParam.equals(prepTimeParameter)) {
+                            int prepTime = jsonReader.nextInt();
+                            recipe.setServings(prepTime);
+                        } /*else if (jsonReader.peek() != JsonToken.NULL &&
                                 resultsJSONParam.equals(urlParameter)) {
                             String url = jsonReader.nextString();
                             recipe.setUrl(url);
-                        } else if (jsonReader.peek() != JsonToken.NULL &&
+                        } */else if (jsonReader.peek() != JsonToken.NULL &&
                                 resultsJSONParam.equals(urlToImageParameter)) {
                             String urlToImage = jsonReader.nextString();
                             recipe.setUrlToImage(urlToImage);
@@ -143,8 +153,10 @@ public class JSONParserUtil {
                 recipe = new Recipe();
                 recipe.setAuthor(resultsJSONObject.getString(authorParameter));
                 recipe.setName(resultsJSONObject.getString(nameParameter));
-                recipe.setDescription(resultsJSONObject.getString(descriptionParameter));
-                recipe.setUrl(resultsJSONObject.getString(urlParameter));
+                recipe.setServings(resultsJSONObject.getInt(String.valueOf(servingsParameter)));
+                recipe.setCost(resultsJSONObject.getInt(String.valueOf(costParameter)));
+                recipe.setPrepTime(resultsJSONObject.getInt(String.valueOf(prepTimeParameter)));
+                //recipe.setUrl(resultsJSONObject.getString(urlParameter));
                 recipe.setUrlToImage(resultsJSONObject.getString(urlToImageParameter));
                 recipeList.add(recipe);
             }

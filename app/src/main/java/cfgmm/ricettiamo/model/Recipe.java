@@ -21,31 +21,36 @@ public class Recipe implements Parcelable {
     //used for room
     @PrimaryKey
     private long id;
-
+    @SerializedName("sourceName")
     private String author;
     @SerializedName("title")
     private String name;
     private int score;
-    private String description;
+    private int servings;
+    @SerializedName("pricePerServing")
+    private float cost;
+    @SerializedName("readyInMinutes")
+    private int prepTime;
     private String ingredients;
     private String date;
-    private String url;
+    //private String url;
     @SerializedName("image")
     private String urlToImage;
-
     @ColumnInfo(name = "is_favorite")
     private boolean isFavorite;
 
     public Recipe() {}
-    public Recipe(String author, String name, int score, String description, String ingredients,
-                  String date, String url, String urlToImage, boolean isFavorite) {
+    public Recipe(String author, String name, int score, int servings, float cost, int prepTime,
+                  String ingredients, String date, /*String url, */String urlToImage, boolean isFavorite) {
         this.author = author;
         this.name = name;
         this.score = score;
-        this.description = description;
+        this.servings = servings;
+        this.cost = cost;
+        this.prepTime = prepTime;
         this.ingredients = ingredients;
         this.date = date;
-        this.url = url;
+        //this.url = url;
         this.urlToImage = urlToImage;
         this.isFavorite = isFavorite;
     }
@@ -80,15 +85,21 @@ public class Recipe implements Parcelable {
         this.score = score;
     }
 
+    public int getServings() { return servings; }
+
+    public void setServings(int servings) { this.servings = servings; }
+
+    public float getCost() { return cost; }
+
+    public void setCost(float cost) { this.cost = cost / 100; }
+
+    public int getPrepTime() { return prepTime; }
+
+    public void setPrepTime(int prepTime) { this.prepTime = prepTime; }
+
     public String getIngredients() { return ingredients; }
 
     public void setIngredients(String ingredients) { this.ingredients = ingredients; }
-
-    public String getDescription() { return description; }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getDate() {
         return date;
@@ -98,13 +109,13 @@ public class Recipe implements Parcelable {
         this.date = date;
     }
 
-    public String getUrl() {
+    /*public String getUrl() {
         return url;
     }
 
     public void setUrl(String url) {
         this.url = url;
-    }
+    }*/
 
     public String getUrlToImage() {
         return urlToImage;
@@ -125,11 +136,13 @@ public class Recipe implements Parcelable {
                 "id=' " + id + '\'' +
                 ", author='" + author + '\'' +
                 ", name='" + name + '\'' +
-                ", score=" + score +
-                ", description='" + description + '\'' +
+                ", score=" + score + '\'' +
+                ", servings=" + servings + '\'' +
+                ", cost=" + cost/100 + "€" + '\'' +
+                ", prepTime=" + prepTime + '\'' +
                 ", ingredients='" + ingredients + '\'' +
                 ", date='" + date + '\'' +
-                ", url='" + url + '\'' +
+                //", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
                 ", isFavorite=" + isFavorite + '\'' +
                 '}';
@@ -140,10 +153,12 @@ public class Recipe implements Parcelable {
         author = in.readString();
         name = in.readString();
         score = in.readInt();
-        description = in.readString();
+        servings = in.readInt();
+        cost = in.readFloat();
+        prepTime = in.readInt();
         ingredients = in.readString();
         date = in.readString();
-        url = in.readString();
+        //url = in.readString();
         urlToImage = in.readString();
         isFavorite = in.readByte() != 0;
 
@@ -172,10 +187,12 @@ public class Recipe implements Parcelable {
         dest.writeString(this.author);
         dest.writeString(this.name);
         dest.writeInt(this.score);
-        dest.writeString(this.description);
+        dest.writeInt(this.servings);
+        dest.writeFloat(this.cost);
+        dest.writeInt(this.prepTime);
         dest.writeString(this.ingredients);
         dest.writeString(this.date);
-        dest.writeString(this.url);
+        //dest.writeString(this.url);
         dest.writeString(this.urlToImage);
         dest.writeByte(this.isFavorite ? (byte) 1 : (byte) 0);
     }
@@ -187,10 +204,12 @@ public class Recipe implements Parcelable {
         data.put("author", this.author);
         data.put("name", this.name);
         data.put("score", this.score);
-        data.put("description", this.description);
+        data.put("servings", this.servings);
+        data.put("cost", this.cost);
+        data.put("prepTime", this.prepTime);
         data.put("ingredients", this.ingredients);
         data.put("date", this.date);
-        data.put("url", this.url);
+        //data.put("url", this.url);
         data.put("urlToImage", this.urlToImage);
         data.put("isFavorite", this.isFavorite);
 

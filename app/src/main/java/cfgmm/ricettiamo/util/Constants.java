@@ -23,6 +23,7 @@ public class Constants {
 
     //for spoonacular api (https://spoonacular.com/)
     public static final int NUMBER_OF_ELEMENTS = 20;
+    public static final Boolean ADD_RECIPE_INFORMATIONS = true;
     public static final String RECIPES_API_BASE_URL = "https://api.spoonacular.com/";
     public static final String SEARCH_RECIPES = "recipes/complexSearch";
     public static final String SEARCH_RECIPES_BY_INGREDIENT = "recipes/findByIngredients";

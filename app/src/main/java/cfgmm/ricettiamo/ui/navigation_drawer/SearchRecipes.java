@@ -1,20 +1,14 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,12 +24,8 @@ import cfgmm.ricettiamo.adapter.SearchRecipesAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
-import cfgmm.ricettiamo.data.source.recipe.RecipesCallback;
 import cfgmm.ricettiamo.databinding.FragmentSearchRecipesBinding;
 import cfgmm.ricettiamo.model.Recipe;
-import cfgmm.ricettiamo.model.RecipeResponse;
-import cfgmm.ricettiamo.model.Result;
-import cfgmm.ricettiamo.util.ErrorMessagesUtil;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 
 /**
@@ -134,10 +124,11 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
                     @Override
                     public void onRecipeItemClick(Recipe recipe) {
                         Snackbar.make(view, recipe.getName(), Snackbar.LENGTH_SHORT).show();
-                        /*todo: aprire il fragment dettagli ricetta
-                        SearchRecipesDirections action =
-                                SearchRecipesDirections.actionCountryNewsFragmentToNewsDetailFragment(recipe);
-                        Navigation.findNavController(view).navigate(action);*/
+
+                        cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipesDirections.ActionSearchRecipesToRecipeDetailsFragment action =
+                                SearchRecipesDirections.actionSearchRecipesToRecipeDetailsFragment(recipe);
+                        Navigation.findNavController(view).navigate(action);
+                        //Navigation.findNavController(requireView()).navigate(R.id.action_search_recipes2_to_recipe_details);
                     }
 
                     @Override

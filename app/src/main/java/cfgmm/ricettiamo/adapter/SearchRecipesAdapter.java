@@ -24,7 +24,6 @@ import cfgmm.ricettiamo.model.Recipe;
 
 public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int RECIPES_VIEW_TYPE = 0;
     /**
      * Interface to associate a click listener with
      * a RecyclerView item.
@@ -43,9 +42,6 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.recipeList = recipeList;
         this.onItemClickListener = onItemClickListener;
     }
-    public int getItemViewType(int position) {
-        return RECIPES_VIEW_TYPE;
-    }
 
     @NonNull
     @Override
@@ -63,8 +59,8 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof RecipeViewHolder) {
             ((RecipeViewHolder) holder).bind(recipeList.get(position));
-        } /*else if (holder instanceof LoadingNewsViewHolder) {
-            ((LoadingNewsViewHolder) holder).activate();
+        } /*else if (holder instanceof LoadingRecipesViewHolder) {
+            ((LoadingRecipesViewHolder) holder).activate();
         }*/
     }
 
@@ -78,14 +74,18 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
     public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private final TextView textViewName;
-        private final TextView textViewInformations;
+        private final TextView textViewServings;
+        private final TextView textViewCost;
+        private final TextView textViewPrepTime;
         private final ImageView imageViewRecipeImage;
         private final ImageView imageViewFavoriteRecipes;
 
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.src_nameRecipe);
-            textViewInformations = itemView.findViewById(R.id.src_info);
+            textViewServings = itemView.findViewById(R.id.src_servings_value);
+            textViewPrepTime = itemView.findViewById(R.id.src_prep_time_value);
+            textViewCost = itemView.findViewById(R.id.src_cost_value);
             imageViewRecipeImage = itemView.findViewById(R.id.src_imageRecipe);
             imageViewFavoriteRecipes = itemView.findViewById(R.id.imageview_favorite_recipes);
             itemView.setOnClickListener(this);
@@ -94,7 +94,9 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         public void bind(Recipe recipe) {
             textViewName.setText(recipe.getName());
-            textViewInformations.setText(recipe.getDescription());
+            textViewServings.setText(String.valueOf(recipe.getServings()));
+            textViewPrepTime.setText(String.valueOf(recipe.getPrepTime()));
+            textViewCost.setText(String.valueOf((int) recipe.getCost()));
             setImageViewFavoriteRecipes(recipeList.get(getAbsoluteAdapterPosition()).isFavorite());
             Glide.with(application)
                     .load(recipe.getUrlToImage())
