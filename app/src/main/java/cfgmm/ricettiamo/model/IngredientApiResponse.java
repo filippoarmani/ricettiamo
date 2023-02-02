@@ -13,13 +13,13 @@ public class    IngredientApiResponse implements Parcelable {
 
     private String status;
     private int totalResults;
-    private List<Ingredient> articles; //todo:convert in a string
+    private List<Ingredient> ingredients;
 
     public IngredientApiResponse() {}
-    public IngredientApiResponse(String status, int totalResults, List<Ingredient> articles) {
+    public IngredientApiResponse(String status, int totalResults, List<Ingredient> ingredients) {
         this.status = status;
         this.totalResults = totalResults;
-        this.articles = articles;
+        this.ingredients = ingredients;
     }
 
     public String getStatus() {
@@ -38,12 +38,12 @@ public class    IngredientApiResponse implements Parcelable {
         this.totalResults = totalResults;
     }
 
-    public List<Ingredient> getArticles() {
-        return articles;
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setArticles(List<Ingredient> articles) {
-        this.articles = articles;
+    public void setIngredients(List<Ingredient> articles) {
+        this.ingredients = ingredients;
     }
 
     @Override
@@ -51,14 +51,14 @@ public class    IngredientApiResponse implements Parcelable {
         return "IngredientApiResponse{" +
                 "status='" + status + '\'' +
                 ", totalResults=" + totalResults +
-                ", articles=" + articles +
+                ", ingredients=" + ingredients +
                 '}';
     }
 
     protected IngredientApiResponse(Parcel in) {
         this.status = in.readString();
         this.totalResults = in.readInt();
-        this.articles = in.createTypedArrayList(Ingredient.CREATOR);
+        this.ingredients = in.createTypedArrayList(Ingredient.CREATOR);
     }
 
     public static final Creator<IngredientApiResponse> CREATOR = new Creator<IngredientApiResponse>() {
@@ -82,22 +82,22 @@ public class    IngredientApiResponse implements Parcelable {
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(this.status);
         dest.writeInt(this.totalResults);
-        dest.writeTypedList(this.articles);
+        dest.writeTypedList(this.ingredients);
     }
     public void readFromParcel(Parcel source) {
         this.status = source.readString();
         this.totalResults = source.readInt();
-        this.articles = source.createTypedArrayList(Ingredient.CREATOR);
+        this.ingredients = source.createTypedArrayList(Ingredient.CREATOR);
     }
 
-    public String ListArticlesToString(List<Ingredient> articlesList) {
-        String articlesString = "";
+    public String ListIngredientsToString(List<Ingredient> ingredientList) {
+        String ingredientsString = "";
 
-        for (int i = 0; i<articlesList.size(); i++) {
-            articlesString += articlesList.get(i) + ",";
+        for (int i = 0; i<ingredientList.size(); i++) {
+            ingredientsString += ingredientList.get(i).getName() + ",";
         }
 
-        return articlesString;
+        return ingredientsString;
     }
 
 }
