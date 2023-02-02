@@ -181,5 +181,6 @@
     <string name="lose_data">Going back you will lose your changes</string>
     <string name="come_back">Come back</string>
     <string name="cancel">Cancel</string>
+    <string name="undo">undo</string>
 
 </resources>

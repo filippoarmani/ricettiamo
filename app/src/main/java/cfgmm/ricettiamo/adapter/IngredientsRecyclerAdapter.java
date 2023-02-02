@@ -1,5 +1,7 @@
 package cfgmm.ricettiamo.adapter;
 
+import android.content.ClipData;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,36 +10,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Ingredient;
 
-
 public class IngredientsRecyclerAdapter extends
         RecyclerView.Adapter<IngredientsRecyclerAdapter.IngredientViewHolder>{
 
-
-
-    //interfaccia per poter avere un'intereazione
-    public interface OnItemClickListener {
-        void onIngredientItemClick(Ingredient ingredient);
-        void onDeleteButtonPressed(int position);
-    }
     private final List<Ingredient> ingredientList;
-    private final OnItemClickListener onItemClickListener;
+    private final View view;
 
-    public IngredientsRecyclerAdapter(List<Ingredient> ingredientList, OnItemClickListener
-            onItemClickListener){
+    public IngredientsRecyclerAdapter(View view, List<Ingredient> ingredientList) {
+        this.view = view;
         this.ingredientList = ingredientList;
-        this.onItemClickListener = onItemClickListener;
     }
-
 
     @NonNull
     @Override
@@ -49,8 +41,7 @@ public class IngredientsRecyclerAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IngredientsRecyclerAdapter.IngredientViewHolder holder,
-                                 int position) {
+    public void onBindViewHolder(@NonNull IngredientsRecyclerAdapter.IngredientViewHolder holder, int position) {
         holder.bind(ingredientList.get(position));
     }
 
@@ -62,13 +53,38 @@ public class IngredientsRecyclerAdapter extends
         return 0;
     }
 
-    public class IngredientViewHolder extends RecyclerView.ViewHolder implements
-            View.OnClickListener{
+    public ItemTouchHelper getItemTouchHelper() {
+        return new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull
+            RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                Ingredient deleteItem = ingredientList.get(viewHolder.getBindingAdapterPosition());
+
+                int position = viewHolder.getBindingAdapterPosition();
+                ingredientList.remove(position);
+                notifyItemRemoved(position);
+
+                Snackbar.make(view, deleteItem.getName(), Snackbar.LENGTH_SHORT).
+                        setAction("UNDO", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ingredientList.add(position,deleteItem);
+                                notifyItemInserted(position);
+                            }
+                        }).show();
+            }
+        });
+    }
+
+    public class IngredientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView textViewName;
         private final TextView textViewQta;
-        private final  TextView textViewSize;
-
-
+        private final TextView textViewSize;
 
         public IngredientViewHolder(@NonNull View itemView ){
             super(itemView);
@@ -82,9 +98,7 @@ public class IngredientsRecyclerAdapter extends
             itemView.setOnClickListener(this);
             buttonAdd.setOnClickListener(this);
             buttonLess.setOnClickListener(this);
-
         }
-
 
         public void bind(Ingredient ingredient) {
             textViewName.setText(ingredient.getName());
@@ -110,7 +124,6 @@ public class IngredientsRecyclerAdapter extends
                 ingredientList.get(getBindingAdapterPosition()).setQta(qta + 1);
                 notifyItemChanged(getBindingAdapterPosition());
             }
-
 
         }
     }
