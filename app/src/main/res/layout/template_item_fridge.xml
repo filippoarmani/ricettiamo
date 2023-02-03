@@ -25,7 +25,7 @@
         android:id="@+id/list_item_icon"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:background="@drawable/back_orange"
+        android:background="@drawable/button_shape"
         android:contentDescription="@string/toDo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,7 +81,7 @@
 
     <Button
         android:id="@+id/button_add"
-        style="@style/Theme.RicettiAmo.Button.TextButton"
+        style="@style/textButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="4dp"
@@ -94,7 +94,7 @@
 
     <Button
         android:id="@+id/button_less"
-        style="@style/Theme.RicettiAmo.Button.TextButton"
+        style="@style/textButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:linksClickable="false"

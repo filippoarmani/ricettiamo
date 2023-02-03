@@ -12,15 +12,14 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:theme="@style/Theme.RicettiAmo.App.Button"
             android:id="@+id/search_floating_button"
+            style="@style/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:clickable="true"
             android:focusable="true"
-            app:backgroundTint="@color/orange_w"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_search"
@@ -67,11 +66,11 @@
 
                     <TextView
                         android:id="@+id/textViewAntipasti"
+                        style="@style/firstTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:text="@string/starters"
-                        android:theme="@style/Theme.RicettiAmo.Title"
                         />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -82,28 +81,28 @@
 
                     <TextView
                         android:id="@+id/textViewPrimiPiatti"
+                        style="@style/firstTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:text="@string/first_dishes"
-                        android:theme="@style/Theme.RicettiAmo.Title"/>
+                        />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_first"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/textViewSecondiPiatti"
+                        style="@style/firstTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:text="@string/second_dishes"
-                        android:theme="@style/Theme.RicettiAmo.Title"
-                        />
+                        android:text="@string/second_dishes"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_second"
@@ -115,12 +114,12 @@
 
                     <TextView
                         android:id="@+id/textViewDolci"
+                        style="@style/firstTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:text="@string/dessert"
-                        android:theme="@style/Theme.RicettiAmo.Title"
                         />
 
                     <androidx.recyclerview.widget.RecyclerView

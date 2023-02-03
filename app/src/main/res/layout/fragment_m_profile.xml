@@ -29,21 +29,19 @@
         android:fontFamily="@font/montserrat"
         android:gravity="center"
         android:text="@string/full_name"
-        android:theme="@style/Theme.RicettiAmo.Title"
+        android:theme="@style/firstTitle"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/user" />
 
     <TextView
         android:id="@+id/displayName"
+        style="@style/secondTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Display Name"
-        android:fontFamily="@font/montserrat"
-        android:textSize="20sp"
-        android:textColor="@color/md_theme_light_secondary"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/fullName" />
@@ -68,15 +66,13 @@
 
     <TextView
         android:id="@+id/email"
+        style="@style/secondTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="20dp"
-        android:fontFamily="@font/montserrat"
         android:gravity="center"
         android:text="@string/email"
-        android:textSize="20sp"
-        android:textColor="@color/md_theme_light_secondary"
         app:layout_constraintBottom_toTopOf="@+id/descriptionCardView"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
@@ -84,11 +80,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/descriptionCardView"
+        style="@style/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        app:cardCornerRadius="@dimen/fab_margin"
-        android:theme="@style/Theme.RicettiAmo.CardView"
         app:layout_constraintBottom_toTopOf="@+id/recipeCardView"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/left_guideline">
@@ -107,11 +102,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/recipeCardView"
+        style="@style/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        app:cardCornerRadius="@dimen/fab_margin"
-        android:theme="@style/Theme.RicettiAmo.CardView"
         app:layout_constraintBottom_toTopOf="@+id/starsCardView"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toStartOf="@+id/starsCardView">
@@ -125,7 +119,7 @@
 
             <TextView
                 android:id="@+id/myrecipe"
-                android:theme="@style/Theme.RicettiAmo.TitleOnCardview"
+                style="@style/titleOnCardview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -217,12 +211,11 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/starsCardView"
+        style="@style/cardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="26dp"
         android:layout_marginBottom="20dp"
-        android:theme="@style/Theme.RicettiAmo.CardView"
-        app:cardCornerRadius="@dimen/fab_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/positionCardView"
         app:layout_constraintStart_toStartOf="@+id/left_guideline">
@@ -236,7 +229,7 @@
 
             <TextView
                 android:id="@+id/myStars"
-                android:theme="@style/Theme.RicettiAmo.TitleOnCardview"
+                style="@style/titleOnCardview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -281,10 +274,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/positionCardView"
+        style="@style/cardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:theme="@style/Theme.RicettiAmo.CardView"
-        app:cardCornerRadius="@dimen/fab_margin"
         app:layout_constraintBottom_toBottomOf="@+id/starsCardView"
         app:layout_constraintEnd_toStartOf="@+id/right_guideline"
         app:layout_constraintStart_toEndOf="@+id/starsCardView"
@@ -299,7 +291,7 @@
 
             <TextView
                 android:id="@+id/miapos"
-                android:theme="@style/Theme.RicettiAmo.TitleOnCardview"
+                style="@style/titleOnCardview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-
     tools:openDrawer="start">
 
     <include
@@ -17,7 +16,7 @@
         layout="@layout/menu_app_bar_main"/>
 
     <com.google.android.material.navigation.NavigationView
-        style="@style/Theme.Ricettiamo.Navigation"
+        style="@style/navigationView"
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

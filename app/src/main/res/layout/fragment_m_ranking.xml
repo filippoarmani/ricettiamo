@@ -14,18 +14,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            style="@style/firstTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
             android:text="@string/top_10_chef"
-            android:textColor="@color/orange"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="15dp"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="15dp" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card1"
+            style="@style/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
@@ -98,13 +96,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card2"
+            style="@style/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="15dp"
-            app:cardBackgroundColor="@color/orange_w"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="7dp">
+            android:layout_marginTop="15dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -170,13 +166,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card3"
+            style="@style/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="15dp"
-            app:cardBackgroundColor="@color/orange_w"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="7dp">
+            android:layout_marginTop="15dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -242,6 +236,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card4"
+            style="@style/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
@@ -309,6 +304,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card5"
+            style="@style/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
@@ -376,6 +372,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card6"
+            style="@style/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
@@ -443,6 +440,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card7"
+            style="@style/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
@@ -510,6 +508,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card8"
+            style="@style/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
@@ -577,6 +576,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card9"
+            style="@style/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
@@ -644,6 +644,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card10"
+            style="@style/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"

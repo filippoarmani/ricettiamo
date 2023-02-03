@@ -18,7 +18,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textStep"
-        style="@style/subtitle"
+        style="@style/thirdTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/imageStep"

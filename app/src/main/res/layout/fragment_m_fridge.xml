@@ -10,8 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -30,14 +28,13 @@
 
         <Button
             android:id="@+id/Fridge_buttonAdd"
+            style="@style/button"
             android:layout_width="56dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:background="@drawable/back_orange"
             android:linksClickable="false"
             android:text="@string/add"
-            android:textSize="20sp"
-            app:cornerRadius="500dp" />
+            android:textSize="20sp"/>
 
         <View
             android:layout_width="0dp"
@@ -45,7 +42,7 @@
             android:layout_weight="1" />
 
         <EditText
-            style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+            style="@style/textInput"
             android:id="@+id/Fridge_textName"
             android:layout_width="160dp"
             android:layout_height="50dp"

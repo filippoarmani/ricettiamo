@@ -21,13 +21,10 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        style="@style/firstTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text= "@string/top"
-                        android:fontFamily="@font/montserrat"
-                        android:textStyle="bold"
-                        android:textColor="@color/orange"
-                        android:textSize="20sp"/>
+                        android:text= "@string/top" />
 
                 </RelativeLayout>
 
@@ -35,6 +32,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_podio1"
+                style="@style/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cardView_start"
@@ -43,13 +41,11 @@
                 android:layout_marginBottom="20dp">
 
                 <LinearLayout
-                    android:backgroundTint="@color/orange_w"
                     android:id="@+id/list_item1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp"
-                    android:background="@drawable/edit_text2">
+                    android:padding="5dp">
 
                     <ImageView
                         android:id="@+id/medal1"
@@ -113,6 +109,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_podio2"
+                style="@style/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/card_podio1"
@@ -121,13 +118,11 @@
                 android:layout_marginBottom="20dp">
 
                 <LinearLayout
-                    android:backgroundTint="@color/orange_w"
                     android:id="@+id/list_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp"
-                    android:background="@drawable/edit_text2">
+                    android:padding="5dp">
 
                     <ImageView
                         android:id="@+id/medal2"
@@ -191,6 +186,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_podio3"
+                style="@style/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/card_podio2"
@@ -199,13 +195,11 @@
                 android:layout_marginBottom="16dp">
 
                 <LinearLayout
-                    android:backgroundTint="@color/orange_w"
                     android:id="@+id/list_item3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp"
-                    android:background="@drawable/edit_text2">
+                    android:padding="5dp">
 
                     <ImageView
                         android:id="@+id/medal3"

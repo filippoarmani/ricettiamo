@@ -48,13 +48,10 @@
 
                 <TextView
                     android:id="@+id/nameRecipe"
+                    style="@style/firstTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/nameRecipe"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:text="@string/nameRecipe" />
 
                 <TextView
                     android:id="@+id/src_servings"
@@ -132,13 +129,10 @@
 
                 <TextView
                     android:id="@+id/ingredients"
+                    style="@style/secondTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/ingredients"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:text="@string/ingredients" />
 
                 <!--ingrediente1-->
                 <LinearLayout
@@ -152,7 +146,7 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/back_orange"
+                        android:background="@drawable/button_shape"
                         android:contentDescription="@string/toDo"/>
 
                     <TextView
@@ -180,7 +174,7 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/back_orange"
+                        android:background="@drawable/button_shape"
                         android:contentDescription="@string/toDo"/>
 
                     <TextView
@@ -207,7 +201,7 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/back_orange"
+                        android:background="@drawable/button_shape"
                         android:contentDescription="@string/toDo"/>
 
                     <TextView
@@ -234,7 +228,7 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/back_orange"
+                        android:background="@drawable/button_shape"
                         android:contentDescription="@string/toDo" />
 
                     <TextView
@@ -261,7 +255,7 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_marginTop="5dp"
-                        android:background="@drawable/back_orange"
+                        android:background="@drawable/button_shape"
                         android:contentDescription="@string/toDo"/>
 
                     <TextView
@@ -287,14 +281,11 @@
 
                 <TextView
                     android:id="@+id/prep"
+                    style="@style/secondTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="@string/preparation"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:text="@string/preparation" />
 
                 <RelativeLayout
                     android:id="@+id/preparation_1"
