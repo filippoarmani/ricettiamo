@@ -1,5 +1,7 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
+import static android.text.TextUtils.isEmpty;
+
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,12 +18,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
@@ -50,6 +54,7 @@ public class FridgeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ingredientList = new ArrayList<>();
     }
 
     @Override
@@ -62,41 +67,43 @@ public class FridgeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Button buttonAdd = view.findViewById(R.id.Fridge_buttonAdd);
+        TextInputLayout name_l = view.findViewById(R.id.Fridge_textName_layout);
+        TextInputLayout qta_l = view.findViewById(R.id.Fridge_textQta_layout);
+        TextInputLayout unit_l = view.findViewById(R.id.Fridge_textUnit_layout);
 
-        builder = new AlertDialog.Builder(view.getContext());
-        button = view.findViewById(R.id.Fridge_buttonAdd);
-
-        recyclerView = view.findViewById(R.id.recyclerview_list_ingredients);
+        recyclerView = view.findViewById(R.id.recyclerview_list_ingredients_fridge);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,  false));
         adapter = new IngredientsRecyclerAdapter(requireView(), ingredientList);
         recyclerView.setAdapter(adapter);
         adapter.getItemTouchHelper().attachToRecyclerView(recyclerView);
 
-        ingredientList = getIngredientListWithWithGSon();
+        //Non ho capito perchè ritorna null
+        //ingredientList = getIngredientListWithWithGSon();
 
-        button.setOnClickListener(new View.OnClickListener() {
-            final EditText editText_name = view.findViewById(R.id.Fridge_textName);
-            final EditText editText_qta = view.findViewById(R.id.Fridge_textQta);
-            final Spinner spinner = view.findViewById(R.id.Fridge_spinner);
+        buttonAdd.setOnClickListener(v -> {
+            String name = name_l.getEditText().getText().toString().trim();
+            String qta = qta_l.getEditText().getText().toString().trim();
+            String unit = unit_l.getEditText().getText().toString().trim();
 
-            @Override
-            public void onClick(View v){
-                if(editText_name.getText().toString().trim().isEmpty()) {
-                    editText_name.setError("error");
-                }
+            boolean ok = true;
+            if(isEmpty(name)) {
+                name_l.setError(getString(R.string.empty_fields));
+                ok = false;
+            }
+            if(isEmpty(qta)) {
+                qta_l.setError(getString(R.string.empty_fields));
+                ok = false;
+            }
+            if(isEmpty(unit)) {
+                unit_l.setError(getString(R.string.empty_fields));
+                ok = false;
+            }
 
-                if(editText_qta.getText().toString().trim().isEmpty()) {
-                    editText_qta.setError("error");
-                }
-
-                try{
-                    float qta =  Float.parseFloat(editText_qta.getText().toString());
-                    ingredientList.add(new Ingredient(editText_name.getText().toString(), qta,spinner.getSelectedItem().toString()));
-                    adapter.notifyItemInserted(ingredientList.size() - 1);
-                }
-                catch (Exception e){
-                    Log.v("error", editText_qta.getText().toString());
-                }
+            if(ok) {
+                float q = Float.parseFloat(qta);
+                ingredientList.add(new Ingredient(name, q, unit));
+                adapter.notifyItemInserted(ingredientList.size() - 1);
             }
         });
 

@@ -1,11 +1,8 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import static android.text.TextUtils.isEmpty;
-
 import static cfgmm.ricettiamo.util.Constants.IMAGE;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,43 +10,59 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.adapter.HomeAdapter;
 import cfgmm.ricettiamo.adapter.IngredientsRecyclerAdapter;
 import cfgmm.ricettiamo.adapter.StepAdapter;
+import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentMAddNewRecipeBinding;
 import cfgmm.ricettiamo.model.Ingredient;
+import cfgmm.ricettiamo.model.Recipe;
+import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.util.ServiceLocator;
+import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
+import cfgmm.ricettiamo.viewmodel.UserViewModel;
+import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
 public class AddNewRecipeFragment extends Fragment {
+
+    public static final String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
     private FragmentMAddNewRecipeBinding binding;
     private IngredientsRecyclerAdapter adapterIngredient;
     private StepAdapter stepAdapter;
+    private UserViewModel userViewModel;
+    private RecipeViewModel recipeViewModel;
 
     private String mainPicture;
     private List<Ingredient> ingredientList;
     private List<Object> stepList;
+    private String title;
+    private String difficulty;
+    private String cost;
+    private String prepTime;
+    private String serving;
+    private String author;
 
     public AddNewRecipeFragment() {
         // Required empty public constructor
@@ -78,6 +91,14 @@ public class AddNewRecipeFragment extends Fragment {
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+
+        IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
+        userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
+        Result result = userViewModel.getCurrentUserLiveData().getValue();
+        if(result != null && result.isSuccess()) {
+            author = ((Result.UserResponseSuccess) result).getData().getId();
+        }
+
     }
 
     @Override
@@ -114,7 +135,7 @@ public class AddNewRecipeFragment extends Fragment {
             if(!isEmpty(nameIngredient) && !isEmpty(quantity) && !isEmpty(unit)) {
                 Ingredient ingredient = new Ingredient(nameIngredient, Float.parseFloat(quantity), unit);
                 ingredientList.add(ingredient);
-                adapterIngredient.notifyItemInserted(ingredientList.size()-1);
+                adapterIngredient.notifyItemInserted(ingredientList.size() - 1);
             } else {
                 binding.addIngredientLayout.setError(getString(R.string.empty_fields));
             }
@@ -136,8 +157,41 @@ public class AddNewRecipeFragment extends Fragment {
         });
 
         binding.saveRecipe.setOnClickListener(v -> {
+            title = binding.addTitleLayout.getEditText().getText().toString().trim();
+            difficulty = binding.difficoltyLayout.getEditText().getText().toString().trim();
+            cost = binding.costLayout.getEditText().getText().toString().trim();
+            prepTime = binding.prepTimeLayout.getEditText().getText().toString().trim();
+            serving = binding.servingLayout.getEditText().getText().toString().trim();
 
-            Navigation.findNavController(v).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
+            if(checkData()) {
+                /*Recipe recipe = new Recipe(
+                        author,
+                        title,
+                        0,
+                        Integer.parseInt(serving),
+                        cost,
+                        Integer.parseInt(prepTime),
+                        ingredientList,
+                        getCurrentDate(),
+                        mainPicture,
+                        false);*/
+
+                MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(requireActivity());
+
+                alert.setTitle(getString(R.string.save_recipe));
+                alert.setMessage(getString(R.string.save_recipe_alert));
+                alert.setPositiveButton(getString(R.string.save), (dialog, id) -> {
+                    if(true /*recipeViewModel.addRecipe(recipe)*/) {
+                        Snackbar.make(requireView(), R.string.saving_success, Snackbar.LENGTH_LONG).show();
+                        Navigation.findNavController(requireView()).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
+                    } else {
+                        Snackbar.make(requireView(), R.string.saving_failure, Snackbar.LENGTH_LONG).show();
+                    }
+                });
+                alert.setNegativeButton(getString(R.string.cancel),null);
+                alert.show();
+            }
+
         });
     }
 
@@ -174,5 +228,53 @@ public class AddNewRecipeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public boolean checkData() {
+        boolean ok = true;
+        if(isEmpty(title)) {
+            binding.addTitleLayout.setError(getString(R.string.empty_fields));
+            ok = false;
+        }
+
+        if(isEmpty(difficulty)) {
+            binding.difficoltyLayout.setError(getString(R.string.empty_fields));
+            ok = false;
+        }
+
+        if(isEmpty(cost)) {
+            binding.costLayout.setError(getString(R.string.empty_fields));
+            ok = false;
+        }
+
+        if(isEmpty(prepTime)) {
+            binding.prepTimeLayout.setError(getString(R.string.empty_fields));
+            ok = false;
+        }
+
+        if(isEmpty(serving)) {
+            binding.servingLayout.setError(getString(R.string.empty_fields));
+            ok = false;
+        }
+
+        if(ingredientList.size() == 0) {
+            binding.addIngredientLayout.setError(getString(R.string.one_element));
+            ok = false;
+        }
+
+        if(stepList.size() == 0) {
+            binding.addStepLayout.setError(getString(R.string.one_element));
+            ok = false;
+        }
+
+        return ok;
+    }
+
+    public static String getCurrentDate() {
+        Date currentDate = new Date();
+        SimpleDateFormat df = new SimpleDateFormat(dateFormat);
+        df.format(currentDate);
+        currentDate.getTime();
+        return currentDate.toString();
     }
 }
