@@ -111,6 +111,22 @@
     <string name="googleWarning">Agli utenti che hanno effettuato l\'accesso con Google non permettiamo il cambio email e password.</string>
     <string name="recipes_added_to_favorite_list_message">Ricetta aggiunta alla lista dei preferiti</string>
     <string name="recipes_removed_from_favorite_list_message">Ricetta rimossa dalla lista dei preferiti</string>
+    <string name="main_picture">Immagine principale della ricetta</string>
+    <string name="_informations">Informazioni</string>
+    <string name="name_of_the_ingredient">Nome dell\'ingrediente</string>
+    <string name="unit">Unità di misura</string>
+    <string name="type_new_step">Inserisci nuovo step</string>
+    <string name="save_recipe">Salva ricetta</string>
+    <string name="delete_recipe">Elimina Ricetta</string>
+    <string name="lose_data">Tornando indietro perderai le tue modifiche</string>
+    <string name="come_back">Torna indietro</string>
+    <string name="cancel">Cancella</string>
+    <string name="undo">Annulla</string>
+    <string name="one_element">è necessario almeno un elemento</string>
+    <string name="save_recipe_alert">Sei sicuro? Dopo la conferma non sarà più possibile modificare la ricetta</string>
+    <string name="save">Salva</string>
+    <string name="saving_success">La tua ricetta è stata salvata!</string>
+    <string name="saving_failure">La tua ricetta non è stata salvata! Riprova</string>
 
 
 </resources>

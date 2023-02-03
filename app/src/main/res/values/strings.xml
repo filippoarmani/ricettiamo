@@ -182,5 +182,10 @@
     <string name="come_back">Come back</string>
     <string name="cancel">Cancel</string>
     <string name="undo">undo</string>
+    <string name="one_element">At least one element</string>
+    <string name="save_recipe_alert">Are you sure? After that it will no longer be possible to change the recipe</string>
+    <string name="save">save</string>
+    <string name="saving_success">Your recipe has been saved!</string>
+    <string name="saving_failure">Your recipe has not been saved! Try again</string>
 
 </resources>

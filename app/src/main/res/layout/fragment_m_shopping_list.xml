@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.navigation_drawer.ShoppingListFragment"
@@ -7,102 +8,98 @@
     android:layout_height="match_parent">
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
         <LinearLayout
-            android:id="@+id/inserimento_shopping_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:baselineAligned="false"
+                android:layout_marginTop="15dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/shoplist_textName_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginEnd="10dp"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/shoplist_textName"
+                        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/name_of_the_ingredient"
+                        android:label="@string/name_of_the_ingredient"
+                        android:textSize="20sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/shopList_textQta_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/shopList_textQta"
+                        style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/quantity"
+                        android:inputType="numberDecimal"
+                        android:label="@string/quantity"
+                        android:textSize="20sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/shopList_textUnit_layout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:gravity="end">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/shopList_textUnit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        app:simpleItems="@array/qta_array"
+                        android:hint="@string/unit"
+                        android:label="@string/unit"
+                        android:textSize="18sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
 
             <Button
-                android:id="@+id/ShopList_buttonAdd"
-                android:layout_width="56dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/back_orange"
-                android:text="@string/add"
-                android:textSize="20sp"
-                app:cornerRadius="500dp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-            <EditText
-                android:id="@+id/Shoplist_textName"
-                android:layout_width="160dp"
-                android:layout_height="50dp"
-                android:background="@drawable/back"
-                android:fontFamily="@font/montserrat"
-                android:padding="10dp"
-                android:hint="@string/product_name"
-                android:textColor = "?android:textColorPrimary"
-                android:textSize="18sp"
-                android:layout_marginStart="10dp"
-                android:importantForAutofill="no"
-                android:inputType="text"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-            <EditText
-                android:id="@+id/ShopList_textQta"
-                android:layout_width="60dp"
-                android:layout_height="50dp"
-                android:background="@drawable/back"
-                android:fontFamily="@font/montserrat"
-                android:padding="10dp"
-                android:hint="@string/quantity"
-                android:inputType="number"
-                android:minWidth="48dp"
-                android:textColor = "?android:textColorPrimary"
-                android:textSize="18sp"
-                android:layout_marginStart="10dp"
-                app:layout_constraintLeft_toRightOf="@id/ShopList_buttonAdd"
-                app:layout_constraintTop_toTopOf="parent"
-                android:importantForAutofill="no" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-            <Spinner
-                android:layout_width="wrap_content"
+                android:id="@+id/shopList_buttonAdd"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/qta_array"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:dropDownWidth="60dp"
-                android:textAlignment="center"
-                android:layout_marginStart="10dp"
-                app:layout_constraintLeft_toRightOf="@id/text" />
+                android:fontFamily="@font/montserrat"
+                android:text="@string/add_ingredient"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                app:cornerRadius="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_list_ingredients_shopping"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp" />
 
         </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_list_ingredients_shopping"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/inserimento_shopping_list"
-        android:layout_marginTop="10dp" />
-
-    </RelativeLayout>
-    </ScrollView>
-</FrameLayout>
+</ScrollView>
