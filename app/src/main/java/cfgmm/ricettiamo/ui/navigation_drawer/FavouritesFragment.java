@@ -27,9 +27,7 @@ import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
-import cfgmm.ricettiamo.data.source.recipe.RecipesCallback;
 import cfgmm.ricettiamo.model.Recipe;
-import cfgmm.ricettiamo.model.RecipeApiResponse;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,7 +73,7 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourites, container, false);
+        return inflater.inflate(R.layout.fragment_m_favourites, container, false);
     }
 
     @Override

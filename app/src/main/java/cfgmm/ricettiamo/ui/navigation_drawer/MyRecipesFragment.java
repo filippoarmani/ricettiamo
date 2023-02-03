@@ -1,6 +1,5 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
-import android.app.Application;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -22,7 +20,6 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.RecipeApiResponse;
 
@@ -49,7 +46,7 @@ public class MyRecipesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_recipes, container, false);
+        return inflater.inflate(R.layout.fragment_m_my_recipes, container, false);
     }
 
     @Override

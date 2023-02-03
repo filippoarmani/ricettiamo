@@ -53,12 +53,12 @@ public class RecipesRecyclerAdapter  extends RecyclerView.Adapter<RecyclerView.V
 
         if(viewType == RECIPES_VIEW_TYPE){
             view = LayoutInflater.from(parent.getContext()).
-                    inflate(R.layout.fragment_list_item_top_recipe, parent, false);
+                    inflate(R.layout.template_top_recipe, parent, false);
             return new RecipeViewHolder(view);
         }
         else{
             view = LayoutInflater.from(parent.getContext()).
-                    inflate(R.layout.recipes_loading_item, parent, false);
+                    inflate(R.layout.template_loading_item, parent, false);
             return new LoadingRecipeViewHolder(view);
         }
 

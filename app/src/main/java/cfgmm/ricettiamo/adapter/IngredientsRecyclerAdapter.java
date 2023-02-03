@@ -1,12 +1,9 @@
 package cfgmm.ricettiamo.adapter;
 
-import android.content.ClipData;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,7 +32,7 @@ public class IngredientsRecyclerAdapter extends
     @Override
     public IngredientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.fragment_ingredient_list_item_list, parent, false);
+                inflate(R.layout.template_item_fridge, parent, false);
 
         return new IngredientViewHolder(view);
     }

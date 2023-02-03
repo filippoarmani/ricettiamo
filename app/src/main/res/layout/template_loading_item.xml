@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressbar_loading_recipes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:indeterminate="true"/>
 
 </LinearLayout>

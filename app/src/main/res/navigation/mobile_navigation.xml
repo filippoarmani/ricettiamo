@@ -9,7 +9,7 @@
         android:id="@+id/nav_home"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_m_home" >
         <action
             android:id="@+id/action_nav_home_to_search_recipes"
             app:destination="@id/search_recipes" />
@@ -19,19 +19,19 @@
         android:id="@+id/nav_fridge"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.FridgeFragment"
         android:label="@string/menu_fridge"
-        tools:layout="@layout/fragment_fridge" />
+        tools:layout="@layout/fragment_m_fridge" />
 
     <fragment
         android:id="@+id/nav_shoppingList"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.ShoppingListFragment"
         android:label="@string/shopping_list"
-        tools:layout="@layout/fragment_shopping_list" />
+        tools:layout="@layout/fragment_m_shopping_list" />
 
     <fragment
         android:id="@+id/nav_favourites"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.FavouritesFragment"
         android:label="@string/menu_favourites"
-        tools:layout="@layout/fragment_favourites" >
+        tools:layout="@layout/fragment_m_favourites" >
         <action
             android:id="@+id/action_nav_favourites_to_recipeDetailsFragment"
             app:destination="@id/recipeDetailsFragment" />
@@ -41,13 +41,13 @@
         android:id="@+id/nav_settings"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.SettingsFragment"
         android:label="@string/action_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_m_settings" />
 
     <fragment
         android:id="@+id/nav_profile"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.ProfileFragment"
         android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_m_profile" >
         <action
             android:id="@+id/action_nav_profile_to_nav_my_recipe"
             app:destination="@id/nav_my_recipe" />
@@ -60,13 +60,13 @@
         android:id="@+id/nav_my_recipe"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.MyRecipesFragment"
         android:label="@string/my_recipes"
-        tools:layout="@layout/fragment_my_recipes" />
+        tools:layout="@layout/fragment_m_my_recipes" />
 
     <fragment
         android:id="@+id/nav_add_new_recipe"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.AddNewRecipeFragment"
         android:label="@string/add_new_recipe"
-        tools:layout="@layout/fragment_add_new_recipe" >
+        tools:layout="@layout/fragment_m_add_new_recipe" >
         <action
             android:id="@+id/action_nav_add_new_recipe_to_nav_home"
             app:destination="@id/nav_home" />
@@ -76,22 +76,22 @@
         android:id="@+id/nav_ranking"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.RankingFragment"
         android:label="@string/top_10_chef"
-        tools:layout="@layout/fragment_ranking" />
+        tools:layout="@layout/fragment_m_ranking" />
 
     <fragment
         android:id="@+id/search_recipes"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipes"
         android:label="fragment_search_recipes"
-        tools:layout="@layout/fragment_search_recipes" >
+        tools:layout="@layout/fragment_m_search_recipes" >
         <action
             android:id="@+id/action_search_recipes_to_recipeDetailsFragment"
             app:destination="@id/recipeDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/recipeDetailsFragment"
-        android:name="cfgmm.ricettiamo.RecipeDetailsFragment"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.RecipeDetailsFragment"
         android:label="fragment_recipe_details"
-        tools:layout="@layout/fragment_recipe_details" >
+        tools:layout="@layout/fragment_m_recipe_details" >
         <argument
             android:name="recipe"
             app:argType="cfgmm.ricettiamo.model.Recipe" />

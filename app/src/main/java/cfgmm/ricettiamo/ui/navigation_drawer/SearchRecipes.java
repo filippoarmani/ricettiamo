@@ -24,7 +24,7 @@ import cfgmm.ricettiamo.adapter.SearchRecipesAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
-import cfgmm.ricettiamo.databinding.FragmentSearchRecipesBinding;
+import cfgmm.ricettiamo.databinding.FragmentMSearchRecipesBinding;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 
@@ -40,7 +40,7 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private FragmentSearchRecipesBinding fragmentSearchRecipesBinding;
+    private FragmentMSearchRecipesBinding fragmentSearchRecipesBinding;
 
     // TODO: Rename and change types of parameters
     private TextInputLayout inputRecipe;
@@ -89,7 +89,7 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        fragmentSearchRecipesBinding = FragmentSearchRecipesBinding.inflate(inflater, container, false);
+        fragmentSearchRecipesBinding = FragmentMSearchRecipesBinding.inflate(inflater, container, false);
         return fragmentSearchRecipesBinding.getRoot();
     }
 

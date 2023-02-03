@@ -1,6 +1,5 @@
 package cfgmm.ricettiamo.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,7 @@ public class ShoppingListRecyclerAdapter extends
     public ShoppingListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.fragment_item_shopping_list, parent, false);
+                inflate(R.layout.template_item_shoppinglist, parent, false);
         return new ShoppingListViewHolder(view);
     }
 
@@ -69,12 +68,9 @@ public class ShoppingListRecyclerAdapter extends
                 notifyItemRemoved(position);
 
                 Snackbar.make(view, "UNDO", Snackbar.LENGTH_SHORT).
-                        setAction("UNDO", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                shoppingList.add(position,deleteItem);
-                                notifyItemInserted(position);
-                            }
+                        setAction("UNDO", v -> {
+                            shoppingList.add(position,deleteItem);
+                            notifyItemInserted(position);
                         }).show();
             }
         });

@@ -1,17 +1,13 @@
 package cfgmm.ricettiamo.adapter;
 
 import android.app.Application;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,7 +47,7 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
         View view = null;
 
         view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.recipe_item, parent, false);
+                inflate(R.layout.template_recipe, parent, false);
         return new RecipeViewHolder(view);
     }
 

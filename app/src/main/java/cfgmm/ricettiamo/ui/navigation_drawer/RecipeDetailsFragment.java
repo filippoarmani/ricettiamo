@@ -1,24 +1,19 @@
-package cfgmm.ricettiamo;
+package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 
-import cfgmm.ricettiamo.databinding.FragmentRecipeDetailsBinding;
+import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.databinding.FragmentMRecipeDetailsBinding;
 import cfgmm.ricettiamo.model.Recipe;
 
 /**
@@ -30,7 +25,7 @@ public class RecipeDetailsFragment extends Fragment {
 
     private static final String TAG = RecipeDetailsFragment.class.getSimpleName();
 
-    private FragmentRecipeDetailsBinding fragmentRecipeDetailsBinding;
+    private FragmentMRecipeDetailsBinding fragmentRecipeDetailsBinding;
 
     public RecipeDetailsFragment() {
         // Required empty public constructor
@@ -55,7 +50,7 @@ public class RecipeDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        fragmentRecipeDetailsBinding = fragmentRecipeDetailsBinding.inflate(inflater, container, false);
+        fragmentRecipeDetailsBinding = FragmentMRecipeDetailsBinding.inflate(inflater, container, false);
         return fragmentRecipeDetailsBinding.getRoot();
     }
 

@@ -21,7 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
-import cfgmm.ricettiamo.databinding.FragmentProfileBinding;
+import cfgmm.ricettiamo.databinding.FragmentMProfileBinding;
 import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.User;
 import cfgmm.ricettiamo.util.ServiceLocator;
@@ -31,7 +31,7 @@ import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 public class ProfileFragment extends Fragment {
 
     private UserViewModel userViewModel;
-    private FragmentProfileBinding binding;
+    private FragmentMProfileBinding binding;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -47,7 +47,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        binding = FragmentMProfileBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         return view;
     }

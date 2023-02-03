@@ -9,7 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="cfgmm.ricettiamo.ui.authentication.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_a_login" >
         <action
             android:id="@+id/action_loginFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
@@ -24,7 +24,7 @@
         android:id="@+id/registrationFragment"
         android:name="cfgmm.ricettiamo.ui.authentication.RegistrationFragment"
         android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" >
+        tools:layout="@layout/fragment_a_registration" >
         <action
             android:id="@+id/action_registrationFragment_self"
             app:destination="@id/registrationFragment" />
@@ -33,6 +33,6 @@
         android:id="@+id/forgotPasswordFragment"
         android:name="cfgmm.ricettiamo.ui.authentication.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password" />
+        tools:layout="@layout/fragment_a_forgot_password" />
 
 </navigation>

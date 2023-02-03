@@ -30,7 +30,7 @@ import java.util.Map;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
-import cfgmm.ricettiamo.databinding.FragmentSettingsBinding;
+import cfgmm.ricettiamo.databinding.FragmentMSettingsBinding;
 import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.User;
 import cfgmm.ricettiamo.ui.authentication.AuthenticationActivity;
@@ -41,7 +41,7 @@ import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 public class SettingsFragment extends Fragment {
 
     private UserViewModel userViewModel;
-    private FragmentSettingsBinding binding;
+    private FragmentMSettingsBinding binding;
     private Map<String, Object> newInfo;
 
     private Boolean changed;
@@ -68,7 +68,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentSettingsBinding.inflate(inflater, container, false);
+        binding = FragmentMSettingsBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

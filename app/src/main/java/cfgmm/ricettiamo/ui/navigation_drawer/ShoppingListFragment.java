@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -53,7 +52,7 @@ public class ShoppingListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shopping_list, container, false);
+        return inflater.inflate(R.layout.fragment_m_shopping_list, container, false);
     }
 
     @Override
@@ -105,6 +104,6 @@ public class ShoppingListFragment extends Fragment {
 
         IngredientApiResponse ingredientApiResponse = new
                 Gson().fromJson(bufferedReader, IngredientApiResponse.class);
-        return ingredientApiResponse.getArticles();
+        return ingredientApiResponse.getIngredients();
     }
 }

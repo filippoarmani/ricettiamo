@@ -38,13 +38,12 @@ import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.HomeAdapter;
 import cfgmm.ricettiamo.adapter.IngredientsRecyclerAdapter;
 import cfgmm.ricettiamo.adapter.StepAdapter;
-import cfgmm.ricettiamo.databinding.FragmentAddNewRecipeBinding;
-import cfgmm.ricettiamo.databinding.FragmentSettingsBinding;
+import cfgmm.ricettiamo.databinding.FragmentMAddNewRecipeBinding;
 import cfgmm.ricettiamo.model.Ingredient;
 
 public class AddNewRecipeFragment extends Fragment {
 
-    private FragmentAddNewRecipeBinding binding;
+    private FragmentMAddNewRecipeBinding binding;
     private IngredientsRecyclerAdapter adapterIngredient;
     private StepAdapter stepAdapter;
 
@@ -84,7 +83,7 @@ public class AddNewRecipeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentAddNewRecipeBinding.inflate(inflater, container, false);
+        binding = FragmentMAddNewRecipeBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
