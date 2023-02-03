@@ -17,7 +17,6 @@
             android:id="@+id/add_main_picture"
             android:layout_width="match_parent"
             android:layout_height="248dp"
-            android:background="?colorPrimary"
             android:fontFamily="@font/montserrat"
             android:text="@string/add_photo"
             android:textAllCaps="false"
