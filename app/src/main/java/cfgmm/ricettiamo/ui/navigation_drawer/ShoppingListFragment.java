@@ -84,21 +84,26 @@ public class ShoppingListFragment extends Fragment {
             String qta = qta_l.getEditText().getText().toString().trim();
             String unit = unit_l.getEditText().getText().toString().trim();
 
+            boolean ok = true;
             if(isEmpty(name)) {
                 name_l.setError(getString(R.string.empty_fields));
+                ok = false;
             }
             if(isEmpty(qta)) {
                 qta_l.setError(getString(R.string.empty_fields));
+                ok = false;
             }
             if(isEmpty(unit)) {
                 unit_l.setError(getString(R.string.empty_fields));
+                ok = false;
             }
 
-            float q = Float.parseFloat(qta);
-            Ingredient newIngredient = new Ingredient(name, q, unit);
-            Snackbar.make(requireView(), newIngredient.toString(), Snackbar.LENGTH_SHORT).show();
-            shoppingList.add(newIngredient);
-            adapter.notifyItemInserted(shoppingList.size() - 1);
+            if(ok) {
+                float q = Float.parseFloat(qta);
+                Ingredient newIngredient = new Ingredient(name, q, unit);
+                shoppingList.add(newIngredient);
+                adapter.notifyItemInserted(shoppingList.size() - 1);
+            }
 
         });
     }

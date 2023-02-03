@@ -234,37 +234,37 @@ public class AddNewRecipeFragment extends Fragment {
         boolean ok = true;
         if(isEmpty(title)) {
             binding.addTitleLayout.setError(getString(R.string.empty_fields));
-            ok = ok && false;
+            ok = false;
         }
 
         if(isEmpty(difficulty)) {
             binding.difficoltyLayout.setError(getString(R.string.empty_fields));
-            ok = ok && false;
+            ok = false;
         }
 
         if(isEmpty(cost)) {
             binding.costLayout.setError(getString(R.string.empty_fields));
-            ok = ok && false;
+            ok = false;
         }
 
         if(isEmpty(prepTime)) {
             binding.prepTimeLayout.setError(getString(R.string.empty_fields));
-            ok = ok && false;
+            ok = false;
         }
 
         if(isEmpty(serving)) {
             binding.servingLayout.setError(getString(R.string.empty_fields));
-            ok = ok && false;
+            ok = false;
         }
 
         if(ingredientList.size() == 0) {
             binding.addIngredientLayout.setError(getString(R.string.one_element));
-            ok = ok && false;
+            ok = false;
         }
 
         if(stepList.size() == 0) {
             binding.addStepLayout.setError(getString(R.string.one_element));
-            ok = ok && false;
+            ok = false;
         }
 
         return ok;
