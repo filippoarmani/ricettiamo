@@ -6,9 +6,9 @@
         <item name="android:backgroundTint">?colorPrimary</item>
         <item name="android:fontFamily">@font/bakerie</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?colorOnPrimary</item>
         <item name="android:gravity">center</item>
     </style>
+    <!--<item name="android:textColor">?colorOnPrimary</item>-->
 
     <style name="firstTitle">
         <item name="android:textColor">@color/md_theme_light_primary</item>
