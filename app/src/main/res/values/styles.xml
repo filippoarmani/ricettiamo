@@ -2,9 +2,9 @@
 <resources>
 
     <style name="titlebar" parent="Widget.Material3.AppBarLayout">
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:backgroundTint">@color/md_theme_light_primary</item>
-        <item name="android:fontFamily">@font/bakerie</item>
+        <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/md_theme_light_onPrimary</item>
         <item name="android:gravity">center</item>
