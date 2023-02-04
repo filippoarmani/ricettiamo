@@ -28,8 +28,11 @@
         <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
     </style>
 
+    <style name="Theme.RicettiAmo.Toolbar" parent="Widget.Material3.Toolbar" />
+
     <style name="Theme.RicettiAmo.TonalButton" parent="Widget.Material3.Button.TonalButton"/>
 
+    <style name="Theme.Ricettiamo.Navigation" parent="Widget.Material3.NavigationView"/>
 
 
 </resources>

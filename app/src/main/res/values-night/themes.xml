@@ -28,7 +28,11 @@
             <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
         </style>
 
-    <style name="Theme.RicettiAmo.TonalButton" parent="Widget.Material3.Button.TonalButton"/>
+    <style name="Theme.RicettiAmo.TonalButton" parent="Widget.Material3.Button.TonalButton">
+        <item name="backgroundTint">@color/orange_w</item>
+    </style>
+
+    <style name="Theme.Ricettiamo.Navigation" parent="Widget.Material3.NavigationView" />
 
 
 </resources>
