@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -125,10 +126,12 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
                     public void onRecipeItemClick(Recipe recipe) {
                         Snackbar.make(view, recipe.getName(), Snackbar.LENGTH_SHORT).show();
 
+                        /*todo: query per aggiungere gli ingredienti. per la conversione ci dovrebbe
+                           essere il codice funzionante commentato in recipeApiResponse (da spostare
+                            nel metodo corretto*/
                         cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipesDirections.ActionSearchRecipesToRecipeDetailsFragment action =
                                 SearchRecipesDirections.actionSearchRecipesToRecipeDetailsFragment(recipe);
-                        Navigation.findNavController(view).navigate(action);
-                        //Navigation.findNavController(requireView()).navigate(R.id.action_search_recipes2_to_recipe_details);
+                        Navigation.findNavController(view).navigate((NavDirections) action);
                     }
 
                     @Override
@@ -139,64 +142,6 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
                 });
         recyclerviewSearchRecipes.setLayoutManager(layoutManager);
         recyclerviewSearchRecipes.setAdapter(searchRecipesAdapter);
-
-        /*RecipeResponse recipeResponse = Result.RecipeResponseSuccess.getData();
-        List<Recipe> getRecipes = recipeResponse.getRecipesList();
-
-        if (!recipeViewModel.isLoading()) {
-            if (recipeViewModel.isFirstLoading()) {
-                recipeViewModel.setFirstLoading(false);
-                this.recipeList.addAll(getRecipes);
-            } else {
-                // Updates related to the favorite status of the news
-                recipeList.clear();
-                recipeList.addAll(getRecipes);
-            }
-        } else {
-            recipeViewModel.setLoading(false);
-
-            for (int i = 0; i < recipeList.size(); i++) {
-                if (recipeList.get(i) == null) {
-                    recipeList.remove(recipeList.get(i));
-                }
-            }
-        }*/
-        /*recyclerviewSearchRecipes.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                boolean isConnected = isConnected();
-
-                if (isConnected && totalItemCount != recipeViewModel.getTotalResults()) {
-
-                    totalItemCount = layoutManager.getItemCount();
-                    lastVisibleItem = layoutManager.findLastVisibleItemPosition();
-                    visibleItemCount = layoutManager.getChildCount();
-
-                    // Condition to enable the loading of other news while the user is scrolling the list
-                    if (totalItemCount == visibleItemCount ||
-                            (totalItemCount <= (lastVisibleItem + threshold) &&
-                                    dy > 0 &&
-                                    !recipeViewModel.isLoading()
-                            ) &&
-                                    recipeViewModel.getNewsResponseLiveData().getValue() != null &&
-                                    recipeViewModel.getCurrentResults() != recipeViewModel.getTotalResults()
-                    ) {
-                        MutableLiveData<Result> newsListMutableLiveData = recipeViewModel.getNewsResponseLiveData();
-
-                        if (newsListMutableLiveData.getValue() != null &&
-                                newsListMutableLiveData.getValue().isSuccess()) {
-
-                            recipeViewModel.setLoading(true);
-                            recipeList.add(null);
-                            recyclerviewSearchRecipes.notifyItemRangeInserted(recipeList.size(),
-                                    recipeList.size() + 1);
-                            recipeViewModel.getRecipes(search);
-                        }
-                    }
-                }
-            }
-        });*/
     }
 
     /**

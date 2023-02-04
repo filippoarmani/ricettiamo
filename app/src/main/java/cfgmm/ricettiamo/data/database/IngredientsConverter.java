@@ -2,26 +2,41 @@ package cfgmm.ricettiamo.data.database;
 
 import androidx.room.TypeConverter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import cfgmm.ricettiamo.model.Ingredient;
 
 public class IngredientsConverter {
-    /*@TypeConverter
-    public CountryLangs storedStringToLanguages(String value) {
-        List<Ingredient> langs = Arrays.asList(value.split("\\s*,\\s*"));
-        return new CountryLangs(langs);
+    @TypeConverter
+    public List<Ingredient> IngredientToList(String value) {
+        List<Ingredient> ingredientList = new ArrayList<>();
+        String name = "";
+        for (int i = 0; i < value.length(); i++) {
+            if (value.charAt(i) == ',') {
+                i += 1;
+                Ingredient ingredient = new Ingredient(name, 0, null);
+                ingredientList.add(ingredient);
+            } else {
+                name += value.charAt(i);
+            }
+        }
+
+        return ingredientList;
     }
 
     @TypeConverter
-    public String languagesToStoredString(CountryLangs cl) {
-        String value = "";
+    public String IngredientToString(List<Ingredient> value) {
+        String ingredientsString = "";
 
-        for (String lang : cl.getCountryLangs())
-            value += lang + ",";
+        if (value != null) {
+            for (int i = 0; i < value.size(); i++) {
+                ingredientsString += value.get(i).getName() + ", ";
+            }
+        }
 
-        return value;
+        return ingredientsString;
 
-    }*/
+    }
 }

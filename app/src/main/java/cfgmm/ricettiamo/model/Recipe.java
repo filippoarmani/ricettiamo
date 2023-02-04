@@ -36,8 +36,10 @@ public class Recipe implements Parcelable {
     private float cost;
     @SerializedName("readyInMinutes")
     private int prepTime;
+    //@Ignore
     @SerializedName("ingredients")
-    private /*List<Ingredient>*/ String ingredientsList;
+    private List<Ingredient> ingredientsList;
+    private String ingredientsString;
     private String date;
     //private String url;
     @SerializedName("image")
@@ -49,14 +51,17 @@ public class Recipe implements Parcelable {
 
     @Ignore
     public Recipe(String author, String name, int score, int servings, float cost, int prepTime,
-                  List<Ingredient> ingredientsList, String date, /*String url, */String urlToImage, boolean isFavorite) {
+                  List<Ingredient> ingredientsList, String ingredientsString, String date, /*String url, */
+                  String urlToImage, boolean isFavorite) {
         this.author = author;
         this.name = name;
         this.score = score;
         this.servings = servings;
         this.cost = cost;
         this.prepTime = prepTime;
-        this.ingredientsList = ingredientsList.toString();
+        //this.ingredientsList = ingredientsList.toString();
+        this.ingredientsList = ingredientsList;
+        this.ingredientsString = ingredientsString;
         this.date = date;
         //this.url = url;
         this.urlToImage = urlToImage;
@@ -105,9 +110,13 @@ public class Recipe implements Parcelable {
 
     public void setPrepTime(int prepTime) { this.prepTime = prepTime; }
 
-    public /*List<Ingredient>*/ String getIngredientsList() { return ingredientsList; }
+    public List<Ingredient> getIngredientsList() { return ingredientsList; }
 
-    public void setIngredientsList(/*List<Ingredient>*/ String ingredientsList) { this.ingredientsList = ingredientsList; }
+    public void setIngredientsList(List<Ingredient> ingredientsList) { this.ingredientsList = ingredientsList; }
+
+    public String getIngredientsString() { return ingredientsString; }
+
+    public void setIngredientsString(String ingredientsList) { this.ingredientsString = ingredientsString; }
 
     public String getDate() {
         return date;
@@ -148,7 +157,8 @@ public class Recipe implements Parcelable {
                 ", servings=" + servings + '\'' +
                 ", cost=" + cost/100 + "€" + '\'' +
                 ", prepTime=" + prepTime + '\'' +
-                ", ingredients='" + ingredientsList + '\'' +
+                ", ingredientsList='" + ingredientsList + '\'' +
+                ", ingredientsString='" + ingredientsString + '\'' +
                 ", date='" + date + '\'' +
                 //", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
@@ -165,10 +175,11 @@ public class Recipe implements Parcelable {
         cost = in.readFloat();
         prepTime = in.readInt();
         if(in.readByte() == 0x01) {
-            ingredientsList = new /*ArrayList<Ingredient>()*/ String();
-            in.readList(Arrays.asList(ingredientsList.getBytes())/*ingredientsList*/, Ingredient.class.getClassLoader());
+            ingredientsList = new ArrayList<Ingredient>();
+            in.readList(ingredientsList, Ingredient.class.getClassLoader());
         }
         else ingredientsList = null;
+        ingredientsString = in.readString();
         date = in.readString();
         //url = in.readString();
         urlToImage = in.readString();
@@ -206,8 +217,9 @@ public class Recipe implements Parcelable {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
-            dest.writeList(Collections.singletonList(ingredientsList)/*ingredientsList*/);
+            dest.writeList(Collections.singletonList(ingredientsList));
         }
+        dest.writeString(this.ingredientsString);
         dest.writeString(this.date);
         //dest.writeString(this.url);
         dest.writeString(this.urlToImage);
@@ -225,6 +237,7 @@ public class Recipe implements Parcelable {
         data.put("cost", this.cost);
         data.put("prepTime", this.prepTime);
         data.put("ingredients", this.ingredientsList);
+        data.put("ingredients", this.ingredientsString);
         data.put("date", this.date);
         //data.put("url", this.url);
         data.put("urlToImage", this.urlToImage);

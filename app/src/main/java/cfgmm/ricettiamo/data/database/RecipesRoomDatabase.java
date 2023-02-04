@@ -8,6 +8,8 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,6 +22,7 @@ import cfgmm.ricettiamo.model.Ingredient;
  * https://developer.android.com/reference/kotlin/androidx/room/Database
  */
 @Database(entities = {Recipe.class, Ingredient.class}, version = DATABASE_VERSION)
+@TypeConverters({IngredientsConverter.class})
 public abstract class RecipesRoomDatabase extends RoomDatabase {
     public abstract RecipesDao recipesDao();
 

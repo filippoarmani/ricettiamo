@@ -55,6 +55,12 @@ public class RecipesRepository implements IRecipesRepository{
 
                 if (response.body() != null && response.isSuccessful()) {
                     List<Recipe> recipesList = response.body().getListRecipes();
+                    /*for (int i = 0; i < recipesList.size(); i++) {
+                        String ingredientsNames = "";
+                        for (int j = 0; j < recipesList.get(i).getIngredientsList().size(); j++)
+                            ingredientsNames += recipesList.get(i).getIngredientsList().get(j).getName() + ", ";
+                        recipesList.get(i).setIngredientsList(null);
+                    }*/
                     saveDataInDatabase(recipesList);
                 } else {
                     recipesResponseCallback.onFailure(application.getString(R.string.error_retrieving_recipe));
