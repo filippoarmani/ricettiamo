@@ -31,7 +31,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginVertical="20dp"
         android:text="@string/name"
-        android:textColor="?colorOnPrimary"
+        android:textColor="?colorOnSecondary"
         android:textAppearance="?attr/textAppearanceHeadlineSmall"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/nh_foto" />

@@ -37,7 +37,7 @@
 
             <TextView
                 android:id="@+id/titleRecipe"
-                style="@style/thirdTitle"
+                style="@style/titleOnCardview"
                 android:textSize="15dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

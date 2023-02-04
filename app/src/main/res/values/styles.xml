@@ -11,7 +11,7 @@
     <!--<item name="android:textColor">?colorOnPrimary</item>-->
 
     <style name="firstTitle">
-        <item name="android:textColor">@color/md_theme_light_primary</item>
+        <item name="android:textColor">?colorPrimary</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/montserrat</item>
@@ -19,7 +19,7 @@
     </style>
 
     <style name="secondTitle">
-        <item name="android:textColor">?colorSecondary</item>
+        <item name="android:textColor">?colorOnSecondary</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/montserrat</item>
@@ -27,9 +27,8 @@
     </style>
 
     <style name="thirdTitle">
-        <item name="android:textColor">?colorTertiary</item>
+        <item name="android:textColor">?colorOnTertiaryContainer</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:elevation">10dp</item>
     </style>
@@ -67,8 +66,10 @@
     </style>
 
     <style name="navigationView" parent="Widget.Material3.NavigationView">
-        <item name="android:backgroundTint">?colorPrimary</item>
-        <item name="itemTextColor">?colorOnPrimaryContainer</item>
+        <item name="android:backgroundTint">?colorSecondary</item>
+        <item name="itemTextColor">@animator/drawer_item</item>
+        <item name="itemIconTint">@animator/drawer_item</item>
+        <item name="itemFillColor">?colorSecondary</item>
     </style>
 
 </resources>
