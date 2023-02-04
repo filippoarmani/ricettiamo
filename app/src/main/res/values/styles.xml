@@ -3,15 +3,15 @@
 
     <style name="titlebar" parent="Widget.Material3.AppBarLayout">
         <item name="android:textSize">50sp</item>
-        <item name="android:backgroundTint">@color/md_theme_light_primary</item>
+        <item name="android:backgroundTint">?colorPrimary</item>
         <item name="android:fontFamily">@font/bakerie</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/md_theme_light_onPrimary</item>
+        <item name="android:textColor">?colorOnPrimary</item>
         <item name="android:gravity">center</item>
     </style>
 
     <style name="firstTitle">
-        <item name="android:textColor">@color/md_theme_light_primary</item>
+        <item name="android:textColor">?colorPrimary</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/montserrat</item>
@@ -19,7 +19,7 @@
     </style>
 
     <style name="secondTitle">
-        <item name="android:textColor">@color/md_theme_light_secondary</item>
+        <item name="android:textColor">?colorSecondary</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/montserrat</item>
@@ -27,7 +27,7 @@
     </style>
 
     <style name="thirdTitle">
-        <item name="android:textColor">@color/md_theme_light_tertiary</item>
+        <item name="android:textColor">?colorTertiary</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/montserrat</item>
@@ -35,23 +35,23 @@
     </style>
 
     <style name="textInput" parent="Widget.Material3.TextInputEditText.OutlinedBox">
-        <item name="hintTextColor">@color/md_theme_light_outline</item>
-        <item name="android:textColor">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="hintTextColor">?colorOutline</item>
+        <item name="android:textColor">?colorOnPrimaryContainer</item>
     </style>
 
     <style name="button">
-        <item name="android:backgroundTint">@color/md_theme_light_primaryContainer</item>
-        <item name="rippleColor">@color/md_theme_light_onPrimaryContainer</item>
-        <item name="android:textColor">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="android:backgroundTint">?colorPrimaryContainer</item>
+        <item name="rippleColor">?colorOnPrimaryContainer</item>
+        <item name="android:textColor">?colorOnPrimaryContainer</item>
     </style>
 
     <style name="textButton" parent="Widget.Material3.Button.TextButton">
-        <item name="android:backgroundTint">@color/md_theme_light_primary</item>
-        <item name="android:textColor">@color/md_theme_light_onPrimary</item>
+        <item name="android:backgroundTint">?colorPrimary</item>
+        <item name="android:textColor">?colorOnPrimary</item>
     </style>
 
     <style name="cardView">
-        <item name="android:backgroundTint">@color/md_theme_light_tertiaryContainer</item>
+        <item name="android:backgroundTint">?colorTertiaryContainer</item>
         <item name="android:elevation">10dp</item>
         <item name="android:orientation">vertical</item>
         <item name="cardElevation">10dp</item>
@@ -59,7 +59,7 @@
     </style>
 
     <style name="titleOnCardview">
-        <item name="android:textColor">@color/md_theme_light_onTertiaryContainer</item>
+        <item name="android:textColor">?colorOnTertiaryContainer</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/montserrat</item>
@@ -67,8 +67,8 @@
     </style>
 
     <style name="navigationView" parent="Widget.Material3.NavigationView">
-        <item name="android:backgroundTint">@color/md_theme_light_primary</item>
-        <item name="itemTextColor">@color/md_theme_light_onPrimary</item>
+        <item name="android:backgroundTint">?colorPrimary</item>
+        <item name="itemTextColor">?colorOnPrimaryContainer</item>
     </style>
 
 </resources>
