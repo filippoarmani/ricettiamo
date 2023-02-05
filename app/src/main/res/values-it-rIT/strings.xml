@@ -129,6 +129,11 @@
     <string name="saving_failure">La tua ricetta non è stata salvata! Riprova</string>
     <string name="no_recipes">Non hai pubblicato alcuna ricetta!</string>
     <string name="recipe_details">Ricetta</string>
+    <string name="add_review">Aggiungi recensione</string>
+    <string name="score">Punti</string>
+    <string name="noReview">Non ci sono ancora commenti per questa ricetta. Scrivi tu la prima!</string>
+    <string name="noLoggedUser">Utente Sconosciuto</string>
+    <string name="comment">Recensione</string>
 
 
 </resources>

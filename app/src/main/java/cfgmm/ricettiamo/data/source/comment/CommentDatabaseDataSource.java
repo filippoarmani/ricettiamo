@@ -21,6 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Comment;
+import cfgmm.ricettiamo.model.User;
 
 public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
 
@@ -34,12 +35,12 @@ public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
     }
 
     @Override
-    public void writeComment(Comment comment) {
-        databaseReference.child(FIREBASE_COMMENTS_COLLECTION).child(comment.getIdRecipe()).child(comment.getIdUser())
+    public void writeComment(Comment comment, String authorId) {
+        databaseReference.child(FIREBASE_COMMENTS_COLLECTION).child(comment.getIdRecipe()).child(comment.getIdComment())
                 .setValue(comment.toMap())
                 .addOnSuccessListener(task -> {
                     Log.d(TAG, "writeComment: success");
-                    commentResponseCallBack.onSuccessWriteComment(comment);
+                    commentResponseCallBack.onSuccessWriteComment(comment, authorId);
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "writeComment: failure");
@@ -57,13 +58,13 @@ public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     commentList.add(postSnapshot.getValue(Comment.class));
                 }
-                Log.d(TAG, "getTopTen: success");
+                Log.d(TAG, "readComments: success");
                 commentResponseCallBack.onSuccessReadComment(commentList);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "getTopTen: failure");
+                Log.d(TAG, "readComments: failure");
                 commentResponseCallBack.onFailureReadComment(R.string.retrievingDatabase_error);
             }
         });
@@ -99,5 +100,28 @@ public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
                     Log.d(TAG, "updateStars: failure");
                     commentResponseCallBack.onFailureUpdateStars(R.string.updateData_error);
                 });
+    }
+
+    @Override
+    public void exists(String idUser) {
+        try {
+            databaseReference.child(FIREBASE_USERS_COLLECTION).child(idUser).get()
+                    .addOnSuccessListener(user -> {
+                        if(user != null && user.getValue(User.class) != null) {
+                            Log.d(TAG, "exists: false");
+                            commentResponseCallBack.setTrue();
+                        } else {
+                            Log.d(TAG, "exists: false");
+                            commentResponseCallBack.setFalse();
+                        }
+                    })
+                    .addOnFailureListener(error -> {
+                        Log.d(TAG, "exists: false");
+                        commentResponseCallBack.setFalse();
+                    });
+        } catch(Exception e) {
+            Log.d(TAG, "exists: false");
+            commentResponseCallBack.setFalse();
+        }
     }
 }

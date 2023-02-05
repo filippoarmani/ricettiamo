@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
@@ -16,7 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_comment"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
@@ -32,16 +32,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                style="@style/thirdTitle"
                 android:id="@+id/comment"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/comment_user"
+                android:layout_margin="10dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/montserrat"
                 android:maxWidth="360dp"
-                android:layout_margin="10dp"
                 android:text="@string/review_1"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/comment_user" />
@@ -58,26 +58,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/comment" />
 
             <TextView
+                style="@style/thirdTitle"
                 android:id="@+id/score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/_5"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/star"
                 app:layout_constraintStart_toEndOf="@+id/star"
                 app:layout_constraintTop_toTopOf="@+id/star" />
 
             <TextView
+                style="@style/thirdTitle"
                 android:id="@+id/max_stars"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
                 android:text="/5"
-                android:textColor="@color/black"
-                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/score"
                 app:layout_constraintStart_toEndOf="@+id/score"
                 app:layout_constraintTop_toTopOf="@+id/score" />

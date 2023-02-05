@@ -7,11 +7,15 @@ import java.security.GeneralSecurityException;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.database.RecipesRoomDatabase;
+import cfgmm.ricettiamo.data.repository.comment.CommentRepository;
+import cfgmm.ricettiamo.data.repository.comment.ICommentRepository;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.data.repository.user.UserRepository;
 import cfgmm.ricettiamo.data.service.RecipeApiService;
+import cfgmm.ricettiamo.data.source.comment.BaseCommentDatabaseDataSource;
+import cfgmm.ricettiamo.data.source.comment.CommentDatabaseDataSource;
 import cfgmm.ricettiamo.data.source.recipe.BaseFavoriteRecipesDataSource;
 import cfgmm.ricettiamo.data.source.recipe.BaseRecipesLocalDataSource;
 import cfgmm.ricettiamo.data.source.recipe.BaseRecipesRemoteDataSource;
@@ -112,5 +116,12 @@ public class ServiceLocator {
                 new DatabaseDataSource();
 
         return new UserRepository(firebaseAuthDataSource, databaseDataSource);
+    }
+
+    public ICommentRepository getCommentRepository() {
+        BaseCommentDatabaseDataSource databaseDataSource =
+                new CommentDatabaseDataSource();
+
+        return new CommentRepository(databaseDataSource);
     }
 }

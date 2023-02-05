@@ -189,5 +189,19 @@
     <string name="saving_failure">Your recipe has not been saved! Try again</string>
     <string name="no_recipes">You haven\'t posted any recipes yet!</string>
     <string name="recipe_details">Recipe</string>
+    <string name="add_review">Add review</string>
+    <string name="score">Score</string>
+    <string name="noReview">There are no comments yet for this recipe. Write the first!</string>
+    <string name="noLoggedUser">Unknown user</string>
+    <string name="comment">Review</string>
+
+    <string-array name="point_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 
 </resources>

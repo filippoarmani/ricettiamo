@@ -20,7 +20,6 @@ public class CommentViewModel extends ViewModel {
         if(currentCommentListLiveData == null) {
             this.readComment(idRecipe);
         }
-
         return currentCommentListLiveData;
     }
 
@@ -28,7 +27,7 @@ public class CommentViewModel extends ViewModel {
         currentCommentListLiveData = commentRepository.readComment(idRecipe);
     }
 
-    public void writeNewComment(Comment comment) {
-        commentRepository.writeNewComment(comment);
+    public void writeNewComment(Comment comment, String authorId) {
+        commentRepository.writeNewComment(comment, authorId);
     }
 }
