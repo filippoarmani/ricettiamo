@@ -46,13 +46,14 @@ public class Recipe implements Parcelable {
     private String urlToImage;
     @ColumnInfo(name = "is_favorite")
     private boolean isFavorite;
+    private List<Step> steps;
 
     public Recipe() {}
 
     @Ignore
     public Recipe(String author, String name, int score, int servings, float cost, int prepTime,
                   List<Ingredient> ingredientsList, String ingredientsString, String date, /*String url, */
-                  String urlToImage, boolean isFavorite) {
+                  String urlToImage, boolean isFavorite, List<Step> steps) {
         this.author = author;
         this.name = name;
         this.score = score;
@@ -66,6 +67,7 @@ public class Recipe implements Parcelable {
         //this.url = url;
         this.urlToImage = urlToImage;
         this.isFavorite = isFavorite;
+        this.steps = steps;
     }
 
     public long getId() { return id; }
@@ -146,6 +148,10 @@ public class Recipe implements Parcelable {
 
     public void setIsFavorite(boolean isFavorite) { this.isFavorite = isFavorite; }
 
+    public List<Step> getSteps() { return steps; }
+
+    public void setSteps(List<Step> steps) { this.steps = steps;  }
+
     @NonNull
     @Override
     public String toString() {
@@ -163,6 +169,7 @@ public class Recipe implements Parcelable {
                 //", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
                 ", isFavorite=" + isFavorite + '\'' +
+                ", steps=" + steps + '\'' +
                 '}';
     }
 
@@ -177,14 +184,16 @@ public class Recipe implements Parcelable {
         if(in.readByte() == 0x01) {
             ingredientsList = new ArrayList<Ingredient>();
             in.readList(ingredientsList, Ingredient.class.getClassLoader());
-        }
-        else ingredientsList = null;
+        } else ingredientsList = null;
         ingredientsString = in.readString();
         date = in.readString();
         //url = in.readString();
         urlToImage = in.readString();
         isFavorite = in.readByte() != 0;
-
+        if(in.readByte() == 0x01) {
+            steps = new ArrayList<Step>();
+            in.readList(steps, Ingredient.class.getClassLoader());
+        } else steps = null;
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -224,6 +233,12 @@ public class Recipe implements Parcelable {
         //dest.writeString(this.url);
         dest.writeString(this.urlToImage);
         dest.writeByte(this.isFavorite ? (byte) 1 : (byte) 0);
+        if (steps == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(Collections.singletonList(score));
+        }
     }
 
     public Map<String, Object> toMap() {
@@ -242,6 +257,7 @@ public class Recipe implements Parcelable {
         //data.put("url", this.url);
         data.put("urlToImage", this.urlToImage);
         data.put("isFavorite", this.isFavorite);
+        data.put("steps", this.steps);
 
         return data;
     }

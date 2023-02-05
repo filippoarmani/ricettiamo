@@ -14,7 +14,6 @@ public class Ingredient implements Parcelable {
     //used for room
     @PrimaryKey
     private long id;
-
     private String name;
     @SerializedName("amount.metric.value") //todo: non so se funziona ancora correttamente
     private float qta;
@@ -99,7 +98,7 @@ public class Ingredient implements Parcelable {
                 '}';
     }
 
-    public Ingredient(Parcel in) {
+    protected Ingredient(Parcel in) {
         this.id = in.readLong();
         this.name = in.readString();
         this.qta = in.readFloat();
