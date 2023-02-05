@@ -187,5 +187,7 @@
     <string name="save">save</string>
     <string name="saving_success">Your recipe has been saved!</string>
     <string name="saving_failure">Your recipe has not been saved! Try again</string>
+    <string name="recipe_search">Search recipe</string>
+    <string name="recipe_details">Recipe details</string>
 
 </resources>
