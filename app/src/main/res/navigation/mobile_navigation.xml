@@ -87,6 +87,7 @@
             android:id="@+id/action_search_recipes_to_recipeDetailsFragment"
             app:destination="@id/recipeDetailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/recipeDetailsFragment"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.RecipeDetailsFragment"
