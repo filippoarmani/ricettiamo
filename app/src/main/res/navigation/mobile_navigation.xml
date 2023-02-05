@@ -81,7 +81,7 @@
     <fragment
         android:id="@+id/search_recipes"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipes"
-        android:label="fragment_search_recipes"
+        android:label="@string/search_recipe"
         tools:layout="@layout/fragment_m_search_recipes" >
         <action
             android:id="@+id/action_search_recipes_to_recipeDetailsFragment"
@@ -90,7 +90,7 @@
     <fragment
         android:id="@+id/recipeDetailsFragment"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.RecipeDetailsFragment"
-        android:label="fragment_recipe_details"
+        android:label="@string/recipe_details"
         tools:layout="@layout/fragment_m_recipe_details" >
         <argument
             android:name="recipe"

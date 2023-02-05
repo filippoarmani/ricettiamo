@@ -14,17 +14,23 @@
                 android:id="@+id/cardView_start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="30dp">
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                >
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <TextView
                         style="@style/firstTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text= "@string/top" />
+                        android:text="@string/top"
+                        />
 
                 </RelativeLayout>
 
