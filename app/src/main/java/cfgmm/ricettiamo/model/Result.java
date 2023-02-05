@@ -9,11 +9,13 @@ public abstract class Result {
 
     public boolean isSuccess() {
         if (this instanceof RecipeResponseSuccess ||
+                this instanceof RecipeDatabaseResponseSuccess ||
                 this instanceof UserResponseSuccess  ||
                 this instanceof PhotoResponseSuccess ||
                 this instanceof TopTenResponseSuccess||
                 this instanceof PositionResponseSuccess ||
-                this instanceof CommentResponseSuccess) {
+                this instanceof CommentResponseSuccess ||
+                this instanceof ListRecipeResponseSuccess) {
             return true;
         } else {
             return false;
@@ -26,6 +28,16 @@ public abstract class Result {
             this.recipeResponse = recipeResponse;
         }
         public RecipeResponse getData() {
+            return recipeResponse;
+        }
+    }
+
+    public static final class RecipeDatabaseResponseSuccess extends Result {
+        private final Recipe recipeResponse;
+        public RecipeDatabaseResponseSuccess(Recipe recipeResponse) {
+            this.recipeResponse = recipeResponse;
+        }
+        public Recipe getData() {
             return recipeResponse;
         }
     }
@@ -77,6 +89,16 @@ public abstract class Result {
         }
         public List<Comment> getData() {
             return commentList;
+        }
+    }
+
+    public static final class ListRecipeResponseSuccess extends Result {
+        private final List<Recipe> recipeList;
+        public ListRecipeResponseSuccess(List<Recipe> recipeList) {
+            this.recipeList = recipeList;
+        }
+        public List<Recipe> getData() {
+            return recipeList;
         }
     }
 

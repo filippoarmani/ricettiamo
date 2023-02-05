@@ -32,7 +32,7 @@ public class DatabaseRecipesDataSource extends BaseDatabaseRecipesDataSource {
         databaseReference = firebaseDatabase.getReference().getRef();
     }
 
-    @Override
+   /* @Override
     public void writeRecipe(Recipe recipe) {
         String id = "" + recipe.getId();
         databaseReference.child(FIREBASE_RECIPES_COLLECTION).child(id)
@@ -45,20 +45,26 @@ public class DatabaseRecipesDataSource extends BaseDatabaseRecipesDataSource {
                     Log.d(TAG, "writeRecipe: failure");
                     recipesResponseCallback.onFailureWriteDatabase(R.string.writeDatabase_error);
                 });
-    }
+    }*/
 
     @Override
     public void getFirstRecipe(String author) {
-        databaseReference.child(FIREBASE_RECIPES_COLLECTION).equalTo(author).orderByChild("date").limitToFirst(1).get()
-                .addOnSuccessListener(task -> {
-                    Recipe firstRecipe = task.getValue(Recipe.class);
-                    Log.d(TAG, "getFirstRecipe: success");
-                    recipesResponseCallback.onSuccessGetFirstRecipe(firstRecipe);
-                })
-                .addOnFailureListener(error -> {
-                    Log.d(TAG, "getFirstRecipe: failure");
-                    recipesResponseCallback.onFailureGetFirstRecipe(R.string.writeDatabase_error);
-                });
+        Query firstRecipe = databaseReference.child(FIREBASE_RECIPES_COLLECTION).equalTo(author).orderByChild("date").limitToFirst(1);
+        firstRecipe.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Recipe firstRecipe = dataSnapshot.getValue(Recipe.class);
+                Log.d(TAG, "getFirstRecipe: success");
+                recipesResponseCallback.onSuccessGetFirstRecipe(firstRecipe);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, "getFirstRecipe: failure");
+                recipesResponseCallback.onFailureGetFirstRecipe(R.string.writeDatabase_error);
+            }
+        });
     }
 
     @Override
@@ -82,24 +88,24 @@ public class DatabaseRecipesDataSource extends BaseDatabaseRecipesDataSource {
     }
 
     @Override
-    public void getTopTen(String author) {
+    public void getMyRecipes(String author) {
         List<Recipe> recipes = new ArrayList<>();
-        Query userRecipe = databaseReference.child(FIREBASE_RECIPES_COLLECTION).equalTo(author).orderByChild("score").limitToFirst(10);
+        Query userRecipe = databaseReference.child(FIREBASE_RECIPES_COLLECTION).equalTo(author).orderByChild("score");
         userRecipe.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot:  dataSnapshot.getChildren()) {
                     recipes.add(snapshot.getValue(Recipe.class));
                 }
-                Log.d(TAG, "getTopTen: success");
-                recipesResponseCallback.onSuccessGetTopTen(recipes);
+                Log.d(TAG, "getMyRecipes: success");
+                recipesResponseCallback.onSuccessGetMyRecipes(recipes);
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d(TAG, "getTopTen: failure");
-                recipesResponseCallback.onFailureGetTopTen(R.string.writeDatabase_error);
+                Log.d(TAG, "getMyRecipes: failure");
+                recipesResponseCallback.onFailureGetMyRecipes(R.string.writeDatabase_error);
             }
         });
     }

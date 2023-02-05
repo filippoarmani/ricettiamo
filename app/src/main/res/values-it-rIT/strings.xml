@@ -127,6 +127,7 @@
     <string name="save">Salva</string>
     <string name="saving_success">La tua ricetta è stata salvata!</string>
     <string name="saving_failure">La tua ricetta non è stata salvata! Riprova</string>
+    <string name="no_recipes">Non hai pubblicato alcuna ricetta!</string>
 
 
 </resources>

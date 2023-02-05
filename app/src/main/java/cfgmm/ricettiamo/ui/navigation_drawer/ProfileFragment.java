@@ -1,6 +1,7 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import static android.text.TextUtils.isEmpty;
+import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
@@ -15,23 +16,36 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
+
 import cfgmm.ricettiamo.R;
+import cfgmm.ricettiamo.adapter.MyRecipesRecyclerAdapter;
+import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
+import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
+import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentMProfileBinding;
+import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.User;
 import cfgmm.ricettiamo.util.ServiceLocator;
+import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
+import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
 import cfgmm.ricettiamo.viewmodel.UserViewModel;
 import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements RecipesResponseCallback {
 
     private UserViewModel userViewModel;
+    private RecipeViewModel recipeViewModel;
     private FragmentMProfileBinding binding;
+
+    private String id;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -42,6 +56,9 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
         IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
         userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
+
+        IRecipesRepository iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
+        recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
     }
 
     @Override
@@ -59,36 +76,38 @@ public class ProfileFragment extends Fragment {
 
         userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), result -> {
             binding.pProgressCircular.setVisibility(VISIBLE);
-            if(result.isSuccess()) {
+            if (result.isSuccess()) {
                 Uri photo = ((Result.PhotoResponseSuccess) result).getData();
                 try {
                     Glide.with(this)
                             .load(photo)
                             .circleCrop()
                             .into(binding.user);
-                } catch (Exception e) { }
+                } catch (Exception e) {
+                }
             }
-            binding.pProgressCircular.setVisibility(View.GONE);
+            binding.pProgressCircular.setVisibility(GONE);
         });
 
         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
             binding.pProgressCircular.setVisibility(VISIBLE);
-            if(result.isSuccess()) {
+            if (result.isSuccess()) {
                 User user = ((Result.UserResponseSuccess) result).getData();
+                id = user.getId();
                 binding.displayName.setText(user.getDisplayName());
 
                 binding.fullName.setText(user.getFullName());
 
                 String userEmail = user.getEmail();
-                if(isEmpty(userEmail)) {
-                    binding.email.setVisibility(View.GONE);
+                if (isEmpty(userEmail)) {
+                    binding.email.setVisibility(GONE);
                 } else {
                     binding.email.setVisibility(VISIBLE);
                     binding.email.setText(userEmail);
                 }
 
                 String userDescription = user.getDescription();
-                if(isEmpty(userDescription)) {
+                if (isEmpty(userDescription)) {
                     binding.descriptionCardView.setVisibility(INVISIBLE);
                     binding.description.setVisibility(INVISIBLE);
                 } else {
@@ -103,25 +122,75 @@ public class ProfileFragment extends Fragment {
                 Result.Error error = ((Result.Error) result);
                 Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
             }
-            binding.pProgressCircular.setVisibility(View.GONE);
+            binding.pProgressCircular.setVisibility(GONE);
         });
 
         userViewModel.getPosition().observe(getViewLifecycleOwner(), result -> {
             binding.pProgressCircular.setVisibility(VISIBLE);
-            if(result.isSuccess()) {
+            if (result.isSuccess()) {
                 String position = "#" + ((Result.PositionResponseSuccess) result).getData();
                 binding.position.setText(position);
             } else {
                 Result.Error error = ((Result.Error) result);
                 Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
             }
-            binding.pProgressCircular.setVisibility(View.GONE);
+            binding.pProgressCircular.setVisibility(GONE);
         });
+
+        Result firstRecipeResult = recipeViewModel.getFirstRecipe(id);
+        if (firstRecipeResult != null && firstRecipeResult.isSuccess()) {
+            Recipe firstRecipe = ((Result.RecipeDatabaseResponseSuccess) firstRecipeResult).getData();
+            if (firstRecipe != null) {
+                binding.noRecipes.setVisibility(GONE);
+                binding.withRecipes.setVisibility(VISIBLE);
+                binding.firstRecipe.setText(firstRecipe.getName());
+
+                recipeViewModel.getMostRecentRecipe(id).observe(getViewLifecycleOwner(), resultLastRecipe -> {
+                    if (resultLastRecipe != null && resultLastRecipe.isSuccess()) {
+                        Recipe lastRecipe = ((Result.RecipeDatabaseResponseSuccess) resultLastRecipe).getData();
+                        binding.lastRecipe.setText(lastRecipe.getName());
+                    } else {
+                        Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
+                    }
+                });
+
+                recipeViewModel.getMyRecipes(id).observe(getViewLifecycleOwner(), resultRecipe -> {
+                    if (resultRecipe != null && resultRecipe.isSuccess()) {
+                        Recipe mostPopular = ((Result.ListRecipeResponseSuccess) resultRecipe).getData().get(0);
+                        binding.mostPopularRecipe.setText(mostPopular.getName());
+                    } else {
+                        Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
+                    }
+                });
+            } else {
+                binding.noRecipes.setVisibility(VISIBLE);
+                binding.withRecipes.setVisibility(GONE);
+            }
+        } else {
+            binding.noRecipes.setVisibility(GONE);
+            binding.withRecipes.setVisibility(GONE);
+            Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
+        }
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onSuccess(List<Recipe> recipesList) {
+
+    }
+
+    @Override
+    public void onFailure(String errorMessage) {
+
+    }
+
+    @Override
+    public void onRecipesFavoriteStatusChanged(Recipe recipe) {
+
     }
 }

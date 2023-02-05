@@ -1,10 +1,12 @@
 package cfgmm.ricettiamo.viewmodel;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
+import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
@@ -17,9 +19,15 @@ public class RecipeViewModel extends ViewModel {
     private List<Recipe> recipesList;
     private List<Recipe> favoriteRecipes;
 
+    private MutableLiveData<Result> myRecipes;
+    private MutableLiveData<Result> mostRecentRecipe;
+    private Result firstRecipe;
+
     public RecipeViewModel(IRecipesRepository iRecipesRepository) {
         this.recipesRepository = iRecipesRepository;
         this.firstLoading = true;
+
+        firstRecipe = new Result.RecipeDatabaseResponseSuccess(null);
     }
 
     /**
@@ -83,5 +91,28 @@ public class RecipeViewModel extends ViewModel {
 
     public void setFirstLoading(boolean firstLoading) {
         this.firstLoading = firstLoading;
+    }
+
+    //Community Recipes
+    public MutableLiveData<Result> getMyRecipes(String id) {
+        if(myRecipes == null)
+            myRecipes = recipesRepository.getMyRecipes(id);
+
+        return myRecipes;
+    }
+
+    public MutableLiveData<Result> getMostRecentRecipe(String id) {
+        if(mostRecentRecipe == null)
+            mostRecentRecipe = recipesRepository.getMostRecentRecipe(id);
+
+        return mostRecentRecipe;
+    }
+
+    public Result getFirstRecipe(String id) {
+        if(!firstRecipe.isSuccess() || !(((Result.RecipeDatabaseResponseSuccess) firstRecipe).getData() == null)) {
+            firstRecipe = recipesRepository.getFirstRecipe(id);
+        }
+
+        return firstRecipe;
     }
 }

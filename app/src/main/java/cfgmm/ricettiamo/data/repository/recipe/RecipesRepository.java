@@ -7,6 +7,7 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
@@ -14,8 +15,11 @@ import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.database.RecipesDao;
 import cfgmm.ricettiamo.data.database.RecipesRoomDatabase;
 import cfgmm.ricettiamo.data.service.RecipeApiService;
+import cfgmm.ricettiamo.data.source.recipe.BaseDatabaseRecipesDataSource;
+import cfgmm.ricettiamo.data.source.recipe.DatabaseRecipesDataSource;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.RecipeApiResponse;
+import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,13 +29,18 @@ import retrofit2.Response;
  * Repository to get the recipes using the API
  * provided by spoonacular.com (https://spoonacular.com).
  */
-public class RecipesRepository implements IRecipesRepository{
+public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseResponseCallback{
     private static final String TAG = RecipesRepository.class.getSimpleName();
 
     private final Application application;
     private final RecipeApiService recipeApiService;
     private final RecipesDao recipesDao;
     private final RecipesResponseCallback recipesResponseCallback;
+    BaseDatabaseRecipesDataSource databaseRecipesDataSource;
+
+    private Result firstRecipe;
+    private MutableLiveData<Result> mostRecentRecipe;
+    private MutableLiveData<Result> myRecipes;
 
     public RecipesRepository(Application application, RecipesResponseCallback recipesResponseCallback) {
         this.application = application;
@@ -39,6 +48,12 @@ public class RecipesRepository implements IRecipesRepository{
         RecipesRoomDatabase recipesRoomDatabase = ServiceLocator.getInstance().getRecipesDao(application);
         this.recipesDao = recipesRoomDatabase.recipesDao();
         this.recipesResponseCallback = recipesResponseCallback;
+
+        //Community Recipes
+        this.databaseRecipesDataSource = new DatabaseRecipesDataSource();
+        databaseRecipesDataSource.setCallBack(this);
+        this.mostRecentRecipe = new MutableLiveData<>();
+        this.myRecipes = new MutableLiveData<>();
     }
 
     @Override
@@ -146,5 +161,55 @@ public class RecipesRepository implements IRecipesRepository{
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
             recipesResponseCallback.onSuccess(recipesDao.getAll());
         });
+    }
+
+    //Community Recipes
+    @Override
+    public Result getFirstRecipe(String id) {
+        databaseRecipesDataSource.getFirstRecipe(id);
+        return firstRecipe;
+    }
+
+    @Override
+    public MutableLiveData<Result> getMostRecentRecipe(String id) {
+        databaseRecipesDataSource.getMostRecentRecipe(id);
+        return mostRecentRecipe;
+    }
+
+    @Override
+    public MutableLiveData<Result> getMyRecipes(String id) {
+        databaseRecipesDataSource.getMyRecipes(id);
+        return myRecipes;
+    }
+
+
+    @Override
+    public void onSuccessGetFirstRecipe(Recipe firstRecipe) {
+        this.firstRecipe = new Result.RecipeDatabaseResponseSuccess(firstRecipe);
+    }
+
+    @Override
+    public void onFailureGetFirstRecipe(int writeDatabase_error) {
+        this.firstRecipe = new Result.RecipeDatabaseResponseSuccess(null);
+    }
+
+    @Override
+    public void onSuccessGetMostRecentRecipe(Recipe mostRecentRecipe) {
+        this.mostRecentRecipe.postValue(new Result.RecipeDatabaseResponseSuccess(mostRecentRecipe));
+    }
+
+    @Override
+    public void onFailureGetMostRecentRecipe(int writeDatabase_error) {
+        this.mostRecentRecipe.postValue(new Result.Error(writeDatabase_error));
+    }
+
+    @Override
+    public void onSuccessGetMyRecipes(List<Recipe> recipes) {
+        this.myRecipes.postValue(new Result.ListRecipeResponseSuccess(recipes));
+    }
+
+    @Override
+    public void onFailureGetMyRecipes(int writeDatabase_error) {
+        this.myRecipes.postValue(new Result.Error(writeDatabase_error));
     }
 }

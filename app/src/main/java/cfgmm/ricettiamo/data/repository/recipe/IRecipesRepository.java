@@ -1,6 +1,9 @@
 package cfgmm.ricettiamo.data.repository.recipe;
 
+import androidx.lifecycle.MutableLiveData;
+
 import cfgmm.ricettiamo.model.Recipe;
+import cfgmm.ricettiamo.model.Result;
 
 /**
  * Interface for Repositories that manage News objects.
@@ -20,4 +23,9 @@ public interface IRecipesRepository {
     void getFavoriteRecipes();
 
     void deleteFavoriteRecipes();
+
+    //Community Recipes
+    Result getFirstRecipe(String id);
+    MutableLiveData<Result> getMostRecentRecipe(String id);
+    MutableLiveData<Result> getMyRecipes(String id);
 }

@@ -4,9 +4,9 @@ import java.util.List;
 
 import cfgmm.ricettiamo.model.Recipe;
 
-public interface IRecipesResponseCallback {
-    void onSuccessWriteDatabase();
-    void onFailureWriteDatabase(int writeDatabase_error);
+public interface IRecipesDatabaseResponseCallback {
+    //void onSuccessWriteDatabase();
+    //void onFailureWriteDatabase(int writeDatabase_error);
 
 
     void onSuccessGetFirstRecipe(Recipe firstRecipe);
@@ -17,11 +17,11 @@ public interface IRecipesResponseCallback {
 
     void onFailureGetMostRecentRecipe(int writeDatabase_error);
 
-    void onSuccessGetTopTen(List<Recipe> recipes);
+    void onSuccessGetMyRecipes(List<Recipe> recipes);
 
-    void onFailureGetTopTen(int writeDatabase_error);
+    void onFailureGetMyRecipes(int writeDatabase_error);
 
-    void onSuccessGetFavoriteRecipesId(List<String> favoriteRecipes);
+    /*void onSuccessGetFavoriteRecipesId(List<String> favoriteRecipes);
 
     void onFailureGetFavoriteRecipesId(int writeDatabase_error);
 
@@ -36,4 +36,5 @@ public interface IRecipesResponseCallback {
     void onSuccessDeleteAllFavoriteRecipes(Object o);
 
     void onFailureDeleteAllFavoriteRecipes(int writeDatabase_error);
+    */
 }
