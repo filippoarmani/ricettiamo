@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.room.PrimaryKey;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
@@ -13,6 +14,7 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class Comment implements Parcelable {
 
+    private String idComment;
     private String idUser;
     private String idRecipe;
 
@@ -23,7 +25,8 @@ public class Comment implements Parcelable {
         // Default constructor required for calls to DataSnapshot.getValue(Comment.class)
     }
 
-    public Comment(String idUser, String idRecipe, String description, int Score) {
+    public Comment(String idComment, String idUser, String idRecipe, String description, int score) {
+        this.idComment = idComment;
         this.idUser = idUser;
         this.idRecipe = idRecipe;
         this.description = description;
@@ -31,6 +34,7 @@ public class Comment implements Parcelable {
     }
 
     protected Comment(Parcel in) {
+        idComment = in.readString();
         idUser = in.readString();
         idRecipe = in.readString();
         description = in.readString();
@@ -49,6 +53,8 @@ public class Comment implements Parcelable {
         }
     };
 
+    public String getIdComment() { return idComment; }
+
     public String getIdUser() {
         return idUser;
     }
@@ -64,6 +70,8 @@ public class Comment implements Parcelable {
     public int getScore() {
         return score;
     }
+
+    public void setIdComment(String idComment) { this.idComment = idComment; }
 
     public void setIdUser(String idUser) {
         this.idUser = idUser;
@@ -84,7 +92,8 @@ public class Comment implements Parcelable {
     @Override
     public String toString() {
         return "Comment{" +
-                "idUser='" + idUser + '\'' +
+                "idComment='" + idComment +'\'' +
+                ", idUser='" + idUser + '\'' +
                 ", idRecipe='" + idRecipe + '\'' +
                 ", description='" + description + '\'' +
                 ", score='" + score + '\'' +
@@ -94,6 +103,7 @@ public class Comment implements Parcelable {
     public Map<String, Object> toMap() {
         Map<String, Object> data = new HashMap<>();
 
+        data.put("idComment", idComment);
         data.put("idUser", idUser);
         data.put("idRecipe", idRecipe);
         data.put("description", description);

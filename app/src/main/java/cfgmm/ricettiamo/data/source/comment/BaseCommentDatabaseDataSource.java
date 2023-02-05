@@ -11,8 +11,10 @@ public abstract class BaseCommentDatabaseDataSource {
         this.commentResponseCallBack = commentResponseCallBack;
     }
 
-    public abstract void writeComment(Comment comment);
+    public abstract void writeComment(Comment comment, String authorId);
     public abstract void readComments(String idRecipe);
 
     public abstract void updateStars(String idUser, int score);
+
+    public abstract void exists(String idUser);
 }

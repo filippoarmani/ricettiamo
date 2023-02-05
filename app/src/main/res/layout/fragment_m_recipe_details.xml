@@ -1,574 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.navigation_drawer.RecipeDetailsFragment">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <!--parent-->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!--parent-->
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-            <!--barra-->
-            <RelativeLayout
-                android:id="@+id/relativeLayout"
-                android:layout_width="13dp"
-                android:layout_height="3000dp"
-                android:background="@color/orange"/>
+        <ImageView
+            android:id="@+id/imageRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="248dp"
+            android:background="@drawable/esempio_carbonara"
+            android:contentDescription="@string/toDo" />
 
-            <!--foto-->
-            <LinearLayout
-                android:id="@+id/picture"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/imageRecipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="248dp"
-                    android:background="@drawable/esempio_carbonara"
-                    android:contentDescription="@string/toDo" />
+        <TextView
+            android:id="@+id/nameRecipe"
+            style="@style/firstTitle"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nameRecipe" />
 
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="15dp">
 
-            <RelativeLayout
-                android:id="@+id/body"
+            <TextView
+                android:id="@+id/src_servings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/picture">
+                android:fontFamily="@font/montserrat"
+                android:text="@string/serving"
+                android:textSize="14sp" />
 
-                <!--nome ricetta informazioni-->
-                <RelativeLayout
-                    android:id="@+id/recipe_1"
+            <TextView
+                android:id="@+id/src_servings_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:layout_marginStart="15dp"
+                android:text="@string/serving"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="15dp">
+
+            <TextView
+                android:id="@+id/src_prep_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/prep_time"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/src_prep_time_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:layout_marginStart="15dp"
+                android:text="@string/prep_time"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:id="@+id/src_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/cost"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/src_cost_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:layout_marginStart="15dp"
+                android:text="@string/cost"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <!--ingredienti-->
+        <TextView
+            android:id="@+id/ingredients"
+            style="@style/secondTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ingredients"
+            android:layout_marginHorizontal="15dp"/>
+
+        <!--preparazione-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:id="@+id/prep"
+            style="@style/secondTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:text="@string/preparation" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:id="@+id/review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/review"
+            android:textColor="@color/orange"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="15dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/addRewiewText_layout"
+                style="@style/textInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+
+                app:counterEnabled="true"
+                app:counterMaxLength="250">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/description"
+                    style="@style/textInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="10dp">
+                    android:hint="@string/comment"
+                    android:label="@string/comment"
+                    android:maxLength="250"
+                    android:singleLine="false" />
 
-                    <TextView
-                        android:id="@+id/nameRecipe"
-                        style="@style/firstTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/nameRecipe" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <TextView
-                        android:id="@+id/src_servings"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/serving"
-                        android:textSize="14sp"
-                        android:layout_below="@+id/nameRecipe" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/add_score_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/src_servings_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/serving"
-                        android:textSize="14sp"
-                        android:layout_toEndOf="@id/src_servings"
-                        android:layout_below="@+id/nameRecipe" />
-
-                    <TextView
-                        android:id="@+id/src_prep_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/prep_time"
-                        android:textSize="14sp"
-                        android:layout_below="@+id/src_servings" />
-
-                    <TextView
-                        android:id="@+id/src_prep_time_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/prep_time"
-                        android:textSize="14sp"
-                        android:layout_toEndOf="@id/src_prep_time"
-                        android:layout_below="@+id/src_servings" />
-
-                    <TextView
-                        android:id="@+id/src_cost"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/cost"
-                        android:textSize="14sp"
-                        android:layout_below="@+id/src_prep_time" />
-
-                    <TextView
-                        android:id="@+id/src_cost_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/cost"
-                        android:textSize="14sp"
-                        android:layout_toEndOf="@id/src_cost"
-                        android:layout_below="@+id/src_prep_time" />
-
-                </RelativeLayout>
-
-                <!--ingredienti-->
-                <RelativeLayout
-                    android:id="@+id/recipe_2"
+                <AutoCompleteTextView
+                    android:id="@+id/add_score"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/recipe_1"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:id="@+id/ingredients"
-                        style="@style/secondTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/ingredients" />
-
-                    <!--ingrediente1-->
-                    <LinearLayout
-                        android:id="@+id/ingredient_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        tools:ignore="UseCompoundDrawables">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/button_shape"
-                            android:contentDescription="@string/toDo"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/ingredient_1"
-                            android:textSize="16sp"
-                            />
-
-                    </LinearLayout>
-
-                    <!--ingrediente2-->
-                    <LinearLayout
-                        android:id="@+id/ingredient_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ingredient_1"
-                        android:layout_marginTop="1dp"
-                        tools:ignore="UseCompoundDrawables">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/button_shape"
-                            android:contentDescription="@string/toDo"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/ingredient_2"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <!--ingrediente3-->
-                    <LinearLayout
-                        android:id="@+id/ingredient_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ingredient_2"
-                        android:layout_marginTop="1dp"
-                        tools:ignore="UseCompoundDrawables">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/button_shape"
-                            android:contentDescription="@string/toDo"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/ingredient_3"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <!--ingrediente4-->
-                    <LinearLayout
-                        android:id="@+id/ingredient_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ingredient_3"
-                        android:layout_marginTop="1dp"
-                        tools:ignore="UseCompoundDrawables">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/button_shape"
-                            android:contentDescription="@string/toDo" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/ingredient_4"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                    <!--ingrediente5-->
-                    <LinearLayout
-                        android:id="@+id/ingredient_5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ingredient_4"
-                        android:layout_marginTop="1dp"
-                        tools:ignore="UseCompoundDrawables">
-
-                        <ImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/button_shape"
-                            android:contentDescription="@string/toDo"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/ingredient_5"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <!--preparazione-->
-                <RelativeLayout
-                    android:id="@+id/recipe_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/recipe_2"
-                    android:layout_marginStart="30dp">
-
-                    <TextView
-                        android:id="@+id/prep"
-                        style="@style/secondTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/preparation" />
-
-                    <RelativeLayout
-                        android:id="@+id/preparation_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/prep"
-                        android:layout_marginTop="2dp">
-
-                        <TextView
-                            android:id="@+id/prep_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="@font/montserrat"
-                            android:maxWidth="360dp"
-                            android:text="@string/prep_1"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:layout_width="400dp"
-                            android:layout_height="248dp"
-                            android:layout_below="@+id/prep_1"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@drawable/esempio_carbonara_1"
-                            android:contentDescription="@string/toDo" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/preparation_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/preparation_1">
-
-                        <TextView
-                            android:id="@+id/prep_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/prep_2"
-                            android:layout_marginTop="15dp"
-                            android:textSize="16sp"
-                            android:maxWidth="360dp"/>
-
-                        <ImageView
-                            android:layout_width="400dp"
-                            android:layout_height="248dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@drawable/esempio_carbonara_2"
-                            android:layout_below="@+id/prep_2"
-                            android:contentDescription="@string/toDo"/>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/preparation_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/preparation_2">
-
-                        <TextView
-                            android:id="@+id/prep_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/prep_3"
-                            android:layout_marginTop="15dp"
-                            android:textSize="16sp"
-                            android:maxWidth="360dp"/>
-
-                        <ImageView
-                            android:layout_width="400dp"
-                            android:layout_height="248dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@drawable/esempio_carbonara_3"
-                            android:layout_below="@+id/prep_3"
-                            android:contentDescription="@string/toDo"/>
-
-                    </RelativeLayout>
-
-                </RelativeLayout>
-
-                <!--consiglio-->
-                <RelativeLayout
-                    android:id="@+id/recipe_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/recipe_3">
-
-                    <TextView
-                        android:id="@+id/tip_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/tip_1"
-                        android:layout_marginTop="30dp"
-                        android:textColor="@color/orange"
-                        android:textSize="20sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_below="@+id/tip_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/tip_2"
-                        android:layout_marginTop="10dp"
-                        android:textSize="16sp"
-                        android:maxWidth="360dp"/>
-
-                </RelativeLayout>
-
-                <!--review-->
-                <RelativeLayout
-                    android:id="@+id/recipe_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/recipe_4">
-
-                    <TextView
-                        android:id="@+id/review"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/review"
-                        android:layout_marginTop="30dp"
-                        android:textColor="@color/orange"
-                        android:textSize="20sp"
-                        android:textStyle="bold"/>
-
-                    <!--scroll delle recensioni-->
-                    <ScrollView
-                        android:id="@+id/scrollreview"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_below="@+id/review">
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <RelativeLayout
-                                android:id="@+id/box_1"
-                                android:layout_width="360dp"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/back"
-                                android:layout_marginTop="5dp">
-
-                                <TextView
-                                    android:id="@+id/reviewer_1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/montserrat"
-                                    android:text="@string/reviewer_1"
-                                    android:layout_margin="10dp"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold"/>
-
-                                <TextView
-                                    android:id="@+id/review_1"
-                                    android:layout_below="@+id/reviewer_1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/montserrat"
-                                    android:text="@string/review_1"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_marginEnd="10dp"
-                                    android:textSize="16sp"
-                                    android:maxWidth="360dp"/>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_below="@+id/review_1"
-                                    tools:ignore="UseCompoundDrawables">
-
-                                    <ImageView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:layout_margin="10dp"
-                                        android:background="@drawable/star"
-                                        android:contentDescription="@string/toDo" />
-
-                                    <TextView
-                                        android:id="@+id/star_1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/montserrat"
-                                        android:text="@string/star_1"
-                                        android:layout_marginStart="10dp"
-                                        android:layout_marginTop="15dp"
-                                        android:textSize="16sp" />
-
-                                </LinearLayout>
-
-                            </RelativeLayout>
-
-                            <RelativeLayout
-                                android:id="@+id/box_2"
-                                android:layout_width="360dp"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/back"
-                                android:layout_marginTop="15dp"
-                                android:layout_below="@+id/box_1">
-
-                                <TextView
-                                    android:id="@+id/reviewer_2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/montserrat"
-                                    android:text="@string/reviewer_2"
-                                    android:layout_margin="10dp"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold"/>
-
-                                <TextView
-                                    android:id="@+id/review_2"
-                                    android:layout_below="@+id/reviewer_2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/montserrat"
-                                    android:text="@string/review_2"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_marginEnd="10dp"
-                                    android:textSize="16sp"
-                                    android:maxWidth="360dp"/>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_below="@+id/review_2"
-                                    tools:ignore="UseCompoundDrawables">
-
-                                    <ImageView
-                                        android:layout_width="30dp"
-                                        android:layout_height="30dp"
-                                        android:layout_margin="10dp"
-                                        android:background="@drawable/star"
-                                        android:contentDescription="@string/toDo" />
-
-                                    <TextView
-                                        android:id="@+id/star_2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/montserrat"
-                                        android:text="@string/star_2"
-                                        android:layout_marginStart="10dp"
-                                        android:layout_marginTop="15dp"
-                                        android:textSize="16sp" />
-
-                                </LinearLayout>
-
-                            </RelativeLayout>
-
-                        </RelativeLayout>
-
-                    </ScrollView>
-
-                    <LinearLayout
-                        android:id="@+id/button_review"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/scrollreview"
-                        android:layout_marginTop="15dp">
-
-                        <Button
-                            android:id="@+id/ric"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/orange"
-                            android:fontFamily="@font/montserrat"
-                            android:text="@string/write_review"
-                            android:textSize="18sp"
-                            android:textStyle="bold"/>
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-    </ScrollView>
-
-</FrameLayout>
+                    android:hint="@string/score"
+                    android:inputType="none"
+                    android:label="@string/score"
+                    android:textSize="18sp"
+                    app:simpleItems="@array/point_array" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/add_review_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/add_review"
+            android:layout_marginHorizontal="15dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:cornerRadius="20dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/review_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"/>
+
+        <TextView
+            android:id="@+id/noReview"
+            style="@style/secondTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:text="@string/noReview" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

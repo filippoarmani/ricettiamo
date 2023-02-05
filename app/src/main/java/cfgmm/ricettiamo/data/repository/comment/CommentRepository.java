@@ -13,7 +13,10 @@ public class CommentRepository implements ICommentRepository, ICommentResponseCa
     private BaseCommentDatabaseDataSource commentDatabaseDataSource;
     private MutableLiveData<Result> commentList;
 
+    boolean exist;
+
     public CommentRepository(BaseCommentDatabaseDataSource commentDatabaseDataSource) {
+        exist = false;
         this.commentDatabaseDataSource = commentDatabaseDataSource;
         this.commentDatabaseDataSource.setCallBack(this);
 
@@ -21,8 +24,9 @@ public class CommentRepository implements ICommentRepository, ICommentResponseCa
     }
 
     @Override
-    public void writeNewComment(Comment comment) {
-        commentDatabaseDataSource.writeComment(comment);
+    public void writeNewComment(Comment comment, String authorId) {
+        commentDatabaseDataSource.writeComment(comment, authorId);
+        readComment(comment.getIdRecipe());
     }
 
     @Override
@@ -42,8 +46,10 @@ public class CommentRepository implements ICommentRepository, ICommentResponseCa
     }
 
     @Override
-    public void onSuccessWriteComment(Comment comment) {
-        commentDatabaseDataSource.updateStars(comment.getIdUser(), comment.getScore());
+    public void onSuccessWriteComment(Comment comment, String authorId) {
+        commentDatabaseDataSource.exists(authorId);
+        if(exist)
+            commentDatabaseDataSource.updateStars(comment.getIdUser(), comment.getScore());
     }
 
     @Override
@@ -57,5 +63,15 @@ public class CommentRepository implements ICommentRepository, ICommentResponseCa
     @Override
     public void onFailureUpdateStars(int idError) {
         this.commentList.postValue(new Result.Error(idError));
+    }
+
+    @Override
+    public void setTrue() {
+        exist = true;
+    }
+
+    @Override
+    public void setFalse() {
+        exist = false;
     }
 }
