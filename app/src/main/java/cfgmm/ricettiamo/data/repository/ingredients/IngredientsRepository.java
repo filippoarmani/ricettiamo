@@ -66,7 +66,7 @@ public class IngredientsRepository implements IIngredientsRepository{
         }
 
         if (ingredientApiResponse != null) {
-            saveDataInDatabase(ingredientApiResponse.getArticles());
+            saveDataInDatabase(ingredientApiResponse.getIngredients());
         } else {
             ingredientsResponseCallback.onFailure(application.getString(R.string.error_retrieving_ingredient));
         }

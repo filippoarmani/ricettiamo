@@ -95,11 +95,7 @@ public class JSONParserUtil {
                                 resultsJSONParam.equals(prepTimeParameter)) {
                             int prepTime = jsonReader.nextInt();
                             recipe.setServings(prepTime);
-                        } /*else if (jsonReader.peek() != JsonToken.NULL &&
-                                resultsJSONParam.equals(urlParameter)) {
-                            String url = jsonReader.nextString();
-                            recipe.setUrl(url);
-                        } */else if (jsonReader.peek() != JsonToken.NULL &&
+                        } else if (jsonReader.peek() != JsonToken.NULL &&
                                 resultsJSONParam.equals(urlToImageParameter)) {
                             String urlToImage = jsonReader.nextString();
                             recipe.setUrlToImage(urlToImage);
@@ -156,7 +152,6 @@ public class JSONParserUtil {
                 recipe.setServings(resultsJSONObject.getInt(String.valueOf(servingsParameter)));
                 recipe.setCost(resultsJSONObject.getInt(String.valueOf(costParameter)));
                 recipe.setPrepTime(resultsJSONObject.getInt(String.valueOf(prepTimeParameter)));
-                //recipe.setUrl(resultsJSONObject.getString(urlParameter));
                 recipe.setUrlToImage(resultsJSONObject.getString(urlToImageParameter));
                 recipeList.add(recipe);
             }
@@ -203,10 +198,6 @@ public class JSONParserUtil {
                                 resultsJSONParam.equals(nameParameter)) {
                             String name = jsonReader.nextString();
                             ingredient.setName(name);
-                        } else if (jsonReader.peek() != JsonToken.NULL &&
-                                resultsJSONParam.equals(urlToImageParameter)) {
-                            String urlToImage = jsonReader.nextString();
-                            //ingredient.setUrlToImage(urlToImage);
                         } else {
                             jsonReader.skipValue();
                         }
@@ -257,7 +248,6 @@ public class JSONParserUtil {
                 JSONObject resultsJSONObject = articlesJSONArray.getJSONObject(i);
                 ingredient = new Ingredient();
                 ingredient.setName(resultsJSONObject.getString(nameParameter));
-                //ingredient.setUrlToImage(resultsJSONObject.getString(urlToImageParameter));
                 ingredientList.add(ingredient);
             }
         }

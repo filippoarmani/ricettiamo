@@ -99,9 +99,4 @@ public class    IngredientApiResponse implements Parcelable {
 
         return ingredientsString;
     }
-
-    //todo: aggiunto solo di prova
-    public List<Ingredient> getArticles() {
-        return null;
-    }
 }

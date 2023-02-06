@@ -3,7 +3,6 @@ package cfgmm.ricettiamo.ui.navigation_drawer;
 import static android.text.TextUtils.isEmpty;
 
 import android.annotation.SuppressLint;
-import android.hardware.lights.LightState;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.common.internal.ResourceUtils;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -27,12 +25,11 @@ import java.util.List;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.CommentAdapter;
 import cfgmm.ricettiamo.adapter.IngredientDetailRecipesRecyclerAdapter;
-import cfgmm.ricettiamo.adapter.IngredientsRecyclerAdapter;
+import cfgmm.ricettiamo.adapter.StepsDetailRecipeRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.comment.ICommentRepository;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentMRecipeDetailsBinding;
 import cfgmm.ricettiamo.model.Comment;
-import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.model.Step;
@@ -57,8 +54,7 @@ public class RecipeDetailsFragment extends Fragment {
     private CommentViewModel commentViewModel;
     private List<Comment> comments;
     private IngredientDetailRecipesRecyclerAdapter ingredientDetailRecipesRecyclerAdapter;
-    private List<Ingredient> ingredients;
-    private List<Step> steps;
+    private StepsDetailRecipeRecyclerAdapter stepsDetailRecipeRecyclerAdapter;
 
     public RecipeDetailsFragment() {}
 
@@ -102,14 +98,31 @@ public class RecipeDetailsFragment extends Fragment {
         this.comments = new ArrayList<>();
 
         RecyclerView recyclerviewDetailRecipeIngredients = view.findViewById(R.id.recyclerview_ingredients_recipe_detail);
-        LinearLayoutManager layoutManager =
+        LinearLayoutManager layoutManageringredients =
                 new LinearLayoutManager(requireContext(),
                         LinearLayoutManager.VERTICAL, false);
         ingredientDetailRecipesRecyclerAdapter = new IngredientDetailRecipesRecyclerAdapter(recipe.getIngredientsList(),
                 requireActivity().getApplication());
 
-        recyclerviewDetailRecipeIngredients.setLayoutManager(layoutManager);
+        recyclerviewDetailRecipeIngredients.setLayoutManager(layoutManageringredients);
         recyclerviewDetailRecipeIngredients.setAdapter(ingredientDetailRecipesRecyclerAdapter);
+
+        RecyclerView recyclerviewDetailRecipesteps = view.findViewById(R.id.recyclerview_steps_recipe_detail);
+        LinearLayoutManager layoutManagersteps =
+                new LinearLayoutManager(requireContext(),
+                        LinearLayoutManager.VERTICAL, false);
+        int stepAnalyzeNumber = 0;
+        for (int i = 0; i < recipe.getSteps().size(); i++) {
+            if (recipe.getSteps().get(i).getName().equals("")) stepAnalyzeNumber = i;
+        }
+        stepsDetailRecipeRecyclerAdapter =
+                new StepsDetailRecipeRecyclerAdapter(recipe.getSteps().get(stepAnalyzeNumber).getSteps(),
+                requireActivity().getApplication());
+
+        recyclerviewDetailRecipesteps.setLayoutManager(layoutManagersteps);
+        recyclerviewDetailRecipesteps.setAdapter(stepsDetailRecipeRecyclerAdapter);
+
+
         //commentViewModel.readComment("" + recipe.getId());
 
         Glide.with(fragmentRecipeDetailsBinding.imageRecipe.getContext()).
