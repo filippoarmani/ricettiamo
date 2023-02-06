@@ -164,7 +164,8 @@ public class AddNewRecipeFragment extends Fragment {
             serving = binding.servingLayout.getEditText().getText().toString().trim();
 
             if(checkData()) {
-                /*Recipe recipe = new Recipe(
+                Recipe recipe = null;
+                /*recipe = new Recipe(
                         author,
                         title,
                         0,
@@ -181,7 +182,7 @@ public class AddNewRecipeFragment extends Fragment {
                 alert.setTitle(getString(R.string.save_recipe));
                 alert.setMessage(getString(R.string.save_recipe_alert));
                 alert.setPositiveButton(getString(R.string.save), (dialog, id) -> {
-                    if(true /*recipeViewModel.addRecipe(recipe)*/) {
+                    if(recipeViewModel.writeRecipe(recipe)) {
                         Snackbar.make(requireView(), R.string.saving_success, Snackbar.LENGTH_LONG).show();
                         Navigation.findNavController(requireView()).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
                     } else {

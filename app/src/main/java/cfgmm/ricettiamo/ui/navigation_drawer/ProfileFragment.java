@@ -116,8 +116,8 @@ public class ProfileFragment extends Fragment implements RecipesResponseCallback
                     binding.description.setText(userDescription);
                 }
 
-                String star = "" + user.getTotalStars();
-                binding.totalStars.setText(star);
+                String star = "" + user.getScore();
+                binding.score.setText(star);
             } else {
                 Result.Error error = ((Result.Error) result);
                 Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();

@@ -95,6 +95,10 @@ public class RecipeViewModel extends ViewModel {
     }
 
     //Community Recipes
+    public boolean writeRecipe(Recipe recipe) {
+        return recipesRepository.writeRecipe(recipe);
+    }
+
     public MutableLiveData<Result> getMyRecipes(String id) {
         if(myRecipes == null)
             myRecipes = recipesRepository.getMyRecipes(id);

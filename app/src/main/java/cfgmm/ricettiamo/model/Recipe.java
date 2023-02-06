@@ -236,8 +236,8 @@ public class Recipe implements Parcelable {
         data.put("servings", this.servings);
         data.put("cost", this.cost);
         data.put("prepTime", this.prepTime);
-        data.put("ingredients", this.ingredientsList);
-        data.put("ingredients", this.ingredientsString);
+        data.put("ingredientsList", this.ingredientsList);
+        data.put("ingredientsString", this.ingredientsString);
         data.put("date", this.date);
         //data.put("url", this.url);
         data.put("urlToImage", this.urlToImage);

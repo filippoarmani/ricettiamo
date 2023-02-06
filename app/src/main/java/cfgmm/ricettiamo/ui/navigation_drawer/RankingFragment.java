@@ -100,7 +100,7 @@ public class RankingFragment extends Fragment {
                     if(topTen[i] != null) {
                         cardViews[i].setVisibility(View.VISIBLE);
                         displayNameTextViews[i].setText(topTen[i].getDisplayName());
-                        String star = "" + topTen[i].getTotalStars();
+                        String star = "" + topTen[i].getScore();
                         starsTextViews[i].setText(star);
                     } else {
                         cardViews[i].setVisibility(View.GONE);

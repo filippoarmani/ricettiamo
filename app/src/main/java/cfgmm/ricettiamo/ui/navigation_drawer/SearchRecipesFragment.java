@@ -31,10 +31,10 @@ import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SearchRecipes#newInstance} factory method to
+ * Use the {@link SearchRecipesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchRecipes extends Fragment implements RecipesResponseCallback {
+public class SearchRecipesFragment extends Fragment implements RecipesResponseCallback {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,7 +54,7 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
     private String mParam1;
     private String mParam2;
 
-    public SearchRecipes() {
+    public SearchRecipesFragment() {
         // Required empty public constructor
     }
 
@@ -67,8 +67,8 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
      * @return A new instance of fragment search_recipes.
      */
     // TODO: Rename and change types and number of parameters
-    public static SearchRecipes newInstance(String param1, String param2) {
-        SearchRecipes fragment = new SearchRecipes();
+    public static SearchRecipesFragment newInstance(String param1, String param2) {
+        SearchRecipesFragment fragment = new SearchRecipesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -129,7 +129,7 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
                         /*todo: query per aggiungere gli ingredienti. per la conversione ci dovrebbe
                            essere il codice funzionante commentato in recipeApiResponse (da spostare
                             nel metodo corretto*/
-                        cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipesDirections.ActionSearchRecipesToRecipeDetailsFragment action =
+                        SearchRecipesDirections.ActionSearchRecipesToRecipeDetailsFragment action =
                                 SearchRecipesDirections.actionSearchRecipesToRecipeDetailsFragment(recipe);
                         Navigation.findNavController(view).navigate((NavDirections) action);
                     }

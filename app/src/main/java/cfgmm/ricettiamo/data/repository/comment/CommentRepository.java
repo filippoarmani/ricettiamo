@@ -47,9 +47,13 @@ public class CommentRepository implements ICommentRepository, ICommentResponseCa
 
     @Override
     public void onSuccessWriteComment(Comment comment, String authorId) {
-        commentDatabaseDataSource.exists(authorId);
+        commentDatabaseDataSource.exists(authorId, true);
         if(exist)
-            commentDatabaseDataSource.updateStars(comment.getIdUser(), comment.getScore());
+            commentDatabaseDataSource.updateStars(comment.getIdUser(), comment.getScore(), true);
+
+        commentDatabaseDataSource.exists(comment.getIdRecipe(), false);
+        if(exist)
+            commentDatabaseDataSource.updateStars(comment.getIdRecipe(), comment.getScore(), false);
     }
 
     @Override

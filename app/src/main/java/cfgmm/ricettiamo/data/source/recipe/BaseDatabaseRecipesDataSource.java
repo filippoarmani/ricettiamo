@@ -11,7 +11,7 @@ public abstract class BaseDatabaseRecipesDataSource {
         this.recipesResponseCallback = recipesResponseCallback;
     }
 
-    //public abstract void writeRecipe(Recipe recipe);
+    public abstract void writeRecipe(Recipe recipe);
 
     public abstract void getAllRecipes();
 

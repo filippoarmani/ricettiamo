@@ -31,7 +31,7 @@ public class DatabaseRecipesDataSource extends BaseDatabaseRecipesDataSource {
         databaseReference = firebaseDatabase.getReference().getRef();
     }
 
-   /* @Override
+    @Override
     public void writeRecipe(Recipe recipe) {
         String id = "" + recipe.getId();
         databaseReference.child(FIREBASE_RECIPES_COLLECTION).child(id)
@@ -44,7 +44,7 @@ public class DatabaseRecipesDataSource extends BaseDatabaseRecipesDataSource {
                     Log.d(TAG, "writeRecipe: failure");
                     recipesResponseCallback.onFailureWriteDatabase(R.string.writeDatabase_error);
                 });
-    }*/
+    }
 
     @Override
     public void getAllRecipes() {

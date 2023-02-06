@@ -21,7 +21,7 @@ public class User implements Parcelable {
     private String displayName;
     private String description;
 
-    private int totalStars;
+    private int score;
 
     private String email;
 
@@ -35,7 +35,7 @@ public class User implements Parcelable {
         this.fullName = fullName;
         this.displayName = fullName;
         this.description = "";
-        this.totalStars = 0;
+        this.score = 0;
         this.email = email;
     }
 
@@ -45,7 +45,7 @@ public class User implements Parcelable {
         fullName = in.readString();
         displayName = in.readString();
         description = in.readString();
-        totalStars = in.readInt();
+        score = in.readInt();
         email = in.readString();
     }
 
@@ -70,7 +70,7 @@ public class User implements Parcelable {
                 ", displayName='" + displayName + '\'' +
                 ", description='" + description + '\'' +
                 ", email='" + email + '\'' +
-                ", totalStars='" + totalStars + '\'' +
+                ", score='" + score + '\'' +
                 '}';
     }
 
@@ -84,7 +84,7 @@ public class User implements Parcelable {
         data.put("description", description);
 
         data.put("email", email);
-        data.put("totalStars", totalStars);
+        data.put("score", score);
 
         return data;
     }
@@ -105,8 +105,8 @@ public class User implements Parcelable {
         return displayName;
     }
 
-    public int getTotalStars() {
-        return totalStars;
+    public int getScore() {
+        return score;
     }
 
     public String getEmail() {
@@ -129,8 +129,8 @@ public class User implements Parcelable {
         this.description = description;
     }
 
-    public void setTotalStars(int totalStars) {
-        this.totalStars = totalStars;
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public void setEmail(String email) {
@@ -184,7 +184,7 @@ public class User implements Parcelable {
         dest.writeString(this.fullName);
         dest.writeString(this.displayName);
         dest.writeString(this.description);
-        dest.writeInt(this.totalStars);
+        dest.writeInt(this.score);
         dest.writeString(this.email);
     }
 }
