@@ -9,6 +9,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
@@ -75,13 +76,17 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
                 if (response.body() != null && response.isSuccessful()) {
                     List<Recipe> recipesList = response.body().getListRecipes();
-                    /*for (int i = 0; i < recipesList.size(); i++) {
-                        String ingredientsNames = "";
-                        for (int j = 0; j < recipesList.get(i).getIngredientsList().size(); j++)
-                            ingredientsNames += recipesList.get(i).getIngredientsList().get(j).getName() + ", ";
-                        recipesList.get(i).setIngredientsList(null);
-                    }*/
-                    saveDataInDatabase(recipesList);
+                    List<Ingredient> ingredientList = new ArrayList<>();
+                    for (int i = 0; i < recipesList.size(); i++) {
+                        Recipe recipetemp = recipesList.get(i);
+                        for (int j = 0; j < recipetemp.getIngredientsList().size(); j++) {
+                            Ingredient ingredient = new Ingredient(recipetemp.getIngredientsList().get(j).getName(),
+                                    recipetemp.getIngredientsList().get(j).getQta(),
+                                    recipetemp.getIngredientsList().get(j).getSize());
+                            ingredientList.add(ingredient);
+                        }
+                    }
+                    saveDataInDatabase(recipesList, ingredientList);
                 } else {
                     recipesResponseCallback.onFailure(application.getString(R.string.error_retrieving_recipe));
                 }
@@ -94,7 +99,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         });
     }
 
-    @Override
+    /*@Override
     public void getRecipeIngredients(int id, Recipe recipe) {
         Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipeIngredients(id,
                 application.getString(R.string.recipes_api_key));
@@ -120,7 +125,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
                 recipesResponseCallback.onFailure(t.getMessage());
             }
         });
-    }
+    }*/
 
     /**
      * Marks the favorite recipes as not favorite.
@@ -166,19 +171,29 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
      * because the database access cannot been executed in the main thread.
      * @param recipeList the list of recipes to be written in the local database.
      */
-    private void saveDataInDatabase(List<Recipe> recipeList) {
+    private void saveDataInDatabase(List<Recipe> recipeList, List<Ingredient> ingredientList) {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
             List<Recipe> allRecipe = recipesDao.getAll();
+            List<Ingredient> allIngredients = recipesDao.getAllIngredients();
 
             for (Recipe recipe : allRecipe) {
                 if (recipeList.contains(recipe)) {
                     recipeList.set(recipeList.indexOf(recipe), recipe);
                 }
             }
+            for (Ingredient ingredient : allIngredients) {
+                if (ingredientList.contains(ingredient)) {
+                    ingredientList.set(ingredientList.indexOf(ingredient), ingredient);
+                }
+            }
 
             List<Long> insertedRecipeIds = recipesDao.insertRecipeList(recipeList);
             for (int i = 0; i < recipeList.size(); i++) {
                 recipeList.get(i).setId(insertedRecipeIds.get(i));
+            }
+            List<Long> insertedIngredientsIds = recipesDao.insertIngredientList(ingredientList);
+            for (int i = 0; i < ingredientList.size(); i++) {
+                ingredientList.get(i).setId(insertedIngredientsIds.get(i));
             }
 
             recipesResponseCallback.onSuccess(recipeList);
