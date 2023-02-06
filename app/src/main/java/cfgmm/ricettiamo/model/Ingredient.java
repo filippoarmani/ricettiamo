@@ -12,12 +12,12 @@ import com.google.gson.annotations.SerializedName;
 @Entity
 public class Ingredient implements Parcelable {
     //used for room
-    @PrimaryKey
-    private long id;
+    @PrimaryKey (autoGenerate = true)
+    private Long id;
     private String name;
-    @SerializedName("amount.metric.value") //todo: non so se funziona ancora correttamente
-    private float qta;
-    @SerializedName("amount.metric.unit") //todo: non so se funziona ancora correttamente
+    @SerializedName("value") //todo: non so se funziona ancora correttamente
+    private Float qta;
+    @SerializedName("unit") //todo: non so se funziona ancora correttamente
     private String size;
     //opzionale
     @SerializedName("image")
@@ -33,6 +33,7 @@ public class Ingredient implements Parcelable {
         this.urlToImage = urlToImage;
     }
 
+    @Ignore
     public Ingredient(String name, float qta, String size) {
         this(name, qta, size, null);
     }
@@ -72,6 +73,7 @@ public class Ingredient implements Parcelable {
     }
 
     public float getQta() {
+        if (qta == null) return 0.0f;
         return qta;
     }
 

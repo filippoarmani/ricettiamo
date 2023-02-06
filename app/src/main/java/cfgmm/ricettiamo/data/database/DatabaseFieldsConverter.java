@@ -61,7 +61,7 @@ public class DatabaseFieldsConverter {
         for (int i = 0; i < value.length(); i++) {
             if (value.charAt(i) == ';') {
                 i += 1;
-                Step step = new Step(number, description, null, null);
+                Step step = new Step(number, description);
                 steps.add(step);
                 StepsAnalyze analyzeStep = new StepsAnalyze("", steps);
                 stepsAnalyzes.add(analyzeStep);

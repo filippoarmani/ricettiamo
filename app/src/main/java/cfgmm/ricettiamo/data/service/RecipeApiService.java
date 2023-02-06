@@ -43,10 +43,10 @@ public interface    RecipeApiService {
             @Header("x-api-key") String apiKey);
 
     //get ingredient informations
-    @GET("food/ingredients/{idIngredient}/informations")
+    /*@GET("food/ingredients/{idIngredient}/informations")
     Call<RecipeApiResponse> getIngredientById(
             @Path("idIngredient") int idIngredient,
-            @Header("x-api-key") String apiKey);
+            @Header("x-api-key") String apiKey);*/
 
     //get recipe steps --> non dovrebbe servire perchè si recuperano dalla query get recipes
     /*@GET("recipes/{idRecipe}/analyzedInstructions")
