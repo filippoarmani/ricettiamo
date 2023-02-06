@@ -135,6 +135,7 @@
     <string name="noLoggedUser">Utente Sconosciuto</string>
     <string name="comment">Recensione</string>
     <string name="category">Categoria</string>
+    <string name="noPhoto">Non è stata aggiunta alcuna foto</string>
 
 
 </resources>
