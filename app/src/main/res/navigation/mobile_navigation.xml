@@ -80,7 +80,7 @@
 
     <fragment
         android:id="@+id/search_recipes"
-        android:name="cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipes"
+        android:name="cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipesFragment"
         android:label="@string/search_recipe"
         tools:layout="@layout/fragment_m_search_recipes" >
         <action

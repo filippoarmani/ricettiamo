@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="bottom|clip_horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.navigation_drawer.SearchRecipes">
+    tools:context=".ui.navigation_drawer.SearchRecipesFragment">
 
     <TextView
         android:id="@+id/search"

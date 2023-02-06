@@ -41,6 +41,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     private MutableLiveData<Result> mostRecentRecipe;
     private MutableLiveData<Result> myRecipes;
     private MutableLiveData<Result> allRecipes;
+    private boolean saveSucess;
 
     public RecipesRepository(Application application, RecipesResponseCallback recipesResponseCallback) {
         this.application = application;
@@ -55,6 +56,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         this.mostRecentRecipe = new MutableLiveData<>();
         this.myRecipes = new MutableLiveData<>();
         this.allRecipes = new MutableLiveData<>();
+        saveSucess = false;
     }
 
     @Override
@@ -196,6 +198,12 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
     //Community Recipes
     @Override
+    public boolean writeRecipe(Recipe recipe) {
+        databaseRecipesDataSource.writeRecipe(recipe);
+        return saveSucess;
+    }
+
+    @Override
     public Result getFirstRecipe(String id) {
         databaseRecipesDataSource.getFirstRecipe(id);
         return firstRecipe;
@@ -219,6 +227,16 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         return allRecipes;
     }
 
+
+    @Override
+    public void onSuccessWriteDatabase() {
+        saveSucess = true;
+    }
+
+    @Override
+    public void onFailureWriteDatabase(int writeDatabase_error) {
+        saveSucess = false;
+    }
 
     @Override
     public void onSuccessGetFirstRecipe(Recipe firstRecipe) {

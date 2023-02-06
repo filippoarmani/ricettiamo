@@ -26,9 +26,9 @@ public interface IRecipesRepository {
     void deleteFavoriteRecipes();
 
     //Community Recipes
+    boolean writeRecipe(Recipe recipe);
     Result getFirstRecipe(String id);
     MutableLiveData<Result> getMostRecentRecipe(String id);
     MutableLiveData<Result> getMyRecipes(String id);
-
     MutableLiveData<Result> getAllRecipes();
 }

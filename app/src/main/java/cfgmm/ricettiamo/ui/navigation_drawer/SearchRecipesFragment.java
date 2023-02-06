@@ -30,6 +30,12 @@ import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 
 public class SearchRecipes extends Fragment implements RecipesResponseCallback {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link SearchRecipesFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class SearchRecipesFragment extends Fragment implements RecipesResponseCallback {
 
     private FragmentMSearchRecipesBinding fragmentSearchRecipesBinding;
 
@@ -42,6 +48,9 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
     private RecipeViewModel recipeViewModel;
 
     public SearchRecipes() {}
+    public SearchRecipesFragment() {
+        // Required empty public constructor
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -49,6 +58,15 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
      * @return A new instance of fragment SearchRecipe.
      */
     public static SearchRecipes newInstance() {  return new SearchRecipes(); }
+    // TODO: Rename and change types and number of parameters
+    public static SearchRecipesFragment newInstance(String param1, String param2) {
+        SearchRecipesFragment fragment = new SearchRecipesFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,9 +109,9 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
                         Snackbar.make(view, recipe.getName(), Snackbar.LENGTH_SHORT).show();
 
                         /*todo: query per aggiungere gli ingredienti. per la conversione ci dovrebbe
-                           essere il codice funzionante commentato in recipeRepository (da spostare
-                            nel metodo corretto)*/
-                        cfgmm.ricettiamo.ui.navigation_drawer.SearchRecipesDirections.ActionSearchRecipesToRecipeDetailsFragment action =
+                           essere il codice funzionante commentato in recipeApiResponse (da spostare
+                            nel metodo corretto*/
+                        SearchRecipesDirections.ActionSearchRecipesToRecipeDetailsFragment action =
                                 SearchRecipesDirections.actionSearchRecipesToRecipeDetailsFragment(recipe);
                         Navigation.findNavController(view).navigate((NavDirections) action);
                     }
@@ -154,9 +172,5 @@ public class SearchRecipes extends Fragment implements RecipesResponseCallback {
                     getString(R.string.recipes_removed_from_favorite_list_message),
                     Snackbar.LENGTH_LONG).show();
         }
-    }
-
-    public void UpdateRecipes(Recipe recipe) {
-
     }
 }

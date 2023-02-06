@@ -2,6 +2,7 @@ package cfgmm.ricettiamo.data.source.comment;
 
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_COMMENTS_COLLECTION;
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_REALTIME_DATABASE;
+import static cfgmm.ricettiamo.util.Constants.FIREBASE_RECIPES_COLLECTION;
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_USERS_COLLECTION;
 
 import android.util.Log;
@@ -21,6 +22,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Comment;
+import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.User;
 
 public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
@@ -71,9 +73,10 @@ public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
     }
 
     @Override
-    public void updateStars(String idUser, int score) {
+    public void updateStars(String id, int score, boolean type) {
         AtomicInteger oldStars = new AtomicInteger();
-        databaseReference.child(FIREBASE_USERS_COLLECTION).child(idUser).child("totalStars").get()
+        String path = getPath(type);
+        databaseReference.child(path).child(id).child("score").get()
                 .addOnSuccessListener(result -> {
                     try {
                         Integer read = result.getValue(Integer.class);
@@ -89,8 +92,8 @@ public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
                 });
 
         Map<String, Object> stars = new HashMap<>();
-        stars.put("totalStars", oldStars.get() + score);
-        databaseReference.child(FIREBASE_USERS_COLLECTION).child(idUser)
+        stars.put("score", oldStars.get() + score);
+        databaseReference.child(path).child(id)
                 .updateChildren(stars)
                 .addOnSuccessListener(task -> {
                     Log.d(TAG, "updateStars: success");
@@ -103,11 +106,12 @@ public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
     }
 
     @Override
-    public void exists(String idUser) {
+    public void exists(String id, boolean type) {
         try {
-            databaseReference.child(FIREBASE_USERS_COLLECTION).child(idUser).get()
-                    .addOnSuccessListener(user -> {
-                        if(user != null && user.getValue(User.class) != null) {
+            String path = getPath(type);
+            databaseReference.child(path).child(id).get()
+                    .addOnSuccessListener(result -> {
+                        if(result != null && getValue(result, type)) {
                             Log.d(TAG, "exists: false");
                             commentResponseCallBack.setTrue();
                         } else {
@@ -122,6 +126,21 @@ public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
         } catch(Exception e) {
             Log.d(TAG, "exists: false");
             commentResponseCallBack.setFalse();
+        }
+    }
+    
+    public boolean getValue(DataSnapshot snapshot, boolean type) {
+        if(type)
+            return snapshot.getValue(User.class) != null;
+        else
+            return snapshot.getValue(Recipe.class) != null;
+    }
+
+    public String getPath(boolean type) {
+        if(type) {
+            return FIREBASE_USERS_COLLECTION;
+        } else {
+            return FIREBASE_RECIPES_COLLECTION;
         }
     }
 }

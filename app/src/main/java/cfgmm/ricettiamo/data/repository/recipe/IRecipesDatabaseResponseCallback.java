@@ -5,9 +5,9 @@ import java.util.List;
 import cfgmm.ricettiamo.model.Recipe;
 
 public interface IRecipesDatabaseResponseCallback {
-    //void onSuccessWriteDatabase();
-    //void onFailureWriteDatabase(int writeDatabase_error);
+    void onSuccessWriteDatabase();
 
+    void onFailureWriteDatabase(int writeDatabase_error);
 
     void onSuccessGetFirstRecipe(Recipe firstRecipe);
 

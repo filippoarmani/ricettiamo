@@ -81,7 +81,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
 
     @Override
     public void getTopTen() {
-        Query topTen = databaseReference.child(FIREBASE_USERS_COLLECTION).orderByChild("totalStars").limitToFirst(10);
+        Query topTen = databaseReference.child(FIREBASE_USERS_COLLECTION).orderByChild("score").limitToFirst(10);
         topTen.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -105,7 +105,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
 
     @Override
     public void getPosition(String id) {
-        Query topTen = databaseReference.child(FIREBASE_USERS_COLLECTION).orderByChild("totalStars");
+        Query topTen = databaseReference.child(FIREBASE_USERS_COLLECTION).orderByChild("score");
         topTen.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
