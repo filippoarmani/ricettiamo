@@ -99,7 +99,7 @@ public class RecipeDetailsFragment extends Fragment {
         assert getArguments() != null;
         Recipe recipe = RecipeDetailsFragmentArgs.fromBundle(getArguments()).getRecipe();
         this.comments = new ArrayList<>();
-        commentViewModel.readComment("" + recipe.getId());
+        //commentViewModel.readComment("" + recipe.getId());
 
         Glide.with(fragmentRecipeDetailsBinding.imageRecipe.getContext()).
                 load(recipe.getUrlToImage()).

@@ -21,6 +21,10 @@ public interface IRecipesDatabaseResponseCallback {
 
     void onFailureGetMyRecipes(int writeDatabase_error);
 
+    void onSuccessGetAllRecipes(List<Recipe> recipes);
+
+    void onFailureGetAllRecipes(int writeDatabase_error);
+
     /*void onSuccessGetFavoriteRecipesId(List<String> favoriteRecipes);
 
     void onFailureGetFavoriteRecipesId(int writeDatabase_error);

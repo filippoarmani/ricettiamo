@@ -4,7 +4,6 @@ import static cfgmm.ricettiamo.util.Constants.ADD_RECIPE_INFORMATIONS;
 import static cfgmm.ricettiamo.util.Constants.NUMBER_OF_ELEMENTS;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -41,6 +40,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     private Result firstRecipe;
     private MutableLiveData<Result> mostRecentRecipe;
     private MutableLiveData<Result> myRecipes;
+    private MutableLiveData<Result> allRecipes;
 
     public RecipesRepository(Application application, RecipesResponseCallback recipesResponseCallback) {
         this.application = application;
@@ -54,6 +54,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         databaseRecipesDataSource.setCallBack(this);
         this.mostRecentRecipe = new MutableLiveData<>();
         this.myRecipes = new MutableLiveData<>();
+        this.allRecipes = new MutableLiveData<>();
     }
 
     @Override
@@ -182,6 +183,12 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         return myRecipes;
     }
 
+    @Override
+    public MutableLiveData<Result> getAllRecipes() {
+        databaseRecipesDataSource.getAllRecipes();
+        return allRecipes;
+    }
+
 
     @Override
     public void onSuccessGetFirstRecipe(Recipe firstRecipe) {
@@ -211,5 +218,15 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     @Override
     public void onFailureGetMyRecipes(int writeDatabase_error) {
         this.myRecipes.postValue(new Result.Error(writeDatabase_error));
+    }
+
+    @Override
+    public void onSuccessGetAllRecipes(List<Recipe> recipes) {
+        this.allRecipes.postValue(new Result.ListRecipeResponseSuccess(recipes));
+    }
+
+    @Override
+    public void onFailureGetAllRecipes(int writeDatabase_error) {
+        this.allRecipes.postValue(new Result.Error(writeDatabase_error));
     }
 }
