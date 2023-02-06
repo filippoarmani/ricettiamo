@@ -98,8 +98,8 @@ public class RecipeViewModel extends ViewModel {
     }
 
     //Community Recipes
-    public boolean writeRecipe(Uri uri, Recipe recipe) {
-        return recipesRepository.writeRecipe(uri, recipe);
+    public boolean writeRecipe(Recipe recipe) {
+        return recipesRepository.writeRecipe(recipe);
     }
 
     public MutableLiveData<Result> getMyRecipes(String id) {
@@ -107,6 +107,10 @@ public class RecipeViewModel extends ViewModel {
             myRecipes = recipesRepository.getMyRecipes(id);
 
         return myRecipes;
+    }
+
+    public String uploadPhoto(Uri uri) {
+        return recipesRepository.uploadPhoto(uri);
     }
 
     public MutableLiveData<Result> getAllRecipes() {

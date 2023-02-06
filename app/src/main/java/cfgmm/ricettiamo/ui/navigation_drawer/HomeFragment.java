@@ -168,25 +168,25 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
                 for(Recipe recipe: recipeAllList) {
                     if(recipe.getDishTypes().get(0).equals("Antipasti") || recipe.getDishTypes().get(0).equals("Starters")) {
                         recipeStarterList.add(recipe);
+                        adapterStarter.notifyDataSetChanged();
                     }
 
                     if(recipe.getDishTypes().get(0).equals("Primi piatti") || recipe.getDishTypes().get(0).equals("First Dishes")) {
                         recipeFirstList.add(recipe);
+                        adapterFirst.notifyDataSetChanged();
                     }
 
                     if(recipe.getDishTypes().get(0).equals("Secondi piatti") || recipe.getDishTypes().get(0).equals("Second Dishes")) {
                         recipeSecondList.add(recipe);
+                        adapterSecond.notifyDataSetChanged();
                     }
 
                     if(recipe.getDishTypes().get(0).equals("Dolci") || recipe.getDishTypes().get(0).equals("Dessert")) {
                         recipeDessertList.add(recipe);
+                        adapterDessert.notifyDataSetChanged();
                     }
-
                 }
-                adapterStarter.notifyDataSetChanged();
-                adapterFirst.notifyDataSetChanged();
-                adapterSecond.notifyDataSetChanged();
-                adapterDessert.notifyDataSetChanged();
+
             }
         });
 

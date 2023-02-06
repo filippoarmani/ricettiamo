@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.IngredientsRecyclerAdapter;
@@ -42,6 +43,8 @@ import cfgmm.ricettiamo.databinding.FragmentMAddNewRecipeBinding;
 import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.model.Step;
+import cfgmm.ricettiamo.model.StepsAnalyze;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
@@ -68,6 +71,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
     private String serving;
     private String category;
     private String author;
+    private long id;
 
     public AddNewRecipeFragment() {
         // Required empty public constructor
@@ -106,6 +110,8 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
 
         IRecipesRepository iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
         recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
+
+        mainPicture = null;
     }
 
     @Override
@@ -117,6 +123,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        List<Step> list = new ArrayList<>();
 
         //ingredient adapter
         binding.ingredientRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,  false));
@@ -130,6 +137,12 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
         binding.stepRecyclerView.setAdapter(stepAdapter);
         stepAdapter.getItemTouchHelper().attachToRecyclerView(binding.stepRecyclerView);
 
+        recipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), result -> {
+            if(result != null && result.isSuccess()) {
+                id = ((Result.ListRecipeResponseSuccess) result).getData().size();
+            }
+        });
+
         binding.addMainPicture.setOnClickListener(v -> {
             mainPictureActivity.launch(IMAGE);
         });
@@ -140,7 +153,13 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
             String unit = binding.addUnitLayout.getEditText().getText().toString().trim();
 
             if(!isEmpty(nameIngredient) && !isEmpty(quantity) && !isEmpty(unit)) {
-                Ingredient ingredient = new Ingredient(nameIngredient, Float.parseFloat(quantity), unit);
+                long idIngredient;
+                if(ingredientList.size() > 0)
+                    idIngredient = ingredientList.get(ingredientList.size() - 1).getId() +1;
+                else
+                    idIngredient = 0;
+
+                Ingredient ingredient = new Ingredient(idIngredient, nameIngredient, Float.parseFloat(quantity), unit);
                 ingredientList.add(ingredient);
                 adapterIngredient.notifyItemInserted(ingredientList.size() - 1);
             } else {
@@ -154,6 +173,14 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
             if(!isEmpty(step)) {
                 stepList.add(step);
                 stepAdapter.notifyItemInserted(stepList.size()-1);
+
+                int idStep;
+                if(list.size() > 0)
+                    idStep = list.get(list.size() - 1).getNumber() +1;
+                else
+                    idStep = 0;
+
+                list.add(new Step(idStep, step));
             } else {
                 binding.addStepLayout.setError(getString(R.string.empty_fields));
             }
@@ -168,35 +195,49 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
             serving = binding.servingLayout.getEditText().getText().toString().trim();
 
             if(checkData()) {
-                Recipe recipe = null;
-                /*recipe = new Recipe(
-                        author,
-                        title,
-                        0,
-                        Integer.parseInt(serving),
-                        cost,
-                        Integer.parseInt(prepTime),
-                        ingredientList,
-                        getCurrentDate(),
-                        null,
-                        false);*/
+                String urlToImage = recipeViewModel.uploadPhoto(mainPicture);
+                if (urlToImage != null) {
+                    List<String> dishTypes = new ArrayList<>();
+                    dishTypes.add(category);
 
-                MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(requireActivity());
+                    List<StepsAnalyze> stepsAnalyzes = new ArrayList<>();
+                    stepsAnalyzes.add(new StepsAnalyze("step", list));
 
-                alert.setTitle(getString(R.string.save_recipe));
-                alert.setMessage(getString(R.string.save_recipe_alert));
-                alert.setPositiveButton(getString(R.string.save), (dialog, id) -> {
-                    if(recipeViewModel.writeRecipe(mainPicture, recipe)) {
-                        Snackbar.make(requireView(), R.string.saving_success, Snackbar.LENGTH_LONG).show();
-                        Navigation.findNavController(requireView()).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
-                    } else {
-                        Snackbar.make(requireView(), R.string.saving_failure, Snackbar.LENGTH_LONG).show();
-                    }
-                });
-                alert.setNegativeButton(getString(R.string.cancel),null);
-                alert.show();
+                    Recipe recipe = new Recipe(
+                            id,
+                            author,
+                            title,
+                            0,
+                            Integer.parseInt(serving),
+                            Float.parseFloat(cost),
+                            Integer.parseInt(prepTime),
+                            ingredientList,
+                            getCurrentDate(),
+                            dishTypes,
+                            urlToImage,
+                            false,
+                            stepsAnalyzes
+                    );
+
+                    MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(requireActivity());
+
+                    alert.setTitle(getString(R.string.save_recipe));
+                    alert.setMessage(getString(R.string.save_recipe_alert));
+                    alert.setPositiveButton(getString(R.string.save), (dialog, id) -> {
+                        if (recipeViewModel.writeRecipe(recipe)) {
+                            Snackbar.make(requireView(), R.string.saving_success, Snackbar.LENGTH_LONG).show();
+                            Navigation.findNavController(requireView()).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
+                        } else {
+                            Snackbar.make(requireView(), R.string.saving_failure, Snackbar.LENGTH_SHORT).show();
+                        }
+                    });
+                    alert.setNegativeButton(getString(R.string.cancel), null);
+                    alert.show();
+
+                } else {
+                    Snackbar.make(requireView(), R.string.saving_failure, Snackbar.LENGTH_SHORT).show();
+                }
             }
-
         });
     }
 
@@ -263,12 +304,17 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
             ok = false;
         }
 
+        if(mainPicture == null) {
+            Snackbar.make(requireView(), R.string.noPhoto, Snackbar.LENGTH_SHORT).show();
+            ok = false;
+        }
+
         return ok;
     }
 
     public static String getCurrentDate() {
         Date currentDate = new Date();
-        SimpleDateFormat df = new SimpleDateFormat(dateFormat);
+        SimpleDateFormat df = new SimpleDateFormat(dateFormat, Locale.US);
         df.format(currentDate);
         currentDate.getTime();
         return currentDate.toString();

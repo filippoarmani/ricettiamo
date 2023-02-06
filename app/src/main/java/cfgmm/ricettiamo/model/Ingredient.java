@@ -9,6 +9,9 @@ import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Entity
 public class Ingredient implements Parcelable {
     //used for room
@@ -27,10 +30,19 @@ public class Ingredient implements Parcelable {
 
     @Ignore
     public Ingredient(String name, float qta, String size/*, String urlToImage*/) {
+        this(0, name, qta, size);
+        //this.name = name;
+        //this.qta = qta;
+        //this.size = size;
+        //this.urlToImage = urlToImage;
+    }
+
+    @Ignore
+    public Ingredient(long id, String name, float qta, String size/*, String urlToImage*/) {
+        this.id = id;
         this.name = name;
         this.qta = qta;
         this.size = size;
-        //this.urlToImage = urlToImage;
     }
 
     /*@Ignore
@@ -115,6 +127,17 @@ public class Ingredient implements Parcelable {
         dest.writeFloat(this.qta);
         dest.writeString(this.size);
         //dest.writeString(this.urlToImage);
+    }
 
+    public Map<String, Object> toMap() {
+        Map<String, Object> data = new HashMap<>();
+
+        data.put("id", id);
+        data.put("name", name);
+        data.put("qta", qta);
+        data.put("size", size);
+        //data.put("urlToImage", urlToImage);
+
+        return data;
     }
 }

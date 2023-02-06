@@ -5,9 +5,13 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.database.DataSnapshot;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StepsAnalyze implements Parcelable {
 
@@ -69,4 +73,14 @@ public class StepsAnalyze implements Parcelable {
             dest.writeList(Collections.singletonList(steps));
         }
     }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> data = new HashMap<>();
+
+        data.put("name", name);
+        data.put("steps", steps);
+
+        return data;
+    }
+
 }

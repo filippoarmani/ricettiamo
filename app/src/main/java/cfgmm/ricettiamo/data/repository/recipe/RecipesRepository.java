@@ -49,7 +49,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     private MutableLiveData<Result> myRecipes;
     private MutableLiveData<Result> allRecipes;
     private boolean saveSucess;
-    private String url;
+    private String path;
 
     public RecipesRepository(Application application, RecipesResponseCallback recipesResponseCallback) {
         this.application = application;
@@ -67,7 +67,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         this.myRecipes = new MutableLiveData<>();
         this.allRecipes = new MutableLiveData<>();
         saveSucess = false;
-        url = null;
+        path = null;
     }
 
     @Override
@@ -227,14 +227,15 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
     //Community Recipes
     @Override
-    public boolean writeRecipe(Uri photo, Recipe recipe) {
-        photoStorageDataSource.uploadFile(photo);
-        if(saveSucess) {
-            recipe.setUrlToImage(url);
-            databaseRecipesDataSource.writeRecipe(recipe);
-        }
-
+    public boolean writeRecipe(Recipe recipe) {
+        databaseRecipesDataSource.writeRecipe(recipe);
         return saveSucess;
+    }
+
+    @Override
+    public String uploadPhoto(Uri photo) {
+        photoStorageDataSource.uploadFile(photo);
+        return path;
     }
 
     @Override
@@ -314,13 +315,11 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
     @Override
     public void onSuccessUploadPhoto(String path) {
-        url = path;
-        saveSucess = true;
+        this.path = path;
     }
 
     @Override
     public void onFailureUploadPhoto() {
-        url = null;
-        saveSucess = false;
+        path = null;
     }
 }

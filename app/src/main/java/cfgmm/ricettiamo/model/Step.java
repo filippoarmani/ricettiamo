@@ -11,7 +11,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Step implements Parcelable {
 
@@ -63,5 +65,14 @@ public class Step implements Parcelable {
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(this.number);
         dest.writeString(this.description);
+    }
+
+    public Map<String, Object> toMap() {
+        Map<String, Object> data = new HashMap<>();
+
+        data.put("number", number);
+        data.put("description", description);
+
+        return data;
     }
 }

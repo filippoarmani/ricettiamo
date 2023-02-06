@@ -54,6 +54,26 @@ public class Recipe implements Parcelable {
     public Recipe(String author, String name, int score, int servings, float cost, int prepTime,
                   List<Ingredient> ingredientsList, String date, List<String> dishTypes,
                   String urlToImage, boolean isFavorite, List<StepsAnalyze> steps) {
+        this(0, author, name, score, servings, cost, prepTime, ingredientsList, date, dishTypes, urlToImage, isFavorite, steps);
+        //this.author = author;
+        //this.name = name;
+        //this.score = score;
+        //this.servings = servings;
+        //this.cost = cost;
+        //this.prepTime = prepTime;
+        //this.ingredientsList = ingredientsList;
+        //this.date = date;
+        //this.dishTypes = dishTypes;
+        //this.urlToImage = urlToImage;
+        //this.isFavorite = isFavorite;
+        //this.steps = steps;
+    }
+
+    @Ignore
+    public Recipe(long id, String author, String name, int score, int servings, float cost, int prepTime,
+                  List<Ingredient> ingredientsList, String date, List<String> dishTypes,
+                  String urlToImage, boolean isFavorite, List<StepsAnalyze> steps) {
+        this.id = id;
         this.author = author;
         this.name = name;
         this.score = score;
@@ -67,6 +87,7 @@ public class Recipe implements Parcelable {
         this.isFavorite = isFavorite;
         this.steps = steps;
     }
+
 
     public long getId() { return id; }
 
@@ -240,7 +261,7 @@ public class Recipe implements Parcelable {
         data.put("prepTime", this.prepTime);
         data.put("ingredientsList", this.ingredientsList);
         data.put("date", this.date);
-        data.put("DishTypes", this.dishTypes);
+        data.put("dishTypes", this.dishTypes);
         data.put("urlToImage", this.urlToImage);
         data.put("isFavorite", this.isFavorite);
         data.put("steps", this.steps);

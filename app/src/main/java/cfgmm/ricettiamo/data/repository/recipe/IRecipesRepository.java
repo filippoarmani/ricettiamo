@@ -29,7 +29,8 @@ public interface IRecipesRepository {
     void deleteFavoriteRecipes();
 
     //Community Recipes
-    boolean writeRecipe(Uri photo, Recipe recipe);
+    boolean writeRecipe(Recipe recipe);
+    String uploadPhoto(Uri photo);
     Result getFirstRecipe(String id);
     MutableLiveData<Result> getMostRecentRecipe(String id);
     MutableLiveData<Result> getMyRecipes(String id);
