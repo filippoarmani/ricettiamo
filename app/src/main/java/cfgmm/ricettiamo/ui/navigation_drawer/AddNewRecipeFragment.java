@@ -34,6 +34,9 @@ import java.util.List;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.IngredientsRecyclerAdapter;
 import cfgmm.ricettiamo.adapter.StepAdapter;
+import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
+import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
+import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentMAddNewRecipeBinding;
 import cfgmm.ricettiamo.model.Ingredient;
@@ -41,10 +44,11 @@ import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
+import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
 import cfgmm.ricettiamo.viewmodel.UserViewModel;
 import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
-public class AddNewRecipeFragment extends Fragment {
+public class AddNewRecipeFragment extends Fragment implements RecipesResponseCallback {
 
     public static final String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
@@ -54,14 +58,15 @@ public class AddNewRecipeFragment extends Fragment {
     private UserViewModel userViewModel;
     private RecipeViewModel recipeViewModel;
 
-    private String mainPicture;
+    private Uri mainPicture;
     private List<Ingredient> ingredientList;
-    private List<Object> stepList;
+    private List<String> stepList;
     private String title;
     private String difficulty;
     private String cost;
     private String prepTime;
     private String serving;
+    private String category;
     private String author;
 
     public AddNewRecipeFragment() {
@@ -99,6 +104,8 @@ public class AddNewRecipeFragment extends Fragment {
             author = ((Result.UserResponseSuccess) result).getData().getId();
         }
 
+        IRecipesRepository iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
+        recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
     }
 
     @Override
@@ -152,14 +159,11 @@ public class AddNewRecipeFragment extends Fragment {
             }
         });
 
-        binding.addPhotoButton.setOnClickListener(v -> {
-            stepPictureActivity.launch(IMAGE);
-        });
-
         binding.saveRecipe.setOnClickListener(v -> {
             title = binding.addTitleLayout.getEditText().getText().toString().trim();
             difficulty = binding.difficoltyLayout.getEditText().getText().toString().trim();
             cost = binding.costLayout.getEditText().getText().toString().trim();
+            category = binding.typeLayout.getEditText().getText().toString().trim();
             prepTime = binding.prepTimeLayout.getEditText().getText().toString().trim();
             serving = binding.servingLayout.getEditText().getText().toString().trim();
 
@@ -174,7 +178,7 @@ public class AddNewRecipeFragment extends Fragment {
                         Integer.parseInt(prepTime),
                         ingredientList,
                         getCurrentDate(),
-                        mainPicture,
+                        null,
                         false);*/
 
                 MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(requireActivity());
@@ -182,7 +186,7 @@ public class AddNewRecipeFragment extends Fragment {
                 alert.setTitle(getString(R.string.save_recipe));
                 alert.setMessage(getString(R.string.save_recipe_alert));
                 alert.setPositiveButton(getString(R.string.save), (dialog, id) -> {
-                    if(recipeViewModel.writeRecipe(recipe)) {
+                    if(recipeViewModel.writeRecipe(mainPicture, recipe)) {
                         Snackbar.make(requireView(), R.string.saving_success, Snackbar.LENGTH_LONG).show();
                         Navigation.findNavController(requireView()).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
                     } else {
@@ -201,24 +205,10 @@ public class AddNewRecipeFragment extends Fragment {
                 @Override
                 public void onActivityResult(Uri uri) {
                     try {
+                        mainPicture = uri;
                         Glide.with(requireContext())
                                 .load(uri)
                                 .into(binding.addMainPicture);
-                        mainPicture = uri.getPath();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-    ActivityResultLauncher<String[]> stepPictureActivity = registerForActivityResult(new ActivityResultContracts.OpenDocument(),
-            new ActivityResultCallback<Uri>() {
-                @Override
-                public void onActivityResult(Uri uri) {
-                    try {
-                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), uri);
-                        stepList.add(bitmap);
-                        stepAdapter.notifyItemInserted(stepList.size()-1);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -258,6 +248,11 @@ public class AddNewRecipeFragment extends Fragment {
             ok = false;
         }
 
+        if(isEmpty(category)) {
+            binding.typeLayout.setError(getString(R.string.empty_fields));
+            ok = false;
+        }
+
         if(ingredientList.size() == 0) {
             binding.addIngredientLayout.setError(getString(R.string.one_element));
             ok = false;
@@ -277,5 +272,20 @@ public class AddNewRecipeFragment extends Fragment {
         df.format(currentDate);
         currentDate.getTime();
         return currentDate.toString();
+    }
+
+    @Override
+    public void onSuccess(List<Recipe> recipesList) {
+
+    }
+
+    @Override
+    public void onFailure(String errorMessage) {
+
+    }
+
+    @Override
+    public void onRecipesFavoriteStatusChanged(Recipe recipe) {
+
     }
 }

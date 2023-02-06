@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/add_main_picture"
             android:layout_width="match_parent"
             android:layout_height="248dp"
@@ -23,7 +23,10 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:contentDescription="@string/main_picture"/>
+            app:srcCompat="@drawable/back"
+            android:clickable="true"
+            android:contentDescription="@string/main_picture"
+            android:focusable="true" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/add_title_layout"
@@ -83,21 +86,23 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/cost_layout"
+                android:id="@+id/type_layout"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:hint="@string/cost"
+                android:hint="@string/category"
                 android:gravity="end"
                 android:layout_weight="1">
 
                 <AutoCompleteTextView
-                    android:id="@+id/cost"
+                    android:id="@+id/type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
-                    app:simpleItems="@array/cost_array"
+                    android:hint="@string/category"
+                    android:label="@string/category"
+                    app:simpleItems="@array/type_array"
                     android:textSize="20sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -155,6 +160,29 @@
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cost_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cost"
+                style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/cost"
+                android:inputType="numberDecimal"
+                android:label="@string/quantity"
+                android:textSize="20sp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/ingredients"
@@ -290,18 +318,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:text="@string/add_step"
-            android:layout_marginHorizontal="15dp"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textAllCaps="false"
-            app:cornerRadius="20dp"/>
-
-        <Button
-            android:id="@+id/add_photo_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:text="@string/add_photo_step"
             android:layout_marginHorizontal="15dp"
             android:textSize="16sp"
             android:textStyle="bold"

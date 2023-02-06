@@ -1,5 +1,8 @@
 package cfgmm.ricettiamo.viewmodel;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -95,8 +98,8 @@ public class RecipeViewModel extends ViewModel {
     }
 
     //Community Recipes
-    public boolean writeRecipe(Recipe recipe) {
-        return recipesRepository.writeRecipe(recipe);
+    public boolean writeRecipe(Uri uri, Recipe recipe) {
+        return recipesRepository.writeRecipe(uri, recipe);
     }
 
     public MutableLiveData<Result> getMyRecipes(String id) {
@@ -110,7 +113,7 @@ public class RecipeViewModel extends ViewModel {
         if(allRecipes == null)
             allRecipes = recipesRepository.getAllRecipes();
 
-        return myRecipes;
+        return allRecipes;
     }
 
     public MutableLiveData<Result> getMostRecentRecipe(String id) {

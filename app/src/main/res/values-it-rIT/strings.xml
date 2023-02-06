@@ -134,6 +134,7 @@
     <string name="noReview">Non ci sono ancora commenti per questa ricetta. Scrivi tu la prima!</string>
     <string name="noLoggedUser">Utente Sconosciuto</string>
     <string name="comment">Recensione</string>
+    <string name="category">Categoria</string>
 
 
 </resources>

@@ -4,6 +4,8 @@ import static cfgmm.ricettiamo.util.Constants.ADD_RECIPE_INFORMATIONS;
 import static cfgmm.ricettiamo.util.Constants.NUMBER_OF_ELEMENTS;
 
 import android.app.Application;
+import android.graphics.Bitmap;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -15,7 +17,9 @@ import cfgmm.ricettiamo.data.database.RecipesDao;
 import cfgmm.ricettiamo.data.database.RecipesRoomDatabase;
 import cfgmm.ricettiamo.data.service.RecipeApiService;
 import cfgmm.ricettiamo.data.source.recipe.BaseDatabaseRecipesDataSource;
+import cfgmm.ricettiamo.data.source.recipe.BasePhotoStorageDataSource;
 import cfgmm.ricettiamo.data.source.recipe.DatabaseRecipesDataSource;
+import cfgmm.ricettiamo.data.source.recipe.PhotoStorageDataSource;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.RecipeApiResponse;
 import cfgmm.ricettiamo.model.Result;
@@ -28,7 +32,7 @@ import retrofit2.Response;
  * Repository to get the recipes using the API
  * provided by spoonacular.com (https://spoonacular.com).
  */
-public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseResponseCallback{
+public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseResponseCallback, IPhotoResponseCallback{
     private static final String TAG = RecipesRepository.class.getSimpleName();
 
     private final Application application;
@@ -36,12 +40,14 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     private final RecipesDao recipesDao;
     private final RecipesResponseCallback recipesResponseCallback;
     BaseDatabaseRecipesDataSource databaseRecipesDataSource;
+    BasePhotoStorageDataSource photoStorageDataSource;
 
     private Result firstRecipe;
     private MutableLiveData<Result> mostRecentRecipe;
     private MutableLiveData<Result> myRecipes;
     private MutableLiveData<Result> allRecipes;
     private boolean saveSucess;
+    private String url;
 
     public RecipesRepository(Application application, RecipesResponseCallback recipesResponseCallback) {
         this.application = application;
@@ -52,11 +58,14 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
         //Community Recipes
         this.databaseRecipesDataSource = new DatabaseRecipesDataSource();
+        this.photoStorageDataSource = new PhotoStorageDataSource();
         databaseRecipesDataSource.setCallBack(this);
+        photoStorageDataSource.setCallBack(this);
         this.mostRecentRecipe = new MutableLiveData<>();
         this.myRecipes = new MutableLiveData<>();
         this.allRecipes = new MutableLiveData<>();
         saveSucess = false;
+        url = null;
     }
 
     @Override
@@ -198,8 +207,13 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
     //Community Recipes
     @Override
-    public boolean writeRecipe(Recipe recipe) {
-        databaseRecipesDataSource.writeRecipe(recipe);
+    public boolean writeRecipe(Uri photo, Recipe recipe) {
+        photoStorageDataSource.uploadFile(photo);
+        if(saveSucess) {
+            recipe.setUrlToImage(url);
+            databaseRecipesDataSource.writeRecipe(recipe);
+        }
+
         return saveSucess;
     }
 
@@ -276,5 +290,17 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     @Override
     public void onFailureGetAllRecipes(int writeDatabase_error) {
         this.allRecipes.postValue(new Result.Error(writeDatabase_error));
+    }
+
+    @Override
+    public void onSuccessUploadPhoto(String path) {
+        url = path;
+        saveSucess = true;
+    }
+
+    @Override
+    public void onFailureUploadPhoto() {
+        url = null;
+        saveSucess = false;
     }
 }

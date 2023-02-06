@@ -1,5 +1,8 @@
 package cfgmm.ricettiamo.data.repository.recipe;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
+
 import androidx.lifecycle.MutableLiveData;
 
 import cfgmm.ricettiamo.model.Recipe;
@@ -26,7 +29,7 @@ public interface IRecipesRepository {
     void deleteFavoriteRecipes();
 
     //Community Recipes
-    boolean writeRecipe(Recipe recipe);
+    boolean writeRecipe(Uri photo, Recipe recipe);
     Result getFirstRecipe(String id);
     MutableLiveData<Result> getMostRecentRecipe(String id);
     MutableLiveData<Result> getMyRecipes(String id);

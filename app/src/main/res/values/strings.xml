@@ -132,11 +132,14 @@
     <string name="prep_time">Prep time:  </string>
     <string name="min">minutes</string>
     <string name="cost">Cost: </string>
-    <string-array name="cost_array">
-        <item>Low</item>
-        <item>Average</item>
-        <item>High</item>
+
+    <string-array name="type_array">
+        <item>@string/starters</item>
+        <item>@string/first_dishes</item>
+        <item>@string/second_dishes</item>
+        <item>@string/dessert</item>
     </string-array>
+
     <string name="serving">Serving: </string>
     <string name="people">ppl.</string>
     <string name="add_ingredient">Add an ingredient</string>
@@ -194,6 +197,7 @@
     <string name="noReview">There are no comments yet for this recipe. Write the first!</string>
     <string name="noLoggedUser">Unknown user</string>
     <string name="comment">Review</string>
+    <string name="category">Category</string>
 
     <string-array name="point_array">
         <item>0</item>

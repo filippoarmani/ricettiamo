@@ -21,9 +21,9 @@ import cfgmm.ricettiamo.R;
 public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder>{
 
     private View view;
-    private List<Object> stepList;
+    private List<String> stepList;
 
-    public StepAdapter(View view, List<Object> stepList) {
+    public StepAdapter(View view, List<String> stepList) {
         this.view = view;
         this.stepList = stepList;
     }
@@ -38,7 +38,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                Object deleteItem = stepList.get(viewHolder.getBindingAdapterPosition());
+                String deleteItem = stepList.get(viewHolder.getBindingAdapterPosition());
 
                 int position = viewHolder.getBindingAdapterPosition();
                 stepList.remove(position);
@@ -66,18 +66,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull StepAdapter.StepViewHolder holder, int position) {
-        if(stepList.get(position) instanceof Bitmap) {
-            holder.text.setVisibility(View.GONE);
-            holder.image.setVisibility(View.VISIBLE);
-
-            Glide.with(view)
-                    .load((Bitmap) stepList.get(position))
-                    .into(holder.image);
-        } else {
-            holder.text.setVisibility(View.VISIBLE);
-            holder.image.setVisibility(View.GONE);
-            holder.text.setText((String) stepList.get(position));
-        }
+        holder.text.setText((stepList.get(position)));
     }
 
     @Override
@@ -90,12 +79,10 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
 
     public static class StepViewHolder extends RecyclerView.ViewHolder {
         final TextView text;
-        final ImageView image;
 
         public StepViewHolder(@NonNull View itemView) {
             super(itemView);
             text = itemView.findViewById(R.id.textStep);
-            image = itemView.findViewById(R.id.imageStep);
         }
     }
 }
