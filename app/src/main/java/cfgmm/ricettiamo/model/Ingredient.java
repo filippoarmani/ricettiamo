@@ -13,30 +13,30 @@ import com.google.gson.annotations.SerializedName;
 public class Ingredient implements Parcelable {
     //used for room
     @PrimaryKey (autoGenerate = true)
-    private Long id;
+    private long id;
     private String name;
-    @SerializedName("value") //todo: non so se funziona ancora correttamente
-    private Float qta;
-    @SerializedName("unit") //todo: non so se funziona ancora correttamente
+    @SerializedName("amount")
+    private float qta;
+    @SerializedName("unit")
     private String size;
     //opzionale
-    @SerializedName("image")
-    private String urlToImage;
+    /*@SerializedName("image")
+    private String urlToImage;*/
 
     public Ingredient() {}
 
     @Ignore
-    public Ingredient(String name, float qta, String size, String urlToImage) {
+    public Ingredient(String name, float qta, String size/*, String urlToImage*/) {
         this.name = name;
         this.qta = qta;
         this.size = size;
-        this.urlToImage = urlToImage;
+        //this.urlToImage = urlToImage;
     }
 
-    @Ignore
+    /*@Ignore
     public Ingredient(String name, float qta, String size) {
         this(name, qta, size, null);
-    }
+    }*/
 
     public static final Creator<Ingredient> CREATOR = new Creator<Ingredient>() {
         @Override
@@ -72,22 +72,17 @@ public class Ingredient implements Parcelable {
         this.name = nome;
     }
 
-    public float getQta() {
-        if (qta == null) return 0.0f;
-        return qta;
-    }
+    public float getQta() { return qta;  }
 
-    public void setQta(float qta) {
-        this.qta = qta;
-    }
+    public void setQta(float qta) { this.qta = qta; }
 
-    public String getUrlToImage() {
+    /*public String getUrlToImage() {
         return urlToImage;
     }
 
     public void setUrlToImage(String urlToImage) {
         this.urlToImage = urlToImage;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -96,7 +91,7 @@ public class Ingredient implements Parcelable {
                 ", nome='" + name + '\'' +
                 ", qta='" + qta + '\'' +
                 ", size='" + size + '\'' +
-                ", urlToImage='" + urlToImage + '\'' +
+                //", urlToImage='" + urlToImage + '\'' +
                 '}';
     }
 
@@ -105,7 +100,7 @@ public class Ingredient implements Parcelable {
         this.name = in.readString();
         this.qta = in.readFloat();
         this.size = in.readString();
-        this.urlToImage = in.readString();
+        //this.urlToImage = in.readString();
     }
 
     @Override
@@ -119,7 +114,7 @@ public class Ingredient implements Parcelable {
         dest.writeString(this.name);
         dest.writeFloat(this.qta);
         dest.writeString(this.size);
-        dest.writeString(this.urlToImage);
+        //dest.writeString(this.urlToImage);
 
     }
 }

@@ -42,7 +42,7 @@ public class DatabaseFieldsConverter {
         String ingredientsString = "";
         if (value != null) {
             for (int i = 0; i < value.size(); i++) {
-                ingredientsString += value.get(i).getName() + ", ";
+                ingredientsString += value.get(i).getId() + ". " + value.get(i).getName() + ", ";
             }
         }
         return ingredientsString;

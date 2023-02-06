@@ -206,7 +206,7 @@ public class JSONParserUtil {
                         } else if (jsonReader.peek() != JsonToken.NULL &&
                                 resultsJSONParam.equals(urlToImageParameter)) {
                             String urlToImage = jsonReader.nextString();
-                            ingredient.setUrlToImage(urlToImage);
+                            //ingredient.setUrlToImage(urlToImage);
                         } else {
                             jsonReader.skipValue();
                         }
@@ -257,7 +257,7 @@ public class JSONParserUtil {
                 JSONObject resultsJSONObject = articlesJSONArray.getJSONObject(i);
                 ingredient = new Ingredient();
                 ingredient.setName(resultsJSONObject.getString(nameParameter));
-                ingredient.setUrlToImage(resultsJSONObject.getString(urlToImageParameter));
+                //ingredient.setUrlToImage(resultsJSONObject.getString(urlToImageParameter));
                 ingredientList.add(ingredient);
             }
         }

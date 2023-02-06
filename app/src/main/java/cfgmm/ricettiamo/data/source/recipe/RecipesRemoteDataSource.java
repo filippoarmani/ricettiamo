@@ -1,6 +1,7 @@
 package cfgmm.ricettiamo.data.source.recipe;
 
 import static cfgmm.ricettiamo.util.Constants.ADD_RECIPE_INFORMATIONS;
+import static cfgmm.ricettiamo.util.Constants.ADD_RECIPE_INGREDIENTS;
 import static cfgmm.ricettiamo.util.Constants.API_KEY_ERROR;
 import static cfgmm.ricettiamo.util.Constants.NUMBER_OF_ELEMENTS;
 import static cfgmm.ricettiamo.util.Constants.RETROFIT_ERROR;
@@ -30,7 +31,7 @@ public class RecipesRemoteDataSource extends BaseRecipesRemoteDataSource{
     @Override
     public void getRecipes(String user_input) {
         Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipesByName(user_input, NUMBER_OF_ELEMENTS,
-                ADD_RECIPE_INFORMATIONS, apiKey);
+                ADD_RECIPE_INFORMATIONS, ADD_RECIPE_INGREDIENTS, apiKey);
 
         recipeResponseCall.enqueue(new Callback<RecipeApiResponse>() {
             @Override
