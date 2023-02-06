@@ -37,9 +37,8 @@ public class Recipe implements Parcelable {
     @SerializedName("readyInMinutes")
     private int prepTime;
     //@Ignore
-    @SerializedName("ingredients")
+    @SerializedName("missedIngredients")
     private List<Ingredient> ingredientsList;
-    private String ingredientsString;
     private String date;
     private List<String> dishTypes;
     @SerializedName("image")
@@ -53,7 +52,7 @@ public class Recipe implements Parcelable {
 
     @Ignore
     public Recipe(String author, String name, int score, int servings, float cost, int prepTime,
-                  List<Ingredient> ingredientsList, String ingredientsString, String date,
+                  List<Ingredient> ingredientsList, String date,
                   List<String> dishTypes, String urlToImage, boolean isFavorite, List<StepsAnalyze> steps) {
         this.author = author;
         this.name = name;
@@ -62,7 +61,6 @@ public class Recipe implements Parcelable {
         this.cost = cost;
         this.prepTime = prepTime;
         this.ingredientsList = ingredientsList;
-        this.ingredientsString = ingredientsString;
         this.date = date;
         this.dishTypes = dishTypes;
         this.urlToImage = urlToImage;
@@ -104,9 +102,9 @@ public class Recipe implements Parcelable {
 
     public void setServings(int servings) { this.servings = servings; }
 
-    public float getCost() { return cost; }
+    public float getCost() { return Math.round(cost * servings) / 100.0f; }
 
-    public void setCost(float cost) { this.cost = cost / 100; }
+    public void setCost(float cost) { this.cost = cost; }
 
     public int getPrepTime() { return prepTime; }
 
@@ -115,10 +113,6 @@ public class Recipe implements Parcelable {
     public List<Ingredient> getIngredientsList() { return ingredientsList; }
 
     public void setIngredientsList(List<Ingredient> ingredientsList) { this.ingredientsList = ingredientsList; }
-
-    public String getIngredientsString() { return ingredientsString; }
-
-    public void setIngredientsString(String ingredientsList) { this.ingredientsString = ingredientsString; }
 
     public String getDate() { return date; }
 
@@ -152,7 +146,6 @@ public class Recipe implements Parcelable {
                 ", cost=" + cost/100 + "€" + '\'' +
                 ", prepTime=" + prepTime + '\'' +
                 ", ingredientsList='" + ingredientsList + '\'' +
-                ", ingredientsString='" + ingredientsString + '\'' +
                 ", date='" + date + '\'' +
                 ", dishTypes='" + dishTypes + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
@@ -173,7 +166,6 @@ public class Recipe implements Parcelable {
             ingredientsList = new ArrayList<Ingredient>();
             in.readList(ingredientsList, Ingredient.class.getClassLoader());
         } else ingredientsList = null;
-        ingredientsString = in.readString();
         date = in.readString();
         if(in.readByte() == 0x01) {
             dishTypes = new ArrayList<String>();
@@ -219,7 +211,6 @@ public class Recipe implements Parcelable {
             dest.writeByte((byte) (0x01));
             dest.writeList(Collections.singletonList(ingredientsList));
         }
-        dest.writeString(this.ingredientsString);
         dest.writeString(this.date);
         if (dishTypes == null) {
             dest.writeByte((byte) (0x00));
@@ -248,7 +239,6 @@ public class Recipe implements Parcelable {
         data.put("cost", this.cost);
         data.put("prepTime", this.prepTime);
         data.put("ingredientsList", this.ingredientsList);
-        data.put("ingredientsString", this.ingredientsString);
         data.put("date", this.date);
         data.put("DishTypes", this.dishTypes);
         data.put("urlToImage", this.urlToImage);

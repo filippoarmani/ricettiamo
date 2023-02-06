@@ -22,6 +22,9 @@ public interface RecipesDao {
     @Query("SELECT * FROM recipe WHERE is_favorite = 1")
     List<Recipe> getFavoriteRecipes();
 
+    /*@Query("SELECT ingredientsList FROM recipe WHERE id = :idRecipe")
+    List<Ingredient> getRecipeIngredients(long idRecipe);*/
+
     @Query("SELECT * FROM ingredient")
     List<Ingredient> getAllIngredients();
     @Query("SELECT * FROM ingredient WHERE id = :id")

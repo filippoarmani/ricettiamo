@@ -25,6 +25,7 @@ public interface    RecipeApiService {
             @Query(RECIPE_PARAMETER) String name,
             @Query("number") int number,
             @Query("addRecipeInformation") boolean addRecipeInformation,
+            @Query("fillIngredients") boolean addIngredients,
             @Header("x-api-key") String apiKey);
 
     //search recipes by ingredient

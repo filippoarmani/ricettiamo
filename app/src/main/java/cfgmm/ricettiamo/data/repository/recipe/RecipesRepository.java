@@ -1,6 +1,7 @@
 package cfgmm.ricettiamo.data.repository.recipe;
 
 import static cfgmm.ricettiamo.util.Constants.ADD_RECIPE_INFORMATIONS;
+import static cfgmm.ricettiamo.util.Constants.ADD_RECIPE_INGREDIENTS;
 import static cfgmm.ricettiamo.util.Constants.NUMBER_OF_ELEMENTS;
 
 import android.app.Application;
@@ -16,6 +17,7 @@ import cfgmm.ricettiamo.data.database.RecipesRoomDatabase;
 import cfgmm.ricettiamo.data.service.RecipeApiService;
 import cfgmm.ricettiamo.data.source.recipe.BaseDatabaseRecipesDataSource;
 import cfgmm.ricettiamo.data.source.recipe.DatabaseRecipesDataSource;
+import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.RecipeApiResponse;
 import cfgmm.ricettiamo.model.Result;
@@ -64,7 +66,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
         // It gets the recipies from the Web Service
         Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipesByName(user_input, NUMBER_OF_ELEMENTS,
-                ADD_RECIPE_INFORMATIONS, application.getString(R.string.recipes_api_key));
+                ADD_RECIPE_INFORMATIONS, ADD_RECIPE_INGREDIENTS, application.getString(R.string.recipes_api_key));
 
         recipeResponseCall.enqueue(new Callback<RecipeApiResponse>() {
             @Override
@@ -93,7 +95,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     }
 
     @Override
-    public void getRecipeIngredients(int id) {
+    public void getRecipeIngredients(int id, Recipe recipe) {
         Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipeIngredients(id,
                 application.getString(R.string.recipes_api_key));
         recipeResponseCall.enqueue(new Callback<RecipeApiResponse>() {
@@ -102,14 +104,12 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
                                    @NonNull Response<RecipeApiResponse> response) {
 
                 if (response.body() != null && response.isSuccessful()) {
-                    List<Recipe> recipesList = response.body().getListRecipes();
-                    /*for (int i = 0; i < recipesList.size(); i++) {
-                        String ingredientsNames = "";
-                        for (int j = 0; j < recipesList.get(i).getIngredientsList().size(); j++)
-                            ingredientsNames += recipesList.get(i).getIngredientsList().get(j).getName() + ", ";
-                        recipesList.get(i).setIngredientsList(null);
-                    }*/
-                    saveDataInDatabase(recipesList);
+                    List<Ingredient> ingredientList = response.body().getListIngredients();
+                    for (int i = 0; i < ingredientList.size(); i++) {
+                        ingredientList.get(i).setQta(0);
+                    }
+                    recipe.setIngredientsList(ingredientList);
+                    //saveDataInDatabase(recipe, ingredientList);
                 } else {
                     recipesResponseCallback.onFailure(application.getString(R.string.error_retrieving_recipe));
                 }
