@@ -20,6 +20,7 @@ public class RecipeViewModel extends ViewModel {
     private List<Recipe> favoriteRecipes;
 
     private MutableLiveData<Result> myRecipes;
+    private MutableLiveData<Result> allRecipes;
     private MutableLiveData<Result> mostRecentRecipe;
     private Result firstRecipe;
 
@@ -97,6 +98,13 @@ public class RecipeViewModel extends ViewModel {
     public MutableLiveData<Result> getMyRecipes(String id) {
         if(myRecipes == null)
             myRecipes = recipesRepository.getMyRecipes(id);
+
+        return myRecipes;
+    }
+
+    public MutableLiveData<Result> getAllRecipes() {
+        if(allRecipes == null)
+            allRecipes = recipesRepository.getAllRecipes();
 
         return myRecipes;
     }

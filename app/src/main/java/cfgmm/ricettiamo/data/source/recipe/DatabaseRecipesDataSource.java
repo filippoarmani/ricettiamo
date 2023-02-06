@@ -1,6 +1,5 @@
 package cfgmm.ricettiamo.data.source.recipe;
 
-import static cfgmm.ricettiamo.util.Constants.FIREBASE_FAVORITE_RECIPES_COLLECTION;
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_REALTIME_DATABASE;
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_RECIPES_COLLECTION;
 
@@ -46,6 +45,29 @@ public class DatabaseRecipesDataSource extends BaseDatabaseRecipesDataSource {
                     recipesResponseCallback.onFailureWriteDatabase(R.string.writeDatabase_error);
                 });
     }*/
+
+    @Override
+    public void getAllRecipes() {
+        List<Recipe> recipes = new ArrayList<>();
+        Query userRecipe = databaseReference.child(FIREBASE_RECIPES_COLLECTION);
+        userRecipe.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot:  dataSnapshot.getChildren()) {
+                    recipes.add(snapshot.getValue(Recipe.class));
+                }
+                Log.d(TAG, "getAllRecipes: success");
+                recipesResponseCallback.onSuccessGetAllRecipes(recipes);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, "getAllRecipes: failure");
+                recipesResponseCallback.onFailureGetAllRecipes(R.string.writeDatabase_error);
+            }
+        });
+    }
 
     @Override
     public void getFirstRecipe(String author) {

@@ -13,6 +13,8 @@ public abstract class BaseDatabaseRecipesDataSource {
 
     //public abstract void writeRecipe(Recipe recipe);
 
+    public abstract void getAllRecipes();
+
     public abstract void getFirstRecipe(String author);
 
     public abstract void getMostRecentRecipe(String author);

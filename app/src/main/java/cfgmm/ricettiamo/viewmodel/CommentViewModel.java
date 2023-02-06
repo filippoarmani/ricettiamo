@@ -17,9 +17,7 @@ public class CommentViewModel extends ViewModel {
     }
 
     public MutableLiveData<Result> getCurrentCommentListLiveData(String idRecipe) {
-        if(currentCommentListLiveData == null) {
-            this.readComment(idRecipe);
-        }
+        this.readComment(idRecipe);
         return currentCommentListLiveData;
     }
 
