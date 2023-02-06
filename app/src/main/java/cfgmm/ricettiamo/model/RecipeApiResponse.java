@@ -14,6 +14,7 @@ public class RecipeApiResponse implements Parcelable {
 
     @SerializedName("results")
     private List<Recipe> listRecipes;
+    @SerializedName("")
     private int totalResults;
 
     public RecipeApiResponse() {}

@@ -22,7 +22,7 @@ import cfgmm.ricettiamo.model.Ingredient;
  * https://developer.android.com/reference/kotlin/androidx/room/Database
  */
 @Database(entities = {Recipe.class, Ingredient.class}, version = DATABASE_VERSION)
-@TypeConverters({IngredientsConverter.class})
+@TypeConverters({DatabaseFieldsConverter.class})
 public abstract class RecipesRoomDatabase extends RoomDatabase {
     public abstract RecipesDao recipesDao();
 

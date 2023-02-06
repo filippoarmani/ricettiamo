@@ -90,6 +90,36 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         });
     }
 
+    @Override
+    public void getRecipeIngredients(int id) {
+        Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipeIngredients(id,
+                application.getString(R.string.recipes_api_key));
+        recipeResponseCall.enqueue(new Callback<RecipeApiResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<RecipeApiResponse> call,
+                                   @NonNull Response<RecipeApiResponse> response) {
+
+                if (response.body() != null && response.isSuccessful()) {
+                    List<Recipe> recipesList = response.body().getListRecipes();
+                    /*for (int i = 0; i < recipesList.size(); i++) {
+                        String ingredientsNames = "";
+                        for (int j = 0; j < recipesList.get(i).getIngredientsList().size(); j++)
+                            ingredientsNames += recipesList.get(i).getIngredientsList().get(j).getName() + ", ";
+                        recipesList.get(i).setIngredientsList(null);
+                    }*/
+                    saveDataInDatabase(recipesList);
+                } else {
+                    recipesResponseCallback.onFailure(application.getString(R.string.error_retrieving_recipe));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<RecipeApiResponse> call, @NonNull Throwable t) {
+                recipesResponseCallback.onFailure(t.getMessage());
+            }
+        });
+    }
+
     /**
      * Marks the favorite recipes as not favorite.
      */

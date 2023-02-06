@@ -72,7 +72,7 @@ public class Step implements Parcelable {
         } else ingredients = null;
         if(in.readByte() == 0x01) {
             equipment = new ArrayList<Equipment>();
-            in.readList(equipment, Ingredient.class.getClassLoader());
+            in.readList(equipment, Equipment.class.getClassLoader());
         } else equipment = null;
     }
 
@@ -88,7 +88,8 @@ public class Step implements Parcelable {
         } else {
             dest.writeByte((byte) (0x01));
             dest.writeList(Collections.singletonList(ingredients));
-        }if (equipment == null) {
+        }
+        if (equipment == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));

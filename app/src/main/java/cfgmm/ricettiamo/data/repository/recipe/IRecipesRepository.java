@@ -17,6 +17,7 @@ public interface IRecipesRepository {
     };*/
 
     void getRecipes(String user_input);
+    void getRecipeIngredients(int idRecipe);
 
     void updateRecipes(Recipe recipe);
 

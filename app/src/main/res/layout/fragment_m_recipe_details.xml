@@ -114,6 +114,7 @@
         <!--preparazione-->
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ingredients_recipe_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="15dp"/>
@@ -146,7 +147,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_margin="15dp">
+            android:layout_margin="15dp"
+            android:baselineAligned="false">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/addRewiewText_layout"

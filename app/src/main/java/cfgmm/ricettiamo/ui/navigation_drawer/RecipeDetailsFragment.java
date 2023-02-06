@@ -30,8 +30,10 @@ import cfgmm.ricettiamo.data.repository.comment.ICommentRepository;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentMRecipeDetailsBinding;
 import cfgmm.ricettiamo.model.Comment;
+import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.model.Step;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.CommentViewModel;
 import cfgmm.ricettiamo.viewmodel.CommentViewModelFactory;
@@ -49,24 +51,20 @@ public class RecipeDetailsFragment extends Fragment {
 
     private FragmentMRecipeDetailsBinding fragmentRecipeDetailsBinding;
     private CommentAdapter adapter;
-
     private UserViewModel userViewModel;
     private CommentViewModel commentViewModel;
     private List<Comment> comments;
+    private List<Ingredient> ingredients;
+    private List<Step> steps;
 
-    public RecipeDetailsFragment() {
-        // Required empty public constructor
-    }
+    public RecipeDetailsFragment() {}
 
     /**
      * Use this factory method to create a new instance of
      * this fragment.
-     *
-     * @return A new instance of fragment NewsDetailFragment.
+     * @return A new instance of fragment RecipeDetailFragment.
      */
-    public static RecipeDetailsFragment newInstance() {
-        return new RecipeDetailsFragment();
-    }
+    public static RecipeDetailsFragment newInstance() {  return new RecipeDetailsFragment(); }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
