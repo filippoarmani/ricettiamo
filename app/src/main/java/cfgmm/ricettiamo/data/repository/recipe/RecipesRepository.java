@@ -4,7 +4,6 @@ import static cfgmm.ricettiamo.util.Constants.ADD_RECIPE_INFORMATIONS;
 import static cfgmm.ricettiamo.util.Constants.NUMBER_OF_ELEMENTS;
 
 import android.app.Application;
-import android.graphics.Bitmap;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
