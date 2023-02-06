@@ -20,12 +20,41 @@ public class DatabaseFieldsConverter {
         return new Gson().fromJson(value, Ingredient);*/
 
         List<Ingredient> ingredientList = new ArrayList<>();
+        String temp = "";
+        //int id = 0;
         String name = "";
+        float qta = 0;
+        int parameter = 1; //1 --> name, 2 --> qta, 3 --> size
+        String size = "";
         for (int i = 0; i < value.length(); i++) {
-            if (value.charAt(i) == ',') {
+            while (value.charAt(i) != ';' && value.charAt(i) != ',') {
+                temp += value.charAt(i);
+                i++;
+            }
+            if (value.charAt(i) == ';') {
                 i += 1;
-                Ingredient ingredient = new Ingredient(name, 0, null);
+                Ingredient ingredient = new Ingredient(name, qta, size);
                 ingredientList.add(ingredient);
+                temp = "";
+                parameter = 1;
+            /*} if (value.charAt(i) == '.') {
+                i += 1;
+                id = Integer.parseInt(temp);
+                temp = "";*/
+            } if (value.charAt(i) == ',') {
+                if (parameter == 1) {
+                    name = temp;
+                    temp = "";
+                    parameter++;
+                }
+                else if (parameter == 2) {
+                    qta = Float.parseFloat(temp);
+                    temp = "";
+                    parameter++;
+                } else {
+                    size = temp;
+                    temp = "";
+                }
             } else {
                 name += value.charAt(i);
             }
@@ -42,7 +71,11 @@ public class DatabaseFieldsConverter {
         String ingredientsString = "";
         if (value != null) {
             for (int i = 0; i < value.size(); i++) {
-                ingredientsString += value.get(i).getId() + ". " + value.get(i).getName() + ", ";
+                ingredientsString += /*value.get(i).getId() + ". " + */value.get(i).getName() + ", " +
+                value.get(i).getQta() + ", ";
+                if (value.get(i).getSize().equals("")) {
+                    ingredientsString += "number" + "; ";
+                } else ingredientsString += value.get(i).getSize() + "; ";
             }
         }
         return ingredientsString;
@@ -69,7 +102,7 @@ public class DatabaseFieldsConverter {
                 i += 1;
                 number += 1;
             } else {
-                description += value.charAt(i);
+                description = "";
             }
         }
         return stepsAnalyzes;
@@ -108,7 +141,7 @@ public class DatabaseFieldsConverter {
                 i += 1;
                 dishTypesList.add(string);
             } else {
-                string += value.charAt(i);
+                string = "";
             }
         }
         return dishTypesList;

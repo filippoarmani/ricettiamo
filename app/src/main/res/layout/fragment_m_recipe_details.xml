@@ -114,7 +114,7 @@
         <!--preparazione-->
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ingredients_recipe_detail"
+            android:id="@+id/recyclerview_ingredients_recipe_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="15dp"/>

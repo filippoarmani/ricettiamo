@@ -88,11 +88,6 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
                 new SearchRecipesAdapter.OnItemClickListener() {
                     @Override
                     public void onRecipeItemClick(Recipe recipe) {
-                        Snackbar.make(view, recipe.getName(), Snackbar.LENGTH_SHORT).show();
-
-                        /*todo: query per aggiungere gli ingredienti. per la conversione ci dovrebbe
-                           essere il codice funzionante commentato in recipeApiResponse (da spostare
-                            nel metodo corretto*/
                         SearchRecipesFragmentDirections.ActionSearchRecipesToRecipeDetailsFragment action =
                                 SearchRecipesFragmentDirections.actionSearchRecipesToRecipeDetailsFragment(recipe);
                         Navigation.findNavController(view).navigate((NavDirections) action);

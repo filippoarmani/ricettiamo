@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.CommentAdapter;
+import cfgmm.ricettiamo.adapter.IngredientDetailRecipesRecyclerAdapter;
 import cfgmm.ricettiamo.adapter.IngredientsRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.comment.ICommentRepository;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
@@ -54,6 +56,7 @@ public class RecipeDetailsFragment extends Fragment {
     private UserViewModel userViewModel;
     private CommentViewModel commentViewModel;
     private List<Comment> comments;
+    private IngredientDetailRecipesRecyclerAdapter ingredientDetailRecipesRecyclerAdapter;
     private List<Ingredient> ingredients;
     private List<Step> steps;
 
@@ -97,6 +100,16 @@ public class RecipeDetailsFragment extends Fragment {
         assert getArguments() != null;
         Recipe recipe = RecipeDetailsFragmentArgs.fromBundle(getArguments()).getRecipe();
         this.comments = new ArrayList<>();
+
+        RecyclerView recyclerviewDetailRecipeIngredients = view.findViewById(R.id.recyclerview_ingredients_recipe_detail);
+        LinearLayoutManager layoutManager =
+                new LinearLayoutManager(requireContext(),
+                        LinearLayoutManager.VERTICAL, false);
+        ingredientDetailRecipesRecyclerAdapter = new IngredientDetailRecipesRecyclerAdapter(recipe.getIngredientsList(),
+                requireActivity().getApplication());
+
+        recyclerviewDetailRecipeIngredients.setLayoutManager(layoutManager);
+        recyclerviewDetailRecipeIngredients.setAdapter(ingredientDetailRecipesRecyclerAdapter);
         //commentViewModel.readComment("" + recipe.getId());
 
         Glide.with(fragmentRecipeDetailsBinding.imageRecipe.getContext()).

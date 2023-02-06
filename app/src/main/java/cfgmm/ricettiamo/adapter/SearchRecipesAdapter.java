@@ -43,7 +43,6 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        // Create a new view, which defines the UI of the list item
         View view = null;
 
         view = LayoutInflater.from(parent.getContext()).
