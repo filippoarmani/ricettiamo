@@ -91,6 +91,7 @@ public class RecipesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             setImageViewFavoriteRecipes(recipeList.get(getAbsoluteAdapterPosition()).isFavorite());
             Glide.with(application)
                     .load(recipe.getUrlToImage())
+                    .centerCrop()
                     .placeholder(R.drawable.ic_add)
                     .into(imageViewRecipeImage);
         }
