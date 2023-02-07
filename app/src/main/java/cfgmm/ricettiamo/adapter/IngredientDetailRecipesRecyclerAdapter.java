@@ -16,7 +16,7 @@ import cfgmm.ricettiamo.model.Ingredient;
 
 public class IngredientDetailRecipesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Ingredient> ingredientList;
+    private final List<Ingredient> ingredientList;
     private final Application application;
 
     public IngredientDetailRecipesRecyclerAdapter(List<Ingredient> ingredientList, Application application) {
@@ -27,9 +27,7 @@ public class IngredientDetailRecipesRecyclerAdapter extends RecyclerView.Adapter
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = null;
-
-        view = LayoutInflater.from(parent.getContext()).
+        View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.template_ingredient_detail_recipe, parent, false);
         return new RecipeDetailIngredientsViewHolder(view);
     }

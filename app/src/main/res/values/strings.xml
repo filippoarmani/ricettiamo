@@ -60,11 +60,11 @@
 
     <!--fridge/Shopping List-->
     <string-array name="qta_array">
-        <item>gr</item>
-        <item>kg</item>
-        <item>pz</item>
-        <item>ml</item>
-        <item>l</item>
+        <item>teaspoons</item>
+        <item>tablespoons</item>
+        <item>ounces</item>
+        <item>cups</item>
+        <item>unit</item>
     </string-array>
     <string name="profile">Profile</string>
     <string name="product_name">Ingredient</string>
@@ -80,14 +80,8 @@
     <string name="informations">Difficolty: Easy \nPrep time: 15min \nCost: Low \nServing: 4 ppl.</string>
     <string name="ingredients">Ingredients</string>
     <string name="ingredient_1" translatable="false">Spaghetti 320g</string>
-    <string name="ingredient_2">Egg yolks 6</string>
-    <string name="ingredient_3">Black pepper to taste</string>
-    <string name="ingredient_4" translatable="false">Guanciale 150g</string>
-    <string name="ingredient_5">Pecorino romano cheese 50g</string>
     <string name="preparation">Preparation</string>
     <string name="prep_1">To prepare spaghetti alla carbonara, start by putting a saucepan with salted water on the stove to cook the pasta.  In the meantime, remove the rind from the bacon and cut it first into slices and then into strips about 1cm thick. The leftover rind can be reused to flavor other preparations. Pour the pieces of guanciale into a non-stick pan and brown for about 10 minutes over medium-high heat, be careful not to burn it otherwise it will release too strong an aroma.</string>
-    <string name="prep_2">In the meantime, plunge the spaghetti into boiling water and cook them al dente. Meanwhile, pour the egg yolks into a bowl. Add the Pecorino romano cheese and season with black pepper. Mix everything with a hand whisk, until you get a smooth cream.</string>
-    <string name="prep_3">Meanwhile the guanciale will be cooked; turn off the heat and using a ladle remove it from the pan, leaving the cooking liquid inside the pan itself. Transfer the guanciale to a bowl and set aside. \n\nPour a ladle of water from the pasta into the pan, together with the bacon fat. Drain the pasta al dente directly into the pan with the cooking liquid. Skip it briefly to flavor it. Remove from the heat and pour the egg and Pecorino mixture into the pan. Stir quickly to mix. To make it creamy, if necessary, you can add a little cooking water from the pasta. \n\nAdd the guanciale, mix one last time and serve the spaghetti alla carbonara immediately, adding more pecorino on the surface and a pinch of black pepper.</string>
     <string name="tip_1">Tip</string>
     <string name="tip_2">The guanciale must not be browned too much, otherwise it could release a bitter taste. It is also good to add the guanciale only at the end to maintain its crunchiness. \n\nTo avoid the omelette effect, it is important to add the yolk mixture only when the heat is off. Creaming is an important step, you have to mix until the cream has thickened. And you can adjust the consistency by adding pasta cooking water. \n\nYou can use half a dose of Pecorino romano cheese and half a dose of Parmesan for a more delicate version.</string>
     <string name="review">Your reviews</string>
@@ -154,6 +148,7 @@
     <!-- top -->
     <string name="top_10_chef">Top 10 Chefs</string>
     <string name="recipes_api_key" translatable="false">02817c2dcd744b73bb0cd25814f1bce9</string>
+    <!--<string name="recipes_api_key" translatable="false">02817c2dcd744b73bb0cd25814f1bce9</string>-->
 
     <!-- Example of a description with all the 250 characters -->
     <string name="character250" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac risus in augue fringilla vestibulum. Suspendisse tempor sem quis tortor blandit aliquam. Pellentesque vulputate lorem in dui aliquet, eu tincidunt mi finibus. Morbi bibendum fusce.</string>

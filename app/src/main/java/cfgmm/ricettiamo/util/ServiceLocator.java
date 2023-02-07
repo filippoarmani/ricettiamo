@@ -2,26 +2,14 @@ package cfgmm.ricettiamo.util;
 
 import android.app.Application;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
-
-import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.database.RecipesRoomDatabase;
 import cfgmm.ricettiamo.data.repository.comment.CommentRepository;
 import cfgmm.ricettiamo.data.repository.comment.ICommentRepository;
-import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
-import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.data.repository.user.UserRepository;
 import cfgmm.ricettiamo.data.service.RecipeApiService;
 import cfgmm.ricettiamo.data.source.comment.BaseCommentDatabaseDataSource;
 import cfgmm.ricettiamo.data.source.comment.CommentDatabaseDataSource;
-import cfgmm.ricettiamo.data.source.recipe.BaseFavoriteRecipesDataSource;
-import cfgmm.ricettiamo.data.source.recipe.BaseRecipesLocalDataSource;
-import cfgmm.ricettiamo.data.source.recipe.BaseRecipesRemoteDataSource;
-import cfgmm.ricettiamo.data.source.recipe.FavoriteRecipesDataSource;
-import cfgmm.ricettiamo.data.source.recipe.RecipesLocalDataSource;
-import cfgmm.ricettiamo.data.source.recipe.RecipesRemoteDataSource;
 import cfgmm.ricettiamo.data.source.user.BaseDatabaseDataSource;
 import cfgmm.ricettiamo.data.source.user.BaseFirebaseAuthDataSource;
 import cfgmm.ricettiamo.data.source.user.DatabaseDataSource;
@@ -72,37 +60,6 @@ public class ServiceLocator {
     public RecipesRoomDatabase getRecipesDao(Application application) {
         return RecipesRoomDatabase.getDatabase(application);
     }
-
-    /**
-     * Returns an instance of INewsRepositoryWithLiveData.
-     * @param application Param for accessing the global application state.
-     * @param debugMode Param to establish if the application is run in debug mode.
-     * @return An instance of INewsRepositoryWithLiveData.
-     */
-    /*public IRecipesRepository getRecipeRepository(Application application, boolean debugMode) {
-        BaseRecipesRemoteDataSource recipesRemoteDataSource;
-        BaseRecipesLocalDataSource recipesLocalDataSource;
-        BaseFavoriteRecipesDataSource favoriteRecipesDataSource;
-        //SharedPreferencesUtil sharedPreferencesUtil = new SharedPreferencesUtil(application);
-        //DataEncryptionUtil dataEncryptionUtil = new DataEncryptionUtil(application);
-
-        recipesRemoteDataSource = new RecipesRemoteDataSource(application.getString(R.string.recipes_api_key));
-
-        recipesLocalDataSource = new RecipesLocalDataSource(getRecipesDao(application)/*,
-                sharedPreferencesUtil, dataEncryptionUtil*//*);
-        favoriteRecipesDataSource = new FavoriteRecipesDataSource(application.getString(R.string.toDo));*/
-        /*try {
-            favoriteRecipesDataSource = new FavoriteRecipesDataSource(application.getString(R.string.toDo)
-                    dataEncryptionUtil.
-                    readSecretDataWithEncryptedSharedPreferences(
-                            ENCRYPTED_SHARED_PREFERENCES_FILE_NAME, ID_TOKEN)
-            );
-        } catch (GeneralSecurityException | IOException e) {
-            return null;
-        }*/
-
-        /*return new RecipesRepository(application, recipesRemoteDataSource, favoriteRecipesDataSource);
-    }*/
 
     /**
      * Creates an instance of IUserRepository.

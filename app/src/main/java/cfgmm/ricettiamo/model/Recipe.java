@@ -9,17 +9,13 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import cfgmm.ricettiamo.R;
 
 @Entity
 public class Recipe implements Parcelable {
@@ -36,7 +32,6 @@ public class Recipe implements Parcelable {
     private float cost;
     @SerializedName("readyInMinutes")
     private int prepTime;
-    //@Ignore
     @SerializedName("missedIngredients")
     private List<Ingredient> ingredientsList;
     private String date;
@@ -55,18 +50,6 @@ public class Recipe implements Parcelable {
                   List<Ingredient> ingredientsList, String date, List<String> dishTypes,
                   String urlToImage, boolean isFavorite, List<StepsAnalyze> steps) {
         this(0, author, name, score, servings, cost, prepTime, ingredientsList, date, dishTypes, urlToImage, isFavorite, steps);
-        //this.author = author;
-        //this.name = name;
-        //this.score = score;
-        //this.servings = servings;
-        //this.cost = cost;
-        //this.prepTime = prepTime;
-        //this.ingredientsList = ingredientsList;
-        //this.date = date;
-        //this.dishTypes = dishTypes;
-        //this.urlToImage = urlToImage;
-        //this.isFavorite = isFavorite;
-        //this.steps = steps;
     }
 
     @Ignore
@@ -184,18 +167,18 @@ public class Recipe implements Parcelable {
         cost = in.readFloat();
         prepTime = in.readInt();
         if(in.readByte() == 0x01) {
-            ingredientsList = new ArrayList<Ingredient>();
+            ingredientsList = new ArrayList<>();
             in.readList(ingredientsList, Ingredient.class.getClassLoader());
         } else ingredientsList = null;
         date = in.readString();
         if(in.readByte() == 0x01) {
-            dishTypes = new ArrayList<String>();
+            dishTypes = new ArrayList<>();
             in.readList(dishTypes, String.class.getClassLoader());
         } else dishTypes = null;
         urlToImage = in.readString();
         isFavorite = in.readByte() != 0;
         if(in.readByte() == 0x01) {
-            steps = new ArrayList<StepsAnalyze>();
+            steps = new ArrayList<>();
             in.readList(steps, StepsAnalyze.class.getClassLoader());
         } else steps = null;
     }

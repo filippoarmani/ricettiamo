@@ -22,33 +22,21 @@ public class Ingredient implements Parcelable {
     private float qta;
     @SerializedName("unit")
     private String size;
-    //opzionale
-    /*@SerializedName("image")
-    private String urlToImage;*/
 
     public Ingredient() {}
 
     @Ignore
     public Ingredient(String name, float qta, String size/*, String urlToImage*/) {
         this(0, name, qta, size);
-        //this.name = name;
-        //this.qta = qta;
-        //this.size = size;
-        //this.urlToImage = urlToImage;
     }
 
     @Ignore
-    public Ingredient(long id, String name, float qta, String size/*, String urlToImage*/) {
+    public Ingredient(long id, String name, float qta, String size) {
         this.id = id;
         this.name = name;
         this.qta = qta;
         this.size = size;
     }
-
-    /*@Ignore
-    public Ingredient(String name, float qta, String size) {
-        this(name, qta, size, null);
-    }*/
 
     public static final Creator<Ingredient> CREATOR = new Creator<Ingredient>() {
         @Override
@@ -88,14 +76,6 @@ public class Ingredient implements Parcelable {
 
     public void setQta(float qta) { this.qta = qta; }
 
-    /*public String getUrlToImage() {
-        return urlToImage;
-    }
-
-    public void setUrlToImage(String urlToImage) {
-        this.urlToImage = urlToImage;
-    }*/
-
     @Override
     public String toString() {
         return "Ingredient{" +
@@ -103,7 +83,6 @@ public class Ingredient implements Parcelable {
                 ", nome='" + name + '\'' +
                 ", qta='" + qta + '\'' +
                 ", size='" + size + '\'' +
-                //", urlToImage='" + urlToImage + '\'' +
                 '}';
     }
 
@@ -112,7 +91,6 @@ public class Ingredient implements Parcelable {
         this.name = in.readString();
         this.qta = in.readFloat();
         this.size = in.readString();
-        //this.urlToImage = in.readString();
     }
 
     @Override
@@ -126,7 +104,6 @@ public class Ingredient implements Parcelable {
         dest.writeString(this.name);
         dest.writeFloat(this.qta);
         dest.writeString(this.size);
-        //dest.writeString(this.urlToImage);
     }
 
     public Map<String, Object> toMap() {
@@ -136,7 +113,6 @@ public class Ingredient implements Parcelable {
         data.put("name", name);
         data.put("qta", qta);
         data.put("size", size);
-        //data.put("urlToImage", urlToImage);
 
         return data;
     }

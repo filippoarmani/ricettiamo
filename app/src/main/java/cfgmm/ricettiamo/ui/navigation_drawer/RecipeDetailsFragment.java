@@ -25,14 +25,13 @@ import java.util.List;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.CommentAdapter;
 import cfgmm.ricettiamo.adapter.IngredientDetailRecipesRecyclerAdapter;
-import cfgmm.ricettiamo.adapter.StepsDetailRecipeRecyclerAdapter;
+import cfgmm.ricettiamo.adapter.StepsRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.comment.ICommentRepository;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentMRecipeDetailsBinding;
 import cfgmm.ricettiamo.model.Comment;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
-import cfgmm.ricettiamo.model.Step;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.CommentViewModel;
 import cfgmm.ricettiamo.viewmodel.CommentViewModelFactory;
@@ -54,7 +53,7 @@ public class RecipeDetailsFragment extends Fragment {
     private CommentViewModel commentViewModel;
     private List<Comment> comments;
     private IngredientDetailRecipesRecyclerAdapter ingredientDetailRecipesRecyclerAdapter;
-    private StepsDetailRecipeRecyclerAdapter stepsDetailRecipeRecyclerAdapter;
+    private StepsRecyclerAdapter stepsRecyclerAdapter;
 
     public RecipeDetailsFragment() {}
 
@@ -115,12 +114,12 @@ public class RecipeDetailsFragment extends Fragment {
         for (int i = 0; i < recipe.getSteps().size(); i++) {
             if (recipe.getSteps().get(i).getName().equals("")) stepAnalyzeNumber = i;
         }
-        stepsDetailRecipeRecyclerAdapter =
-                new StepsDetailRecipeRecyclerAdapter(recipe.getSteps().get(stepAnalyzeNumber).getSteps(),
+        stepsRecyclerAdapter =
+                new StepsRecyclerAdapter(recipe.getSteps().get(stepAnalyzeNumber).getSteps(),
                 requireActivity().getApplication());
 
         recyclerviewDetailRecipesteps.setLayoutManager(layoutManagersteps);
-        recyclerviewDetailRecipesteps.setAdapter(stepsDetailRecipeRecyclerAdapter);
+        recyclerviewDetailRecipesteps.setAdapter(stepsRecyclerAdapter);
 
 
         //commentViewModel.readComment("" + recipe.getId());

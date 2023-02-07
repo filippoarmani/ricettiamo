@@ -28,7 +28,7 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
         void onRecipeItemClick(Recipe recipe);
         void onFavoriteButtonPressed(int position);
     }
-    private List<Recipe> recipeList;
+    private final List<Recipe> recipeList;
     private final Application application;
     private final OnItemClickListener onItemClickListener;
 
@@ -43,9 +43,7 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = null;
-
-        view = LayoutInflater.from(parent.getContext()).
+        View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.template_recipe, parent, false);
         return new RecipeViewHolder(view);
     }
@@ -121,17 +119,4 @@ public class SearchRecipesAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
         }
     }
-
-    /*public static class LoadingRecipesViewHolder extends RecyclerView.ViewHolder {
-        private final ProgressBar progressBar;
-
-        LoadingRecipesViewHolder(View view) {
-            super(view);
-            progressBar = view.findViewById(R.id.progressbar_loading_recipes);
-        }
-
-        public void activate() {
-            progressBar.setIndeterminate(true);
-        }
-    }*/
 }

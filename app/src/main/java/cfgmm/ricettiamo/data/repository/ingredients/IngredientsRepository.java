@@ -4,8 +4,6 @@ import static cfgmm.ricettiamo.util.Constants.INGREDIENTS_API_TEST_JSON_FILE;
 
 import android.app.Application;
 
-import org.json.JSONException;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -39,20 +37,6 @@ public class IngredientsRepository implements IIngredientsRepository{
         JSONParserUtil jsonParserUtil = new JSONParserUtil(application);
 
         switch (jsonParserType) {
-            case JSON_READER:
-                try {
-                    ingredientApiResponse = jsonParserUtil.parseJSONFileWithJsonReaderIngredients(INGREDIENTS_API_TEST_JSON_FILE);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case JSON_OBJECT_ARRAY:
-                try {
-                    ingredientApiResponse = jsonParserUtil.parseJSONFileWithJSONObjectArrayIngredients(INGREDIENTS_API_TEST_JSON_FILE);
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
-                }
-                break;
             case GSON:
                 try {
                     ingredientApiResponse = jsonParserUtil.parseJSONFileWithGSonIngredients(INGREDIENTS_API_TEST_JSON_FILE);
@@ -70,11 +54,6 @@ public class IngredientsRepository implements IIngredientsRepository{
         } else {
             ingredientsResponseCallback.onFailure(application.getString(R.string.error_retrieving_ingredient));
         }
-    }
-
-    @Override
-    public void getIngredientById(int id) {
-        //todo
     }
 
     private void saveDataInDatabase(List<Ingredient> ingredientList) {

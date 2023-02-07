@@ -43,18 +43,6 @@ public interface    RecipeApiService {
             @Query(RECIPE_PARAMETER) String name,
             @Header("x-api-key") String apiKey);
 
-    //get ingredient informations
-    /*@GET("food/ingredients/{idIngredient}/informations")
-    Call<RecipeApiResponse> getIngredientById(
-            @Path("idIngredient") int idIngredient,
-            @Header("x-api-key") String apiKey);*/
-
-    //get recipe steps --> non dovrebbe servire perchè si recuperano dalla query get recipes
-    /*@GET("recipes/{idRecipe}/analyzedInstructions")
-    Call<RecipeApiResponse> getRecipeSteps(
-            @Path("idRecipe") int idRecipe,
-            @Header("x-api-key") String apiKey);*/
-
     //get recipe ingredients
     @GET("recipes/{idRecipe}/ingredientWidget.json")
     Call<RecipeApiResponse> getRecipeIngredients(

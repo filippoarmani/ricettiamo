@@ -2,10 +2,6 @@ package cfgmm.ricettiamo.data.database;
 
 import androidx.room.TypeConverter;
 
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +12,6 @@ import cfgmm.ricettiamo.model.StepsAnalyze;
 public class DatabaseFieldsConverter {
     @TypeConverter
     public List<Ingredient> IngredientToList(String value) {
-        /*Type Ingredient = new TypeToken<ArrayList<String>>() {}.getType();
-        return new Gson().fromJson(value, Ingredient);*/
 
         List<Ingredient> ingredientList = new ArrayList<>();
         String temp = "";
@@ -64,9 +58,6 @@ public class DatabaseFieldsConverter {
 
     @TypeConverter
     public String IngredientToString(List<Ingredient> value) {
-        /*Gson gson = new Gson();
-        Ingredient json = gson.toJson(value);
-        return json;*/
 
         String ingredientsString = "";
         if (value != null) {
@@ -74,7 +65,7 @@ public class DatabaseFieldsConverter {
                 ingredientsString += /*value.get(i).getId() + ". " + */value.get(i).getName() + ", " +
                 value.get(i).getQta() + ", ";
                 if (value.get(i).getSize().equals("")) {
-                    ingredientsString += "number" + "; ";
+                    ingredientsString += "unit" + "; ";
                 } else ingredientsString += value.get(i).getSize() + "; ";
             }
         }
@@ -84,8 +75,6 @@ public class DatabaseFieldsConverter {
 
     @TypeConverter
     public List<StepsAnalyze> StepToList(String value) {
-        /*Type StepsAnalyze = new TypeToken<ArrayList<String>>() {}.getType();
-        return new Gson().fromJson(value, StepsAnalyze);*/
 
         List<StepsAnalyze> stepsAnalyzes = new ArrayList<>();
         List<Step> steps = new ArrayList<>();
@@ -110,9 +99,6 @@ public class DatabaseFieldsConverter {
 
     @TypeConverter
     public String StepToString(List<StepsAnalyze> value) {
-        /*Gson gson = new Gson();
-        StepsAnalyze json = gson.toJson(value);
-        return json;*/
 
         String stepString = "";
         if (value != null) {
@@ -131,8 +117,6 @@ public class DatabaseFieldsConverter {
 
     @TypeConverter
     public List<String> DishtypesToList(String value) {
-        /*Type String = new TypeToken<ArrayList<String>>() {}.getType();
-        return new Gson().fromJson(value, String);*/
 
         List<String> dishTypesList = new ArrayList<>();
         String string = "";
@@ -149,10 +133,6 @@ public class DatabaseFieldsConverter {
 
     @TypeConverter
     public String DishTypesToString(List<String> value) {
-        /*Gson gson = new Gson();
-        String json = gson.toJson(value);
-        return json;*/
-
         String dishTypesString = "";
         if (value != null) {
             for (int i = 0; i < value.size(); i++) {

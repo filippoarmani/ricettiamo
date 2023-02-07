@@ -1,18 +1,12 @@
 package cfgmm.ricettiamo.model;
 
-import android.media.audiofx.DynamicsProcessing;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
-import androidx.room.Ignore;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Step implements Parcelable {

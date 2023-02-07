@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import com.google.firebase.database.DataSnapshot;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -55,7 +53,7 @@ public class StepsAnalyze implements Parcelable {
     protected StepsAnalyze(Parcel in) {
         this.name = in.readString();
         if(in.readByte() == 0x01) {
-            steps = new ArrayList<Step>();
+            steps = new ArrayList<>();
             in.readList(steps, Step.class.getClassLoader());
         } else steps = null;
     }

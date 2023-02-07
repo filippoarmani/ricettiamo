@@ -7,19 +7,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Step;
 
-public class StepsDetailRecipeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class StepsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Step> steps;
+    private View view;
+    private final List<Step> steps;
     private final Application application;
 
-    public StepsDetailRecipeRecyclerAdapter(List<Step> steps, Application application) {
+    public StepsRecyclerAdapter(List<Step> steps, Application application) {
         this.steps = steps;
         this.application = application;
     }
@@ -27,7 +31,6 @@ public class StepsDetailRecipeRecyclerAdapter extends RecyclerView.Adapter<Recyc
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = null;
 
         view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.template_step, parent, false);
@@ -36,8 +39,8 @@ public class StepsDetailRecipeRecyclerAdapter extends RecyclerView.Adapter<Recyc
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof StepsDetailRecipeRecyclerAdapter.RecipeDetailStepsViewHolder) {
-            ((StepsDetailRecipeRecyclerAdapter.RecipeDetailStepsViewHolder) holder).bind(steps.get(position));
+        if (holder instanceof StepsRecyclerAdapter.RecipeDetailStepsViewHolder) {
+            ((StepsRecyclerAdapter.RecipeDetailStepsViewHolder) holder).bind(steps.get(position));
         }
     }
 
@@ -64,5 +67,30 @@ public class StepsDetailRecipeRecyclerAdapter extends RecyclerView.Adapter<Recyc
             textViewNumber.setText(String.valueOf(step.getNumber()));
             textViewDescription.setText(step.getDescription());
         }
+    }
+
+    public ItemTouchHelper getItemTouchHelper() {
+        return new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull
+            RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                Step deleteItem = steps.get(viewHolder.getBindingAdapterPosition());
+
+                int position = viewHolder.getBindingAdapterPosition();
+                steps.remove(position);
+                notifyItemRemoved(position);
+
+                Snackbar.make(view, "UNDO", Snackbar.LENGTH_SHORT).
+                        setAction("UNDO", v -> {
+                            steps.add(position,deleteItem);
+                            notifyItemInserted(position);
+                        }).show();
+            }
+        });
     }
 }

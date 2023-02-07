@@ -90,7 +90,7 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
                     public void onRecipeItemClick(Recipe recipe) {
                         SearchRecipesFragmentDirections.ActionSearchRecipesToRecipeDetailsFragment action =
                                 SearchRecipesFragmentDirections.actionSearchRecipesToRecipeDetailsFragment(recipe);
-                        Navigation.findNavController(view).navigate((NavDirections) action);
+                        Navigation.findNavController(view).navigate(action);
                     }
 
                     @Override
@@ -103,19 +103,6 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
         recyclerviewSearchRecipes.setAdapter(searchRecipesAdapter);
     }
 
-    /**
-     * Checks if the device is connected to Internet.
-     * See: https://developer.android.com/training/monitoring-device-state/connectivity-status-type#DetermineConnection
-     * @return true if the device is connected to Internet; false otherwise.
-     */
-    /*private boolean isConnected() {
-        ConnectivityManager cm =
-                (ConnectivityManager)requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-    }*/
-
     @Override
     public void onSuccess(List<Recipe> recipesList) {
         if (recipesList != null) {
@@ -123,13 +110,7 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
             this.recipeList.addAll(recipesList);
         }
 
-        requireActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                searchRecipesAdapter.notifyDataSetChanged();
-                //progressBar.setVisibility(View.GONE);
-            }
-        });
+        requireActivity().runOnUiThread(() -> searchRecipesAdapter.notifyDataSetChanged());
     }
 
     @Override

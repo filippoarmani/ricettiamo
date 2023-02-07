@@ -3,14 +3,11 @@ package cfgmm.ricettiamo.ui.navigation_drawer;
 import static android.text.TextUtils.isEmpty;
 import static cfgmm.ricettiamo.util.Constants.IMAGE;
 
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultCallback;
@@ -34,7 +31,7 @@ import java.util.Locale;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.IngredientsRecyclerAdapter;
-import cfgmm.ricettiamo.adapter.StepAdapter;
+import cfgmm.ricettiamo.adapter.StepsRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
@@ -57,13 +54,13 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
 
     private FragmentMAddNewRecipeBinding binding;
     private IngredientsRecyclerAdapter adapterIngredient;
-    private StepAdapter stepAdapter;
+    private StepsRecyclerAdapter stepsRecyclerAdapter;
     private UserViewModel userViewModel;
     private RecipeViewModel recipeViewModel;
 
     private Uri mainPicture;
     private List<Ingredient> ingredientList;
-    private List<String> stepList;
+    private List<Step> stepList;
     private String title;
     private String difficulty;
     private String cost;
@@ -72,6 +69,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
     private String category;
     private String author;
     private long id;
+    private int stepNumber;
 
     public AddNewRecipeFragment() {
         // Required empty public constructor
@@ -133,9 +131,9 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
 
         //step adapter
         binding.stepRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,  false));
-        stepAdapter = new StepAdapter(requireView(), stepList);
-        binding.stepRecyclerView.setAdapter(stepAdapter);
-        stepAdapter.getItemTouchHelper().attachToRecyclerView(binding.stepRecyclerView);
+        stepsRecyclerAdapter = new StepsRecyclerAdapter(stepList, requireActivity().getApplication());
+        binding.stepRecyclerView.setAdapter(stepsRecyclerAdapter);
+        stepsRecyclerAdapter.getItemTouchHelper().attachToRecyclerView(binding.stepRecyclerView);
 
         recipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), result -> {
             if(result != null && result.isSuccess()) {
@@ -143,9 +141,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
             }
         });
 
-        binding.addMainPicture.setOnClickListener(v -> {
-            mainPictureActivity.launch(IMAGE);
-        });
+        binding.addMainPicture.setOnClickListener(v -> mainPictureActivity.launch(IMAGE));
 
         binding.addIngredientButton.setOnClickListener(v -> {
             String nameIngredient = binding.addIngredientLayout.getEditText().getText().toString().trim();
@@ -168,19 +164,12 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
         });
 
         binding.addStepButton.setOnClickListener(v -> {
-            String step = binding.addStepLayout.getEditText().getText().toString().trim();
-
-            if(!isEmpty(step)) {
+            String stepDescription = binding.addStepLayout.getEditText().getText().toString().trim();
+            stepNumber++;
+            Step step = new Step(stepNumber, stepDescription);
+            if(!isEmpty(stepDescription)) {
                 stepList.add(step);
-                stepAdapter.notifyItemInserted(stepList.size()-1);
-
-                int idStep;
-                if(list.size() > 0)
-                    idStep = list.get(list.size() - 1).getNumber() +1;
-                else
-                    idStep = 0;
-
-                list.add(new Step(idStep, step));
+                stepsRecyclerAdapter.notifyItemInserted(stepList.size()-1);
             } else {
                 binding.addStepLayout.setError(getString(R.string.empty_fields));
             }
@@ -218,6 +207,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
                             false,
                             stepsAnalyzes
                     );
+                    stepNumber = 0;
 
                     MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(requireActivity());
 
