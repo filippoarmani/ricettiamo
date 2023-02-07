@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +26,6 @@ import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
 import cfgmm.ricettiamo.databinding.FragmentMSearchRecipesBinding;
 import cfgmm.ricettiamo.model.Recipe;
-import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 
 public class SearchRecipesFragment extends Fragment implements RecipesResponseCallback {
 
@@ -39,7 +37,6 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
     private IRecipesRepository iRecipesRepository;
     private
     String search;
-    private RecipeViewModel recipeViewModel;
 
     public SearchRecipesFragment() {}
 
@@ -96,7 +93,7 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
                     @Override
                     public void onFavoriteButtonPressed(int position) {
                         recipeList.get(position).setIsFavorite(!recipeList.get(position).isFavorite());
-                        recipeViewModel.updateRecipes(recipeList.get(position));
+                        iRecipesRepository.updateRecipes(recipeList.get(position));
                     }
                 });
         recyclerviewSearchRecipes.setLayoutManager(layoutManager);
@@ -123,7 +120,7 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
     public void onRecipesFavoriteStatusChanged(Recipe recipe) {
         if (recipe.isFavorite()) {
             Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                    getString(R.string.recipes_removed_from_favorite_list_message),
+                    getString(R.string.recipes_added_to_favorite_list_message),
                     Snackbar.LENGTH_LONG).show();
         } else {
             Snackbar.make(requireActivity().findViewById(android.R.id.content),

@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/toDo"
+                android:contentDescription="@string/recipes_added_to_favorite_list_message"
                 android:focusable="true"
                 android:padding="8dp"
                 android:layout_marginBottom="1dp"

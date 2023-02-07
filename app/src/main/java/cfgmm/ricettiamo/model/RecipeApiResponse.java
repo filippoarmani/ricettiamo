@@ -7,14 +7,12 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeApiResponse implements Parcelable {
 
     @SerializedName("results")
     private List<Recipe> listRecipes;
-    @SerializedName("")
     private int totalResults;
 
     public RecipeApiResponse() {}

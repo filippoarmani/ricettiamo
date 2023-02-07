@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.navigation_drawer.FavouritesFragment" >
 
-    <ListView
-        android:id="@+id/listview_favrecipes"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_favourite_recipes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:drawSelectorOnTop="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/listview_favrecipes" />
+        app:layout_constraintTop_toTopOf="@+id/recyclerview_favourite_recipes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
