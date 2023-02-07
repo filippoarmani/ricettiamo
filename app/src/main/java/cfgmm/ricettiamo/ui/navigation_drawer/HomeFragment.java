@@ -15,14 +15,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.adapter.HomeAdapter;
-import cfgmm.ricettiamo.adapter.SearchRecipesAdapter;
+import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
@@ -40,10 +38,10 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
 
     private RecipeViewModel recipeViewModel;
 
-    SearchRecipesAdapter adapterStarter;
-    SearchRecipesAdapter adapterFirst;
-    SearchRecipesAdapter adapterSecond;
-    SearchRecipesAdapter adapterDessert;
+    RecipesRecyclerAdapter adapterStarter;
+    RecipesRecyclerAdapter adapterFirst;
+    RecipesRecyclerAdapter adapterSecond;
+    RecipesRecyclerAdapter adapterDessert;
 
     List<Recipe> recipeStarterList;
     List<Recipe> recipeFirstList;
@@ -96,7 +94,7 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
         rv_second.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false));
         rv_desserts.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false));
 
-        adapterStarter = new SearchRecipesAdapter(recipeStarterList, requireActivity().getApplication(), new SearchRecipesAdapter.OnItemClickListener() {
+        adapterStarter = new RecipesRecyclerAdapter(recipeStarterList, requireActivity().getApplication(), new RecipesRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onRecipeItemClick(Recipe recipe) {
                 HomeFragmentDirections.ActionNavHomeToRecipeDetailsFragment action =
@@ -111,7 +109,7 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
             }
         });
 
-        adapterFirst = new SearchRecipesAdapter(recipeFirstList, requireActivity().getApplication(), new SearchRecipesAdapter.OnItemClickListener() {
+        adapterFirst = new RecipesRecyclerAdapter(recipeFirstList, requireActivity().getApplication(), new RecipesRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onRecipeItemClick(Recipe recipe) {
                 HomeFragmentDirections.ActionNavHomeToRecipeDetailsFragment action =
@@ -126,7 +124,7 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
             }
         });
 
-        adapterSecond = new SearchRecipesAdapter(recipeSecondList, requireActivity().getApplication(), new SearchRecipesAdapter.OnItemClickListener() {
+        adapterSecond = new RecipesRecyclerAdapter(recipeSecondList, requireActivity().getApplication(), new RecipesRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onRecipeItemClick(Recipe recipe) {
                 HomeFragmentDirections.ActionNavHomeToRecipeDetailsFragment action =
@@ -141,7 +139,7 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
             }
         });
 
-        adapterDessert = new SearchRecipesAdapter(recipeDessertList, requireActivity().getApplication(), new SearchRecipesAdapter.OnItemClickListener() {
+        adapterDessert = new RecipesRecyclerAdapter(recipeDessertList, requireActivity().getApplication(), new RecipesRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onRecipeItemClick(Recipe recipe) {
                 HomeFragmentDirections.ActionNavHomeToRecipeDetailsFragment action =
