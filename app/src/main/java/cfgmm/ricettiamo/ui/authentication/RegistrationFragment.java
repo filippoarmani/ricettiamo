@@ -95,7 +95,7 @@ public class RegistrationFragment extends Fragment {
                 if(userViewModel.isLoggedUser()) {
                     updateUI();
                 } else {
-                    if(!result.isSuccess()) {
+                    if(result != null && !result.isSuccess()) {
                         Result.Error error = (Result.Error) result;
                         Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
                     }
