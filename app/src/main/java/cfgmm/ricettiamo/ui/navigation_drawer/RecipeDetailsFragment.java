@@ -125,10 +125,11 @@ public class RecipeDetailsFragment extends Fragment {
 
         //commentViewModel.readComment("" + recipe.getId());
 
-        Glide.with(fragmentRecipeDetailsBinding.imageRecipe.getContext()).
-                load(recipe.getUrlToImage()).
-                placeholder(R.drawable.ic_add).
-                into(fragmentRecipeDetailsBinding.imageRecipe);
+        Glide.with(fragmentRecipeDetailsBinding.imageRecipe.getContext())
+                .load(recipe.getUrlToImage())
+                .placeholder(R.drawable.ic_add)
+                .centerCrop()
+                .into(fragmentRecipeDetailsBinding.imageRecipe);
 
         fragmentRecipeDetailsBinding.nameRecipe.setText(recipe.getName());
         fragmentRecipeDetailsBinding.srcServingsValue.setText(String.valueOf(recipe.getServings()));
