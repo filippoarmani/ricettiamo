@@ -5,6 +5,7 @@ import static cfgmm.ricettiamo.util.Constants.IMAGE;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,9 +72,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
     private long id;
     private int stepNumber;
 
-    public AddNewRecipeFragment() {
-        // Required empty public constructor
-    }
+    public AddNewRecipeFragment() {}
 
     public static AddNewRecipeFragment newInstance() {
         return new AddNewRecipeFragment();
@@ -121,7 +120,6 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        List<Step> list = new ArrayList<>();
 
         //ingredient adapter
         binding.ingredientRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,  false));
@@ -192,7 +190,8 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
                         Result urlResult = recipeViewModel.uploadPhoto(mainPicture);
                         if (urlResult != null && urlResult.isSuccess()) {
                             String urlToImage = ((Result.PhotoResponseSuccess) urlResult).getData().getPath();
-                                    List<String> dishTypes = new ArrayList<>();
+
+                            List<String> dishTypes = new ArrayList<>();
                             dishTypes.add(category);
 
                             List<StepsAnalyze> stepsAnalyzes = new ArrayList<>();

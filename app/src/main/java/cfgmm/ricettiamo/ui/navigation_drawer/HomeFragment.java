@@ -1,6 +1,5 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,9 +49,7 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
     RecyclerView rv_starters, rv_first, rv_second, rv_desserts;
     FloatingActionButton floatingActionButton;
 
-    public HomeFragment() {
-        // Required empty public constructor
-    }
+    public HomeFragment() {}
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -74,7 +70,6 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_m_home, container, false);
     }
 
@@ -99,7 +94,7 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
             public void onRecipeItemClick(Recipe recipe) {
                 HomeFragmentDirections.ActionNavHomeToRecipeDetailsFragment action =
                         HomeFragmentDirections.actionNavHomeToRecipeDetailsFragment(recipe);
-                Navigation.findNavController(view).navigate((NavDirections) action);
+                Navigation.findNavController(view).navigate(action);
             }
 
             @Override
@@ -114,7 +109,7 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
             public void onRecipeItemClick(Recipe recipe) {
                 HomeFragmentDirections.ActionNavHomeToRecipeDetailsFragment action =
                         HomeFragmentDirections.actionNavHomeToRecipeDetailsFragment(recipe);
-                Navigation.findNavController(view).navigate((NavDirections) action);
+                Navigation.findNavController(view).navigate(action);
             }
 
             @Override
@@ -129,7 +124,7 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
             public void onRecipeItemClick(Recipe recipe) {
                 HomeFragmentDirections.ActionNavHomeToRecipeDetailsFragment action =
                         HomeFragmentDirections.actionNavHomeToRecipeDetailsFragment(recipe);
-                Navigation.findNavController(view).navigate((NavDirections) action);
+                Navigation.findNavController(view).navigate(action);
             }
 
             @Override
@@ -144,7 +139,7 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
             public void onRecipeItemClick(Recipe recipe) {
                 HomeFragmentDirections.ActionNavHomeToRecipeDetailsFragment action =
                         HomeFragmentDirections.actionNavHomeToRecipeDetailsFragment(recipe);
-                Navigation.findNavController(view).navigate((NavDirections) action);
+                Navigation.findNavController(view).navigate(action);
             }
 
             @Override
@@ -169,12 +164,12 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
                         adapterStarter.notifyDataSetChanged();
                     }
 
-                    if(recipe.getDishTypes().get(0).equals("Primi piatti") || recipe.getDishTypes().get(0).equals("First Dishes")) {
+                    if(recipe.getDishTypes().get(0).equals("Primi Piatti") || recipe.getDishTypes().get(0).equals("First Dishes")) {
                         recipeFirstList.add(recipe);
                         adapterFirst.notifyDataSetChanged();
                     }
 
-                    if(recipe.getDishTypes().get(0).equals("Secondi piatti") || recipe.getDishTypes().get(0).equals("Second Dishes")) {
+                    if(recipe.getDishTypes().get(0).equals("Secondi Piatti") || recipe.getDishTypes().get(0).equals("Second Dishes")) {
                         recipeSecondList.add(recipe);
                         adapterSecond.notifyDataSetChanged();
                     }
@@ -184,7 +179,6 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
                         adapterDessert.notifyDataSetChanged();
                     }
                 }
-
             }
         });
 
