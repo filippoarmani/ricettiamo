@@ -7,7 +7,6 @@
     <string name="menu_fridge">Frigorifero</string>
     <string name="shopping_list">Lista della spesa</string>
     <string name="menu_favourites">Preferiti</string>
-    <string name="upgrade_account">Aggiorna account</string>
     <string name="full_name">Nome Cognome</string>
     <string name="description_chef">Descrizione Cuoco</string>
     <string name="my_stars">Le mie Stelle</string>
@@ -30,7 +29,6 @@
     <string name="first_dishes">Primi Piatti</string>
     <string name="second_dishes">Secondi Piatti</string>
     <string name="dessert">Dolci</string>
-    <string name="about_us">Chi Siamo</string>
     <string name="return_up">Ritorna in Alto</string>
     <string name="my_recipes">Le mie ricette</string>
 

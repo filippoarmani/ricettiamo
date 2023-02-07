@@ -10,7 +10,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center"
             android:background="@drawable/circle"
-            android:contentDescription="@string/toDo"/>
+            android:contentDescription="@string/ingredients"/>
 
         <TextView
             style="@style/thirdTitle"

@@ -15,7 +15,7 @@
     android:layout_width="15dp"
     android:layout_height="15dp"
     android:background="@drawable/button_shape"
-    android:contentDescription="@string/toDo"
+    android:contentDescription="@string/nameRecipe"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"/>
@@ -53,14 +53,14 @@
         android:layout_gravity="center"
         android:layout_margin="5dp"
         android:background="@drawable/star"
-        android:contentDescription="@string/toDo"/>
+        android:contentDescription="@string/star_1"/>
 
     <TextView
         android:id="@+id/text_topRecipe_numberVote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/toDo"
+        android:text="@string/noLoggedUser"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:fontFamily="@font/montserrat"/>

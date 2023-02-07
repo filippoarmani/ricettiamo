@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
-        android:contentDescription="@string/toDo"
+        android:contentDescription="@string/ingredients"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/Fridge_textName"
         app:layout_constraintStart_toStartOf="parent"
