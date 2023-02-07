@@ -196,7 +196,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
                             dishTypes.add(category);
 
                             List<StepsAnalyze> stepsAnalyzes = new ArrayList<>();
-                            stepsAnalyzes.add(new StepsAnalyze("", list));
+                            stepsAnalyzes.add(new StepsAnalyze("", stepList));
 
                             Recipe recipe = new Recipe(
                                     id,
