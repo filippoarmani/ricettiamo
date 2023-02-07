@@ -1,13 +1,8 @@
 package cfgmm.ricettiamo.data.database;
 
-import android.util.Log;
 
 import androidx.room.TypeConverter;
 
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,6 @@ import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
 import cfgmm.ricettiamo.model.Recipe;
-import cfgmm.ricettiamo.ui.navigation_drawer.FavouritesFragmentDirections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,7 +83,6 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
                 new RecipesRecyclerAdapter.OnItemClickListener() {
                     @Override
                     public void onRecipeItemClick(Recipe recipe) {
-                        Log.e("name", recipe.toString());
                         FavouritesFragmentDirections.ActionNavFavouritesToRecipeDetailsFragment action =
                                 FavouritesFragmentDirections.actionNavFavouritesToRecipeDetailsFragment(recipe);
                         Navigation.findNavController(view).navigate(action);
