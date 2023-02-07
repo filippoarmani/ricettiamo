@@ -5,7 +5,6 @@ import static cfgmm.ricettiamo.util.Constants.IMAGE;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +68,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
     private String serving;
     private String category;
     private String author;
-    private long id;
+    private long idRecipe;
     private int stepNumber;
 
     public AddNewRecipeFragment() {}
@@ -135,7 +134,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
 
         recipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), result -> {
             if(result != null && result.isSuccess()) {
-                id = ((Result.ListRecipeResponseSuccess) result).getData().size();
+                idRecipe = ((Result.ListRecipeResponseSuccess) result).getData().size();
             }
         });
 
@@ -198,7 +197,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
                             stepsAnalyzes.add(new StepsAnalyze("", stepList));
 
                             Recipe recipe = new Recipe(
-                                    id,
+                                    this.idRecipe,
                                     author,
                                     title,
                                     0,
