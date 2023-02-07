@@ -66,7 +66,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
     private String cost;
     private String prepTime;
     private String serving;
-    private String category; //todo lista di stringhe
+    private String category;
     private String author;
     private long id;
     private int stepNumber;
