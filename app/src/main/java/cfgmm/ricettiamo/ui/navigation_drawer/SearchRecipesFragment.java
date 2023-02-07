@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.adapter.SearchRecipesAdapter;
+import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
@@ -30,10 +30,9 @@ import cfgmm.ricettiamo.model.Recipe;
 public class SearchRecipesFragment extends Fragment implements RecipesResponseCallback {
 
     private FragmentMSearchRecipesBinding fragmentSearchRecipesBinding;
-
     private TextInputLayout inputRecipe;
     private List<Recipe> recipeList;
-    private SearchRecipesAdapter searchRecipesAdapter;
+    private RecipesRecyclerAdapter recipesRecyclerAdapter;
     private IRecipesRepository iRecipesRepository;
     private
     String search;
@@ -81,8 +80,8 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
                 new LinearLayoutManager(requireContext(),
                         LinearLayoutManager.VERTICAL, false);
 
-        searchRecipesAdapter = new SearchRecipesAdapter(recipeList, requireActivity().getApplication(),
-                new SearchRecipesAdapter.OnItemClickListener() {
+        recipesRecyclerAdapter = new RecipesRecyclerAdapter(recipeList, requireActivity().getApplication(),
+                new RecipesRecyclerAdapter.OnItemClickListener() {
                     @Override
                     public void onRecipeItemClick(Recipe recipe) {
                         SearchRecipesFragmentDirections.ActionSearchRecipesToRecipeDetailsFragment action =
@@ -97,7 +96,7 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
                     }
                 });
         recyclerviewSearchRecipes.setLayoutManager(layoutManager);
-        recyclerviewSearchRecipes.setAdapter(searchRecipesAdapter);
+        recyclerviewSearchRecipes.setAdapter(recipesRecyclerAdapter);
     }
 
     @Override
@@ -107,7 +106,7 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
             this.recipeList.addAll(recipesList);
         }
 
-        requireActivity().runOnUiThread(() -> searchRecipesAdapter.notifyDataSetChanged());
+        requireActivity().runOnUiThread(() -> recipesRecyclerAdapter.notifyDataSetChanged());
     }
 
     @Override

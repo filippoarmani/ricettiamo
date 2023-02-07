@@ -26,7 +26,7 @@ public class Ingredient implements Parcelable {
     public Ingredient() {}
 
     @Ignore
-    public Ingredient(String name, float qta, String size/*, String urlToImage*/) {
+    public Ingredient(String name, float qta, String size) {
         this(0, name, qta, size);
     }
 

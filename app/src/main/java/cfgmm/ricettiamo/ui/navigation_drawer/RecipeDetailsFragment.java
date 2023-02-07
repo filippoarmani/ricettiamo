@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,14 +125,15 @@ public class RecipeDetailsFragment extends Fragment {
 
         //commentViewModel.readComment("" + recipe.getId());
 
-        Glide.with(fragmentRecipeDetailsBinding.imageRecipe.getContext()).
-                load(recipe.getUrlToImage()).
-                placeholder(R.drawable.ic_add).
-                into(fragmentRecipeDetailsBinding.imageRecipe);
+        Glide.with(fragmentRecipeDetailsBinding.imageRecipe.getContext())
+                .load(recipe.getUrlToImage())
+                .placeholder(R.drawable.ic_add)
+                .centerCrop()
+                .into(fragmentRecipeDetailsBinding.imageRecipe);
 
         fragmentRecipeDetailsBinding.nameRecipe.setText(recipe.getName());
         fragmentRecipeDetailsBinding.srcServingsValue.setText(String.valueOf(recipe.getServings()));
-        fragmentRecipeDetailsBinding.srcCostValue.setText(String.valueOf(recipe.getCost()));
+        fragmentRecipeDetailsBinding.srcCostValue.setText(String.valueOf(recipe.getCost() * recipe.getServings() / 100.0f));
         fragmentRecipeDetailsBinding.srcPrepTimeValue.setText(String.valueOf(recipe.getPrepTime()));
 
         fragmentRecipeDetailsBinding.addReviewButton.setOnClickListener(v -> {

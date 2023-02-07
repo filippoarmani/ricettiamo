@@ -1,6 +1,8 @@
 package cfgmm.ricettiamo.data.repository.recipe;
 
+import android.net.Uri;
+
 public interface IPhotoResponseCallback {
-    void onSuccessUploadPhoto(String path);
+    void onSuccessUploadPhoto(Uri uri);
     void onFailureUploadPhoto();
 }

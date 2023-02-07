@@ -76,9 +76,6 @@ public class RegistrationFragment extends Fragment {
             v.requestFocus();
             v.setFocusableInTouchMode(false);
 
-            CircularProgressIndicator progressIndicator = v.findViewById(R.id.r_progress_circular);
-            progressIndicator.setVisibility(View.VISIBLE);
-
             String name = e_name.getEditText().getText().toString().trim();
             String surname = e_surname.getEditText().getText().toString().trim();
             String email = e_email.getEditText().getText().toString().trim();
@@ -98,14 +95,13 @@ public class RegistrationFragment extends Fragment {
                 if(userViewModel.isLoggedUser()) {
                     updateUI();
                 } else {
-                    if(!result.isSuccess()) {
+                    if(result != null && !result.isSuccess()) {
                         Result.Error error = (Result.Error) result;
                         Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
                     }
                 }
             }
 
-            progressIndicator.setVisibility(View.GONE);
         });
     }
 

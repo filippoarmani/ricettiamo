@@ -106,7 +106,7 @@ public class Recipe implements Parcelable {
 
     public void setServings(int servings) { this.servings = servings; }
 
-    public float getCost() { return Math.round(cost * servings) / 100.0f; }
+    public float getCost() { return Math.round(cost); }
 
     public void setCost(float cost) { this.cost = cost; }
 

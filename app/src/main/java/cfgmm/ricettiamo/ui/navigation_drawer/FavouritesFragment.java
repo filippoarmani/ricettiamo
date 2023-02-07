@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.adapter.SearchRecipesAdapter;
+import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
@@ -36,7 +36,7 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
 
     private List<Recipe> recipesList;
     private IRecipesRepository iRecipesRepository;
-    private SearchRecipesAdapter searchRecipesAdapter;
+    private RecipesRecyclerAdapter recipesRecyclerAdapter;
     private ProgressBar progressBar;
 
     public FavouritesFragment() {}
@@ -44,8 +44,7 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
     /**
      * Use this factory method to create a new instance of
      * this fragment.
-     *
-     * @return A new instance of fragment FavoriteNewsFragment.
+     * @return A new instance of fragment FavoriteRecipesFragment.
      */
     public static FavouritesFragment newInstance() {
         return new FavouritesFragment();
@@ -75,31 +74,28 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
         progressBar = view.findViewById(R.id.progress_bar);
 
         progressBar.setVisibility(View.VISIBLE);
-        RecyclerView recyclerviewSearchRecipes = view.findViewById(R.id.recyclerview_favourite_recipes);
+        RecyclerView recyclerviewFavRecipes = view.findViewById(R.id.recyclerview_favourite_recipes);
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(requireContext(),
                         LinearLayoutManager.VERTICAL, false);
 
-        searchRecipesAdapter = new SearchRecipesAdapter(recipesList, requireActivity().getApplication(),new SearchRecipesAdapter.OnItemClickListener() {
-            @Override
-            public void onRecipeItemClick(Recipe recipe) {
-                SearchRecipesFragmentDirections.ActionSearchRecipesToRecipeDetailsFragment action =
-                        SearchRecipesFragmentDirections.actionSearchRecipesToRecipeDetailsFragment(recipe);
-                Navigation.findNavController(view).navigate(action);
-            }
+        recipesRecyclerAdapter = new RecipesRecyclerAdapter(recipesList, requireActivity().getApplication(),
+                new RecipesRecyclerAdapter.OnItemClickListener() {
+                    @Override
+                    public void onRecipeItemClick(Recipe recipe) {
+                        FavouritesFragmentDirections.ActionNavFavouritesToRecipeDetailsFragment action =
+                                FavouritesFragmentDirections.actionNavFavouritesToRecipeDetailsFragment(recipe);
+                        Navigation.findNavController(view).navigate(action);
+                    }
 
-            @Override
-            public void onFavoriteButtonPressed(int position) {
-                recipesList.get(position).setIsFavorite(!recipesList.get(position).isFavorite());
-                iRecipesRepository.updateRecipes(recipesList.get(position));
-            }
-        });
-        recyclerviewSearchRecipes.setLayoutManager(layoutManager);
-        recyclerviewSearchRecipes.setAdapter(searchRecipesAdapter);
-
-        /*listViewFavRecipes.setOnItemClickListener((parent, view1, position, id) ->
-                Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                        recipesList.get(position).getName(), Snackbar.LENGTH_SHORT).show());*/
+                    @Override
+                    public void onFavoriteButtonPressed(int position) {
+                        recipesList.get(position).setIsFavorite(!recipesList.get(position).isFavorite());
+                        iRecipesRepository.updateRecipes(recipesList.get(position));
+                    }
+                });
+        recyclerviewFavRecipes.setLayoutManager(layoutManager);
+        recyclerviewFavRecipes.setAdapter(recipesRecyclerAdapter);
     }
 
     public void onSuccess(List<Recipe> recipesList) {
@@ -107,7 +103,7 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
             this.recipesList.clear();
             this.recipesList.addAll(recipesList);
             requireActivity().runOnUiThread(() -> {
-                searchRecipesAdapter.notifyDataSetChanged();
+                recipesRecyclerAdapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
             });
         }
@@ -121,7 +117,7 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
 
     public void onRecipesFavoriteStatusChanged(Recipe recipe) {
         recipesList.remove(recipe);
-        requireActivity().runOnUiThread(() -> searchRecipesAdapter.notifyDataSetChanged());
+        requireActivity().runOnUiThread(() -> recipesRecyclerAdapter.notifyDataSetChanged());
         Snackbar.make(requireActivity().findViewById(android.R.id.content),
                 getString(R.string.recipes_removed_from_favorite_list_message),
                 Snackbar.LENGTH_LONG).show();

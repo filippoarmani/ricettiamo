@@ -98,7 +98,7 @@ public class RecipeViewModel extends ViewModel {
     }
 
     //Community Recipes
-    public boolean writeRecipe(Recipe recipe) {
+    public Result writeRecipe(Recipe recipe) {
         return recipesRepository.writeRecipe(recipe);
     }
 
@@ -109,7 +109,7 @@ public class RecipeViewModel extends ViewModel {
         return myRecipes;
     }
 
-    public String uploadPhoto(Uri uri) {
+    public Result uploadPhoto(Uri uri) {
         return recipesRepository.uploadPhoto(uri);
     }
 

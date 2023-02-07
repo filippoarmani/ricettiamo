@@ -44,12 +44,14 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     BaseDatabaseRecipesDataSource databaseRecipesDataSource;
     BasePhotoStorageDataSource photoStorageDataSource;
 
-    private Result firstRecipe;
+
     private MutableLiveData<Result> mostRecentRecipe;
     private MutableLiveData<Result> myRecipes;
     private MutableLiveData<Result> allRecipes;
-    private boolean saveSucess;
-    private String path;
+
+    private Result firstRecipe;
+    private Result savedRecipe;
+    private Result photo;
 
     public RecipesRepository(Application application, RecipesResponseCallback recipesResponseCallback) {
         this.application = application;
@@ -66,8 +68,6 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         this.mostRecentRecipe = new MutableLiveData<>();
         this.myRecipes = new MutableLiveData<>();
         this.allRecipes = new MutableLiveData<>();
-        saveSucess = false;
-        path = null;
     }
 
     @Override
@@ -227,15 +227,15 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
     //Community Recipes
     @Override
-    public boolean writeRecipe(Recipe recipe) {
+    public Result writeRecipe(Recipe recipe) {
         databaseRecipesDataSource.writeRecipe(recipe);
-        return saveSucess;
+        return savedRecipe;
     }
 
     @Override
-    public String uploadPhoto(Uri photo) {
+    public Result uploadPhoto(Uri photo) {
         photoStorageDataSource.uploadFile(photo);
-        return path;
+        return this.photo;
     }
 
     @Override
@@ -264,13 +264,13 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
 
     @Override
-    public void onSuccessWriteDatabase() {
-        saveSucess = true;
+    public void onSuccessWriteDatabase(Recipe savedRecipe) {
+        this.savedRecipe = new Result.RecipeDatabaseResponseSuccess(savedRecipe);
     }
 
     @Override
     public void onFailureWriteDatabase(int writeDatabase_error) {
-        saveSucess = false;
+        this.savedRecipe = new Result.Error(writeDatabase_error);
     }
 
     @Override
@@ -314,12 +314,12 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     }
 
     @Override
-    public void onSuccessUploadPhoto(String path) {
-        this.path = path;
+    public void onSuccessUploadPhoto(Uri uri) {
+        photo = new Result.PhotoResponseSuccess(uri);
     }
 
     @Override
     public void onFailureUploadPhoto() {
-        path = null;
+        photo = new Result.Error(1);
     }
 }

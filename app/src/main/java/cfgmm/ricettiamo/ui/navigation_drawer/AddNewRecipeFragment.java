@@ -184,50 +184,51 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
             serving = binding.servingLayout.getEditText().getText().toString().trim();
 
             if(checkData()) {
-                String urlToImage = recipeViewModel.uploadPhoto(mainPicture);
-                if (urlToImage != null) {
-                    List<String> dishTypes = new ArrayList<>();
-                    dishTypes.add(category);
-
-                    List<StepsAnalyze> stepsAnalyzes = new ArrayList<>();
-                    stepsAnalyzes.add(new StepsAnalyze("step", list));
-
-                    Recipe recipe = new Recipe(
-                            id,
-                            author,
-                            title,
-                            0,
-                            Integer.parseInt(serving),
-                            Float.parseFloat(cost),
-                            Integer.parseInt(prepTime),
-                            ingredientList,
-                            getCurrentDate(),
-                            dishTypes,
-                            urlToImage,
-                            false,
-                            stepsAnalyzes
-                    );
-                    stepNumber = 0;
-
                     MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(requireActivity());
 
                     alert.setTitle(getString(R.string.save_recipe));
                     alert.setMessage(getString(R.string.save_recipe_alert));
                     alert.setPositiveButton(getString(R.string.save), (dialog, id) -> {
-                        if (recipeViewModel.writeRecipe(recipe)) {
-                            Snackbar.make(requireView(), R.string.saving_success, Snackbar.LENGTH_LONG).show();
-                            Navigation.findNavController(requireView()).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
+                        Result urlResult = recipeViewModel.uploadPhoto(mainPicture);
+                        if (urlResult != null && urlResult.isSuccess()) {
+                            String urlToImage = ((Result.PhotoResponseSuccess) urlResult).getData().getPath();
+                                    List<String> dishTypes = new ArrayList<>();
+                            dishTypes.add(category);
+
+                            List<StepsAnalyze> stepsAnalyzes = new ArrayList<>();
+                            stepsAnalyzes.add(new StepsAnalyze("", stepList));
+
+                            Recipe recipe = new Recipe(
+                                    id,
+                                    author,
+                                    title,
+                                    0,
+                                    Integer.parseInt(serving),
+                                    Float.parseFloat(cost),
+                                    Integer.parseInt(prepTime),
+                                    ingredientList,
+                                    getCurrentDate(),
+                                    dishTypes,
+                                    urlToImage,
+                                    false,
+                                    stepsAnalyzes
+                            );
+                            stepNumber = 0;
+                            Result writeResult = recipeViewModel.writeRecipe(recipe);
+                            if (writeResult != null && writeResult.isSuccess()) {
+                                Snackbar.make(requireView(), R.string.saving_success, Snackbar.LENGTH_SHORT).show();
+                                Navigation.findNavController(requireView()).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
+                            } else {
+                                Snackbar.make(requireView(), R.string.saving_failure, Snackbar.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Snackbar.make(requireView(), R.string.saving_failure, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(requireView(), R.string.error_photo, Snackbar.LENGTH_SHORT).show();
                         }
                     });
                     alert.setNegativeButton(getString(R.string.cancel), null);
                     alert.show();
 
-                } else {
-                    Snackbar.make(requireView(), R.string.saving_failure, Snackbar.LENGTH_SHORT).show();
                 }
-            }
         });
     }
 
