@@ -38,7 +38,7 @@ public class DatabaseRecipesDataSource extends BaseDatabaseRecipesDataSource {
                 .setValue(recipe.toMap())
                 .addOnSuccessListener(task -> {
                     Log.d(TAG, "writeRecipe: success");
-                    recipesResponseCallback.onSuccessWriteDatabase();
+                    recipesResponseCallback.onSuccessWriteDatabase(recipe);
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "writeRecipe: failure");

@@ -131,6 +131,7 @@
     <string name="comment">Recensione</string>
     <string name="category">Categoria</string>
     <string name="noPhoto">Non è stata aggiunta alcuna foto</string>
+    <string name="error_photo">La tua foto non è stata salvata! Riprova</string>
 
 
 </resources>

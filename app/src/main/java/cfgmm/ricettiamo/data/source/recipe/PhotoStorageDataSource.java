@@ -27,7 +27,7 @@ public class PhotoStorageDataSource extends BasePhotoStorageDataSource {
                     ref.getDownloadUrl()
                             .addOnSuccessListener(downloadPhotoUrl -> {
                                 Log.d(TAG, "uploadFile: success");
-                                photoResponseCallback.onSuccessUploadPhoto(downloadPhotoUrl.toString());
+                                photoResponseCallback.onSuccessUploadPhoto(downloadPhotoUrl);
                             })
                             .addOnFailureListener(e -> {
                                 Log.d(TAG, "uploadFile: success");
