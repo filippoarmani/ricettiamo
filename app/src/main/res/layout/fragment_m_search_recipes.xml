@@ -16,22 +16,21 @@
         android:fontFamily="@font/montserrat"
         android:text="@string/search_recipe"
         android:textSize="20sp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_margin="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/search_recipes_input"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
         app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@+id/search"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginTop="20dp">
+        app:layout_constraintStart_toStartOf="@id/recyclerview_search_recipes"
+        app:layout_constraintEnd_toStartOf="@id/btn_search">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/pd_search"
@@ -49,25 +48,24 @@
         android:id="@+id/btn_search"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="6dp"
         android:contentDescription="@string/search"
         android:background="@color/transparent"
         android:src="@drawable/ic_search"
-        app:layout_constraintBottom_toBottomOf="@+id/search_recipes_input"
-        app:layout_constraintStart_toEndOf="@+id/search_recipes_input"
-        app:layout_constraintTop_toBottomOf="@+id/search"/>
+        app:layout_constraintBottom_toBottomOf="@id/search_recipes_input"
+        app:layout_constraintEnd_toEndOf="@id/recyclerview_search_recipes"
+        app:layout_constraintTop_toTopOf="@id/search_recipes_input"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_search_recipes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
         android:drawSelectorOnTop="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_recipes_input"
-        tools:layout_editor_absoluteX="20dp"
-        android:layout_marginTop="130dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_recipes_input"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
