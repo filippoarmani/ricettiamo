@@ -66,7 +66,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
     private String cost;
     private String prepTime;
     private String serving;
-    private String category;
+    private String category; //todo lista di stringhe
     private String author;
     private long id;
     private int stepNumber;
@@ -196,7 +196,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
                             dishTypes.add(category);
 
                             List<StepsAnalyze> stepsAnalyzes = new ArrayList<>();
-                            stepsAnalyzes.add(new StepsAnalyze("step", list));
+                            stepsAnalyzes.add(new StepsAnalyze("", list));
 
                             Recipe recipe = new Recipe(
                                     id,
