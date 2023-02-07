@@ -64,14 +64,16 @@ public class ShoppingListRecyclerAdapter extends
                 Ingredient deleteItem = shoppingList.get(viewHolder.getBindingAdapterPosition());
 
                 int position = viewHolder.getBindingAdapterPosition();
+
                 shoppingList.remove(position);
-                notifyItemRemoved(position);
+
 
                 Snackbar.make(view, "UNDO", Snackbar.LENGTH_SHORT).
                         setAction("UNDO", v -> {
                             shoppingList.add(position,deleteItem);
                             notifyItemInserted(position);
                         }).show();
+
             }
         });
     }

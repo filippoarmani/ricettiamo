@@ -102,7 +102,7 @@ public class IngredientsRecyclerAdapter extends
             textViewQta.setText(String.valueOf(ingredient.getQta()));
             textViewSize.setText(ingredient.getSize());
         }
-        //azione quando clicco
+
         @Override
         public void onClick(View v) {
             if(v.getId() == R.id.button_less) {

@@ -43,9 +43,8 @@ public class FridgeFragment extends Fragment {
     private List<Ingredient> ingredientList;
     private IngredientsRecyclerAdapter adapter;
 
-    public FridgeFragment() {
-        // Required empty public constructor
-    }
+    public FridgeFragment() {}
+
 
     public static FridgeFragment newInstance() {
         return new FridgeFragment();
@@ -60,7 +59,7 @@ public class FridgeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_m_fridge, container, false);
     }
 
@@ -78,8 +77,6 @@ public class FridgeFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         adapter.getItemTouchHelper().attachToRecyclerView(recyclerView);
 
-        //Non ho capito perchè ritorna null
-        //ingredientList = getIngredientListWithWithGSon();
 
         buttonAdd.setOnClickListener(v -> {
             String name = name_l.getEditText().getText().toString().trim();
@@ -107,20 +104,6 @@ public class FridgeFragment extends Fragment {
             }
         });
 
-    }
-
-    private List<Ingredient> getIngredientListWithWithGSon() {
-        InputStream inputStream = null;
-        try {
-            inputStream = requireActivity().getAssets().open("fridge-api-test.json");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-        IngredientApiResponse ingredientApiResponse = new
-                Gson().fromJson(bufferedReader, IngredientApiResponse.class);
-        return ingredientApiResponse.getIngredients();
     }
 
 }

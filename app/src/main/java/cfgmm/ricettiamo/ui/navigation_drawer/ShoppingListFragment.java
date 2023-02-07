@@ -76,9 +76,6 @@ public class ShoppingListFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         adapter.getItemTouchHelper().attachToRecyclerView(recyclerView);
 
-        //Non ho capito perchè ritorna null
-        //shoppingList = getIngredientListWithWithGSon();
-
         buttonAdd.setOnClickListener(v -> {
             String name = name_l.getEditText().getText().toString().trim();
             String qta = qta_l.getEditText().getText().toString().trim();

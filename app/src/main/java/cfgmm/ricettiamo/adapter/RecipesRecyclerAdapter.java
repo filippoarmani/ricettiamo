@@ -18,7 +18,7 @@ import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Recipe;
 
 
-public class RecipesRecyclerAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class                                                                                                                                                                      RecipesRecyclerAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private static final int RECIPES_VIEW_TYPE = 0;
     private static final int LOADING_VIEW_TYPE = 1;

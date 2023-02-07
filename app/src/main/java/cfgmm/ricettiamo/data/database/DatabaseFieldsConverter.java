@@ -9,7 +9,7 @@ import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.Step;
 import cfgmm.ricettiamo.model.StepsAnalyze;
 
-public class DatabaseFieldsConverter {
+public class  DatabaseFieldsConverter {
     @TypeConverter
     public List<Ingredient> IngredientToList(String value) {
 
