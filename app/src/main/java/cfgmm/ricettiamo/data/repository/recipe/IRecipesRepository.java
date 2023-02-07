@@ -25,8 +25,8 @@ public interface IRecipesRepository {
     //Community Recipes
     Result writeRecipe(Recipe recipe);
     Result uploadPhoto(Uri photo);
-    Result getFirstRecipe(String id);
-    MutableLiveData<Result> getMostRecentRecipe(String id);
     MutableLiveData<Result> getMyRecipes(String id);
     MutableLiveData<Result> getAllRecipes();
+
+    MutableLiveData<Result> getMyRecipesScore(String id);
 }

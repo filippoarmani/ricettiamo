@@ -1,6 +1,8 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
+import static android.text.TextUtils.isEmpty;
 import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 import android.os.Bundle;
@@ -14,15 +16,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.MyRecipesRecyclerAdapter;
+import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
@@ -30,6 +35,7 @@ import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentMMyRecipesBinding;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.model.User;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
@@ -46,8 +52,10 @@ public class MyRecipesFragment extends Fragment implements RecipesResponseCallba
     private UserViewModel userViewModel;
 
     private String id;
-    private List<Recipe> myRecipesList;
-    private MyRecipesRecyclerAdapter adapter;
+    private List<Recipe> recipeList;
+    private RecipesRecyclerAdapter adapter;
+
+    private IRecipesRepository iRecipesRepository;
 
     public MyRecipesFragment() {
         // Required empty public constructor
@@ -63,7 +71,7 @@ public class MyRecipesFragment extends Fragment implements RecipesResponseCallba
         IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
         userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
 
-        IRecipesRepository iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
+        iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
         recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
     }
 
@@ -78,69 +86,56 @@ public class MyRecipesFragment extends Fragment implements RecipesResponseCallba
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Result result = userViewModel.getCurrentUserLiveData().getValue();
-        if(result != null && result.isSuccess()) {
-            id = ((Result.UserResponseSuccess) result).getData().getId();
+        recipeList = new ArrayList<>();
 
-            recipeViewModel.getMyRecipes(id).observe(getViewLifecycleOwner(), resultRecipe -> {
-                if (resultRecipe != null && resultRecipe.isSuccess()) {
-                    myRecipesList = ((Result.ListRecipeResponseSuccess) resultRecipe).getData();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
 
-                    switch (myRecipesList.size()) {
-                        case 0:
-                            setVisibility(GONE, GONE, GONE, GONE, GONE, GONE, VISIBLE);
-                            break;
-                        case 1:
-                            setVisibility(VISIBLE, VISIBLE, GONE, GONE, GONE, GONE, GONE);
-                            setText(binding.nameRecipe1, binding.recipeStar1, myRecipesList.get(0));
-                            break;
-                        case 2:
-                            setVisibility(VISIBLE, VISIBLE, VISIBLE, GONE, GONE, GONE, GONE);
-                            setText(binding.nameRecipe1, binding.recipeStar1, myRecipesList.get(0));
-                            setText(binding.nameRecipe1, binding.recipeStar1, myRecipesList.get(1));
-                            break;
-                        case 3:
-                            setVisibility(VISIBLE, VISIBLE, VISIBLE, VISIBLE, GONE, GONE, GONE);
-                            setText(binding.nameRecipe1, binding.recipeStar1, myRecipesList.get(0));
-                            setText(binding.nameRecipe2, binding.recipeStar2, myRecipesList.get(1));
-                            setText(binding.nameRecipe3, binding.recipeStar3, myRecipesList.get(2));
-                            break;
-                        default:
-                            setVisibility(VISIBLE, VISIBLE, VISIBLE, VISIBLE, VISIBLE, VISIBLE, GONE);
-                            setText(binding.nameRecipe1, binding.recipeStar1, myRecipesList.get(0));
-                            setText(binding.nameRecipe2, binding.recipeStar2, myRecipesList.get(1));
-                            setText(binding.nameRecipe3, binding.recipeStar3, myRecipesList.get(2));
-
-                            binding.otherRecipes.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
-                            adapter = new MyRecipesRecyclerAdapter(requireContext(), myRecipesList.subList(3, myRecipesList.size()));
-                            binding.otherRecipes.setAdapter(adapter);
-                            break;
+        adapter = new RecipesRecyclerAdapter(recipeList, requireActivity().getApplication(),
+                new RecipesRecyclerAdapter.OnItemClickListener() {
+                    @Override
+                    public void onRecipeItemClick(Recipe recipe) {
+                        MyRecipesFragmentDirections.ActionNavMyRecipeToRecipeDetailsFragment action =
+                                MyRecipesFragmentDirections.actionNavMyRecipeToRecipeDetailsFragment(recipe);
+                        Navigation.findNavController(view).navigate(action);
                     }
 
-                } else {
-                    Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
-                }
-            });
-        } else {
-            Snackbar.make(requireView(), getString(R.string.unexpected_error), Snackbar.LENGTH_LONG).show();
-        }
+                    @Override
+                    public void onFavoriteButtonPressed(int position) {
+                        recipeList.get(position).setIsFavorite(!recipeList.get(position).isFavorite());
+                        iRecipesRepository.updateRecipes(recipeList.get(position));
+                    }
+                });
+
+        binding.withRecipes.setLayoutManager(layoutManager);
+        binding.withRecipes.setAdapter(adapter);
+
+        userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
+            if (result.isSuccess()) {
+                User user = ((Result.UserResponseSuccess) result).getData();
+                id = user.getId();
+
+                recipeViewModel.getMyRecipes(id).observe(getViewLifecycleOwner(), resultRecipe -> {
+                    if(resultRecipe != null && resultRecipe.isSuccess()) {
+                        recipeList = ((Result.ListRecipeResponseSuccess) resultRecipe).getData();
+                        if(recipeList != null && recipeList.size() > 0) {
+                            binding.noRecipes.setVisibility(GONE);
+                            binding.withRecipes.setVisibility(VISIBLE);
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            binding.noRecipes.setVisibility(VISIBLE);
+                            binding.withRecipes.setVisibility(GONE);
+                        }
+                    } else {
+                        Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
+                    }
+                });
+            } else {
+                Result.Error error = ((Result.Error) result);
+                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+            }
+        });
     }
 
-    public void setVisibility(int v1, int v2, int v3, int v4, int v5, int v6, int v7) {
-        binding.t1.setVisibility(v1);
-        binding.card1.setVisibility(v2);
-        binding.card2.setVisibility(v3);
-        binding.card3.setVisibility(v4);
-        binding.t2.setVisibility(v5);
-        binding.otherRecipes.setVisibility(v6);
-        binding.noRecipes.setVisibility(v7);
-    }
-
-    public void setText(TextView nameTV, TextView scoreTV, Recipe recipe) {
-        nameTV.setText(recipe.getName());
-        String score = "" + recipe.getScore();
-        scoreTV.setText(score);
-    }
 
     @Override
     public void onDestroyView() {

@@ -9,14 +9,6 @@ public interface IRecipesDatabaseResponseCallback {
 
     void onFailureWriteDatabase(int writeDatabase_error);
 
-    void onSuccessGetFirstRecipe(Recipe firstRecipe);
-
-    void onFailureGetFirstRecipe(int writeDatabase_error);
-
-    void onSuccessGetMostRecentRecipe(Recipe mostRecentRecipe);
-
-    void onFailureGetMostRecentRecipe(int writeDatabase_error);
-
     void onSuccessGetMyRecipes(List<Recipe> recipes);
 
     void onFailureGetMyRecipes(int writeDatabase_error);
@@ -24,6 +16,10 @@ public interface IRecipesDatabaseResponseCallback {
     void onSuccessGetAllRecipes(List<Recipe> recipes);
 
     void onFailureGetAllRecipes(int writeDatabase_error);
+
+    void onSuccessGetMyRecipesScore(List<Recipe> recipes);
+
+    void onFailureGetMyRecipesScore(int writeDatabase_error);
 
     /*void onSuccessGetFavoriteRecipesId(List<String> favoriteRecipes);
 

@@ -47,6 +47,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
     private MutableLiveData<Result> mostRecentRecipe;
     private MutableLiveData<Result> myRecipes;
+    private MutableLiveData<Result> myRecipesScore;
     private MutableLiveData<Result> allRecipes;
 
     private Result firstRecipe;
@@ -205,18 +206,6 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     }
 
     @Override
-    public Result getFirstRecipe(String id) {
-        databaseRecipesDataSource.getFirstRecipe(id);
-        return firstRecipe;
-    }
-
-    @Override
-    public MutableLiveData<Result> getMostRecentRecipe(String id) {
-        databaseRecipesDataSource.getMostRecentRecipe(id);
-        return mostRecentRecipe;
-    }
-
-    @Override
     public MutableLiveData<Result> getMyRecipes(String id) {
         databaseRecipesDataSource.getMyRecipes(id);
         return myRecipes;
@@ -226,6 +215,12 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     public MutableLiveData<Result> getAllRecipes() {
         databaseRecipesDataSource.getAllRecipes();
         return allRecipes;
+    }
+
+    @Override
+    public MutableLiveData<Result> getMyRecipesScore(String id) {
+        databaseRecipesDataSource.getMyRecipesScore(id);
+        return this.myRecipesScore;
     }
 
 
@@ -240,26 +235,6 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     }
 
     @Override
-    public void onSuccessGetFirstRecipe(Recipe firstRecipe) {
-        this.firstRecipe = new Result.RecipeDatabaseResponseSuccess(firstRecipe);
-    }
-
-    @Override
-    public void onFailureGetFirstRecipe(int writeDatabase_error) {
-        this.firstRecipe = new Result.RecipeDatabaseResponseSuccess(null);
-    }
-
-    @Override
-    public void onSuccessGetMostRecentRecipe(Recipe mostRecentRecipe) {
-        this.mostRecentRecipe.postValue(new Result.RecipeDatabaseResponseSuccess(mostRecentRecipe));
-    }
-
-    @Override
-    public void onFailureGetMostRecentRecipe(int writeDatabase_error) {
-        this.mostRecentRecipe.postValue(new Result.Error(writeDatabase_error));
-    }
-
-    @Override
     public void onSuccessGetMyRecipes(List<Recipe> recipes) {
         this.myRecipes.postValue(new Result.ListRecipeResponseSuccess(recipes));
     }
@@ -269,6 +244,8 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         this.myRecipes.postValue(new Result.Error(writeDatabase_error));
     }
 
+
+
     @Override
     public void onSuccessGetAllRecipes(List<Recipe> recipes) {
         this.allRecipes.postValue(new Result.ListRecipeResponseSuccess(recipes));
@@ -277,6 +254,16 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     @Override
     public void onFailureGetAllRecipes(int writeDatabase_error) {
         this.allRecipes.postValue(new Result.Error(writeDatabase_error));
+    }
+
+    @Override
+    public void onSuccessGetMyRecipesScore(List<Recipe> recipes) {
+        this.myRecipesScore.postValue(new Result.ListRecipeResponseSuccess(recipes));
+    }
+
+    @Override
+    public void onFailureGetMyRecipesScore(int writeDatabase_error) {
+        this.myRecipesScore.postValue(new Result.Error(writeDatabase_error));
     }
 
     @Override

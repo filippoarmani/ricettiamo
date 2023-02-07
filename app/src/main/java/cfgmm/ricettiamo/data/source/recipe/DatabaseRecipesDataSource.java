@@ -15,6 +15,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
@@ -70,54 +71,18 @@ public class DatabaseRecipesDataSource extends BaseDatabaseRecipesDataSource {
     }
 
     @Override
-    public void getFirstRecipe(String author) {
-        Query firstRecipe = databaseReference.child(FIREBASE_RECIPES_COLLECTION).equalTo(author).orderByChild("date").limitToFirst(1);
-        firstRecipe.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Recipe firstRecipe = dataSnapshot.getValue(Recipe.class);
-                Log.d(TAG, "getFirstRecipe: success");
-                recipesResponseCallback.onSuccessGetFirstRecipe(firstRecipe);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d(TAG, "getFirstRecipe: failure");
-                recipesResponseCallback.onFailureGetFirstRecipe(R.string.writeDatabase_error);
-            }
-        });
-    }
-
-    @Override
-    public void getMostRecentRecipe(String author) {
-        Query mostRecent = databaseReference.child(FIREBASE_RECIPES_COLLECTION).equalTo(author).orderByChild("date").limitToLast(1);
-        mostRecent.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Recipe mostRecentRecipe = dataSnapshot.getValue(Recipe.class);
-                Log.d(TAG, "getMostRecentRecipe: success");
-                recipesResponseCallback.onSuccessGetMostRecentRecipe(mostRecentRecipe);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d(TAG, "getMostRecentRecipe: failure");
-                recipesResponseCallback.onFailureGetMostRecentRecipe(R.string.writeDatabase_error);
-            }
-        });
-    }
-
-    @Override
     public void getMyRecipes(String author) {
+        //Order by date
         List<Recipe> recipes = new ArrayList<>();
-        Query userRecipe = databaseReference.child(FIREBASE_RECIPES_COLLECTION).equalTo(author).orderByChild("score");
+        Query userRecipe = databaseReference.child(FIREBASE_RECIPES_COLLECTION);
         userRecipe.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot:  dataSnapshot.getChildren()) {
-                    recipes.add(snapshot.getValue(Recipe.class));
+                    Recipe recipe = snapshot.getValue(Recipe.class);
+                    if(recipe != null && recipe.getAuthor().equals(author)) {
+                        recipes.add(recipe);
+                    }
                 }
                 Log.d(TAG, "getMyRecipes: success");
                 recipesResponseCallback.onSuccessGetMyRecipes(recipes);
@@ -128,6 +93,34 @@ public class DatabaseRecipesDataSource extends BaseDatabaseRecipesDataSource {
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.d(TAG, "getMyRecipes: failure");
                 recipesResponseCallback.onFailureGetMyRecipes(R.string.writeDatabase_error);
+            }
+        });
+    }
+
+    @Override
+    public void getMyRecipesScore(String author) {
+        List<Recipe> recipes = new ArrayList<>();
+        Query userRecipe = databaseReference.child(FIREBASE_RECIPES_COLLECTION);
+        userRecipe.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot:  dataSnapshot.getChildren()) {
+                    Recipe recipe = snapshot.getValue(Recipe.class);
+                    if(recipe != null && recipe.getAuthor().equals(author)) {
+                        recipes.add(recipe);
+                    }
+                }
+                Collections.sort(recipes);
+                Collections.reverse(recipes);
+                Log.d(TAG, "getMyRecipesScore: success");
+                recipesResponseCallback.onSuccessGetMyRecipesScore(recipes);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d(TAG, "getMyRecipes: failure");
+                recipesResponseCallback.onFailureGetMyRecipesScore(R.string.writeDatabase_error);
             }
         });
     }

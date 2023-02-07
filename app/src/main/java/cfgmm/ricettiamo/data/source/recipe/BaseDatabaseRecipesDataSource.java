@@ -15,11 +15,9 @@ public abstract class BaseDatabaseRecipesDataSource {
 
     public abstract void getAllRecipes();
 
-    public abstract void getFirstRecipe(String author);
-
-    public abstract void getMostRecentRecipe(String author);
-
     public abstract void getMyRecipes(String author);
+
+    public abstract void getMyRecipesScore(String author);
 
     /*public abstract void getFavoriteRecipesId(String user);
 

@@ -82,6 +82,7 @@ public class ProfileFragment extends Fragment implements RecipesResponseCallback
                     Glide.with(this)
                             .load(photo)
                             .circleCrop()
+                            .placeholder(R.drawable.user)
                             .into(binding.user);
                 } catch (Exception e) {
                 }
@@ -118,6 +119,24 @@ public class ProfileFragment extends Fragment implements RecipesResponseCallback
 
                 String star = "" + user.getScore();
                 binding.score.setText(star);
+
+                recipeViewModel.getMyRecipes(id).observe(getViewLifecycleOwner(), resultRecipe -> {
+                    if(resultRecipe != null && resultRecipe.isSuccess()) {
+                        List<Recipe> recipeDate = ((Result.ListRecipeResponseSuccess) resultRecipe).getData();
+                        if(recipeDate != null && recipeDate.size() > 0) {
+                            binding.noRecipes.setVisibility(GONE);
+                            binding.withRecipes.setVisibility(VISIBLE);
+
+                            binding.firstRecipe.setText(recipeDate.get(0).getName());
+                            binding.lastRecipe.setText(recipeDate.get(recipeDate.size() - 1).getName());
+                        } else {
+                            binding.noRecipes.setVisibility(VISIBLE);
+                            binding.withRecipes.setVisibility(GONE);
+                        }
+                    } else {
+                        Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
+                    }
+                });
             } else {
                 Result.Error error = ((Result.Error) result);
                 Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
@@ -137,40 +156,6 @@ public class ProfileFragment extends Fragment implements RecipesResponseCallback
             binding.pProgressCircular.setVisibility(GONE);
         });
 
-        Result firstRecipeResult = recipeViewModel.getFirstRecipe(id);
-        if (firstRecipeResult != null && firstRecipeResult.isSuccess()) {
-            Recipe firstRecipe = ((Result.RecipeDatabaseResponseSuccess) firstRecipeResult).getData();
-            if (firstRecipe != null) {
-                binding.noRecipes.setVisibility(GONE);
-                binding.withRecipes.setVisibility(VISIBLE);
-                binding.firstRecipe.setText(firstRecipe.getName());
-
-                recipeViewModel.getMostRecentRecipe(id).observe(getViewLifecycleOwner(), resultLastRecipe -> {
-                    if (resultLastRecipe != null && resultLastRecipe.isSuccess()) {
-                        Recipe lastRecipe = ((Result.RecipeDatabaseResponseSuccess) resultLastRecipe).getData();
-                        binding.lastRecipe.setText(lastRecipe.getName());
-                    } else {
-                        Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
-                    }
-                });
-
-                recipeViewModel.getMyRecipes(id).observe(getViewLifecycleOwner(), resultRecipe -> {
-                    if (resultRecipe != null && resultRecipe.isSuccess()) {
-                        Recipe mostPopular = ((Result.ListRecipeResponseSuccess) resultRecipe).getData().get(0);
-                        binding.mostPopularRecipe.setText(mostPopular.getName());
-                    } else {
-                        Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
-                    }
-                });
-            } else {
-                binding.noRecipes.setVisibility(VISIBLE);
-                binding.withRecipes.setVisibility(GONE);
-            }
-        } else {
-            binding.noRecipes.setVisibility(GONE);
-            binding.withRecipes.setVisibility(GONE);
-            Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
-        }
     }
 
     @Override

@@ -23,7 +23,7 @@ public class RecipeViewModel extends ViewModel {
     private List<Recipe> favoriteRecipes;
     private MutableLiveData<Result> myRecipes;
     private MutableLiveData<Result> allRecipes;
-    private MutableLiveData<Result> mostRecentRecipe;
+    private MutableLiveData<Result> myRecipesScore;
     private Result firstRecipe;
 
     public RecipeViewModel(IRecipesRepository iRecipesRepository) {
@@ -108,6 +108,13 @@ public class RecipeViewModel extends ViewModel {
         return myRecipes;
     }
 
+    public MutableLiveData<Result> getMyRecipesScore(String id) {
+        if(myRecipesScore == null)
+            myRecipesScore = recipesRepository.getMyRecipesScore(id);
+
+        return myRecipesScore;
+    }
+
     public Result uploadPhoto(Uri uri) {
         return recipesRepository.uploadPhoto(uri);
     }
@@ -117,20 +124,5 @@ public class RecipeViewModel extends ViewModel {
             allRecipes = recipesRepository.getAllRecipes();
 
         return allRecipes;
-    }
-
-    public MutableLiveData<Result> getMostRecentRecipe(String id) {
-        if(mostRecentRecipe == null)
-            mostRecentRecipe = recipesRepository.getMostRecentRecipe(id);
-
-        return mostRecentRecipe;
-    }
-
-    public Result getFirstRecipe(String id) {
-        if(!firstRecipe.isSuccess() || !(((Result.RecipeDatabaseResponseSuccess) firstRecipe).getData() == null)) {
-            firstRecipe = recipesRepository.getFirstRecipe(id);
-        }
-
-        return firstRecipe;
     }
 }

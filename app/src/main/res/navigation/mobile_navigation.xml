@@ -63,7 +63,11 @@
         android:id="@+id/nav_my_recipe"
         android:name="cfgmm.ricettiamo.ui.navigation_drawer.MyRecipesFragment"
         android:label="@string/my_recipes"
-        tools:layout="@layout/fragment_m_my_recipes" />
+        tools:layout="@layout/fragment_m_my_recipes" >
+        <action
+            android:id="@+id/action_nav_my_recipe_to_recipeDetailsFragment"
+            app:destination="@id/recipeDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_add_new_recipe"
