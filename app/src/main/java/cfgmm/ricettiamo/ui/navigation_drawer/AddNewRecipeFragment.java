@@ -188,7 +188,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
                     alert.setPositiveButton(getString(R.string.save), (dialog, id) -> {
                         Result urlResult = recipeViewModel.uploadPhoto(mainPicture);
                         if (urlResult != null && urlResult.isSuccess()) {
-                            String urlToImage = ((Result.PhotoResponseSuccess) urlResult).getData().getPath();
+                            String urlToImage = ((Result.PhotoResponseSuccess) urlResult).getData().toString();
 
                             List<String> dishTypes = new ArrayList<>();
                             dishTypes.add(category);
