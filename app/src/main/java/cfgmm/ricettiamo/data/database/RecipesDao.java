@@ -24,8 +24,6 @@ public interface RecipesDao {
 
     @Query("SELECT * FROM ingredient")
     List<Ingredient> getAllIngredients();
-    @Query("SELECT * FROM ingredient WHERE id = :id")
-    Ingredient getIngredient(long id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     List<Long> insertRecipeList(List<Recipe> recipeList);

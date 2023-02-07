@@ -21,7 +21,6 @@ public class RecipeViewModel extends ViewModel {
     private boolean firstLoading;
     private List<Recipe> recipesList;
     private List<Recipe> favoriteRecipes;
-
     private MutableLiveData<Result> myRecipes;
     private MutableLiveData<Result> allRecipes;
     private MutableLiveData<Result> mostRecentRecipe;
