@@ -1,16 +1,12 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
-import static android.text.TextUtils.isEmpty;
 import static android.view.View.GONE;
-import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -26,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.adapter.MyRecipesRecyclerAdapter;
 import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
@@ -86,40 +80,41 @@ public class MyRecipesFragment extends Fragment implements RecipesResponseCallba
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recipeList = new ArrayList<>();
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
-
-        adapter = new RecipesRecyclerAdapter(recipeList, requireActivity().getApplication(),
-                new RecipesRecyclerAdapter.OnItemClickListener() {
-                    @Override
-                    public void onRecipeItemClick(Recipe recipe) {
-                        MyRecipesFragmentDirections.ActionNavMyRecipeToRecipeDetailsFragment action =
-                                MyRecipesFragmentDirections.actionNavMyRecipeToRecipeDetailsFragment(recipe);
-                        Navigation.findNavController(view).navigate(action);
-                    }
-
-                    @Override
-                    public void onFavoriteButtonPressed(int position) {
-                        recipeList.get(position).setIsFavorite(!recipeList.get(position).isFavorite());
-                        iRecipesRepository.updateRecipes(recipeList.get(position));
-                    }
-                });
-
-        binding.withRecipes.setLayoutManager(layoutManager);
-        binding.withRecipes.setAdapter(adapter);
-
         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
             if (result.isSuccess()) {
                 User user = ((Result.UserResponseSuccess) result).getData();
                 id = user.getId();
+                recipeList = new ArrayList<>();
 
                 recipeViewModel.getMyRecipes(id).observe(getViewLifecycleOwner(), resultRecipe -> {
                     if(resultRecipe != null && resultRecipe.isSuccess()) {
                         recipeList = ((Result.ListRecipeResponseSuccess) resultRecipe).getData();
+
                         if(recipeList != null && recipeList.size() > 0) {
                             binding.noRecipes.setVisibility(GONE);
                             binding.withRecipes.setVisibility(VISIBLE);
+
+                            LinearLayoutManager layoutManager =
+                                new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+                            adapter = new RecipesRecyclerAdapter(recipeList, requireActivity().getApplication(),
+                                    new RecipesRecyclerAdapter.OnItemClickListener() {
+                                        @Override
+                                        public void onRecipeItemClick(Recipe recipe) {
+                                            MyRecipesFragmentDirections.ActionNavMyRecipeToRecipeDetailsFragment action =
+                                                    MyRecipesFragmentDirections.actionNavMyRecipeToRecipeDetailsFragment(recipe);
+                                            Navigation.findNavController(view).navigate(action);
+                                        }
+
+                                        @Override
+                                        public void onFavoriteButtonPressed(int position) {
+                                            recipeList.get(position).setIsFavorite(!recipeList.get(position).isFavorite());
+                                            iRecipesRepository.updateRecipes(recipeList.get(position));
+                                        }
+                                    });
+
+
+                            binding.withRecipes.setLayoutManager(layoutManager);
+                            binding.withRecipes.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                         } else {
                             binding.noRecipes.setVisibility(VISIBLE);
@@ -134,6 +129,7 @@ public class MyRecipesFragment extends Fragment implements RecipesResponseCallba
                 Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
             }
         });
+
     }
 
 
