@@ -14,7 +14,7 @@
     android:id="@+id/list_item_icon"
     android:layout_width="15dp"
     android:layout_height="15dp"
-    android:background="@drawable/button_shape"
+    android:background="@drawable/circle"
     android:contentDescription="@string/nameRecipe"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,6 @@
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@drawable/edit_text2"
     android:backgroundTint="@color/orange_w"
     android:paddingStart="5dp"
     android:paddingEnd="5dp">
