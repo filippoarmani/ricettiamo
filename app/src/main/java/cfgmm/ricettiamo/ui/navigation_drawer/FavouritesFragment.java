@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +24,14 @@ import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
 import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
+import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.model.Recipe;
+import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.util.ServiceLocator;
+import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
+import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
+import cfgmm.ricettiamo.viewmodel.UserViewModel;
+import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +46,8 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
     private IRecipesRepository iRecipesRepository;
     private RecipesRecyclerAdapter recipesRecyclerAdapter;
     private ProgressBar progressBar;
+    private UserViewModel userViewModel;
+    private RecipeViewModel recipeViewModel;
 
     public FavouritesFragment() {}
 
@@ -62,6 +72,12 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
+        userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
+
+        iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
+        recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
+
         return inflater.inflate(R.layout.fragment_m_favourites, container, false);
     }
 
@@ -74,28 +90,56 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
         progressBar = view.findViewById(R.id.progress_bar);
 
         progressBar.setVisibility(View.VISIBLE);
-        RecyclerView recyclerviewFavRecipes = view.findViewById(R.id.recyclerview_favourite_recipes);
-        LinearLayoutManager layoutManager =
-                new LinearLayoutManager(requireContext(),
-                        LinearLayoutManager.VERTICAL, false);
+        userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
+                    if (result.isSuccess()) {
+                        recipesList = new ArrayList<>();
 
-        recipesRecyclerAdapter = new RecipesRecyclerAdapter(recipesList, requireActivity().getApplication(),
-                new RecipesRecyclerAdapter.OnItemClickListener() {
-                    @Override
-                    public void onRecipeItemClick(Recipe recipe) {
-                        FavouritesFragmentDirections.ActionNavFavouritesToRecipeDetailsFragment action =
-                                FavouritesFragmentDirections.actionNavFavouritesToRecipeDetailsFragment(recipe);
-                        Navigation.findNavController(view).navigate(action);
-                    }
+                        recipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), resultRecipe -> {
+                            if (resultRecipe != null && resultRecipe.isSuccess()) {
+                                List<Recipe> allRecipeListFirebase =
+                                        ((Result.ListRecipeResponseSuccess) resultRecipe).getData();
+                                List<Recipe> favListFirebase = new ArrayList<>();
+                                if (allRecipeListFirebase != null && allRecipeListFirebase.size() > 0) {
+                                    for (Recipe recipe: allRecipeListFirebase) {
+                                        if (recipe.isFavorite()) favListFirebase.add(recipe);
+                                    }
+                                    RecyclerView recyclerviewFavRecipes = view.findViewById(R.id.recyclerview_favourite_recipes);
+                                    LinearLayoutManager layoutManager =
+                                            new LinearLayoutManager(requireContext(),
+                                                    LinearLayoutManager.VERTICAL, false);
 
-                    @Override
-                    public void onFavoriteButtonPressed(int position) {
-                        recipesList.get(position).setIsFavorite(!recipesList.get(position).isFavorite());
-                        iRecipesRepository.updateRecipes(recipesList.get(position));
+                                    recipesRecyclerAdapter = new RecipesRecyclerAdapter(recipesList, favListFirebase,
+                                            requireActivity().getApplication(),
+                                            new RecipesRecyclerAdapter.OnItemClickListener() {
+                                                @Override
+                                                public void onRecipeItemClick(Recipe recipe) {
+                                                    FavouritesFragmentDirections.ActionNavFavouritesToRecipeDetailsFragment action =
+                                                            FavouritesFragmentDirections.actionNavFavouritesToRecipeDetailsFragment(recipe);
+                                                    Navigation.findNavController(view).navigate(action);
+                                                }
+
+                                                @Override
+                                                public void onFavoriteButtonPressed(int position) {
+                                                    recipesList.get(position).setIsFavorite(!recipesList.get(position).isFavorite());
+                                                    iRecipesRepository.updateRecipes(recipesList.get(position));
+                                                }
+                                            });
+                                    recyclerviewFavRecipes.setLayoutManager(layoutManager);
+                                    recyclerviewFavRecipes.setAdapter(recipesRecyclerAdapter);
+                                    recipesRecyclerAdapter.notifyDataSetChanged();
+                                }
+                            } else {
+                                Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
+                            }
+                        });
+                    } else {
+                        Result.Error error = ((Result.Error) result);
+                        Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
                     }
                 });
-        recyclerviewFavRecipes.setLayoutManager(layoutManager);
-        recyclerviewFavRecipes.setAdapter(recipesRecyclerAdapter);
+
+
+
     }
 
     public void onSuccess(List<Recipe> recipesList) {
