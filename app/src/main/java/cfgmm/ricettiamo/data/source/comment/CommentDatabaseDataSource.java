@@ -2,7 +2,6 @@ package cfgmm.ricettiamo.data.source.comment;
 
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_COMMENTS_COLLECTION;
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_REALTIME_DATABASE;
-import static cfgmm.ricettiamo.util.Constants.FIREBASE_RECIPES_COLLECTION;
 import static cfgmm.ricettiamo.util.Constants.FIREBASE_USERS_COLLECTION;
 
 import android.util.Log;
@@ -18,11 +17,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Comment;
-import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.User;
 
 public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
@@ -37,12 +34,12 @@ public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
     }
 
     @Override
-    public void writeComment(Comment comment, String authorId) {
+    public void writeComment(Comment comment) {
         databaseReference.child(FIREBASE_COMMENTS_COLLECTION).child(comment.getIdRecipe()).child(comment.getIdComment())
                 .setValue(comment.toMap())
                 .addOnSuccessListener(task -> {
                     Log.d(TAG, "writeComment: success");
-                    commentResponseCallBack.onSuccessWriteComment(comment, authorId);
+                    commentResponseCallBack.onSuccessWriteComment(comment);
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "writeComment: failure");
@@ -73,74 +70,36 @@ public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
     }
 
     @Override
-    public void updateStars(String id, int score, boolean type) {
-        AtomicInteger oldStars = new AtomicInteger();
-        String path = getPath(type);
-        databaseReference.child(path).child(id).child("score").get()
-                .addOnSuccessListener(result -> {
-                    try {
-                        Integer read = result.getValue(Integer.class);
-                        oldStars.set(read);
-                    } catch (Exception e) {
-                        Log.d(TAG, "updateStars: failure");
-                        commentResponseCallBack.onFailureUpdateStars(R.string.updateData_error);
-                    }
-                })
-                .addOnFailureListener(error -> {
-                    Log.d(TAG, "updateStars: failure");
-                    commentResponseCallBack.onFailureUpdateStars(R.string.updateData_error);
-                });
+    public void increaseScore(String id, int score, int oldScore) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("score", score + oldScore);
 
-        Map<String, Object> stars = new HashMap<>();
-        stars.put("score", oldStars.get() + score);
-        databaseReference.child(path).child(id)
-                .updateChildren(stars)
-                .addOnSuccessListener(task -> {
-                    Log.d(TAG, "updateStars: success");
+        databaseReference.child(FIREBASE_USERS_COLLECTION).child(id).updateChildren(data)
+                .addOnSuccessListener(result -> {
+                    Log.d(TAG, "increaseScore: success");
                     commentResponseCallBack.onSuccessUpdateStars();
                 })
                 .addOnFailureListener(error -> {
-                    Log.d(TAG, "updateStars: failure");
-                    commentResponseCallBack.onFailureUpdateStars(R.string.updateData_error);
+                    Log.d(TAG, "increaseScore: failure");
+                    commentResponseCallBack.onFailureUpdateStars(1);
                 });
     }
 
     @Override
-    public void exists(String id, boolean type) {
-        try {
-            String path = getPath(type);
-            databaseReference.child(path).child(id).get()
-                    .addOnSuccessListener(result -> {
-                        if(result != null && getValue(result, type)) {
-                            Log.d(TAG, "exists: false");
-                            commentResponseCallBack.setTrue();
-                        } else {
-                            Log.d(TAG, "exists: false");
-                            commentResponseCallBack.setFalse();
-                        }
-                    })
-                    .addOnFailureListener(error -> {
-                        Log.d(TAG, "exists: false");
-                        commentResponseCallBack.setFalse();
-                    });
-        } catch(Exception e) {
-            Log.d(TAG, "exists: false");
-            commentResponseCallBack.setFalse();
-        }
-    }
-    
-    public boolean getValue(DataSnapshot snapshot, boolean type) {
-        if(type)
-            return snapshot.getValue(User.class) != null;
-        else
-            return snapshot.getValue(Recipe.class) != null;
+    public void updateScore(String id, int score) {
+        databaseReference.child(FIREBASE_USERS_COLLECTION).child(id).get()
+                .addOnSuccessListener(result -> {
+                    User user = result.getValue(User.class);
+                    if(user != null && user.getId().equals(id)) {
+                        increaseScore(id, score, user.getScore());
+                    } else {
+                        Log.d(TAG, "increaseScore: skipped");
+                    }
+                })
+                .addOnFailureListener(error -> {
+                    Log.d(TAG, "increaseScore: failure");
+                    commentResponseCallBack.onFailureUpdateStars(1);
+                });
     }
 
-    public String getPath(boolean type) {
-        if(type) {
-            return FIREBASE_USERS_COLLECTION;
-        } else {
-            return FIREBASE_RECIPES_COLLECTION;
-        }
-    }
 }

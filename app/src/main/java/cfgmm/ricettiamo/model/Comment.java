@@ -15,8 +15,9 @@ import java.util.Map;
 public class Comment implements Parcelable {
 
     private String idComment;
-    private String idUser;
+    private String idAuthorComment;
     private String idRecipe;
+    private String idAuthorRecipe;
 
     private String description;
     private int score;
@@ -25,18 +26,20 @@ public class Comment implements Parcelable {
         // Default constructor required for calls to DataSnapshot.getValue(Comment.class)
     }
 
-    public Comment(String idComment, String idUser, String idRecipe, String description, int score) {
+    public Comment(String idComment, String idAuthorComment, String idRecipe, String idAuthorRecipe, String description, int score) {
         this.idComment = idComment;
-        this.idUser = idUser;
+        this.idAuthorComment = idAuthorComment;
         this.idRecipe = idRecipe;
+        this.idAuthorRecipe = idAuthorRecipe;
         this.description = description;
         this.score = score;
     }
 
     protected Comment(Parcel in) {
         idComment = in.readString();
-        idUser = in.readString();
+        idAuthorComment = in.readString();
         idRecipe = in.readString();
+        idAuthorRecipe = in.readString();
         description = in.readString();
         score = in.readInt();
     }
@@ -55,13 +58,15 @@ public class Comment implements Parcelable {
 
     public String getIdComment() { return idComment; }
 
-    public String getIdUser() {
-        return idUser;
+    public String getIdAuthorComment() {
+        return idAuthorComment;
     }
 
     public String getIdRecipe() {
         return idRecipe;
     }
+
+    public String getIdAuthorRecipe() { return idAuthorRecipe; }
 
     public String getDescription() {
         return description;
@@ -73,13 +78,13 @@ public class Comment implements Parcelable {
 
     public void setIdComment(String idComment) { this.idComment = idComment; }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
-    }
+    public void setIdAuthorComment(String idAuthorComment) { this.idAuthorComment = idAuthorComment; }
 
     public void setIdRecipe(String idRecipe) {
         this.idRecipe = idRecipe;
     }
+
+    public void setIdAuthorRecipe(String idAuthorRecipe) { this.idAuthorRecipe = idAuthorRecipe; }
 
     public void setDescription(String description) {
         this.description = description;
@@ -93,8 +98,9 @@ public class Comment implements Parcelable {
     public String toString() {
         return "Comment{" +
                 "idComment='" + idComment +'\'' +
-                ", idUser='" + idUser + '\'' +
+                ", idAuthorComment='" + idAuthorComment + '\'' +
                 ", idRecipe='" + idRecipe + '\'' +
+                ", idAuthorRecipe='" + idAuthorRecipe + '\'' +
                 ", description='" + description + '\'' +
                 ", score='" + score + '\'' +
                 '}';
@@ -104,8 +110,9 @@ public class Comment implements Parcelable {
         Map<String, Object> data = new HashMap<>();
 
         data.put("idComment", idComment);
-        data.put("idUser", idUser);
+        data.put("idAuthorComment", idAuthorComment);
         data.put("idRecipe", idRecipe);
+        data.put("idAuthorRecipe", idAuthorRecipe);
         data.put("description", description);
         data.put("score", score);
 
@@ -119,7 +126,8 @@ public class Comment implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(this.idUser);
+        dest.writeString(this.idAuthorComment);
+        dest.writeString(this.idAuthorRecipe);
         dest.writeString(this.idRecipe);
         dest.writeString(this.description);
         dest.writeInt(this.score);

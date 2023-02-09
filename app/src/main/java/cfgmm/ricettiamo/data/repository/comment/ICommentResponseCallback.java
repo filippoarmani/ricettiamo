@@ -8,13 +8,9 @@ public interface ICommentResponseCallback {
     void onSuccessReadComment(List<Comment> commentList);
     void onFailureReadComment(int idError);
 
-    void onSuccessWriteComment(Comment comment, String authorId);
+    void onSuccessWriteComment(Comment comment);
     void onFailureWriteComment(int idError);
 
     void onSuccessUpdateStars();
     void onFailureUpdateStars(int idError);
-
-    void setTrue();
-
-    void setFalse();
 }

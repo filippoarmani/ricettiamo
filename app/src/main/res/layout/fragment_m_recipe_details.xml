@@ -19,7 +19,6 @@
             android:background="@drawable/esempio_carbonara"
             android:contentDescription="@string/nameRecipe" />
 
-
         <TextView
             android:id="@+id/nameRecipe"
             style="@style/firstTitle"
@@ -230,7 +229,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:visibility="gone"
             android:text="@string/noReview" />
 

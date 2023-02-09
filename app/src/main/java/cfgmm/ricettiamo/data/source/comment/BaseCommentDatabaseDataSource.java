@@ -11,10 +11,10 @@ public abstract class BaseCommentDatabaseDataSource {
         this.commentResponseCallBack = commentResponseCallBack;
     }
 
-    public abstract void writeComment(Comment comment, String authorId);
+    public abstract void writeComment(Comment comment);
     public abstract void readComments(String idRecipe);
 
-    public abstract void updateStars(String idUser, int score, boolean type);
 
-    public abstract void exists(String idUser, boolean type);
+    public abstract void increaseScore(String id, int score, int oldScore);
+    public abstract void updateScore(String id, int score);
 }

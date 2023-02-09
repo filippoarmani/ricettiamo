@@ -130,6 +130,9 @@
     <string name="category">Categoria</string>
     <string name="noPhoto">Non è stata aggiunta alcuna foto</string>
     <string name="error_photo">La tua foto non è stata salvata! Riprova</string>
+    <string name="display_name">Nome visualizzato</string>
+    <string name="first_published">Prima ricetta</string>
+    <string name="last_published">Ultima ricetta</string>
 
 
 </resources>

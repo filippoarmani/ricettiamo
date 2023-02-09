@@ -8,6 +8,6 @@ import cfgmm.ricettiamo.model.Comment;
 import cfgmm.ricettiamo.model.Result;
 
 public interface ICommentRepository {
-    void writeNewComment(Comment comment, String authorId);
+    void writeNewComment(Comment comment);
     MutableLiveData<Result> readComment(String idRecipes);
 }
