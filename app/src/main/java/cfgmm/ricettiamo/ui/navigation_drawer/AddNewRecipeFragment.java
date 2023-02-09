@@ -3,6 +3,7 @@ package cfgmm.ricettiamo.ui.navigation_drawer;
 import static android.text.TextUtils.isEmpty;
 import static cfgmm.ricettiamo.util.Constants.IMAGE;
 
+import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -47,7 +48,10 @@ import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
 import cfgmm.ricettiamo.viewmodel.UserViewModel;
 import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
 
+@RuntimePermissions
 public class AddNewRecipeFragment extends Fragment implements RecipesResponseCallback {
 
     public static final String dateFormat = "yyyy-MM-dd HH:mm:ss";
@@ -138,7 +142,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
             }
         });
 
-        binding.addMainPicture.setOnClickListener(v -> mainPictureActivity.launch(IMAGE));
+        binding.addMainPicture.setOnClickListener(v -> startPhoto());
 
         binding.addIngredientButton.setOnClickListener(v -> {
             String nameIngredient = binding.addIngredientLayout.getEditText().getText().toString().trim();
@@ -322,5 +326,10 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
     @Override
     public void onRecipesFavoriteStatusChanged(Recipe recipe) {
 
+    }
+
+    @NeedsPermission(Manifest.permission_group.STORAGE)
+    public void startPhoto() {
+        mainPictureActivity.launch(IMAGE);
     }
 }

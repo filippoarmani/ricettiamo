@@ -4,6 +4,7 @@ import static android.text.TextUtils.isEmpty;
 
 import static cfgmm.ricettiamo.util.Constants.IMAGE;
 
+import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,7 +38,10 @@ import cfgmm.ricettiamo.ui.authentication.AuthenticationActivity;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.UserViewModel;
 import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
 
+@RuntimePermissions
 public class SettingsFragment extends Fragment {
 
     private UserViewModel userViewModel;
@@ -115,7 +119,7 @@ public class SettingsFragment extends Fragment {
             progressIndicator.setVisibility(View.GONE);
         });
 
-        binding.changeUserPhoto.setOnClickListener(v -> mGetContent.launch(IMAGE));
+        binding.changeUserPhoto.setOnClickListener(v -> startPhoto());
 
         binding.salva.setOnClickListener(v -> {
             String displayName = binding.iDName.getText().toString().trim();
@@ -210,5 +214,10 @@ public class SettingsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @NeedsPermission(Manifest.permission_group.STORAGE)
+    public void startPhoto() {
+        mGetContent.launch(IMAGE);
     }
 }

@@ -99,6 +99,6 @@ dependencies {
         transitive = true
     }
 
-
-
+    implementation "com.github.permissions-dispatcher:permissionsdispatcher:4.9.2"
+    annotationProcessor "com.github.permissions-dispatcher:permissionsdispatcher-processor:4.9.2"
 }
