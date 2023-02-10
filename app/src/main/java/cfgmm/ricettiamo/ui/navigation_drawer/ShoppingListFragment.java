@@ -149,7 +149,7 @@ public class ShoppingListFragment extends Fragment implements IngredientsRespons
     @Override
     public void onFailure(String errorMessage) {
         Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                errorMessage, Snackbar.LENGTH_LONG).show();
+                errorMessage, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -158,6 +158,6 @@ public class ShoppingListFragment extends Fragment implements IngredientsRespons
         requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
         Snackbar.make(requireActivity().findViewById(android.R.id.content),
                 getString(R.string.ingredient_removed_from_list_message),
-                Snackbar.LENGTH_LONG).show();
+                Snackbar.LENGTH_SHORT).show();
     }
 }

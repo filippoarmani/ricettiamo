@@ -91,7 +91,7 @@ public class SettingsFragment extends Fragment {
                             .circleCrop()
                             .into(binding.changeUserPhoto);
                 } catch (Exception e) {
-                    Snackbar.make(requireView(), getString(R.string.getPhoto_error), Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(requireView(), getString(R.string.getPhoto_error), Snackbar.LENGTH_SHORT).show();
                 }
                 photoProfile = photo;
             }
@@ -177,7 +177,7 @@ public class SettingsFragment extends Fragment {
             Result result = userViewModel.getCurrentUserLiveData().getValue();
             if(result != null && !result.isSuccess()) {
                 Result.Error error = (Result.Error) result;
-                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
             }
         });
 

@@ -72,7 +72,7 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
             if (search.length() != 0) {
                 iRecipesRepository.getRecipes(search);
             } else
-                Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_SHORT).show();
         });
 
         RecyclerView recyclerviewSearchRecipes = view.findViewById(R.id.recyclerview_search_recipes);
@@ -112,7 +112,7 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
     @Override
     public void onFailure(String errorMessage) {
         Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                errorMessage, Snackbar.LENGTH_LONG).show();
+                errorMessage, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -120,11 +120,11 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
         if (recipe.isFavorite()) {
             Snackbar.make(requireActivity().findViewById(android.R.id.content),
                     getString(R.string.recipes_added_to_favorite_list_message),
-                    Snackbar.LENGTH_LONG).show();
+                    Snackbar.LENGTH_SHORT).show();
         } else {
             Snackbar.make(requireActivity().findViewById(android.R.id.content),
                     getString(R.string.recipes_removed_from_favorite_list_message),
-                    Snackbar.LENGTH_LONG).show();
+                    Snackbar.LENGTH_SHORT).show();
         }
     }
 }

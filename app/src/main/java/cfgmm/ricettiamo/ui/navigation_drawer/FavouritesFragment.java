@@ -129,12 +129,12 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
                                     recipesRecyclerAdapter.notifyDataSetChanged();
                                 }
                             } else {
-                                Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_SHORT).show();
                             }
                         });
                     } else {
                         Result.Error error = ((Result.Error) result);
-                        Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
                     }
                 });
 
@@ -156,7 +156,7 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
     public void onFailure(String errorMessage) {
         progressBar.setVisibility(View.GONE);
         Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                errorMessage, Snackbar.LENGTH_LONG).show();
+                errorMessage, Snackbar.LENGTH_SHORT).show();
     }
 
     public void onRecipesFavoriteStatusChanged(Recipe recipe) {
@@ -164,6 +164,6 @@ public class FavouritesFragment extends Fragment implements RecipesResponseCallb
         requireActivity().runOnUiThread(() -> recipesRecyclerAdapter.notifyDataSetChanged());
         Snackbar.make(requireActivity().findViewById(android.R.id.content),
                 getString(R.string.recipes_removed_from_favorite_list_message),
-                Snackbar.LENGTH_LONG).show();
+                Snackbar.LENGTH_SHORT).show();
     }
 }

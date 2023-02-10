@@ -100,7 +100,7 @@ public class LoginFragment extends Fragment {
                             } else {
                                 if(!userViewModel.isLoggedUser()) {
                                     Result.Error error = (Result.Error) result;
-                                    Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                                    Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -149,12 +149,12 @@ public class LoginFragment extends Fragment {
                     } else {
                         if(!userViewModel.isLoggedUser()) {
                             Result.Error error = (Result.Error) result;
-                            Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });
             } else {
-                Snackbar.make(requireView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(requireView(), R.string.empty_fields, Snackbar.LENGTH_SHORT).show();
                 progressIndicator.setVisibility(View.GONE);
             }
         });

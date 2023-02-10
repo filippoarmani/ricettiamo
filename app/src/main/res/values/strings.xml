@@ -197,6 +197,7 @@
     <string name="last_published">Last published</string>
     <string name="textview" translatable="false">TextView</string>
     <string name="ingredient_removed_from_list_message">Ingredient Removed From the list</string>
+    <string name="invalid_email">Invalid Email</string>
 
     <string-array name="point_array">
         <item>0</item>

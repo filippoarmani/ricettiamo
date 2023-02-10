@@ -108,7 +108,7 @@ public class RankingFragment extends Fragment {
                 }
             } else {
                 Result.Error error = ((Result.Error) result);
-                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG)
+                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT)
                         .setAction(R.string.retry, v -> userViewModel.getTopTen())
                         .show();
 

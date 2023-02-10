@@ -81,7 +81,7 @@ public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "increaseScore: failure");
-                    commentResponseCallBack.onFailureUpdateStars(1);
+                    commentResponseCallBack.onFailureUpdateStars(R.string.writeDatabase_error);
                 });
     }
 
@@ -98,7 +98,7 @@ public class CommentDatabaseDataSource extends BaseCommentDatabaseDataSource {
                 })
                 .addOnFailureListener(error -> {
                     Log.d(TAG, "increaseScore: failure");
-                    commentResponseCallBack.onFailureUpdateStars(1);
+                    commentResponseCallBack.onFailureUpdateStars(R.string.writeDatabase_error);
                 });
     }
 

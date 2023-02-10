@@ -121,12 +121,12 @@ public class MyRecipesFragment extends Fragment {
                             binding.withRecipes.setVisibility(GONE);
                         }
                     } else {
-                        Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_SHORT).show();
                     }
                 });
             } else {
                 Result.Error error = ((Result.Error) result);
-                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
             }
         });
 

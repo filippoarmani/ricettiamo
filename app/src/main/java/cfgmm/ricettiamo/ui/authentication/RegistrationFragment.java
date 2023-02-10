@@ -97,7 +97,7 @@ public class RegistrationFragment extends Fragment {
                 } else {
                     if(result != null && !result.isSuccess()) {
                         Result.Error error = (Result.Error) result;
-                        Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -107,12 +107,12 @@ public class RegistrationFragment extends Fragment {
 
     private boolean checkOk(String name, String surname, String email, String password) {
         if(isEmpty(name) || isEmpty(surname) || isEmpty(email) || isEmpty(password)) {
-            Snackbar.make(requireView(), R.string.empty_fields, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(requireView(), R.string.empty_fields, Snackbar.LENGTH_SHORT).show();
             return false;
         }
 
         if(!EmailValidator.getInstance().isValid(email)) {
-            Snackbar.make(requireView(), "Invalid Email", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(requireView(), getString(R.string.invalid_email), Snackbar.LENGTH_SHORT).show();
             return false;
         }
 

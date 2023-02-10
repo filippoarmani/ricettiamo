@@ -67,7 +67,7 @@ public class ForgotPasswordFragment extends Fragment {
                 if(EmailValidator.getInstance().isValid(email))
                     userViewModel.resetPassword(email);
                 else
-                    Snackbar.make(requireView(), "Invalid Email", Snackbar.LENGTH_LONG).show();
+                    email_layout.setError(getString(R.string.invalid_email));
             }
         });
     }

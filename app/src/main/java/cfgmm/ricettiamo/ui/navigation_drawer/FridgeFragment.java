@@ -135,7 +135,7 @@ public class FridgeFragment extends Fragment implements IngredientsResponseCallb
     @Override
     public void onFailure(String errorMessage) {
         Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                errorMessage, Snackbar.LENGTH_LONG).show();
+                errorMessage, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -145,7 +145,7 @@ public class FridgeFragment extends Fragment implements IngredientsResponseCallb
             requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
             Snackbar.make(requireActivity().findViewById(android.R.id.content),
                     getString(R.string.recipes_removed_from_favorite_list_message),
-                    Snackbar.LENGTH_LONG).show();
+                    Snackbar.LENGTH_SHORT).show();
         } else { ingredient.setQta(ingredient.getQta() - 1);}
     }
 }
