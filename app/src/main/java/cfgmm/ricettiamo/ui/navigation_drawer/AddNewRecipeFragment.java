@@ -146,7 +146,8 @@ public class AddNewRecipeFragment extends Fragment {
 
         recipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), result -> {
             if(result != null && result.isSuccess()) {
-                idRecipe = ((Result.ListRecipeResponseSuccess) result).getData().size();
+                List<Recipe> recipeList = ((Result.ListRecipeResponseSuccess) result).getData();
+                idRecipe = recipeList.get(recipeList.size() - 1).getId() + 1;
             }
         });
 
