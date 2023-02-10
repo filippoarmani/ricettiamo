@@ -22,20 +22,32 @@ public class Ingredient implements Parcelable {
     private float qta;
     @SerializedName("unit")
     private String size;
+    private boolean shoppingList;
+    private boolean fridgeList;
 
     public Ingredient() {}
 
     @Ignore
     public Ingredient(String name, float qta, String size) {
-        this(0, name, qta, size);
+        this(0, name, qta, size, false, false);
+    }
+
+    public Ingredient(long id, String name, float qta, String size) {
+        this(id, name, qta, size, false, false);
     }
 
     @Ignore
-    public Ingredient(long id, String name, float qta, String size) {
+    public Ingredient(long id, String name, float qta, String size, boolean shoppingList, boolean fridgeList) {
         this.id = id;
         this.name = name;
         this.qta = qta;
         this.size = size;
+        this.shoppingList = shoppingList;
+        this.fridgeList = fridgeList;
+    }
+    @Ignore
+    public Ingredient(String name, float qta, String size, boolean shoppingList, boolean fridgeList) {
+        this(0, name, qta, size, shoppingList, fridgeList);
     }
 
     public static final Creator<Ingredient> CREATOR = new Creator<Ingredient>() {
@@ -76,6 +88,15 @@ public class Ingredient implements Parcelable {
 
     public void setQta(float qta) { this.qta = qta; }
 
+    public boolean isShoppingList() { return shoppingList; }
+
+    public void setShoppingList(boolean shoppingList) { this.shoppingList = shoppingList; }
+
+    public boolean isFridgeList() {  return fridgeList;  }
+
+    public void setFridgeList(boolean fridgeList) { this.fridgeList = fridgeList;  }
+
+
     @Override
     public String toString() {
         return "Ingredient{" +
@@ -83,6 +104,8 @@ public class Ingredient implements Parcelable {
                 ", nome='" + name + '\'' +
                 ", qta='" + qta + '\'' +
                 ", size='" + size + '\'' +
+                ", shoppingList='" + shoppingList + '\'' +
+                ", fridgeList='" + fridgeList + '\'' +
                 '}';
     }
 
@@ -91,6 +114,8 @@ public class Ingredient implements Parcelable {
         this.name = in.readString();
         this.qta = in.readFloat();
         this.size = in.readString();
+        this.shoppingList = in.readByte() != 0;
+        this.fridgeList = in.readByte() != 0;
     }
 
     @Override
@@ -104,6 +129,8 @@ public class Ingredient implements Parcelable {
         dest.writeString(this.name);
         dest.writeFloat(this.qta);
         dest.writeString(this.size);
+        dest.writeByte(this.shoppingList ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.fridgeList ? (byte) 1 : (byte) 0);
     }
 
     public Map<String, Object> toMap() {
@@ -113,6 +140,8 @@ public class Ingredient implements Parcelable {
         data.put("name", name);
         data.put("qta", qta);
         data.put("size", size);
+        data.put("shoppingList", shoppingList);
+        data.put("fridgeList", fridgeList);
 
         return data;
     }

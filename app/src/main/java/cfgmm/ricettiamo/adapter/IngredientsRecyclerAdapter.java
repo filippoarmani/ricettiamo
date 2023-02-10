@@ -18,14 +18,19 @@ import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.model.Ingredient;
 
 public class IngredientsRecyclerAdapter extends
-        RecyclerView.Adapter<IngredientsRecyclerAdapter.IngredientViewHolder>{
-
+        RecyclerView.Adapter<RecyclerView.ViewHolder>{
+    public interface OnItemClickListener {
+        void onAddButtonPressed(int recipe);
+        void onLessButtonPressed(int position);
+    }
     private final List<Ingredient> ingredientList;
     private final View view;
+    private final OnItemClickListener onItemClickListener;
 
-    public IngredientsRecyclerAdapter(View view, List<Ingredient> ingredientList) {
+    public IngredientsRecyclerAdapter(View view, List<Ingredient> ingredientList, OnItemClickListener onItemClickListener) {
         this.view = view;
         this.ingredientList = ingredientList;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -38,8 +43,10 @@ public class IngredientsRecyclerAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IngredientsRecyclerAdapter.IngredientViewHolder holder, int position) {
-        holder.bind(ingredientList.get(position));
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof IngredientsRecyclerAdapter.IngredientViewHolder) {
+            ((IngredientsRecyclerAdapter.IngredientViewHolder) holder).bind(ingredientList.get(position));
+        }
     }
 
     @Override
@@ -106,20 +113,9 @@ public class IngredientsRecyclerAdapter extends
         @Override
         public void onClick(View v) {
             if(v.getId() == R.id.button_less) {
-                float qta = ingredientList.get(getBindingAdapterPosition()).getQta();
-                if (qta == 1) {
-                    ingredientList.remove(getBindingAdapterPosition());
-                    notifyItemRemoved(getBindingAdapterPosition());
-                } else {
-                    ingredientList.get(getBindingAdapterPosition()).setQta(qta - 1);
-                    notifyItemChanged(getBindingAdapterPosition());
-                }
-            }
-
-            if(v.getId() == R.id.button_add) {
-                float qta = (ingredientList.get(getBindingAdapterPosition()).getQta());
-                ingredientList.get(getBindingAdapterPosition()).setQta(qta + 1);
-                notifyItemChanged(getBindingAdapterPosition());
+                onItemClickListener.onLessButtonPressed(getAbsoluteAdapterPosition());
+            } else if (v.getId() == R.id.button_add) {
+                onItemClickListener.onAddButtonPressed(getAbsoluteAdapterPosition());
             }
 
         }

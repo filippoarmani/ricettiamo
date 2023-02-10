@@ -23,12 +23,14 @@ public class IngredientsRepository implements IIngredientsRepository{
     private final JSONParserUtil.JsonParserType jsonParserType;
 
     public IngredientsRepository(Application application, IngredientsResponseCallback ingredientsResponseCallback,
-                                 RecipesDao recipesDao, JSONParserUtil.JsonParserType jsonParserType) {
+                                 JSONParserUtil.JsonParserType jsonParserType) {
         this.application = application;
         this.ingredientsResponseCallback = ingredientsResponseCallback;
         RecipesRoomDatabase recipesRoomDatabase = ServiceLocator.getInstance().getRecipesDao(application);
-        this.recipesDao = recipesDao;
+        this.recipesDao = recipesRoomDatabase.recipesDao();;
         this.jsonParserType = jsonParserType;
+    }public IngredientsRepository(Application application, IngredientsResponseCallback ingredientsResponseCallback) {
+        this(application, ingredientsResponseCallback, null);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class IngredientsRepository implements IIngredientsRepository{
         }
     }
 
-    private void saveDataInDatabase(List<Ingredient> ingredientList) {
+    public void saveDataInDatabase(List<Ingredient> ingredientList) {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
             List<Ingredient> allIngredients = recipesDao.getAllIngredients();
 
@@ -72,6 +74,44 @@ public class IngredientsRepository implements IIngredientsRepository{
             }
 
             ingredientsResponseCallback.onSuccess(ingredientList);
+        });
+    }
+
+    /**
+     * Gets the list of all ingredients from the local database.
+     */
+    @Override
+    public void getAllIngredients() {
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            ingredientsResponseCallback.onSuccess(recipesDao.getAllIngredients());
+        });
+    }
+
+    @Override
+    public void updateIngredient(Ingredient ingredient) {
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            recipesDao.updateIngredient(ingredient);
+            ingredientsResponseCallback.onIngredientStatusChanged(ingredient);
+        });
+    }
+
+    /**
+     * Gets the list of shopping list ingredients from the local database.
+     */
+    @Override
+    public void getShoppingListIngredients() {
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            ingredientsResponseCallback.onSuccess(recipesDao.getShoppingListIngredients());
+        });
+    }
+
+    /**
+     * Gets the list of fridge list from the local database.
+     */
+    @Override
+    public void getFridgeListIngredients() {
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            ingredientsResponseCallback.onSuccess(recipesDao.getFridgeListIngredients());
         });
     }
 }

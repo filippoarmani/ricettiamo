@@ -133,6 +133,7 @@
     <string name="display_name">Nome visualizzato</string>
     <string name="first_published">Prima ricetta</string>
     <string name="last_published">Ultima ricetta</string>
+    <string name="ingredient_removed_from_list_message">Ingrediente Rimosso dalla Lista</string>
 
 
 </resources>

@@ -24,6 +24,10 @@ public interface RecipesDao {
 
     @Query("SELECT * FROM ingredient")
     List<Ingredient> getAllIngredients();
+    @Query("SELECT * FROM ingredient WHERE shoppingList = 1")
+    List<Ingredient> getShoppingListIngredients();
+    @Query("SELECT * FROM ingredient WHERE fridgeList = 1")
+    List<Ingredient> getFridgeListIngredients();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     List<Long> insertRecipeList(List<Recipe> recipeList);
@@ -32,6 +36,8 @@ public interface RecipesDao {
 
     @Update
     int updateSingleFavoriteRecipes(Recipe recipe);
+    @Update
+    int updateIngredient(Ingredient ingredient);
 
     @Update
     int updateListFavoriteRecipes(List<Recipe> recipe);
