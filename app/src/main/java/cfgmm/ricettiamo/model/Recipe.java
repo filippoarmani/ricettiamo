@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
-public class Recipe implements Parcelable, Comparable<Recipe> {
+public class Recipe implements Parcelable {
     //used for room
     @PrimaryKey
     private long id;
@@ -252,29 +252,4 @@ public class Recipe implements Parcelable, Comparable<Recipe> {
         return data;
     }
 
-    public int getCreatedOn() {
-        return score;
-    }
-
-    public void setCreatedOn(int createdOn) {
-        this.score = createdOn;
-    }
-
-    @Override
-    public int compareTo(Recipe o) {
-        int i = 0;
-
-        if(getCreatedOn() == o.getCreatedOn()) {
-            i = 0;
-        }
-
-        if(getCreatedOn() < o.getCreatedOn()) {
-            i = -1;
-        }
-
-        if (getCreatedOn() > o.getCreatedOn()) {
-            i = 1;
-        }
-        return i;
-    }
 }

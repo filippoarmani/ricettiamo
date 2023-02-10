@@ -52,7 +52,7 @@ import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
-public class AddNewRecipeFragment extends Fragment implements RecipesResponseCallback {
+public class AddNewRecipeFragment extends Fragment {
 
     public static final String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
@@ -108,7 +108,7 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
             author = ((Result.UserResponseSuccess) result).getData().getId();
         }
 
-        IRecipesRepository iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
+        IRecipesRepository iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), null);
         recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
 
         mainPicture = null;
@@ -319,21 +319,6 @@ public class AddNewRecipeFragment extends Fragment implements RecipesResponseCal
         df.format(currentDate);
         currentDate.getTime();
         return currentDate.toString();
-    }
-
-    @Override
-    public void onSuccess(List<Recipe> recipesList) {
-
-    }
-
-    @Override
-    public void onFailure(String errorMessage) {
-
-    }
-
-    @Override
-    public void onRecipesFavoriteStatusChanged(Recipe recipe) {
-
     }
 
     @NeedsPermission(Manifest.permission_group.STORAGE)

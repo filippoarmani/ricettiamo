@@ -17,14 +17,4 @@ public abstract class BaseDatabaseRecipesDataSource {
 
     public abstract void getMyRecipes(String author);
 
-    public abstract void getMyRecipesScore(String author);
-
-    /*public abstract void getFavoriteRecipesId(String user);
-
-    public abstract void addFavoriteRecipe(String user, String recipe);
-
-    public abstract void deleteFavoriteRecipe(String user, String recipe);
-
-    public abstract void deleteAllFavoriteRecipes(String user);
-     */
 }

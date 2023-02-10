@@ -7,18 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.model.Comment;
-import cfgmm.ricettiamo.util.ServiceLocator;
-import cfgmm.ricettiamo.viewmodel.UserViewModel;
-import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 
 
-public class    IngredientApiResponse implements Parcelable {
+public class IngredientApiResponse implements Parcelable {
 
     private String status;
     private int totalResults;

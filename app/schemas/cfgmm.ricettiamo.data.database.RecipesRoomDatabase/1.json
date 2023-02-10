@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "ab5be212316967451d797e86c7f48ef1",
+    "identityHash": "c170fba0175985dedef7db43fbc3f03c",
     "entities": [
       {
         "tableName": "Recipe",
@@ -98,7 +98,7 @@
       },
       {
         "tableName": "Ingredient",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `qta` REAL NOT NULL, `size` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `qta` REAL NOT NULL, `size` TEXT, `shoppingList` INTEGER NOT NULL, `fridgeList` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -123,6 +123,18 @@
             "columnName": "size",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "shoppingList",
+            "columnName": "shoppingList",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fridgeList",
+            "columnName": "fridgeList",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -138,7 +150,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ab5be212316967451d797e86c7f48ef1')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c170fba0175985dedef7db43fbc3f03c')"
     ]
   }
 }

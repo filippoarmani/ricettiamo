@@ -2,6 +2,7 @@ package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import static android.text.TextUtils.isEmpty;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,6 +41,7 @@ import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.IngredientApiResponse;
 import cfgmm.ricettiamo.model.Recipe;
 
+@SuppressLint("NotifyDataSetChanged")
 public class ShoppingListFragment extends Fragment implements IngredientsResponseCallback {
 
     private final String TAG = ShoppingListFragment.class.getSimpleName();

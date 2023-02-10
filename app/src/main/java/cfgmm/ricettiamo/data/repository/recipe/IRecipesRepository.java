@@ -14,7 +14,6 @@ import cfgmm.ricettiamo.model.Result;
 public interface IRecipesRepository {
 
     void getRecipes(String user_input);
-    //void getRecipeIngredients(int idRecipe);
 
     void updateRecipes(Recipe recipe);
 
@@ -27,6 +26,4 @@ public interface IRecipesRepository {
     Result uploadPhoto(Uri photo);
     MutableLiveData<Result> getMyRecipes(String id);
     MutableLiveData<Result> getAllRecipes();
-
-    MutableLiveData<Result> getMyRecipesScore(String id);
 }

@@ -16,25 +16,4 @@ public interface IRecipesDatabaseResponseCallback {
     void onSuccessGetAllRecipes(List<Recipe> recipes);
 
     void onFailureGetAllRecipes(int writeDatabase_error);
-
-    void onSuccessGetMyRecipesScore(List<Recipe> recipes);
-
-    void onFailureGetMyRecipesScore(int writeDatabase_error);
-
-    /*void onSuccessGetFavoriteRecipesId(List<String> favoriteRecipes);
-
-    void onFailureGetFavoriteRecipesId(int writeDatabase_error);
-
-    void onSuccessAddFavoriteRecipe(Object o);
-
-    void onFailureAddFavoriteRecipe(int writeDatabase_error);
-
-    void onSuccessDeleteFavoriteRecipe(Object o);
-
-    void onFailureDeleteFavoriteRecipe(int writeDatabase_error);
-
-    void onSuccessDeleteAllFavoriteRecipes(Object o);
-
-    void onFailureDeleteAllFavoriteRecipes(int writeDatabase_error);
-    */
 }

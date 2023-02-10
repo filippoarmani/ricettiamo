@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toStartOf="@+id/button_add"
         app:layout_constraintTop_toTopOf="@+id/button_add" />
 
-    <Button
+   <Button android:focusable="false" android:focusableInTouchMode="false"
         android:id="@+id/button_add"
         style="@style/textButton"
         android:layout_width="48dp"
@@ -76,7 +76,7 @@
         app:layout_constraintEnd_toStartOf="@+id/button_less"
         app:layout_constraintTop_toTopOf="@+id/button_less" />
 
-    <Button
+   <Button android:focusable="false" android:focusableInTouchMode="false"
         android:id="@+id/button_less"
         style="@style/textButton"
         android:layout_width="48dp"

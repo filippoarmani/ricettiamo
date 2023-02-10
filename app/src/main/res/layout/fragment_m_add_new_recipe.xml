@@ -263,7 +263,7 @@
         </LinearLayout>
 
 
-        <Button
+       <Button android:focusable="false" android:focusableInTouchMode="false"
             android:id="@+id/add_ingredient_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -312,7 +312,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+       <Button android:focusable="false" android:focusableInTouchMode="false"
             android:id="@+id/add_step_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -330,7 +330,7 @@
             android:layout_height="match_parent"
             android:layout_margin="15dp"/>
 
-        <Button
+       <Button android:focusable="false" android:focusableInTouchMode="false"
             android:id="@+id/save_recipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -9,7 +9,7 @@ import cfgmm.ricettiamo.model.Result;
 
 public class CommentViewModel extends ViewModel {
 
-    private ICommentRepository commentRepository;
+    private final ICommentRepository commentRepository;
     private MutableLiveData<Result> currentCommentListLiveData;
 
     public CommentViewModel(ICommentRepository commentRepository) {

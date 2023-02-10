@@ -37,7 +37,7 @@ import cfgmm.ricettiamo.viewmodel.UserViewModel;
 import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
 
-public class MyRecipesFragment extends Fragment implements RecipesResponseCallback {
+public class MyRecipesFragment extends Fragment {
 
     private static final String TAG = MyRecipesFragment.class.getSimpleName();
 
@@ -65,7 +65,7 @@ public class MyRecipesFragment extends Fragment implements RecipesResponseCallba
         IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
         userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
 
-        iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
+        iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), null);
         recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
     }
 
@@ -132,25 +132,9 @@ public class MyRecipesFragment extends Fragment implements RecipesResponseCallba
 
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    @Override
-    public void onSuccess(List<Recipe> recipesList) {
-
-    }
-
-    @Override
-    public void onFailure(String errorMessage) {
-
-    }
-
-    @Override
-    public void onRecipesFavoriteStatusChanged(Recipe recipe) {
-
     }
 }

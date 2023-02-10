@@ -53,11 +53,6 @@ public class UserRepository implements IUserRepository, IUserResponseCallback {
     }
 
     @Override
-    public void updateEmail(String email) {
-        firebaseAuthDataSource.updateEmail(email);
-    }
-
-    @Override
     public void updatePassword(String oldPassword, String newPassword) {
         firebaseAuthDataSource.updatePassword(oldPassword, newPassword);
     }

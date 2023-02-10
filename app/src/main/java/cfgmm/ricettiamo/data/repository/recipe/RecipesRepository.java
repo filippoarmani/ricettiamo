@@ -44,13 +44,9 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     BaseDatabaseRecipesDataSource databaseRecipesDataSource;
     BasePhotoStorageDataSource photoStorageDataSource;
 
-
-    private MutableLiveData<Result> mostRecentRecipe;
     private MutableLiveData<Result> myRecipes;
-    private MutableLiveData<Result> myRecipesScore;
     private MutableLiveData<Result> allRecipes;
 
-    private Result firstRecipe;
     private Result savedRecipe;
     private Result photo;
 
@@ -66,7 +62,6 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         this.photoStorageDataSource = new PhotoStorageDataSource();
         databaseRecipesDataSource.setCallBack(this);
         photoStorageDataSource.setCallBack(this);
-        this.mostRecentRecipe = new MutableLiveData<>();
         this.myRecipes = new MutableLiveData<>();
         this.allRecipes = new MutableLiveData<>();
     }
@@ -218,13 +213,6 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     }
 
     @Override
-    public MutableLiveData<Result> getMyRecipesScore(String id) {
-        databaseRecipesDataSource.getMyRecipesScore(id);
-        return this.myRecipesScore;
-    }
-
-
-    @Override
     public void onSuccessWriteDatabase(Recipe savedRecipe) {
         this.savedRecipe = new Result.RecipeDatabaseResponseSuccess(savedRecipe);
     }
@@ -254,16 +242,6 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     @Override
     public void onFailureGetAllRecipes(int writeDatabase_error) {
         this.allRecipes.postValue(new Result.Error(writeDatabase_error));
-    }
-
-    @Override
-    public void onSuccessGetMyRecipesScore(List<Recipe> recipes) {
-        this.myRecipesScore.postValue(new Result.ListRecipeResponseSuccess(recipes));
-    }
-
-    @Override
-    public void onFailureGetMyRecipesScore(int writeDatabase_error) {
-        this.myRecipesScore.postValue(new Result.Error(writeDatabase_error));
     }
 
     @Override

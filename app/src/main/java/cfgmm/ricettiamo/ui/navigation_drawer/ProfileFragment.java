@@ -36,7 +36,7 @@ import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
 import cfgmm.ricettiamo.viewmodel.UserViewModel;
 import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
-public class ProfileFragment extends Fragment implements RecipesResponseCallback {
+public class ProfileFragment extends Fragment {
 
     private UserViewModel userViewModel;
     private RecipeViewModel recipeViewModel;
@@ -54,7 +54,7 @@ public class ProfileFragment extends Fragment implements RecipesResponseCallback
         IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
         userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
 
-        IRecipesRepository iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
+        IRecipesRepository iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), null);
         recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
     }
 
@@ -161,18 +161,4 @@ public class ProfileFragment extends Fragment implements RecipesResponseCallback
         binding = null;
     }
 
-    @Override
-    public void onSuccess(List<Recipe> recipesList) {
-
-    }
-
-    @Override
-    public void onFailure(String errorMessage) {
-
-    }
-
-    @Override
-    public void onRecipesFavoriteStatusChanged(Recipe recipe) {
-
-    }
 }

@@ -32,6 +32,7 @@ public class Ingredient implements Parcelable {
         this(0, name, qta, size, false, false);
     }
 
+    @Ignore
     public Ingredient(long id, String name, float qta, String size) {
         this(id, name, qta, size, false, false);
     }

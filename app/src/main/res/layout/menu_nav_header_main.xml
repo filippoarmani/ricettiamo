@@ -36,7 +36,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/nh_foto" />
 
-    <Button
+   <Button android:focusable="false" android:focusableInTouchMode="false"
         android:id="@+id/nh_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

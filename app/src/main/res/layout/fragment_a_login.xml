@@ -90,7 +90,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+       <Button android:focusable="false" android:focusableInTouchMode="false"
             android:id="@+id/l_forgotPassword"
             style="@style/Widget.Material3.Button.TextButton.Icon"
             android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
             app:layout_constraintTop_toBottomOf="@id/l_password_layout"
             app:textAllCaps="false" />
 
-        <Button
+       <Button android:focusable="false" android:focusableInTouchMode="false"
             style="@style/Widget.Material3.Button"
             android:id="@+id/l_login"
             android:layout_width="0dp"
@@ -114,7 +114,7 @@
             app:layout_constraintEnd_toStartOf="@id/right_guideline"
             app:layout_constraintStart_toStartOf="@id/left_guideline" />
 
-        <Button
+       <Button android:focusable="false" android:focusableInTouchMode="false"
             style="@style/Theme.RicettiAmo.TonalButton"
             android:id="@+id/button_Login_Google"
             android:layout_width="0dp"
@@ -167,7 +167,7 @@
 
         </RelativeLayout>
 
-        <Button
+       <Button android:focusable="false" android:focusableInTouchMode="false"
             style="@style/Theme.RicettiAmo.TonalButton"
             android:id="@+id/btn_noLogIn"
             android:layout_width="0dp"
@@ -201,7 +201,7 @@
                 android:fontFamily="@font/montserrat"
                 android:text="@string/txt_nUser" />
 
-            <Button
+           <Button android:focusable="false" android:focusableInTouchMode="false"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:id="@+id/l_registration"
                 android:layout_width="wrap_content"

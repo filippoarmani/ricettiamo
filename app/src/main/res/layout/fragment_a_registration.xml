@@ -157,7 +157,7 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+       <Button
             style="@style/textButton"
             android:id="@+id/r_creaAccount"
             android:layout_width="wrap_content"

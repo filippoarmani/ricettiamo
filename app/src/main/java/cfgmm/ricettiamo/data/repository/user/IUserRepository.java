@@ -15,7 +15,6 @@ public interface IUserRepository {
     MutableLiveData<Result> signIn(String email, String password);
 
     void resetPassword(String email);
-    void updateEmail(String email);
     void updatePassword(String oldPassword, String newPassword);
     void updateData(Map<String, Object> newInfo);
     void updatePhoto(Uri uri);

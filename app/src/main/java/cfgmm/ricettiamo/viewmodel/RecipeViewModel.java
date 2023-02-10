@@ -21,13 +21,10 @@ public class RecipeViewModel extends ViewModel {
     private MutableLiveData<Result> myRecipes;
     private MutableLiveData<Result> allRecipes;
     private MutableLiveData<Result> myRecipesScore;
-    private Result firstRecipe;
 
     public RecipeViewModel(IRecipesRepository iRecipesRepository) {
         this.recipesRepository = iRecipesRepository;
         this.firstLoading = true;
-
-        firstRecipe = new Result.RecipeDatabaseResponseSuccess(null);
     }
 
     /**
@@ -103,13 +100,6 @@ public class RecipeViewModel extends ViewModel {
             myRecipes = recipesRepository.getMyRecipes(id);
 
         return myRecipes;
-    }
-
-    public MutableLiveData<Result> getMyRecipesScore(String id) {
-        if(myRecipesScore == null)
-            myRecipesScore = recipesRepository.getMyRecipesScore(id);
-
-        return myRecipesScore;
     }
 
     public Result uploadPhoto(Uri uri) {

@@ -61,7 +61,7 @@
         app:layout_constraintTop_toTopOf="@+id/button_shoppList_delete" />
 
 
-    <Button
+   <Button android:focusable="false" android:focusableInTouchMode="false"
         android:id="@+id/button_shoppList_delete"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="48dp"

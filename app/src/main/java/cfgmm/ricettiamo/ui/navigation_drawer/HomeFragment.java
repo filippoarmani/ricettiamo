@@ -32,7 +32,7 @@ import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements RecipesResponseCallback {
+public class HomeFragment extends Fragment {
 
     private RecipeViewModel recipeViewModel;
 
@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        IRecipesRepository iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
+        IRecipesRepository iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), null);
         recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
 
         recipeStarterList = new ArrayList<>();
@@ -184,19 +184,4 @@ public class HomeFragment extends Fragment implements RecipesResponseCallback {
 
     }
 
-
-    @Override
-    public void onSuccess(List<Recipe> recipesList) {
-
-    }
-
-    @Override
-    public void onFailure(String errorMessage) {
-
-    }
-
-    @Override
-    public void onRecipesFavoriteStatusChanged(Recipe recipe) {
-
-    }
 }

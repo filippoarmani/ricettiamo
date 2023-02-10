@@ -286,7 +286,7 @@
                 tools:layout_editor_absoluteX="30dp"
                 tools:layout_editor_absoluteY="350dp" />
 
-            <Button
+           <Button android:focusable="false" android:focusableInTouchMode="false"
                 android:id="@+id/logout"
                 style="@style/textButton"
                 android:layout_width="match_parent"
@@ -297,7 +297,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
+   <Button android:focusable="false" android:focusableInTouchMode="false"
         android:id="@+id/salva"
         style="@style/textButton"
         android:layout_width="0dp"
