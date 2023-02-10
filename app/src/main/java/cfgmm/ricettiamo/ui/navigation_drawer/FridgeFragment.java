@@ -31,7 +31,6 @@ import cfgmm.ricettiamo.model.Ingredient;
 public class FridgeFragment extends Fragment implements IngredientsResponseCallback {
 
     private final String TAG = FridgeFragment.class.getSimpleName();
-    private RecyclerView recyclerView;
     private List<Ingredient> ingredientList;
     private IngredientsRecyclerAdapter adapter;
     private IIngredientsRepository iIngredientsRepository;
@@ -54,8 +53,6 @@ public class FridgeFragment extends Fragment implements IngredientsResponseCallb
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        iIngredientsRepository = new IngredientsRepository(requireActivity().getApplication(), this);
         return inflater.inflate(R.layout.fragment_m_fridge, container, false);
     }
 
@@ -70,32 +67,19 @@ public class FridgeFragment extends Fragment implements IngredientsResponseCallb
         TextInputLayout qta_l = view.findViewById(R.id.Fridge_textQta_layout);
         TextInputLayout unit_l = view.findViewById(R.id.Fridge_textUnit_layout);
 
-        recyclerView = view.findViewById(R.id.recyclerview_list_ingredients_fridge);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(),
-                LinearLayoutManager.VERTICAL,  false));
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients_fridge);
+        LinearLayoutManager layoutManager =
+                new LinearLayoutManager(requireContext(),
+                        LinearLayoutManager.VERTICAL, false);
+
         adapter = new IngredientsRecyclerAdapter(requireView(), ingredientList,
                 new IngredientsRecyclerAdapter.OnItemClickListener() {
                     @Override
-                    public void onAddButtonPressed(int position) {
-                        float qta = ingredientList.get(position).getQta();
-                        ingredientList.get(position).setQta(qta + 1);
-                        iIngredientsRepository.updateIngredient(ingredientList.get(position));
-                    }
-
-                    @Override
-                    public void onLessButtonPressed(int position) {
-                        float qta = ingredientList.get(position).getQta();
-                        if (qta == 1) {
-                            ingredientList.get(position).setQta(0);
-                            ingredientList.get(position).setFridgeList(!ingredientList.get(position).isFridgeList());
-                            iIngredientsRepository.updateIngredient(ingredientList.get(position));
-                            ingredientList.remove(position);
-                        } else {
-                            ingredientList.get(position).setQta(qta - 1);
-                            iIngredientsRepository.updateIngredient(ingredientList.get(position));
-                        }
+                    public void onDeleteButtonPressed(int position) {
+                        iIngredientsRepository.deleteIngredient(ingredientList.get(position));
                     }
                 });
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         adapter.getItemTouchHelper().attachToRecyclerView(recyclerView);
 
@@ -113,9 +97,9 @@ public class FridgeFragment extends Fragment implements IngredientsResponseCallb
                 unit_l.setError(getString(R.string.empty_fields));
             } else {
                 float q = Float.parseFloat(qta);
-                ingredientList.add(new Ingredient(name, q, unit, false, true));
+                Ingredient newIngredient = new Ingredient(name, q, unit, false, true);
+                iIngredientsRepository.insertIngredient(newIngredient);
                 adapter.notifyItemInserted(ingredientList.size() - 1);
-                iIngredientsRepository.saveDataInDatabase(ingredientList);
             }
         });
 
@@ -139,13 +123,16 @@ public class FridgeFragment extends Fragment implements IngredientsResponseCallb
     }
 
     @Override
-    public void onIngredientStatusChanged(Ingredient ingredient) {
-        if (ingredient.getQta() == 0) {
+    public void onIngredientStatusChanged(Ingredient ingredient, boolean delete, boolean insert) {
+        if (delete) {
             ingredientList.remove(ingredient);
             requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
             Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                    getString(R.string.recipes_removed_from_favorite_list_message),
+                    getString(R.string.ingredient_removed_from_list_message),
                     Snackbar.LENGTH_SHORT).show();
-        } else { ingredient.setQta(ingredient.getQta() - 1);}
+        } else if (insert) {
+            ingredientList.add(ingredient);
+            requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
+        }
     }
 }

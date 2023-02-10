@@ -14,5 +14,6 @@ public interface IIngredientsRepository {
 
     void getShoppingListIngredients();
     void getFridgeListIngredients();
-    void saveDataInDatabase(List<Ingredient> ingredientList);
+    void insertIngredient(Ingredient ingredient);
+    void deleteIngredient(Ingredient ingredient);
 }

@@ -128,11 +128,7 @@ public class AddNewRecipeFragment extends Fragment {
         binding.ingredientRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,  false));
         adapterIngredient = new IngredientsRecyclerAdapter(requireView(), ingredientList, new IngredientsRecyclerAdapter.OnItemClickListener() {
             @Override
-            public void onAddButtonPressed(int recipe) {
-            }
-
-            @Override
-            public void onLessButtonPressed(int position) {
+            public void onDeleteButtonPressed(int position) {
             }
         });
         binding.ingredientRecyclerView.setAdapter(adapterIngredient);

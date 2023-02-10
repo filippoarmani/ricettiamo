@@ -1,6 +1,7 @@
 package cfgmm.ricettiamo.data.database;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -33,6 +34,10 @@ public interface RecipesDao {
     List<Long> insertRecipeList(List<Recipe> recipeList);
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     List<Long> insertIngredientList(List<Ingredient> ingredientList);
+    @Insert
+    void insertIngredient(Ingredient ingredient);
+    @Delete
+    void deleteIngredient(Ingredient ingredient);
 
     @Update
     int updateSingleFavoriteRecipes(Recipe recipe);

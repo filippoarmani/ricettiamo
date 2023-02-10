@@ -9,5 +9,5 @@ public interface IngredientsResponseCallback {
 
     void onSuccess(List<Ingredient> ingredientList);
     void onFailure(String errorMessage);
-    void onIngredientStatusChanged(Ingredient ingredient);
+    void onIngredientStatusChanged(Ingredient ingredient, boolean delete, boolean insert);
 }

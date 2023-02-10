@@ -20,8 +20,7 @@ import cfgmm.ricettiamo.model.Ingredient;
 public class IngredientsRecyclerAdapter extends
         RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public interface OnItemClickListener {
-        void onAddButtonPressed(int recipe);
-        void onLessButtonPressed(int position);
+        void onDeleteButtonPressed(int position);
     }
     private final List<Ingredient> ingredientList;
     private final View view;
@@ -37,7 +36,7 @@ public class IngredientsRecyclerAdapter extends
     @Override
     public IngredientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.template_item_fridge, parent, false);
+                inflate(R.layout.template_ingredient_lists, parent, false);
 
         return new IngredientViewHolder(view);
     }
@@ -92,15 +91,13 @@ public class IngredientsRecyclerAdapter extends
 
         public IngredientViewHolder(@NonNull View itemView ){
             super(itemView);
-            this.textViewName = itemView.findViewById(R.id.Fridge_textName);
-            this.textViewQta = itemView.findViewById(R.id.Fridge_textQta);
-            this.textViewSize = itemView.findViewById(R.id.Fridge_textSize);
+            this.textViewName = itemView.findViewById(R.id.text_name);
+            this.textViewQta = itemView.findViewById(R.id.text_qta);
+            this.textViewSize = itemView.findViewById(R.id.text_size);
 
-            Button buttonAdd = itemView.findViewById(R.id.button_add);
-            Button buttonLess = itemView.findViewById(R.id.button_less);
+            Button buttonLess = itemView.findViewById(R.id.button_delete);
 
             itemView.setOnClickListener(this);
-            buttonAdd.setOnClickListener(this);
             buttonLess.setOnClickListener(this);
         }
 
@@ -112,10 +109,8 @@ public class IngredientsRecyclerAdapter extends
 
         @Override
         public void onClick(View v) {
-            if(v.getId() == R.id.button_less) {
-                onItemClickListener.onLessButtonPressed(getAbsoluteAdapterPosition());
-            } else if (v.getId() == R.id.button_add) {
-                onItemClickListener.onAddButtonPressed(getAbsoluteAdapterPosition());
+            if(v.getId() == R.id.button_delete) {
+                onItemClickListener.onDeleteButtonPressed(getAbsoluteAdapterPosition());
             }
 
         }

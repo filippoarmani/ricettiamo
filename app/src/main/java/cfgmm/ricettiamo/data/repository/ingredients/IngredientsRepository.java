@@ -58,7 +58,21 @@ public class IngredientsRepository implements IIngredientsRepository{
         }
     }
 
-    public void saveDataInDatabase(List<Ingredient> ingredientList) {
+    public void insertIngredient(Ingredient ingredient) {
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            recipesDao.insertIngredient(ingredient);
+            ingredientsResponseCallback.onIngredientStatusChanged(ingredient, false, true);
+        });
+    }
+
+    public void deleteIngredient(Ingredient ingredient) {
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            recipesDao.deleteIngredient(ingredient);
+            ingredientsResponseCallback.onIngredientStatusChanged(ingredient, true, false);
+        });
+    }
+
+    private void saveDataInDatabase(List<Ingredient> ingredientList) {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
             List<Ingredient> allIngredients = recipesDao.getAllIngredients();
 
@@ -91,7 +105,7 @@ public class IngredientsRepository implements IIngredientsRepository{
     public void updateIngredient(Ingredient ingredient) {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
             recipesDao.updateIngredient(ingredient);
-            ingredientsResponseCallback.onIngredientStatusChanged(ingredient);
+            ingredientsResponseCallback.onIngredientStatusChanged(ingredient, false, false);
         });
     }
 

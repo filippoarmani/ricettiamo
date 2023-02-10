@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"></ImageView>
 
     <TextView
-        android:id="@+id/text_shopList_name"
+        android:id="@+id/text_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -30,13 +30,13 @@
         android:text="@string/text"
         android:textColor="?android:textColorPrimary"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_shopList_qta"
-        app:layout_constraintEnd_toStartOf="@+id/text_shopList_qta"
+        app:layout_constraintBottom_toBottomOf="@+id/text_qta"
+        app:layout_constraintEnd_toStartOf="@+id/text_qta"
         app:layout_constraintStart_toEndOf="@id/list_item_icon"
-        app:layout_constraintTop_toTopOf="@+id/text_shopList_qta" />
+        app:layout_constraintTop_toTopOf="@+id/text_qta" />
 
     <TextView
-        android:id="@+id/text_shopList_qta"
+        android:id="@+id/text_qta"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginEnd="10dp"
@@ -44,11 +44,13 @@
         android:fontFamily="@font/montserrat"
         android:textColor = "?android:textColorPrimary"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_shopList_size" app:layout_constraintEnd_toStartOf="@id/text_shopList_size" app:layout_constraintTop_toTopOf="@+id/text_shopList_size">
+        app:layout_constraintBottom_toBottomOf="@+id/text_size"
+        app:layout_constraintEnd_toStartOf="@id/text_size"
+        app:layout_constraintTop_toTopOf="@+id/text_size">
     </TextView>
 
     <TextView
-        android:id="@+id/text_shopList_size"
+        android:id="@+id/text_size"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginEnd="16dp"
@@ -56,13 +58,13 @@
         android:text="@string/text"
         android:textColor="?android:textColorPrimary"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button_shoppList_delete"
-        app:layout_constraintEnd_toStartOf="@id/button_shoppList_delete"
-        app:layout_constraintTop_toTopOf="@+id/button_shoppList_delete" />
+        app:layout_constraintBottom_toBottomOf="@+id/button_delete"
+        app:layout_constraintEnd_toStartOf="@id/button_delete"
+        app:layout_constraintTop_toTopOf="@+id/button_delete" />
 
 
    <Button android:focusable="false" android:focusableInTouchMode="false"
-        android:id="@+id/button_shoppList_delete"
+        android:id="@+id/button_delete"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="48dp"
         android:layout_height="48dp"

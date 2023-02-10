@@ -57,9 +57,9 @@
 
     <!--fridge/Shopping List-->
     <string-array name="qta_array">
-        <item>teaspoons</item>
-        <item>tablespoons</item>
-        <item>ounces</item>
+        <item>tsp</item>
+        <item>tbsp</item>
+        <item>oz</item>
         <item>cups</item>
         <item>unit</item>
     </string-array>
@@ -168,7 +168,7 @@
     <string name="recipes_removed_from_favorite_list_message">Recipe removed from the favorite list</string>
     <string name="main_picture">Main Picture of the recipe</string>
     <string name="_informations">Informations</string>
-    <string name="name_of_the_ingredient">Name of the ingredient</string>
+    <string name="name_of_the_ingredient">Ingredient Name</string>
     <string name="unit">Unit of measure</string>
     <string name="type_new_step">Type new step</string>
     <string name="save_recipe">Save recipe</string>
