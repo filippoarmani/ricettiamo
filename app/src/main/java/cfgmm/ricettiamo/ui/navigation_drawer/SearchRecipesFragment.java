@@ -1,14 +1,18 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
+import static android.view.View.GONE;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,20 +26,22 @@ import java.util.List;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
-import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
-import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
 import cfgmm.ricettiamo.databinding.FragmentMSearchRecipesBinding;
 import cfgmm.ricettiamo.model.Recipe;
+import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.util.ServiceLocator;
+import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
+import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
 
-public class SearchRecipesFragment extends Fragment implements RecipesResponseCallback {
+public class SearchRecipesFragment extends Fragment {
 
     private FragmentMSearchRecipesBinding fragmentSearchRecipesBinding;
     private TextInputLayout inputRecipe;
     private List<Recipe> recipeList;
     private RecipesRecyclerAdapter recipesRecyclerAdapter;
     private IRecipesRepository iRecipesRepository;
-    private
-    String search;
+    private RecipeViewModel recipeViewModel;
+    private String search;
 
     public SearchRecipesFragment() {}
 
@@ -49,7 +55,10 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), this);
+
+        iRecipesRepository = ServiceLocator.getInstance().getRecipesRepository(requireActivity().getApplication());
+        recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
+
         recipeList = new ArrayList<>();
     }
 
@@ -66,14 +75,7 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
 
         inputRecipe = view.findViewById(R.id.search_recipes_input);
         ImageButton btnSearch = view.findViewById(R.id.btn_search);
-
-        btnSearch.setOnClickListener(v -> {
-            search = inputRecipe.getEditText().getText().toString().trim();
-            if (search.length() != 0) {
-                iRecipesRepository.getRecipes(search);
-            } else
-                Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_SHORT).show();
-        });
+        TextView noRecipesFound = view.findViewById(R.id.noRecipesFound);
 
         RecyclerView recyclerviewSearchRecipes = view.findViewById(R.id.recyclerview_search_recipes);
         LinearLayoutManager layoutManager =
@@ -92,30 +94,35 @@ public class SearchRecipesFragment extends Fragment implements RecipesResponseCa
                     @Override
                     public void onFavoriteButtonPressed(int position) {
                         recipeList.get(position).setIsFavorite(!recipeList.get(position).isFavorite());
-                        iRecipesRepository.updateRecipes(recipeList.get(position));
+                        recipeViewModel.updateRecipes(recipeList.get(position));
                     }
                 });
+
         recyclerviewSearchRecipes.setLayoutManager(layoutManager);
         recyclerviewSearchRecipes.setAdapter(recipesRecyclerAdapter);
+
+        btnSearch.setOnClickListener(v -> {
+            search = inputRecipe.getEditText().getText().toString().trim();
+            if (search.length() != 0) {
+                Result result = recipeViewModel.getSearchRecipes(search);
+                if(result != null && result.isSuccess()) {
+                    recipeList.clear();
+                    recipeList.addAll(((Result.ListRecipeResponseSuccess) result).getData());
+                    if(recipeList == null || recipeList.size() == 0) {
+                        recyclerviewSearchRecipes.setVisibility(GONE);
+                        noRecipesFound.setVisibility(View.VISIBLE);
+                    } else {
+                        recyclerviewSearchRecipes.setVisibility(View.VISIBLE);
+                        noRecipesFound.setVisibility(View.GONE);
+                    }
+
+                    requireActivity().runOnUiThread(() -> recipesRecyclerAdapter.notifyDataSetChanged());
+                }
+            } else
+                Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_SHORT).show();
+        });
     }
 
-    @Override
-    public void onSuccess(List<Recipe> recipesList) {
-        if (recipesList != null) {
-            this.recipeList.clear();
-            this.recipeList.addAll(recipesList);
-        }
-
-        requireActivity().runOnUiThread(() -> recipesRecyclerAdapter.notifyDataSetChanged());
-    }
-
-    @Override
-    public void onFailure(String errorMessage) {
-        Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                errorMessage, Snackbar.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void onRecipesFavoriteStatusChanged(Recipe recipe) {
         if (recipe.isFavorite()) {
             Snackbar.make(requireActivity().findViewById(android.R.id.content),

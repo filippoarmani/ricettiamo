@@ -23,8 +23,6 @@ import java.util.List;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
-import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
-import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.databinding.FragmentMMyRecipesBinding;
 import cfgmm.ricettiamo.model.Recipe;
@@ -65,7 +63,7 @@ public class MyRecipesFragment extends Fragment {
         IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
         userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
 
-        iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), null);
+        IRecipesRepository iRecipesRepository = ServiceLocator.getInstance().getRecipesRepository(requireActivity().getApplication());
         recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
     }
 

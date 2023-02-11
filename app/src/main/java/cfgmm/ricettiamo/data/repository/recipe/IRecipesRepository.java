@@ -1,6 +1,5 @@
 package cfgmm.ricettiamo.data.repository.recipe;
 
-import android.graphics.Bitmap;
 import android.net.Uri;
 
 import androidx.lifecycle.MutableLiveData;
@@ -13,11 +12,11 @@ import cfgmm.ricettiamo.model.Result;
  */
 public interface IRecipesRepository {
 
-    void getRecipes(String user_input);
+    Result getRecipes(String user_input);
 
-    void updateRecipes(Recipe recipe);
+    MutableLiveData<Result> updateRecipes(Recipe recipe);
 
-    void getFavoriteRecipes();
+    MutableLiveData<Result> getFavoriteRecipes();
 
     void deleteFavoriteRecipes();
 

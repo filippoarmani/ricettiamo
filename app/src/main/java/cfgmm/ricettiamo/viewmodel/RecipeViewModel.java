@@ -5,8 +5,6 @@ import android.net.Uri;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.util.List;
-
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
@@ -14,17 +12,13 @@ import cfgmm.ricettiamo.model.Result;
 public class RecipeViewModel extends ViewModel {
     private static final String TAG = RecipeViewModel.class.getSimpleName();
     private final IRecipesRepository recipesRepository;
-    private boolean isLoading;
-    private boolean firstLoading;
-    private List<Recipe> recipesList;
-    private List<Recipe> favoriteRecipes;
+
+    private MutableLiveData<Result> favoriteRecipes;
     private MutableLiveData<Result> myRecipes;
     private MutableLiveData<Result> allRecipes;
-    private MutableLiveData<Result> myRecipesScore;
 
     public RecipeViewModel(IRecipesRepository iRecipesRepository) {
         this.recipesRepository = iRecipesRepository;
-        this.firstLoading = true;
     }
 
     /**
@@ -32,11 +26,8 @@ public class RecipeViewModel extends ViewModel {
      * recipes list to the Fragment/Activity.
      * @return The list associated with the recipes.
      */
-    public List<Recipe> getRecipes(String user_input) {
-        if (recipesList == null) {
-            getRecipes(user_input);
-        }
-        return recipesList;
+    public Result getSearchRecipes(String user_input) {
+        return recipesRepository.getRecipes(user_input);
     }
 
     /**
@@ -44,9 +35,9 @@ public class RecipeViewModel extends ViewModel {
      * favourite recipes list to the Fragment/Activity.
      * @return The list associated with the recipes.
      */
-    public List<Recipe> getFavoriteRecipes(boolean isFirstLoading) {
+    public MutableLiveData<Result> getFavoriteRecipes() {
         if (favoriteRecipes == null) {
-            getFavoriteRecipes(isFirstLoading);
+            favoriteRecipes = recipesRepository.getFavoriteRecipes();
         }
         return favoriteRecipes;
     }
@@ -56,38 +47,7 @@ public class RecipeViewModel extends ViewModel {
      * @param recipe The recipes to be updated.
      */
     public void updateRecipes(Recipe recipe) {
-        recipesRepository.updateRecipes(recipe);
-    }
-
-    /**
-     * Removes the recipes from the list of favorite recipes.
-     * @param recipe The recipe to be removed from the list of favorite recipes.
-     */
-    public void removeFromFavorite(Recipe recipe) {
-        recipesRepository.updateRecipes(recipe);
-    }
-
-    /**
-     * Clears the list of favorite recipes.
-     */
-    public void deleteAllFavoriteRecipes() {
-        recipesRepository.deleteFavoriteRecipes();
-    }
-
-    public boolean isLoading() {
-        return isLoading;
-    }
-
-    public void setLoading(boolean loading) {
-        isLoading = loading;
-    }
-
-    public boolean isFirstLoading() {
-        return firstLoading;
-    }
-
-    public void setFirstLoading(boolean firstLoading) {
-        this.firstLoading = firstLoading;
+        favoriteRecipes = recipesRepository.updateRecipes(recipe);
     }
 
     //Community Recipes
@@ -107,8 +67,8 @@ public class RecipeViewModel extends ViewModel {
     }
 
     public MutableLiveData<Result> getAllRecipes() {
-        if(allRecipes == null)
-            allRecipes = recipesRepository.getAllRecipes();
+        if(this.allRecipes == null)
+            this.allRecipes = recipesRepository.getAllRecipes();
 
         return allRecipes;
     }

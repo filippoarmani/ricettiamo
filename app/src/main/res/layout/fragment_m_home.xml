@@ -44,7 +44,7 @@
                     android:id="@+id/home"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="30dp"
+                    android:layout_margin="15dp"
                     android:orientation="vertical"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -70,8 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_weight="1"
-                        android:text="@string/starters"
-                        />
+                        android:text="@string/starters" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_starters"
@@ -86,14 +85,13 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:text="@string/first_dishes"
-                        />
+                        android:text="@string/first_dishes" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_first"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/textViewSecondiPiatti"
@@ -102,7 +100,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:text="@string/second_dishes"/>
+                        android:text="@string/second_dishes" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_second"
@@ -119,8 +117,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:text="@string/dessert"
-                        />
+                        android:text="@string/dessert" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_dessert"

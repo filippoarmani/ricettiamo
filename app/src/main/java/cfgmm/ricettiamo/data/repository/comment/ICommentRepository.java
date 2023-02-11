@@ -2,8 +2,6 @@ package cfgmm.ricettiamo.data.repository.comment;
 
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.List;
-
 import cfgmm.ricettiamo.model.Comment;
 import cfgmm.ricettiamo.model.Result;
 

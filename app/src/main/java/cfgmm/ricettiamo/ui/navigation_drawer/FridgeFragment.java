@@ -2,7 +2,7 @@ package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import static android.text.TextUtils.isEmpty;
 
-import android.os.Build;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,28 +12,33 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.IngredientsRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.ingredients.IIngredientsRepository;
-import cfgmm.ricettiamo.data.repository.ingredients.IngredientsRepository;
-import cfgmm.ricettiamo.data.repository.ingredients.IngredientsResponseCallback;
 import cfgmm.ricettiamo.model.Ingredient;
+import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.util.ServiceLocator;
+import cfgmm.ricettiamo.viewmodel.IngredientViewModel;
+import cfgmm.ricettiamo.viewmodel.IngredientViewModelFactory;
 
-public class FridgeFragment extends Fragment implements IngredientsResponseCallback {
+@SuppressLint("NotifyDataSetChanged")
+public class FridgeFragment extends Fragment {
 
     private final String TAG = FridgeFragment.class.getSimpleName();
     private List<Ingredient> ingredientList;
     private IngredientsRecyclerAdapter adapter;
-    private IIngredientsRepository iIngredientsRepository;
+    private IIngredientsRepository ingredientsRepository;
+    private IngredientViewModel ingredientViewModel;
 
     public FridgeFragment() {}
 
@@ -45,8 +50,8 @@ public class FridgeFragment extends Fragment implements IngredientsResponseCallb
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        iIngredientsRepository = new IngredientsRepository(requireActivity().getApplication(),
-                this);
+        ingredientsRepository = ServiceLocator.getInstance().getIngredientRepository(requireActivity().getApplication());
+        ingredientViewModel = new ViewModelProvider(requireActivity(), new IngredientViewModelFactory(ingredientsRepository)).get(IngredientViewModel.class);
         ingredientList = new ArrayList<>();
     }
 
@@ -60,8 +65,6 @@ public class FridgeFragment extends Fragment implements IngredientsResponseCallb
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        iIngredientsRepository.getFridgeListIngredients();
-
         Button buttonAdd = view.findViewById(R.id.Fridge_buttonAdd);
         TextInputLayout name_l = view.findViewById(R.id.Fridge_textName_layout);
         TextInputLayout qta_l = view.findViewById(R.id.Fridge_textQta_layout);
@@ -73,16 +76,11 @@ public class FridgeFragment extends Fragment implements IngredientsResponseCallb
                         LinearLayoutManager.VERTICAL, false);
 
         adapter = new IngredientsRecyclerAdapter(requireView(), ingredientList,
-                new IngredientsRecyclerAdapter.OnItemClickListener() {
-                    @Override
-                    public void onDeleteButtonPressed(int position) {
-                        iIngredientsRepository.deleteIngredient(ingredientList.get(position));
-                    }
-                });
+                position -> ingredientViewModel.deleteIngredient(ingredientList.get(position)));
+
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         adapter.getItemTouchHelper().attachToRecyclerView(recyclerView);
-
 
         buttonAdd.setOnClickListener(v -> {
             String name = name_l.getEditText().getText().toString().trim();
@@ -98,41 +96,28 @@ public class FridgeFragment extends Fragment implements IngredientsResponseCallb
             } else {
                 float q = Float.parseFloat(qta);
                 Ingredient newIngredient = new Ingredient(name, q, unit, false, true);
-                iIngredientsRepository.insertIngredient(newIngredient);
+                ingredientViewModel.insertIngredient(newIngredient);
                 adapter.notifyItemInserted(ingredientList.size() - 1);
+            }
+        });
+
+        ingredientViewModel.getFridgeListIngredients().observe(getViewLifecycleOwner(), result -> {
+            if(result != null && result.isSuccess()) {
+                List<Ingredient> allIngredientList = ((Result.ListIngredientResponseSuccess) result).getData();
+                if(allIngredientList != null && allIngredientList.size() > 0) {
+                    ingredientList.clear();
+                    for(Ingredient ingrediet: allIngredientList) {
+                        if(ingrediet.isFridgeList())
+                            ingredientList.add(ingrediet);
+                    }
+
+                    requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
+                }
+            } else {
+                Snackbar.make(requireView(), R.string.unexpected_error, Snackbar.LENGTH_SHORT).show();
             }
         });
 
     }
 
-    @Override
-    public void onSuccess(List<Ingredient> ingredientList) {
-        if (ingredientList != null) {
-            this.ingredientList.clear();
-            this.ingredientList.addAll(ingredientList);
-            requireActivity().runOnUiThread(() -> {
-                adapter.notifyDataSetChanged();
-            });
-        }
-    }
-
-    @Override
-    public void onFailure(String errorMessage) {
-        Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                errorMessage, Snackbar.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onIngredientStatusChanged(Ingredient ingredient, boolean delete, boolean insert) {
-        if (delete) {
-            ingredientList.remove(ingredient);
-            requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
-            Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                    getString(R.string.ingredient_removed_from_list_message),
-                    Snackbar.LENGTH_SHORT).show();
-        } else if (insert) {
-            ingredientList.add(ingredient);
-            requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
-        }
-    }
 }

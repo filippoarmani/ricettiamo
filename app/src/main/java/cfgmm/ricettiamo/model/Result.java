@@ -15,7 +15,8 @@ public abstract class Result {
                 this instanceof TopTenResponseSuccess||
                 this instanceof PositionResponseSuccess ||
                 this instanceof CommentResponseSuccess ||
-                this instanceof ListRecipeResponseSuccess) {
+                this instanceof ListRecipeResponseSuccess ||
+                this instanceof ListIngredientResponseSuccess) {
             return true;
         } else {
             return false;
@@ -99,6 +100,14 @@ public abstract class Result {
         }
         public List<Recipe> getData() {
             return recipeList;
+        }
+    }
+
+    public static final class ListIngredientResponseSuccess extends Result {
+        private final List<Ingredient> ingredientList;
+        public ListIngredientResponseSuccess(List<Ingredient> ingredientList) { this.ingredientList = ingredientList; }
+        public List<Ingredient> getData() {
+            return ingredientList;
         }
     }
 

@@ -67,5 +67,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_recipes_input"/>
 
+    <TextView
+        android:id="@+id/noRecipesFound"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/no_recipes_found"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_recipes_input" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

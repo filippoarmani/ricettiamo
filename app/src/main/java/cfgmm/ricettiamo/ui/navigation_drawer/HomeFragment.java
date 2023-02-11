@@ -20,10 +20,9 @@ import java.util.List;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
-import cfgmm.ricettiamo.data.repository.recipe.RecipesRepository;
-import cfgmm.ricettiamo.data.repository.recipe.RecipesResponseCallback;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
+import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
 
@@ -35,6 +34,7 @@ import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
 public class HomeFragment extends Fragment {
 
     private RecipeViewModel recipeViewModel;
+    private IRecipesRepository iRecipesRepository;
 
     RecipesRecyclerAdapter adapterStarter;
     RecipesRecyclerAdapter adapterFirst;
@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        IRecipesRepository iRecipesRepository = new RecipesRepository(requireActivity().getApplication(), null);
+        iRecipesRepository = ServiceLocator.getInstance().getRecipesRepository(requireActivity().getApplication());
         recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
 
         recipeStarterList = new ArrayList<>();
@@ -157,6 +157,10 @@ public class HomeFragment extends Fragment {
         recipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), result -> {
             if(result != null && result.isSuccess()) {
                 List<Recipe> recipeAllList = ((Result.ListRecipeResponseSuccess) result).getData();
+                recipeStarterList.clear();
+                recipeFirstList.clear();
+                recipeSecondList.clear();
+                recipeDessertList.clear();
 
                 for(Recipe recipe: recipeAllList) {
                     if(recipe.getDishTypes().get(0).equals("Antipasti") || recipe.getDishTypes().get(0).equals("Starters")) {

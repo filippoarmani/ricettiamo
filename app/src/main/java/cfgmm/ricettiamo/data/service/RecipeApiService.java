@@ -7,7 +7,6 @@ import static cfgmm.ricettiamo.util.Constants.SEARCH_RECIPES;
 import static cfgmm.ricettiamo.util.Constants.SEARCH_RECIPES_BY_INGREDIENT;
 
 import cfgmm.ricettiamo.model.RecipeApiResponse;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;

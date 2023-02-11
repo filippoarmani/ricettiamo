@@ -1,106 +1,63 @@
 package cfgmm.ricettiamo.data.repository.recipe;
 
-import static cfgmm.ricettiamo.util.Constants.ADD_RECIPE_INFORMATIONS;
-import static cfgmm.ricettiamo.util.Constants.ADD_RECIPE_INGREDIENTS;
-import static cfgmm.ricettiamo.util.Constants.NUMBER_OF_ELEMENTS;
-
-import android.app.Application;
 import android.net.Uri;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import cfgmm.ricettiamo.R;
-import cfgmm.ricettiamo.data.database.RecipesDao;
-import cfgmm.ricettiamo.data.database.RecipesRoomDatabase;
-import cfgmm.ricettiamo.data.service.RecipeApiService;
 import cfgmm.ricettiamo.data.source.recipe.BaseDatabaseRecipesDataSource;
 import cfgmm.ricettiamo.data.source.recipe.BasePhotoStorageDataSource;
-import cfgmm.ricettiamo.data.source.recipe.DatabaseRecipesDataSource;
-import cfgmm.ricettiamo.data.source.recipe.PhotoStorageDataSource;
+import cfgmm.ricettiamo.data.source.recipe.BaseRecipesLocalDataSource;
+import cfgmm.ricettiamo.data.source.recipe.BaseRecipesRemoteDataSource;
 import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.Recipe;
-import cfgmm.ricettiamo.model.RecipeApiResponse;
 import cfgmm.ricettiamo.model.Result;
-import cfgmm.ricettiamo.util.ServiceLocator;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Repository to get the recipes using the API
  * provided by spoonacular.com (https://spoonacular.com).
  */
-public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseResponseCallback, IPhotoResponseCallback{
+public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseResponseCallback, IPhotoResponseCallback, RecipesResponseCallback{
     private static final String TAG = RecipesRepository.class.getSimpleName();
 
-    private final Application application;
-    private final RecipeApiService recipeApiService;
-    private final RecipesDao recipesDao;
-    private final RecipesResponseCallback recipesResponseCallback;
     BaseDatabaseRecipesDataSource databaseRecipesDataSource;
     BasePhotoStorageDataSource photoStorageDataSource;
+    BaseRecipesLocalDataSource recipesLocalDataSource;
+    BaseRecipesRemoteDataSource recipesRemoteDataSource;
 
     private MutableLiveData<Result> myRecipes;
     private MutableLiveData<Result> allRecipes;
 
+    private Result searchRecipe;
+    private MutableLiveData<Result> favoriteRecipe;
+
     private Result savedRecipe;
     private Result photo;
 
-    public RecipesRepository(Application application, RecipesResponseCallback recipesResponseCallback) {
-        this.application = application;
-        this.recipeApiService = ServiceLocator.getInstance().getRecipeApiService();
-        RecipesRoomDatabase recipesRoomDatabase = ServiceLocator.getInstance().getRecipesDao(application);
-        this.recipesDao = recipesRoomDatabase.recipesDao();
-        this.recipesResponseCallback = recipesResponseCallback;
+    public RecipesRepository(BaseDatabaseRecipesDataSource databaseRecipesDataSource,
+                             BasePhotoStorageDataSource photoStorageDataSource,
+                             BaseRecipesLocalDataSource recipesLocalDataSource,
+                             BaseRecipesRemoteDataSource recipesRemoteDataSource) {
+        this.databaseRecipesDataSource = databaseRecipesDataSource;
+        this.photoStorageDataSource = photoStorageDataSource;
+        this.recipesLocalDataSource = recipesLocalDataSource;
+        this.recipesRemoteDataSource = recipesRemoteDataSource;
 
-        //Community Recipes
-        this.databaseRecipesDataSource = new DatabaseRecipesDataSource();
-        this.photoStorageDataSource = new PhotoStorageDataSource();
         databaseRecipesDataSource.setCallBack(this);
         photoStorageDataSource.setCallBack(this);
+        recipesLocalDataSource.setCallBack(this);
+        recipesRemoteDataSource.setCallBack(this);
+
         this.myRecipes = new MutableLiveData<>();
         this.allRecipes = new MutableLiveData<>();
+        this.favoriteRecipe = new MutableLiveData<>();
     }
 
     @Override
-    public void getRecipes(String user_input) {
-
-        // It gets the recipies from the Web Service
-        Call<RecipeApiResponse> recipeResponseCall = recipeApiService.getRecipesByName(user_input, NUMBER_OF_ELEMENTS,
-                ADD_RECIPE_INFORMATIONS, ADD_RECIPE_INGREDIENTS, application.getString(R.string.recipes_api_key));
-
-        recipeResponseCall.enqueue(new Callback<RecipeApiResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<RecipeApiResponse> call,
-                                   @NonNull Response<RecipeApiResponse> response) {
-
-                if (response.body() != null && response.isSuccessful()) {
-                    List<Recipe> recipesList = response.body().getListRecipes();
-                    List<Ingredient> ingredientList = new ArrayList<>();
-                    for (int i = 0; i < recipesList.size(); i++) {
-                        Recipe recipetemp = recipesList.get(i);
-                        for (int j = 0; j < recipetemp.getIngredientsList().size(); j++) {
-                            Ingredient ingredient = new Ingredient(recipetemp.getIngredientsList().get(j).getName(),
-                                    recipetemp.getIngredientsList().get(j).getQta(),
-                                    recipetemp.getIngredientsList().get(j).getSize());
-                            ingredientList.add(ingredient);
-                        }
-                    }
-                    saveDataInDatabase(recipesList, ingredientList);
-                } else {
-                    recipesResponseCallback.onFailure(application.getString(R.string.error_retrieving_recipe));
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<RecipeApiResponse> call, @NonNull Throwable t) {
-                recipesResponseCallback.onFailure(t.getMessage());
-            }
-        });
+    public Result getRecipes(String user_input) {
+        recipesRemoteDataSource.getRecipes(user_input);
+        return searchRecipe;
     }
 
     /**
@@ -108,14 +65,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
      */
     @Override
     public void deleteFavoriteRecipes() {
-        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            List<Recipe> favoriteRecipes = recipesDao.getFavoriteRecipes();
-            for (Recipe recipe : favoriteRecipes) {
-                recipe.setIsFavorite(false);
-            }
-            recipesDao.updateListFavoriteRecipes(favoriteRecipes);
-            recipesResponseCallback.onSuccess(recipesDao.getFavoriteRecipes());
-        });
+        recipesLocalDataSource.deleteFavoriteRecipes();
     }
 
     /**
@@ -124,67 +74,19 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
      * @param recipe The recipe to be updated.
      */
     @Override
-    public void updateRecipes(Recipe recipe) {
-        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            recipesDao.updateSingleFavoriteRecipes(recipe);
-            recipesResponseCallback.onRecipesFavoriteStatusChanged(recipe);
-        });
+    public MutableLiveData<Result> updateRecipes(Recipe recipe) {
+        recipesLocalDataSource.updateRecipes(recipe);
+        return favoriteRecipe;
     }
 
     /**
      * Gets the list of favorite recipes from the local database.
      */
     @Override
-    public void getFavoriteRecipes() {
-        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            recipesResponseCallback.onSuccess(recipesDao.getFavoriteRecipes());
-        });
-    }
+    public MutableLiveData<Result> getFavoriteRecipes() {
+        recipesLocalDataSource.getFavoriteRecipes();
 
-    /**
-     * Saves the recipes in the local database.
-     * The method is executed with an ExecutorService defined in RecipesRoomDatabase class
-     * because the database access cannot been executed in the main thread.
-     * @param recipeList the list of recipes to be written in the local database.
-     */
-    private void saveDataInDatabase(List<Recipe> recipeList, List<Ingredient> ingredientList) {
-        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            List<Recipe> allRecipe = recipesDao.getAll();
-            List<Ingredient> allIngredients = recipesDao.getAllIngredients();
-
-            for (Recipe recipe : allRecipe) {
-                if (recipeList.contains(recipe)) {
-                    recipeList.set(recipeList.indexOf(recipe), recipe);
-                }
-            }
-            for (Ingredient ingredient : allIngredients) {
-                if (ingredientList.contains(ingredient)) {
-                    ingredientList.set(ingredientList.indexOf(ingredient), ingredient);
-                }
-            }
-
-            List<Long> insertedRecipeIds = recipesDao.insertRecipeList(recipeList);
-            for (int i = 0; i < recipeList.size(); i++) {
-                recipeList.get(i).setId(insertedRecipeIds.get(i));
-            }
-            List<Long> insertedIngredientsIds = recipesDao.insertIngredientList(ingredientList);
-            for (int i = 0; i < ingredientList.size(); i++) {
-                ingredientList.get(i).setId(insertedIngredientsIds.get(i));
-            }
-
-            recipesResponseCallback.onSuccess(recipeList);
-        });
-    }
-
-    /**
-     * Gets the recipes from the local database.
-     * The method is executed with an ExecutorService defined in RecipesRoomDatabase class
-     * because the database access cannot been executed in the main thread.
-     */
-    private void readDataFromDatabase() {
-        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            recipesResponseCallback.onSuccess(recipesDao.getAll());
-        });
+        return favoriteRecipe;
     }
 
     //Community Recipes
@@ -232,8 +134,6 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         this.myRecipes.postValue(new Result.Error(writeDatabase_error));
     }
 
-
-
     @Override
     public void onSuccessGetAllRecipes(List<Recipe> recipes) {
         this.allRecipes.postValue(new Result.ListRecipeResponseSuccess(recipes));
@@ -252,5 +152,48 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     @Override
     public void onFailureUploadPhoto() {
         photo = new Result.Error(1);
+    }
+
+    @Override
+    public void onSuccessFavorite(List<Recipe> recipesList) {
+        favoriteRecipe.postValue(new Result.ListRecipeResponseSuccess(recipesList));
+    }
+
+    @Override
+    public void onFailure(int error) {
+        searchRecipe = new Result.Error(error);
+    }
+
+    @Override
+    public void onRecipesFavoriteStatusChanged(Recipe recipe) {
+        Result result = favoriteRecipe.getValue();
+        if(result != null && result.isSuccess()) {
+            List<Recipe> favRecipe = ((Result.ListRecipeResponseSuccess) result).getData();
+
+            if (recipe.isFavorite()) {
+                favRecipe.add(recipe);
+            } else {
+                favRecipe.remove(recipe);
+            }
+
+            result = new Result.ListRecipeResponseSuccess(favRecipe);
+        }
+
+        favoriteRecipe.postValue(result);
+    }
+
+    @Override
+    public void onSuccessFromRemote(List<Recipe> recipesList, List<Ingredient> ingredientList) {
+        recipesLocalDataSource.saveDataInDatabase(recipesList, ingredientList);
+    }
+
+    @Override
+    public void onFailureFromRemote(int error) {
+        searchRecipe = new Result.Error(error);
+    }
+
+    @Override
+    public void onSuccessFromDatabase(List<Recipe> all) {
+        searchRecipe = new Result.ListRecipeResponseSuccess(all);
     }
 }

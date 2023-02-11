@@ -5,8 +5,6 @@ import static cfgmm.ricettiamo.util.Constants.FIREBASE_USERS_COLLECTION;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

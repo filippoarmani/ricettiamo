@@ -1,7 +1,6 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import static android.text.TextUtils.isEmpty;
-
 import static cfgmm.ricettiamo.util.Constants.IMAGE;
 
 import android.Manifest;

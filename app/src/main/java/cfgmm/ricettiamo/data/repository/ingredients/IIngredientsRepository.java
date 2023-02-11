@@ -1,19 +1,19 @@
 package cfgmm.ricettiamo.data.repository.ingredients;
 
 
-import java.util.List;
+import androidx.lifecycle.MutableLiveData;
 
 import cfgmm.ricettiamo.model.Ingredient;
+import cfgmm.ricettiamo.model.Result;
 
 public interface IIngredientsRepository {
 
-    void getIngredientByName(String name);
-    void getAllIngredients();
+    MutableLiveData<Result> getAllIngredients();
 
-    void updateIngredient(Ingredient ingredient);
+    MutableLiveData<Result> updateIngredient(Ingredient ingredient);
 
-    void getShoppingListIngredients();
-    void getFridgeListIngredients();
-    void insertIngredient(Ingredient ingredient);
-    void deleteIngredient(Ingredient ingredient);
+    MutableLiveData<Result> getShoppingListIngredients();
+    MutableLiveData<Result> getFridgeListIngredients();
+    MutableLiveData<Result> insertIngredient(Ingredient ingredient);
+    MutableLiveData<Result> deleteIngredient(Ingredient ingredient);
 }
