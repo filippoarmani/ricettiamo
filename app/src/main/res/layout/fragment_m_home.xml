@@ -48,26 +48,19 @@
                     android:orientation="vertical"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <!--
-                    <TextView
-                        android:id="@+id/textViewPiattifavourites"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:text="@string/favourite_dishes"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_favourites"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" /> -->
 
                     <TextView
                         android:id="@+id/textViewAntipasti"
                         style="@style/firstTitle"
                         android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:text="@string/community" />
+
+                    <TextView
+                        android:id="@+id/textViewAntipasti2"
+                        style="@style/firstTitle"
+                        android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:text="@string/starters" />

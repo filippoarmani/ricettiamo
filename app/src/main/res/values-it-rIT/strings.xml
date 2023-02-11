@@ -136,6 +136,7 @@
     <string name="ingredient_removed_from_list_message">Ingrediente Rimosso dalla Lista</string>
     <string name="invalid_email">Email non valida</string>
     <string name="no_recipes_found">Nessuna ricetta trovata</string>
+    <string name="community">Gli chef di RicettiAmo propongono:</string>
 
 
 </resources>
