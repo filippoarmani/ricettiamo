@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "653587249342",
+    "firebase_url": "https://ricettiamo-8cacf-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "ricettiamo-8cacf",
     "storage_bucket": "ricettiamo-8cacf.appspot.com"
   },
@@ -14,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "653587249342-3dah3jbg2vfid8t0i9hsbnr1bi4idoar.apps.googleusercontent.com",
+          "client_id": "653587249342-6n3orbirviqenmg3spf22fqe1br4e969.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "cfgmm.ricettiamo",
