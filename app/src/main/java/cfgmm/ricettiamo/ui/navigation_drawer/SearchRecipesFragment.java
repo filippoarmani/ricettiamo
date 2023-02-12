@@ -39,7 +39,6 @@ public class SearchRecipesFragment extends Fragment {
     private TextInputLayout inputRecipe;
     private List<Recipe> recipeList;
     private RecipesRecyclerAdapter recipesRecyclerAdapter;
-    private IRecipesRepository iRecipesRepository;
     private RecipeViewModel recipeViewModel;
     private String search;
 
@@ -56,7 +55,7 @@ public class SearchRecipesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        iRecipesRepository = ServiceLocator.getInstance().getRecipesRepository(requireActivity().getApplication());
+        IRecipesRepository iRecipesRepository = ServiceLocator.getInstance().getRecipesRepository(requireActivity().getApplication());
         recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
 
         recipeList = new ArrayList<>();
@@ -102,36 +101,33 @@ public class SearchRecipesFragment extends Fragment {
         recyclerviewSearchRecipes.setAdapter(recipesRecyclerAdapter);
 
         btnSearch.setOnClickListener(v -> {
+            fragmentSearchRecipesBinding.progress.setVisibility(View.VISIBLE);
             search = inputRecipe.getEditText().getText().toString().trim();
             if (search.length() != 0) {
-                Result result = recipeViewModel.getSearchRecipes(search);
-                if(result != null && result.isSuccess()) {
-                    recipeList.clear();
-                    recipeList.addAll(((Result.ListRecipeResponseSuccess) result).getData());
-                    if(recipeList == null || recipeList.size() == 0) {
-                        recyclerviewSearchRecipes.setVisibility(GONE);
-                        noRecipesFound.setVisibility(View.VISIBLE);
+                recipeViewModel.getSearchRecipes(search).observe(getViewLifecycleOwner(), result -> {
+                    if(result != null && result.isSuccess()) {
+                        recipeList.clear();
+                        recipeList.addAll(((Result.ListRecipeResponseSuccess) result).getData());
+                        if(recipeList == null || recipeList.size() == 0) {
+                            recyclerviewSearchRecipes.setVisibility(GONE);
+                            noRecipesFound.setVisibility(View.VISIBLE);
+                        } else {
+                            recyclerviewSearchRecipes.setVisibility(View.VISIBLE);
+                            noRecipesFound.setVisibility(View.GONE);
+                        }
+
+                        requireActivity().runOnUiThread(() -> recipesRecyclerAdapter.notifyDataSetChanged());
                     } else {
                         recyclerviewSearchRecipes.setVisibility(View.VISIBLE);
                         noRecipesFound.setVisibility(View.GONE);
                     }
-
-                    requireActivity().runOnUiThread(() -> recipesRecyclerAdapter.notifyDataSetChanged());
-                }
-            } else
-                Snackbar.make(getView(), R.string.empty_fields, Snackbar.LENGTH_SHORT).show();
+                });
+            } else {
+                recyclerviewSearchRecipes.setVisibility(GONE);
+                noRecipesFound.setVisibility(View.VISIBLE);
+            }
+            fragmentSearchRecipesBinding.progress.setVisibility(GONE);
         });
     }
 
-    public void onRecipesFavoriteStatusChanged(Recipe recipe) {
-        if (recipe.isFavorite()) {
-            Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                    getString(R.string.recipes_added_to_favorite_list_message),
-                    Snackbar.LENGTH_SHORT).show();
-        } else {
-            Snackbar.make(requireActivity().findViewById(android.R.id.content),
-                    getString(R.string.recipes_removed_from_favorite_list_message),
-                    Snackbar.LENGTH_SHORT).show();
-        }
-    }
 }

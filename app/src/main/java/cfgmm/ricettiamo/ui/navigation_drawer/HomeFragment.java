@@ -1,5 +1,7 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
+import static android.view.View.GONE;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +86,7 @@ public class HomeFragment extends Fragment {
         rv_first = view.findViewById(R.id.rv_first);
         rv_second = view.findViewById(R.id.rv_second);
         rv_desserts = view.findViewById(R.id.rv_dessert);
+        LinearProgressIndicator progress = view.findViewById(R.id.progress);
 
         rv_starters.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false));
         rv_first.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false));
@@ -155,6 +159,7 @@ public class HomeFragment extends Fragment {
         rv_desserts.setAdapter(adapterDessert);
 
         recipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), result -> {
+            progress.setVisibility(View.VISIBLE);
             if(result != null && result.isSuccess()) {
                 List<Recipe> recipeAllList = ((Result.ListRecipeResponseSuccess) result).getData();
                 recipeStarterList.clear();
@@ -162,28 +167,35 @@ public class HomeFragment extends Fragment {
                 recipeSecondList.clear();
                 recipeDessertList.clear();
 
+                adapterStarter.notifyDataSetChanged();
+                adapterFirst.notifyDataSetChanged();
+                adapterSecond.notifyDataSetChanged();
+                adapterDessert.notifyDataSetChanged();
+
                 for(Recipe recipe: recipeAllList) {
                     if(recipe.getDishTypes().get(0).equals("Antipasti") || recipe.getDishTypes().get(0).equals("Starters")) {
                         recipeStarterList.add(recipe);
-                        adapterStarter.notifyDataSetChanged();
                     }
 
                     if(recipe.getDishTypes().get(0).equals("Primi Piatti") || recipe.getDishTypes().get(0).equals("First Dishes")) {
                         recipeFirstList.add(recipe);
-                        adapterFirst.notifyDataSetChanged();
                     }
 
                     if(recipe.getDishTypes().get(0).equals("Secondi Piatti") || recipe.getDishTypes().get(0).equals("Second Dishes")) {
                         recipeSecondList.add(recipe);
-                        adapterSecond.notifyDataSetChanged();
                     }
 
                     if(recipe.getDishTypes().get(0).equals("Dolci") || recipe.getDishTypes().get(0).equals("Dessert")) {
                         recipeDessertList.add(recipe);
-                        adapterDessert.notifyDataSetChanged();
                     }
                 }
+
+                adapterStarter.notifyDataSetChanged();
+                adapterFirst.notifyDataSetChanged();
+                adapterSecond.notifyDataSetChanged();
+                adapterDessert.notifyDataSetChanged();
             }
+            progress.setVisibility(GONE);
         });
 
     }

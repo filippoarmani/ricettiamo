@@ -114,15 +114,18 @@
     <!-- inserisci_ricetta -->
     <string name="add_photo">Add the main picture</string>
     <string name="type_nameRecipe">Type name of the recipe</string>
-    <string name="difficulty">Difficulty: </string>
+    <string name="difficulty">Difficulty</string>
     <string-array name="difficulty_array">
-        <item>Easy</item>
-        <item>Average</item>
-        <item>Hard</item>
+        <item>@string/d_easy</item>
+        <item>@string/d_avarage</item>
+        <item>@string/d_hard</item>
     </string-array>
-    <string name="prep_time">Prep time:  </string>
+    <string name="d_easy">Easy</string>
+    <string name="d_avarage">Average</string>
+    <string name="d_hard">Hard</string>
+    <string name="prep_time">Prep time</string>
     <string name="min">minutes</string>
-    <string name="cost">Cost: </string>
+    <string name="cost">Cost</string>
 
     <string-array name="type_array">
         <item>@string/starters</item>
@@ -131,7 +134,7 @@
         <item>@string/dessert</item>
     </string-array>
 
-    <string name="serving">Serving: </string>
+    <string name="serving">Serving</string>
     <string name="people">ppl.</string>
     <string name="add_ingredient">Add an ingredient</string>
     <string name="add_step">Add a step</string>

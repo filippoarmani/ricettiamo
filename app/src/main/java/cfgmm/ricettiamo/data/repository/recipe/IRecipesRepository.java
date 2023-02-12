@@ -12,7 +12,7 @@ import cfgmm.ricettiamo.model.Result;
  */
 public interface IRecipesRepository {
 
-    Result getRecipes(String user_input);
+    MutableLiveData<Result> getRecipes(String user_input);
 
     MutableLiveData<Result> updateRecipes(Recipe recipe);
 
@@ -21,8 +21,8 @@ public interface IRecipesRepository {
     void deleteFavoriteRecipes();
 
     //Community Recipes
-    Result writeRecipe(Recipe recipe);
-    Result uploadPhoto(Uri photo);
+    MutableLiveData<Result> writeRecipe(Recipe recipe);
+    MutableLiveData<Result> uploadPhoto(Uri photo);
     MutableLiveData<Result> getMyRecipes(String id);
     MutableLiveData<Result> getAllRecipes();
 }

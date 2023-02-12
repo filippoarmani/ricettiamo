@@ -67,10 +67,10 @@
     <string name="retry">Riprova</string>
     <string name="add_photo">Aggiungi la foto principale</string>
     <string name="type_nameRecipe">Scrivi il nome della ricetta</string>
-    <string name="difficulty">Difficoltà:</string>
-    <string name="prep_time">Tempo:</string>
-    <string name="cost">Costo:</string>
-    <string name="serving">Servito:</string>
+    <string name="difficulty">Difficoltà</string>
+    <string name="prep_time">Tempo</string>
+    <string name="cost">Costo</string>
+    <string name="serving">Servito</string>
     <string name="add_ingredient">Aggiunti un ingrediente</string>
     <string name="add_step">Aggiunti un passaggio</string>
     <string name="add_photo_step">Aggiungi una foto</string>
@@ -137,6 +137,9 @@
     <string name="invalid_email">Email non valida</string>
     <string name="no_recipes_found">Nessuna ricetta trovata</string>
     <string name="community">Gli chef di RicettiAmo propongono:</string>
+    <string name="d_easy">Facile</string>
+    <string name="d_avarage">Medio</string>
+    <string name="d_hard">Difficile</string>
 
 
 </resources>

@@ -29,11 +29,11 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
     private MutableLiveData<Result> myRecipes;
     private MutableLiveData<Result> allRecipes;
 
-    private Result searchRecipe;
+    private MutableLiveData<Result> searchRecipe;
     private MutableLiveData<Result> favoriteRecipe;
 
-    private Result savedRecipe;
-    private Result photo;
+    private MutableLiveData<Result> savedRecipe;
+    private MutableLiveData<Result> photo;
 
     public RecipesRepository(BaseDatabaseRecipesDataSource databaseRecipesDataSource,
                              BasePhotoStorageDataSource photoStorageDataSource,
@@ -49,13 +49,16 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         recipesLocalDataSource.setCallBack(this);
         recipesRemoteDataSource.setCallBack(this);
 
+        this.searchRecipe = new MutableLiveData<>();
         this.myRecipes = new MutableLiveData<>();
         this.allRecipes = new MutableLiveData<>();
         this.favoriteRecipe = new MutableLiveData<>();
+        this.savedRecipe = new MutableLiveData<>();
+        this.photo = new MutableLiveData<>();
     }
 
     @Override
-    public Result getRecipes(String user_input) {
+    public MutableLiveData<Result> getRecipes(String user_input) {
         recipesRemoteDataSource.getRecipes(user_input);
         return searchRecipe;
     }
@@ -91,13 +94,13 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
     //Community Recipes
     @Override
-    public Result writeRecipe(Recipe recipe) {
+    public MutableLiveData<Result> writeRecipe(Recipe recipe) {
         databaseRecipesDataSource.writeRecipe(recipe);
         return savedRecipe;
     }
 
     @Override
-    public Result uploadPhoto(Uri photo) {
+    public MutableLiveData<Result> uploadPhoto(Uri photo) {
         photoStorageDataSource.uploadFile(photo);
         return this.photo;
     }
@@ -116,12 +119,12 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
     @Override
     public void onSuccessWriteDatabase(Recipe savedRecipe) {
-        this.savedRecipe = new Result.RecipeDatabaseResponseSuccess(savedRecipe);
+        this.savedRecipe.postValue(new Result.RecipeDatabaseResponseSuccess(savedRecipe));
     }
 
     @Override
     public void onFailureWriteDatabase(int writeDatabase_error) {
-        this.savedRecipe = new Result.Error(writeDatabase_error);
+        this.savedRecipe.postValue(new Result.Error(writeDatabase_error));
     }
 
     @Override
@@ -146,12 +149,12 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
     @Override
     public void onSuccessUploadPhoto(Uri uri) {
-        photo = new Result.PhotoResponseSuccess(uri);
+        photo.postValue(new Result.PhotoResponseSuccess(uri));
     }
 
     @Override
     public void onFailureUploadPhoto() {
-        photo = new Result.Error(1);
+        photo.postValue(new Result.Error(1));
     }
 
     @Override
@@ -161,7 +164,7 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
     @Override
     public void onFailure(int error) {
-        searchRecipe = new Result.Error(error);
+        searchRecipe.postValue(new Result.Error(error));
     }
 
     @Override
@@ -189,11 +192,11 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
 
     @Override
     public void onFailureFromRemote(int error) {
-        searchRecipe = new Result.Error(error);
+        searchRecipe.postValue(new Result.Error(error));
     }
 
     @Override
     public void onSuccessFromDatabase(List<Recipe> all) {
-        searchRecipe = new Result.ListRecipeResponseSuccess(all);
+        searchRecipe.postValue(new Result.ListRecipeResponseSuccess(all));
     }
 }

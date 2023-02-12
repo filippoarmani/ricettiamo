@@ -141,7 +141,11 @@ public class AddNewRecipeFragment extends Fragment {
         recipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), result -> {
             if(result != null && result.isSuccess()) {
                 List<Recipe> recipeList = ((Result.ListRecipeResponseSuccess) result).getData();
-                idRecipe = recipeList.get(recipeList.size() - 1).getId() + 1;
+                if(recipeList.size() == 0) {
+                    idRecipe = 0;
+                } else {
+                    idRecipe = recipeList.get(recipeList.size() - 1).getId() + 1;
+                }
             }
         });
 
@@ -169,7 +173,11 @@ public class AddNewRecipeFragment extends Fragment {
 
         binding.addStepButton.setOnClickListener(v -> {
             String stepDescription = binding.addStepLayout.getEditText().getText().toString().trim();
-            stepNumber++;
+            if(stepList.size() == 0) {
+                stepNumber = 1;
+            } else {
+                stepNumber = stepList.get(stepList.size() - 1).getNumber() + 1;
+            }
             Step step = new Step(stepNumber, stepDescription);
             if(!isEmpty(stepDescription)) {
                 stepList.add(step);
@@ -193,42 +201,46 @@ public class AddNewRecipeFragment extends Fragment {
                     alert.setTitle(getString(R.string.save_recipe));
                     alert.setMessage(getString(R.string.save_recipe_alert));
                     alert.setPositiveButton(getString(R.string.save), (dialog, id) -> {
-                        Result urlResult = recipeViewModel.uploadPhoto(mainPicture);
-                        if (urlResult != null && urlResult.isSuccess()) {
-                            String urlToImage = ((Result.PhotoResponseSuccess) urlResult).getData().toString();
+                        binding.progress.setVisibility(View.VISIBLE);
+                        recipeViewModel.uploadPhoto(mainPicture).observe(getViewLifecycleOwner(), urlResult -> {
+                            if (urlResult != null && urlResult.isSuccess()) {
+                                String urlToImage = ((Result.PhotoResponseSuccess) urlResult).getData().toString();
 
-                            List<String> dishTypes = new ArrayList<>();
-                            dishTypes.add(category);
+                                List<String> dishTypes = new ArrayList<>();
+                                dishTypes.add(category);
 
-                            List<StepsAnalyze> stepsAnalyzes = new ArrayList<>();
-                            stepsAnalyzes.add(new StepsAnalyze("", stepList));
+                                List<StepsAnalyze> stepsAnalyzes = new ArrayList<>();
+                                stepsAnalyzes.add(new StepsAnalyze("", stepList));
 
-                            Recipe recipe = new Recipe(
-                                    this.idRecipe,
-                                    author,
-                                    title,
-                                    0,
-                                    Integer.parseInt(serving),
-                                    Float.parseFloat(cost),
-                                    Integer.parseInt(prepTime),
-                                    ingredientList,
-                                    getCurrentDate(),
-                                    dishTypes,
-                                    urlToImage,
-                                    false,
-                                    stepsAnalyzes
-                            );
-                            stepNumber = 0;
-                            Result writeResult = recipeViewModel.writeRecipe(recipe);
-                            if (writeResult != null && writeResult.isSuccess()) {
-                                Snackbar.make(requireView(), R.string.saving_success, Snackbar.LENGTH_SHORT).show();
-                                Navigation.findNavController(requireView()).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
+                                Recipe recipe = new Recipe(
+                                        this.idRecipe,
+                                        author,
+                                        title,
+                                        0,
+                                        Integer.parseInt(serving),
+                                        Float.parseFloat(cost),
+                                        Integer.parseInt(prepTime),
+                                        ingredientList,
+                                        getCurrentDate(),
+                                        dishTypes,
+                                        urlToImage,
+                                        false,
+                                        stepsAnalyzes
+                                );
+                                stepNumber = 0;
+                                recipeViewModel.writeRecipe(recipe).observe(getViewLifecycleOwner(), writeResult -> {
+                                    if (writeResult != null && writeResult.isSuccess()) {
+                                        Snackbar.make(requireView(), R.string.saving_success, Snackbar.LENGTH_SHORT).show();
+                                        Navigation.findNavController(requireView()).navigate(R.id.action_nav_add_new_recipe_to_nav_home);
+                                    } else {
+                                        Snackbar.make(requireView(), R.string.saving_failure, Snackbar.LENGTH_SHORT).show();
+                                    }
+                                });
                             } else {
-                                Snackbar.make(requireView(), R.string.saving_failure, Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(requireView(), R.string.error_photo, Snackbar.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Snackbar.make(requireView(), R.string.error_photo, Snackbar.LENGTH_SHORT).show();
-                        }
+                            binding.progress.setVisibility(View.GONE);
+                        });
                     });
                     alert.setNegativeButton(getString(R.string.cancel), null);
                     alert.show();

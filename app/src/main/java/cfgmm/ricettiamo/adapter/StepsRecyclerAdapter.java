@@ -79,17 +79,12 @@ public class StepsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                Step deleteItem = steps.get(viewHolder.getBindingAdapterPosition());
-
                 int position = viewHolder.getBindingAdapterPosition();
+                for (int i = position + 1; i < steps.size(); i++) {
+                    steps.get(i).setNumber(steps.get(i).getNumber() - 1);
+                }
                 steps.remove(position);
-                notifyItemRemoved(position);
-
-                Snackbar.make(view, "UNDO", Snackbar.LENGTH_SHORT).
-                        setAction("UNDO", v -> {
-                            steps.add(position,deleteItem);
-                            notifyItemInserted(position);
-                        }).show();
+                notifyDataSetChanged();
             }
         });
     }

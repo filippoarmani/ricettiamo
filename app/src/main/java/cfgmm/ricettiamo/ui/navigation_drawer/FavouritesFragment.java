@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class FavouritesFragment extends Fragment {
     private List<Recipe> memoryFavoriteList;
 
     private RecipesRecyclerAdapter recipesRecyclerAdapter;
-    private CircularProgressIndicator progressBar;
+    private LinearProgressIndicator progressBar;
     private UserViewModel userViewModel;
     private RecipeViewModel recipeViewModel;
 

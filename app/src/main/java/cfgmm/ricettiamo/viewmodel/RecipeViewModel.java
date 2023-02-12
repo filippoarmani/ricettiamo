@@ -26,7 +26,7 @@ public class RecipeViewModel extends ViewModel {
      * recipes list to the Fragment/Activity.
      * @return The list associated with the recipes.
      */
-    public Result getSearchRecipes(String user_input) {
+    public MutableLiveData<Result> getSearchRecipes(String user_input) {
         return recipesRepository.getRecipes(user_input);
     }
 
@@ -51,7 +51,7 @@ public class RecipeViewModel extends ViewModel {
     }
 
     //Community Recipes
-    public Result writeRecipe(Recipe recipe) {
+    public MutableLiveData<Result> writeRecipe(Recipe recipe) {
         return recipesRepository.writeRecipe(recipe);
     }
 
@@ -62,7 +62,7 @@ public class RecipeViewModel extends ViewModel {
         return myRecipes;
     }
 
-    public Result uploadPhoto(Uri uri) {
+    public MutableLiveData<Result> uploadPhoto(Uri uri) {
         return recipesRepository.uploadPhoto(uri);
     }
 
