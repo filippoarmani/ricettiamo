@@ -142,8 +142,7 @@ public class LoginFragment extends Fragment {
 
             if (!(isEmpty(email) || isEmpty(password))) {
                 userViewModel.signIn(email, password);
-                Log.e("user 1 ", String.valueOf(userViewModel.isLoggedUser()));
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext());
+                /*MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext());
                 builder.setMessage(R.string.confirmation)
                         .setPositiveButton(android.R.string.ok, (dialog, id) -> {
                             userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
@@ -163,7 +162,18 @@ public class LoginFragment extends Fragment {
                             dialog.cancel();
                         })
                         .setNegativeButton(android.R.string.cancel, (dialog, id) -> dialog.cancel()).create().show();
-
+*/
+                userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
+                    progressIndicator.setVisibility(View.GONE);
+                    if(result.isSuccess()) {
+                        updateUI(userViewModel.isLoggedUser());
+                    } else {
+                        if(!userViewModel.isLoggedUser()) {
+                            Result.Error error = (Result.Error) result;
+                            Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             } else {
                 Snackbar.make(requireView(), R.string.empty_fields, Snackbar.LENGTH_SHORT).show();
                 progressIndicator.setVisibility(View.GONE);
