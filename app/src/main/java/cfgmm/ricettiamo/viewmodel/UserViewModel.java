@@ -1,6 +1,7 @@
 package cfgmm.ricettiamo.viewmodel;
 
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -39,10 +40,15 @@ public class UserViewModel extends ViewModel {
 
     public MutableLiveData<Result> getCurrentUserLiveData() {
         if(currentUserLiveData.getValue() == null) {
+            Log.e("1 ", String.valueOf(currentUserLiveData));
             if(isLoggedUser()) {
+                Log.e("2 ", String.valueOf(currentUserLiveData));
                 currentUserLiveData = userRepository.getLoggedUser();
+                Log.e("3 ", String.valueOf(currentUserLiveData));
             } else {
+                Log.e("4 ", String.valueOf(currentUserLiveData));
                 currentUserLiveData = new MutableLiveData<>(new Result.UserResponseSuccess(null));
+                Log.e("5 ", String.valueOf(currentUserLiveData));
             }
         }
 

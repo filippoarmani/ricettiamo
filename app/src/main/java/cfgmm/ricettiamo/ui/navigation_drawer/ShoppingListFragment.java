@@ -96,7 +96,6 @@ public class ShoppingListFragment extends Fragment {
                 float q = Float.parseFloat(qta);
                 Ingredient newIngredient = new Ingredient(name, q, unit, true, false);
                 ingredientViewModel.insertIngredient(newIngredient);
-                //adapter.notifyItemInserted(shoppingList.size() - 1);
             }
         });
 
