@@ -157,7 +157,6 @@ public class RecipeDetailsFragment extends Fragment {
                 else
                     idUser = getString(R.string.noLoggedUser);
 
-                Snackbar.make(requireView(), recipe.getAuthor(), Snackbar.LENGTH_SHORT).show();
                 commentViewModel.writeNewComment(new Comment("" + (comments.size() + 1), idUser, idRecipe, recipe.getAuthor(), text, Integer.parseInt(score)));
             } else {
                 Snackbar.make(requireView(), R.string.unexpected_error, Snackbar.LENGTH_SHORT).show();
