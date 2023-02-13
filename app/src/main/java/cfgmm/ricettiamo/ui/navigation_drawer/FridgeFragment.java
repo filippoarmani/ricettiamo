@@ -4,7 +4,6 @@ import static android.text.TextUtils.isEmpty;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,10 +107,7 @@ public class FridgeFragment extends Fragment {
                 }
                 Ingredient newIngredient = new Ingredient(id, name, q, unit, false, true);
                 ingredientViewModel.insertIngredient(newIngredient);
-                Log.e("dimensione ", String.valueOf(ingredientList.size()));
                 ingredientList.add(newIngredient);
-                Log.e("aggiunto ", newIngredient.toString());
-                Log.e("dimensione ", String.valueOf(ingredientList.size()));
                 adapter.notifyItemInserted(ingredientList.size() - 1);
             }
         });
