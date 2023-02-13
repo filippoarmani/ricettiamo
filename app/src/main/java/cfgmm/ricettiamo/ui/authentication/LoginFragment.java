@@ -55,7 +55,7 @@ public class LoginFragment extends Fragment {
 
     private UserViewModel userViewModel;
 
-    private SignInButton login_google;
+    private Button login_google;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -79,38 +79,42 @@ public class LoginFragment extends Fragment {
         googleActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 resultA -> {
-                    if (resultA.getResultCode() == Activity.RESULT_OK) {
-                        // There are no request codes
-                        Intent data = resultA.getData();
-                        GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-                        if (result.isSuccess()) {
-                            // Google Sign In was successful, authenticate with Firebase
-                            GoogleSignInAccount account = result.getSignInAccount();
-                            if(account != null) {
+                    try {
+                        if (resultA.getResultCode() == Activity.RESULT_OK) {
+                            // There are no request codes
+                            Intent data = resultA.getData();
+                            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+                            if (result.isSuccess()) {
+                                // Google Sign In was successful, authenticate with Firebase
+                                GoogleSignInAccount account = result.getSignInAccount();
+                                if(account != null) {
 
-                                userViewModel.signInGoogle(account.getIdToken());
+                                    userViewModel.signInGoogle(account.getIdToken());
 
-                                try {
-                                    TimeUnit.SECONDS.sleep(1);
-                                } catch (InterruptedException e) {
-                                    Snackbar.make(requireView(), e.getMessage(), Snackbar.LENGTH_SHORT).show();
-                                }
-
-                                userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result2 -> {
-                                    progressIndicator.setVisibility(View.GONE);
-                                    if (result2.isSuccess()) {
-                                        updateUI(userViewModel.isLoggedUser());
-                                    } else {
-                                        if (!userViewModel.isLoggedUser()) {
-                                            Result.Error error = (Result.Error) result2;
-                                            Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
-                                        }
+                                    try {
+                                        TimeUnit.SECONDS.sleep(1);
+                                    } catch (InterruptedException e) {
+                                        Snackbar.make(requireView(), e.getMessage(), Snackbar.LENGTH_SHORT).show();
                                     }
-                                });
-                            } else {
-                                Snackbar.make(requireView(), R.string.unexpected_error, Snackbar.LENGTH_SHORT).show();
+
+                                    userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result2 -> {
+                                        progressIndicator.setVisibility(View.GONE);
+                                        if (result2.isSuccess()) {
+                                            updateUI(userViewModel.isLoggedUser());
+                                        } else {
+                                            if (!userViewModel.isLoggedUser()) {
+                                                Result.Error error = (Result.Error) result2;
+                                                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    Snackbar.make(requireView(), R.string.unexpected_error, Snackbar.LENGTH_SHORT).show();
+                                }
                             }
                         }
+                    } catch (Exception e) {
+                        Snackbar.make(requireView(), R.string.unexpected_error, Snackbar.LENGTH_SHORT).show();
                     }
                 });
 
