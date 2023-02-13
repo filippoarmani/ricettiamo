@@ -5,34 +5,26 @@ import static android.text.TextUtils.isEmpty;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.identity.BeginSignInRequest;
-import com.google.android.gms.auth.api.identity.Identity;
-import com.google.android.gms.auth.api.identity.SignInClient;
-import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -59,6 +51,7 @@ public class LoginFragment extends Fragment {
     private TextInputLayout password_layout;
 
     private GoogleSignInClient mGoogleApiClient;
+    private ActivityResultLauncher<Intent> googleActivityResultLauncher;
 
     private UserViewModel userViewModel;
 
@@ -82,6 +75,44 @@ public class LoginFragment extends Fragment {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
+        googleActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                resultA -> {
+                    if (resultA.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = resultA.getData();
+                        GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+                        if (result.isSuccess()) {
+                            // Google Sign In was successful, authenticate with Firebase
+                            GoogleSignInAccount account = result.getSignInAccount();
+                            if(account != null) {
+
+                                userViewModel.signInGoogle(account.getIdToken());
+
+                                try {
+                                    TimeUnit.SECONDS.sleep(1);
+                                } catch (InterruptedException e) {
+                                    Snackbar.make(requireView(), e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                                }
+
+                                userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result2 -> {
+                                    progressIndicator.setVisibility(View.GONE);
+                                    if (result2.isSuccess()) {
+                                        updateUI(userViewModel.isLoggedUser());
+                                    } else {
+                                        if (!userViewModel.isLoggedUser()) {
+                                            Result.Error error = (Result.Error) result2;
+                                            Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            } else {
+                                Snackbar.make(requireView(), R.string.unexpected_error, Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
 
         mGoogleApiClient = GoogleSignIn.getClient(requireActivity(), gso);
     }
@@ -144,7 +175,7 @@ public class LoginFragment extends Fragment {
         login_google.setOnClickListener(v -> {
             progressIndicator.setVisibility(View.VISIBLE);
             Intent signInIntent = mGoogleApiClient.getSignInIntent();
-            startActivityForResult(signInIntent, RC_SIGN_IN);
+            googleActivityResultLauncher.launch(signInIntent);
             progressIndicator.setVisibility(View.GONE);
         });
     }
@@ -162,45 +193,5 @@ public class LoginFragment extends Fragment {
     public void onStart() {
         super.onStart();
         updateUI(userViewModel.isLoggedUser());
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (result.isSuccess()) {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = result.getSignInAccount();
-                if(account != null) {
-
-                    userViewModel.signInGoogle(account.getIdToken());
-
-                    try {
-                        TimeUnit.SECONDS.sleep(1);
-                    } catch (InterruptedException e) {
-                        Snackbar.make(requireView(), e.getMessage(), Snackbar.LENGTH_SHORT).show();
-                    }
-
-                    userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result2 -> {
-                        progressIndicator.setVisibility(View.GONE);
-                        if (result2.isSuccess()) {
-                            updateUI(userViewModel.isLoggedUser());
-                        } else {
-                            if (!userViewModel.isLoggedUser()) {
-                                Result.Error error = (Result.Error) result2;
-                                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                } else {
-                    Snackbar.make(requireView(), R.string.unexpected_error, Snackbar.LENGTH_SHORT).show();
-                }
-            } else {
-                Snackbar.make(requireView(), R.string.unexpected_error, Snackbar.LENGTH_SHORT).show();
-            }
-        }
     }
 }
