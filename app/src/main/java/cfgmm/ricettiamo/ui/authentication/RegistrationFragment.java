@@ -12,6 +12,7 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -61,21 +62,16 @@ public class RegistrationFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        view.setFocusableInTouchMode(true);
-        view.requestFocus();
-        view.setFocusableInTouchMode(false);
-
         e_name = view.findViewById(R.id.r_nome_layout);
         e_surname = view.findViewById(R.id.r_cognome_layout);
         e_email = view.findViewById(R.id.r_email_layout);
         e_password = view.findViewById(R.id.r_password_layout);
+        LinearProgressIndicator linear_pb = view.findViewById(R.id.progress_bar_r);
 
         Button registration = view.findViewById(R.id.r_creaAccount);
 
         registration.setOnClickListener(v -> {
-            v.setFocusableInTouchMode(true);
-            v.requestFocus();
-            v.setFocusableInTouchMode(false);
+            linear_pb.setVisibility(View.VISIBLE);
 
             String name = e_name.getEditText().getText().toString().trim();
             String surname = e_surname.getEditText().getText().toString().trim();
@@ -108,6 +104,7 @@ public class RegistrationFragment extends Fragment {
                 }
             }
 
+            linear_pb.setVisibility(View.GONE);
         });
     }
 

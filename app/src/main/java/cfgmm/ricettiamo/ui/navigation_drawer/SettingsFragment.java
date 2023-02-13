@@ -78,10 +78,8 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        CircularProgressIndicator progressIndicator = view.findViewById(R.id.s_progress_circular);
-
         userViewModel.getCurrentPhotoLiveData().observe(getViewLifecycleOwner(), result -> {
-            progressIndicator.setVisibility(View.VISIBLE);
+            binding.progressBar.setVisibility(View.VISIBLE);
             if(result.isSuccess()) {
                 Uri photo = ((Result.PhotoResponseSuccess) result).getData();
                 try {
@@ -94,11 +92,11 @@ public class SettingsFragment extends Fragment {
                 }
                 photoProfile = photo;
             }
-            progressIndicator.setVisibility(View.GONE);
+            binding.progressBar.setVisibility(View.GONE);
         });
 
         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
-            progressIndicator.setVisibility(View.VISIBLE);
+            binding.progressBar.setVisibility(View.VISIBLE);
             if(result.isSuccess()) {
                 User user = ((Result.UserResponseSuccess) result).getData();
                 if(userViewModel.isLoggedUser()){
@@ -115,7 +113,7 @@ public class SettingsFragment extends Fragment {
                     requireActivity().finish();
                 }
             }
-            progressIndicator.setVisibility(View.GONE);
+            binding.progressBar.setVisibility(View.GONE);
         });
 
         binding.changeUserPhoto.setOnClickListener(v -> startPhoto());
