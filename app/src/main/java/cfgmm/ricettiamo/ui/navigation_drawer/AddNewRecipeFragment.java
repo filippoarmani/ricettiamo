@@ -4,8 +4,10 @@ import static android.text.TextUtils.isEmpty;
 import static cfgmm.ricettiamo.util.Constants.IMAGE;
 
 import android.Manifest;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -253,9 +256,13 @@ public class AddNewRecipeFragment extends Fragment {
                 @Override
                 public void onActivityResult(Uri uri) {
                     try {
-                        mainPicture = uri;
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), uri);
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                        mainPicture = Uri.parse(MediaStore.Images.Media.insertImage(requireActivity().getContentResolver(), bitmap, "Title", null));
+
                         Glide.with(requireContext())
-                                .load(uri)
+                                .load(mainPicture)
                                 .into(binding.addMainPicture);
                     } catch (Exception e) {
                         e.printStackTrace();
