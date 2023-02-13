@@ -95,6 +95,11 @@ public class LoginFragment extends Fragment {
                     String idToken = credential.getGoogleIdToken();
                     if (idToken !=  null) {
                         userViewModel.signInGoogle(idToken);
+                        try {
+                            TimeUnit.SECONDS.sleep(1);
+                        } catch (InterruptedException e) {
+                            Snackbar.make(requireView(), e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                        }
 
                         userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
                             progressIndicator.setVisibility(View.GONE);
@@ -147,27 +152,9 @@ public class LoginFragment extends Fragment {
                 try {
                     TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    Snackbar.make(requireView(), e.getMessage(), Snackbar.LENGTH_SHORT).show();
                 }
-                /*MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext());
-                builder.setMessage(R.string.confirmation)
-                        .setPositiveButton(android.R.string.ok, (dialog, id) -> {
-                            userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
-                                progressIndicator.setVisibility(View.GONE);
-                                Log.e("user 2 ", String.valueOf(userViewModel.isLoggedUser()));
-                                if(result.isSuccess()) {
-                                    updateUI(userViewModel.isLoggedUser());
-                                } else {
-                                    if(!userViewModel.isLoggedUser()) {
-                                        Result.Error error = (Result.Error) result;
-                                        Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-                            dialog.cancel();
-                        })
-                        .setNegativeButton(android.R.string.cancel, (dialog, id) -> dialog.cancel()).create().show();
-*/
+
                 userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
                     progressIndicator.setVisibility(View.GONE);
                     if(result.isSuccess()) {
@@ -196,11 +183,7 @@ public class LoginFragment extends Fragment {
             oneTapClient.beginSignIn(signInRequest)
                     .addOnSuccessListener(requireActivity(), result -> {
                         Log.d(TAG, "onSuccess from oneTapClient.beginSignIn(BeginSignInRequest)");
-                        try {
-                            TimeUnit.SECONDS.sleep(1);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+
                         IntentSenderRequest intentSenderRequest =
                                 new IntentSenderRequest.Builder(result.getPendingIntent()).build();
                         activityResultLauncher.launch(intentSenderRequest);

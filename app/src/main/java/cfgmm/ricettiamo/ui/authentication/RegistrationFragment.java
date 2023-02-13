@@ -94,7 +94,7 @@ public class RegistrationFragment extends Fragment {
                 try {
                     TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    Snackbar.make(requireView(), e.getMessage(), Snackbar.LENGTH_SHORT).show();
                 }
 
                 Result result = userViewModel.getCurrentUserLiveData().getValue();
