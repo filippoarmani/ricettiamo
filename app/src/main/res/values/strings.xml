@@ -21,7 +21,7 @@
     <!--login/register-->
     <string name="email" translatable="false">Email</string>
     <string name="password" translatable="false">Password</string>
-    <string name="login" translatable="false">Login</string>
+    <string name="login">Login</string>
     <string name="p_lost">Forgot Password?</string>
     <string name="sign_in">Sign In</string>
     <string name="welcome">Welcome!</string>

@@ -15,6 +15,7 @@
     <!--profile-->
 
     <!--login/register-->
+    <string name="login">Accedi</string>
     <string name="p_lost">Password dimenticata?</string>
     <string name="sign_in">Registrati</string>
     <string name="welcome">Benvenuto!</string>
