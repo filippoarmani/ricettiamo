@@ -118,9 +118,9 @@ public class FavouritesFragment extends Fragment {
                                     firebaseFavoriteList.add(recipe);
                             }
 
-                            allRecipeListFirebase.clear();
-                            allRecipeListFirebase.addAll(memoryFavoriteList);
-                            allRecipeListFirebase.addAll(firebaseFavoriteList);
+                            allFavoriteList.clear();
+                            allFavoriteList.addAll(memoryFavoriteList);
+                            allFavoriteList.addAll(firebaseFavoriteList);
 
                             requireActivity().runOnUiThread(() -> recipesRecyclerAdapter.notifyDataSetChanged());
                         }
