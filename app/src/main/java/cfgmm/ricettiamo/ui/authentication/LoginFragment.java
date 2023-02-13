@@ -28,6 +28,8 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.concurrent.TimeUnit;
+
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.model.Result;
@@ -142,6 +144,11 @@ public class LoginFragment extends Fragment {
 
             if (!(isEmpty(email) || isEmpty(password))) {
                 userViewModel.signIn(email, password);
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 /*MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext());
                 builder.setMessage(R.string.confirmation)
                         .setPositiveButton(android.R.string.ok, (dialog, id) -> {
@@ -149,11 +156,9 @@ public class LoginFragment extends Fragment {
                                 progressIndicator.setVisibility(View.GONE);
                                 Log.e("user 2 ", String.valueOf(userViewModel.isLoggedUser()));
                                 if(result.isSuccess()) {
-                                    Log.e("user 3 ", String.valueOf(userViewModel.isLoggedUser()));
                                     updateUI(userViewModel.isLoggedUser());
                                 } else {
                                     if(!userViewModel.isLoggedUser()) {
-                                        Log.e("user 4 ", String.valueOf(userViewModel.isLoggedUser()));
                                         Result.Error error = (Result.Error) result;
                                         Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
                                     }
@@ -191,6 +196,11 @@ public class LoginFragment extends Fragment {
             oneTapClient.beginSignIn(signInRequest)
                     .addOnSuccessListener(requireActivity(), result -> {
                         Log.d(TAG, "onSuccess from oneTapClient.beginSignIn(BeginSignInRequest)");
+                        try {
+                            TimeUnit.SECONDS.sleep(1);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                         IntentSenderRequest intentSenderRequest =
                                 new IntentSenderRequest.Builder(result.getPendingIntent()).build();
                         activityResultLauncher.launch(intentSenderRequest);

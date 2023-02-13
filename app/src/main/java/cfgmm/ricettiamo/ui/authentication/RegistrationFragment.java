@@ -17,6 +17,8 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import java.util.concurrent.TimeUnit;
+
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.model.Result;
@@ -89,6 +91,11 @@ public class RegistrationFragment extends Fragment {
                         email
                 );
                 userViewModel.signUp(newUser, email, password);
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
 
                 Result result = userViewModel.getCurrentUserLiveData().getValue();
                 if(userViewModel.isLoggedUser()) {
