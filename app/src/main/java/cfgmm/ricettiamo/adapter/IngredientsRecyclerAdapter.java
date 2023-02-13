@@ -73,12 +73,9 @@ public class IngredientsRecyclerAdapter extends
                 notifyItemRemoved(position);
 
                 Snackbar.make(view, deleteItem.getName(), Snackbar.LENGTH_SHORT).
-                        setAction("UNDO", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                ingredientList.add(position,deleteItem);
-                                notifyItemInserted(position);
-                            }
+                        setAction("UNDO", v -> {
+                            ingredientList.add(position,deleteItem);
+                            notifyItemInserted(position);
                         }).show();
             }
         });

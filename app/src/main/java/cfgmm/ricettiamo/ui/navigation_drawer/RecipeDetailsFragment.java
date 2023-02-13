@@ -51,8 +51,6 @@ public class RecipeDetailsFragment extends Fragment {
     private UserViewModel userViewModel;
     private CommentViewModel commentViewModel;
     private List<Comment> comments;
-    private IngredientDetailRecipesRecyclerAdapter ingredientDetailRecipesRecyclerAdapter;
-    private StepsRecyclerAdapter stepsRecyclerAdapter;
 
     public RecipeDetailsFragment() {}
 
@@ -99,8 +97,8 @@ public class RecipeDetailsFragment extends Fragment {
         LinearLayoutManager layoutManageringredients =
                 new LinearLayoutManager(requireContext(),
                         LinearLayoutManager.VERTICAL, false);
-        ingredientDetailRecipesRecyclerAdapter = new IngredientDetailRecipesRecyclerAdapter(recipe.getIngredientsList(),
-                requireActivity().getApplication());
+        IngredientDetailRecipesRecyclerAdapter ingredientDetailRecipesRecyclerAdapter =
+                new IngredientDetailRecipesRecyclerAdapter(recipe.getIngredientsList(), requireActivity().getApplication());
 
         recyclerviewDetailRecipeIngredients.setLayoutManager(layoutManageringredients);
         recyclerviewDetailRecipeIngredients.setAdapter(ingredientDetailRecipesRecyclerAdapter);
@@ -113,7 +111,7 @@ public class RecipeDetailsFragment extends Fragment {
         for (int i = 0; i < recipe.getSteps().size(); i++) {
             if (recipe.getSteps().get(i).getName().equals("")) stepAnalyzeNumber = i;
         }
-        stepsRecyclerAdapter =
+        StepsRecyclerAdapter stepsRecyclerAdapter =
                 new StepsRecyclerAdapter(recipe.getSteps().get(stepAnalyzeNumber).getSteps(),
                 requireActivity().getApplication());
 

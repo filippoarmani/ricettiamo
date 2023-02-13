@@ -37,7 +37,6 @@ public class FridgeFragment extends Fragment {
     private final String TAG = FridgeFragment.class.getSimpleName();
     private List<Ingredient> ingredientList;
     private IngredientsRecyclerAdapter adapter;
-    private IIngredientsRepository ingredientsRepository;
     private IngredientViewModel ingredientViewModel;
 
     public FridgeFragment() {}
@@ -50,8 +49,10 @@ public class FridgeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ingredientsRepository = ServiceLocator.getInstance().getIngredientRepository(requireActivity().getApplication());
-        ingredientViewModel = new ViewModelProvider(requireActivity(), new IngredientViewModelFactory(ingredientsRepository)).get(IngredientViewModel.class);
+        IIngredientsRepository ingredientsRepository =
+                ServiceLocator.getInstance().getIngredientRepository(requireActivity().getApplication());
+        ingredientViewModel = new ViewModelProvider(requireActivity(),
+                new IngredientViewModelFactory(ingredientsRepository)).get(IngredientViewModel.class);
         ingredientList = new ArrayList<>();
     }
 

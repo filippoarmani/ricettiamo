@@ -26,25 +26,4 @@ public interface    RecipeApiService {
             @Query("addRecipeInformation") boolean addRecipeInformation,
             @Query("fillIngredients") boolean addRecipeIngredients,
             @Header("x-api-key") String apiKey);
-
-    //search recipes by ingredient
-    @GET(SEARCH_RECIPES_BY_INGREDIENT)
-    Call<RecipeApiResponse> getRecipesByIngredient(
-            //A comma-separated list of ingredients that the recipes should contain.
-            //example: apples,flour,sugar
-            @Query(INGREDIENTS_LIST) String listOfIngredients,
-            @Query("number") int number,
-            @Header("x-api-key") String apiKey);
-
-    //search ingredient
-    @GET(SEARCH_INGREDIENT)
-    Call<RecipeApiResponse> getIngredientByName(
-            @Query(RECIPE_PARAMETER) String name,
-            @Header("x-api-key") String apiKey);
-
-    //get recipe ingredients
-    @GET("recipes/{idRecipe}/ingredientWidget.json")
-    Call<RecipeApiResponse> getRecipeIngredients(
-            @Path("idRecipe") int idRecipe,
-            @Header("x-api-key") String apiKey);
 }

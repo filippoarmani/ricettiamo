@@ -38,7 +38,6 @@ public class ShoppingListFragment extends Fragment {
 
     private List<Ingredient> shoppingList;
     private IngredientsRecyclerAdapter adapter;
-    private IIngredientsRepository ingredientsRepository;
     private IngredientViewModel ingredientViewModel;
     public ShoppingListFragment() {}
 
@@ -49,7 +48,7 @@ public class ShoppingListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ingredientsRepository = ServiceLocator.getInstance().getIngredientRepository(requireActivity().getApplication());
+        IIngredientsRepository ingredientsRepository = ServiceLocator.getInstance().getIngredientRepository(requireActivity().getApplication());
         ingredientViewModel = new ViewModelProvider(requireActivity(), new IngredientViewModelFactory(ingredientsRepository)).get(IngredientViewModel.class);
         shoppingList = new ArrayList<>();
     }

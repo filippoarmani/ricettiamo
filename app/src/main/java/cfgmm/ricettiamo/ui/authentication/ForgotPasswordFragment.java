@@ -36,7 +36,7 @@ public class ForgotPasswordFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ForgotPasswordFragment newInstance(String param1, String param2) {
+    public static ForgotPasswordFragment newInstance() {
         return new ForgotPasswordFragment();
     }
 

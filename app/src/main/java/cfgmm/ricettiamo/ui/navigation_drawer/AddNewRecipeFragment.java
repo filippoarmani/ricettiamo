@@ -57,7 +57,6 @@ public class AddNewRecipeFragment extends Fragment {
     private FragmentMAddNewRecipeBinding binding;
     private IngredientsRecyclerAdapter adapterIngredient;
     private StepsRecyclerAdapter stepsRecyclerAdapter;
-    private UserViewModel userViewModel;
     private RecipeViewModel recipeViewModel;
 
     private Uri mainPicture;
@@ -100,7 +99,7 @@ public class AddNewRecipeFragment extends Fragment {
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
         IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
-        userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
+        UserViewModel userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
         Result result = userViewModel.getCurrentUserLiveData().getValue();
         if(result != null && result.isSuccess()) {
             author = ((Result.UserResponseSuccess) result).getData().getId();

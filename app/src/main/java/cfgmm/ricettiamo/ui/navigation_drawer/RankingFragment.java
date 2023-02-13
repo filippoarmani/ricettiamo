@@ -31,7 +31,7 @@ public class RankingFragment extends Fragment {
     }
 
 
-    public static RankingFragment newInstance(String param1, String param2) {
+    public static RankingFragment newInstance() {
         RankingFragment fragment = new RankingFragment();
         return fragment;
     }
