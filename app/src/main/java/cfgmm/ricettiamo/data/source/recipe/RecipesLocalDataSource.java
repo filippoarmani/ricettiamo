@@ -1,13 +1,17 @@
 package cfgmm.ricettiamo.data.source.recipe;
 
+import android.util.Log;
+
 import java.util.List;
 
 import cfgmm.ricettiamo.data.database.RecipesDao;
 import cfgmm.ricettiamo.data.database.RecipesRoomDatabase;
+import cfgmm.ricettiamo.data.source.ingredient.IngredientLocalDataSource;
 import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.Recipe;
 
 public class RecipesLocalDataSource extends BaseRecipesLocalDataSource{
+    private static final String TAG = RecipesLocalDataSource.class.getSimpleName();
 
     private final RecipesDao recipesDao;
 
@@ -38,7 +42,21 @@ public class RecipesLocalDataSource extends BaseRecipesLocalDataSource{
     @Override
     public void updateRecipes(Recipe recipe) {
         RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            recipesDao.updateSingleFavoriteRecipes(recipe);
+            Recipe recipeDatabase = recipesDao.getRecipe(recipe.getId());
+            if (recipeDatabase == null)
+                insertRecipe(recipe);
+            else
+                recipesDao.updateSingleFavoriteRecipes(recipe);
+
+            recipesCallback.onRecipesFavoriteStatusChanged(recipe);
+        });
+    }
+
+    @Override
+    public void insertRecipe(Recipe recipe) {
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
+            recipesDao.insertRecipe(recipe);
+            Log.d(TAG, "insertRecipe");
             recipesCallback.onRecipesFavoriteStatusChanged(recipe);
         });
     }

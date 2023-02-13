@@ -1,6 +1,7 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,14 +97,14 @@ public class FavouritesFragment extends Fragment {
 
                 allFavoriteList.clear();
                 allFavoriteList.addAll(memoryFavoriteList);
-                allFavoriteList.addAll(firebaseFavoriteList);
+                //allFavoriteList.addAll(firebaseFavoriteList);
 
                 requireActivity().runOnUiThread(() -> recipesRecyclerAdapter.notifyDataSetChanged());
             }
             progressBar.setVisibility(View.GONE);
         });
 
-        userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
+        /*userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
             progressBar.setVisibility(View.VISIBLE);
             if (result != null && result.isSuccess()) {
 
@@ -113,10 +114,12 @@ public class FavouritesFragment extends Fragment {
 
                         if (allRecipeListFirebase != null && allRecipeListFirebase.size() > 0) {
                             firebaseFavoriteList.clear();
+                            Log.e("fav ", String.valueOf(firebaseFavoriteList.size()));
                             for (Recipe recipe: allRecipeListFirebase) {
                                 if (recipe.isFavorite())
                                     firebaseFavoriteList.add(recipe);
                             }
+                            Log.e("fav ", String.valueOf(firebaseFavoriteList.size()));
 
                             allFavoriteList.clear();
                             allFavoriteList.addAll(memoryFavoriteList);
@@ -133,7 +136,7 @@ public class FavouritesFragment extends Fragment {
                 Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
             }
             progressBar.setVisibility(View.GONE);
-        });
+        });*/
 
         RecyclerView recyclerviewFavRecipes = view.findViewById(R.id.recyclerview_favourite_recipes);
         LinearLayoutManager layoutManager =

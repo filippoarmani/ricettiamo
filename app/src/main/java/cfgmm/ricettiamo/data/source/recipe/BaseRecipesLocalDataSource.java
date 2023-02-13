@@ -17,6 +17,7 @@ public abstract class BaseRecipesLocalDataSource {
     public abstract void deleteFavoriteRecipes();
 
     public abstract void updateRecipes(Recipe recipe);
+    public abstract void insertRecipe(Recipe recipe);
 
     public abstract void getFavoriteRecipes();
 

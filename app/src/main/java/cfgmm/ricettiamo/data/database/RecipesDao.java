@@ -18,7 +18,7 @@ public interface RecipesDao {
     List<Recipe> getAll();
 
     @Query("SELECT * FROM recipe WHERE id = :id")
-    Recipe getRecipes(long id);
+    Recipe getRecipe(long id);
 
     @Query("SELECT * FROM recipe WHERE is_favorite = 1")
     List<Recipe> getFavoriteRecipes();
@@ -36,6 +36,8 @@ public interface RecipesDao {
     List<Long> insertIngredientList(List<Ingredient> ingredientList);
     @Insert
     void insertIngredient(Ingredient ingredient);
+    @Insert
+    void insertRecipe(Recipe recipe);
     @Delete
     void deleteIngredient(Ingredient ingredient);
 

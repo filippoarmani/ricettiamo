@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
+import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
 
@@ -40,6 +41,10 @@ public class RecipeViewModel extends ViewModel {
             favoriteRecipes = recipesRepository.getFavoriteRecipes();
         }
         return favoriteRecipes;
+    }
+
+    public void insertRecipe(Recipe recipe) {
+        allRecipes = recipesRepository.insertRecipe(recipe);
     }
 
     /**

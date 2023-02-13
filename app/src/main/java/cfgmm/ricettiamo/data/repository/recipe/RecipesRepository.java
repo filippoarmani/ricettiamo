@@ -82,6 +82,13 @@ public class RecipesRepository implements IRecipesRepository, IRecipesDatabaseRe
         return favoriteRecipe;
     }
 
+    @Override
+    public MutableLiveData<Result> insertRecipe(Recipe recipe) {
+        recipesLocalDataSource.insertRecipe(recipe);
+
+        return allRecipes;
+    }
+
     /**
      * Gets the list of favorite recipes from the local database.
      */

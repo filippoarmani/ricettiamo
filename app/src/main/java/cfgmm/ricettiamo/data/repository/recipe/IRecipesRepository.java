@@ -15,6 +15,7 @@ public interface IRecipesRepository {
     MutableLiveData<Result> getRecipes(String user_input);
 
     MutableLiveData<Result> updateRecipes(Recipe recipe);
+    MutableLiveData<Result> insertRecipe(Recipe recipe);
 
     MutableLiveData<Result> getFavoriteRecipes();
 
