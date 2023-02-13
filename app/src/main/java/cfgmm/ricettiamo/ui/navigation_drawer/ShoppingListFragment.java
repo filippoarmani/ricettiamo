@@ -4,6 +4,7 @@ import static android.text.TextUtils.isEmpty;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +77,12 @@ public class ShoppingListFragment extends Fragment {
                         LinearLayoutManager.VERTICAL, false);
 
         adapter = new IngredientsRecyclerAdapter(requireView(), shoppingList,
-                position -> ingredientViewModel.deleteIngredient(shoppingList.get(position)));
+                position -> {
+                    ingredientViewModel.deleteIngredient(shoppingList.get(position));
+                    adapter.notifyItemRemoved(shoppingList.indexOf(shoppingList.get(position)));
+                    if (shoppingList.size() < 2) { shoppingList.clear(); }
+                    adapter.notifyDataSetChanged();
+                });
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         adapter.getItemTouchHelper().attachToRecyclerView(recyclerView);
@@ -94,8 +100,12 @@ public class ShoppingListFragment extends Fragment {
                 unit_l.setError(getString(R.string.empty_fields));
             } else {
                 float q = Float.parseFloat(qta);
-                Ingredient newIngredient = new Ingredient(name, q, unit, true, false);
+                long id = 1;
+                if (shoppingList.size() > 0) {
+                    id = shoppingList.get(shoppingList.size() - 1).getId() + 1;
+                }Ingredient newIngredient = new Ingredient(id, name, q, unit, true, false);
                 ingredientViewModel.insertIngredient(newIngredient);
+                adapter.notifyItemInserted(shoppingList.size() - 1);
             }
         });
 
@@ -104,9 +114,11 @@ public class ShoppingListFragment extends Fragment {
                 List<Ingredient> allIngredientList = ((Result.ListIngredientResponseSuccess) result).getData();
                 if(allIngredientList != null && allIngredientList.size() > 0) {
                     shoppingList.clear();
-                    for(Ingredient ingrediet: allIngredientList) {
-                        if(ingrediet.isShoppingList())
-                            shoppingList.add(ingrediet);
+                    for(Ingredient ingredient: allIngredientList) {
+                        if(ingredient.isShoppingList()) {
+                            shoppingList.add(ingredient);
+                            requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
+                        }
                     }
 
                     requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());

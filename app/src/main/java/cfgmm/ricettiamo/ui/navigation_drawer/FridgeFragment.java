@@ -4,6 +4,7 @@ import static android.text.TextUtils.isEmpty;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,12 +72,18 @@ public class FridgeFragment extends Fragment {
         TextInputLayout unit_l = view.findViewById(R.id.Fridge_textUnit_layout);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_list_ingredients_fridge);
+        recyclerView.setItemAnimator(null);
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(requireContext(),
                         LinearLayoutManager.VERTICAL, false);
 
         adapter = new IngredientsRecyclerAdapter(requireView(), ingredientList,
-                position -> ingredientViewModel.deleteIngredient(ingredientList.get(position)));
+                position -> {
+            ingredientViewModel.deleteIngredient(ingredientList.get(position));
+            adapter.notifyItemRemoved(ingredientList.indexOf(ingredientList.get(position)));
+            if (ingredientList.size() < 2) { ingredientList.clear(); }
+            adapter.notifyDataSetChanged();
+        });
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -95,8 +102,16 @@ public class FridgeFragment extends Fragment {
                 unit_l.setError(getString(R.string.empty_fields));
             } else {
                 float q = Float.parseFloat(qta);
-                Ingredient newIngredient = new Ingredient(name, q, unit, false, true);
+                long id = 1;
+                if (ingredientList.size() > 0) {
+                    id = ingredientList.get(ingredientList.size() - 1).getId() + 1;
+                }
+                Ingredient newIngredient = new Ingredient(id, name, q, unit, false, true);
                 ingredientViewModel.insertIngredient(newIngredient);
+                Log.e("dimensione ", String.valueOf(ingredientList.size()));
+                ingredientList.add(newIngredient);
+                Log.e("aggiunto ", newIngredient.toString());
+                Log.e("dimensione ", String.valueOf(ingredientList.size()));
                 adapter.notifyItemInserted(ingredientList.size() - 1);
             }
         });
@@ -107,11 +122,12 @@ public class FridgeFragment extends Fragment {
                 if(allIngredientList != null && allIngredientList.size() > 0) {
                     ingredientList.clear();
                     for(Ingredient ingrediet: allIngredientList) {
-                        if(ingrediet.isFridgeList())
+                        if(ingrediet.isFridgeList()) {
                             ingredientList.add(ingrediet);
+                        }
                     }
-
                     requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
+
                 }
             } else {
                 Snackbar.make(requireView(), R.string.unexpected_error, Snackbar.LENGTH_SHORT).show();
