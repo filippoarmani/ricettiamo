@@ -73,7 +73,7 @@
     <string name="login_later">LogIn later</string>
 
     <!--ricetta-->
-    <string name="nameRecipe" translatable="false">Spaghetti alla carbonara</string>
+    <string name="nameRecipe">Name Recipe</string>
     <string name="informations">Difficolty: Easy \nPrep time: 15min \nCost: Low \nServing: 4 ppl.</string>
     <string name="ingredients">Ingredients</string>
     <string name="ingredient_1" translatable="false">Spaghetti 320g</string>
@@ -172,7 +172,7 @@
     <string name="main_picture">Main Picture of the recipe</string>
     <string name="_informations">Informations</string>
     <string name="name_of_the_ingredient">Ingredient Name</string>
-    <string name="unit">Unit of measure</string>
+    <string name="unit">Unit</string>
     <string name="type_new_step">Type new step</string>
     <string name="save_recipe">Save recipe</string>
     <string name="delete_recipe">Delete recipe</string>

@@ -52,8 +52,6 @@ public class LoginFragment extends Fragment {
 
     private UserViewModel userViewModel;
 
-    private Button login_google;
-
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -131,7 +129,7 @@ public class LoginFragment extends Fragment {
         password_layout = view.findViewById(R.id.l_password_layout);
 
         Button login_password = view.findViewById(R.id.l_login);
-        login_google = view.findViewById(R.id.button_Login_Google);
+        Button login_google = view.findViewById(R.id.button_Login_Google);
         Button f_password = view.findViewById(R.id.l_forgotPassword);
         Button login_later = view.findViewById(R.id.btn_noLogIn);
         Button sign_up = view.findViewById(R.id.l_registration);

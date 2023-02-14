@@ -16,8 +16,8 @@
             android:id="@+id/imageRecipe"
             android:layout_width="match_parent"
             android:layout_height="248dp"
-            android:background="@drawable/esempio_carbonara"
-            android:contentDescription="@string/nameRecipe" />
+            android:background="@drawable/ic_add"
+            android:contentDescription="@string/add_photo" />
 
         <TextView
             android:id="@+id/nameRecipe"

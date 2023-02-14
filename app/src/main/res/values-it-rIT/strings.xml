@@ -49,6 +49,7 @@
 
     <!--ricetta-->
 
+    <string name="nameRecipe">Nome Ricetta</string>
     <string name="informations">Difficoltà: Facile\nPreparazione: 15min\nCosto: Basso\nDosi per: 4 persone</string>
     <string name="ingredients">Ingredienti</string>
     <string name="preparation">Preparazione</string>
@@ -108,7 +109,7 @@
     <string name="main_picture">Immagine principale della ricetta</string>
     <string name="_informations">Informazioni</string>
     <string name="name_of_the_ingredient">Nome ingrediente</string>
-    <string name="unit">Unità di misura</string>
+    <string name="unit">Unità</string>
     <string name="type_new_step">Inserisci nuovo step</string>
     <string name="save_recipe">Salva ricetta</string>
     <string name="delete_recipe">Elimina Ricetta</string>

@@ -29,7 +29,6 @@ public class RecipesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         void onFavoriteButtonPressed(int position);
     }
     private final List<Recipe> recipeList;
-    //private final List<Recipe> firebaseList;
     private final Application application;
     private final OnItemClickListener onItemClickListener;
 
@@ -38,16 +37,7 @@ public class RecipesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         this.application = application;
         this.recipeList = recipeList;
         this.onItemClickListener = onItemClickListener;
-       // firebaseList = null;
     }
-
-    /*public RecipesRecyclerAdapter(List<Recipe> recipeList,List<Recipe> firebaseList, Application application,
-                                  OnItemClickListener onItemClickListener) {
-        this.application = application;
-        this.recipeList = recipeList;
-        this.firebaseList = firebaseList;
-        this.onItemClickListener = onItemClickListener;
-    }*/
 
     @NonNull
     @Override
@@ -83,9 +73,6 @@ public class RecipesRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
         public RecipeViewHolder(@NonNull View itemView) {
             super(itemView);
-            //if (firebaseList != null) {
-            //    for (Recipe recipe : firebaseList) recipeList.add(recipe);
-            //}
             textViewName = itemView.findViewById(R.id.src_nameRecipe);
             textViewServings = itemView.findViewById(R.id.src_servings_value);
             textViewPrepTime = itemView.findViewById(R.id.src_prep_time_value);
