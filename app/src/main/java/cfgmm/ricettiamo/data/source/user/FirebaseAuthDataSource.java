@@ -86,12 +86,8 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
     @Override
     public void resetPassword(String email) {
         firebaseAuth.sendPasswordResetEmail(email)
-                .addOnSuccessListener(task -> {
-                    Log.d(TAG, "resetPassword: success");
-                })
-                .addOnFailureListener(error -> {
-                    Log.d(TAG, "resetPassword: failure");
-                });
+                .addOnSuccessListener(task -> Log.d(TAG, "resetPassword: success"))
+                .addOnFailureListener(error -> Log.d(TAG, "resetPassword: failure"));
     }
 
     @Override
@@ -118,17 +114,15 @@ public class FirebaseAuthDataSource extends BaseFirebaseAuthDataSource {
         if(isLoggedUser()) {
             AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), oldPassword);
             user.reauthenticate(credential)
-                    .addOnSuccessListener(task -> {
-                        user.updatePassword(newPassword)
-                                .addOnSuccessListener(task2 -> {
-                                    Log.d(TAG, "updatePassword: success");
-                                    userResponseCallBack.onSuccessUpdatePassword();
-                                })
-                                .addOnFailureListener(error -> {
-                                    Log.d(TAG, "updatePassword: failure");
-                                    userResponseCallBack.onFailureUpdatePassword(R.string.updatePassword_error);
-                                });
-                    })
+                    .addOnSuccessListener(task -> user.updatePassword(newPassword)
+                            .addOnSuccessListener(task2 -> {
+                                Log.d(TAG, "updatePassword: success");
+                                userResponseCallBack.onSuccessUpdatePassword();
+                            })
+                            .addOnFailureListener(error -> {
+                                Log.d(TAG, "updatePassword: failure");
+                                userResponseCallBack.onFailureUpdatePassword(R.string.updatePassword_error);
+                            }))
                     .addOnFailureListener(error -> {
                         Log.d(TAG, "reauthenticate: failure");
                         userResponseCallBack.onFailureUpdatePassword(R.string.updatePassword_error);

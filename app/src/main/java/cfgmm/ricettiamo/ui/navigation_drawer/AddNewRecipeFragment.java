@@ -126,10 +126,7 @@ public class AddNewRecipeFragment extends Fragment {
 
         //ingredient adapter
         binding.ingredientRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,  false));
-        adapterIngredient = new IngredientsRecyclerAdapter(requireView(), ingredientList, new IngredientsRecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onDeleteButtonPressed(int position) {
-            }
+        adapterIngredient = new IngredientsRecyclerAdapter(requireView(), ingredientList, position -> {
         });
         binding.ingredientRecyclerView.setAdapter(adapterIngredient);
         adapterIngredient.getItemTouchHelper().attachToRecyclerView(binding.ingredientRecyclerView);

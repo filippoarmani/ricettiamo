@@ -143,9 +143,7 @@ public class DatabaseDataSource extends BaseDatabaseDataSource {
                         }
                     }
                 })
-                .addOnFailureListener(error -> {
-                   exist.set(false);
-                });
+                .addOnFailureListener(error -> exist.set(false));
 
         return exist.get();
     }

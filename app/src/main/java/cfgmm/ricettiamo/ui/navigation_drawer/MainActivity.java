@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     Glide.with(this)
                             .load(photo)
                             .circleCrop()
+                            .placeholder(R.drawable.user)
                             .into(photoProfile);
                 } catch (Exception e) { }
             }

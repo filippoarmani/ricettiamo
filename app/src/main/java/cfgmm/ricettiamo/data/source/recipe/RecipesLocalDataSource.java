@@ -6,7 +6,6 @@ import java.util.List;
 
 import cfgmm.ricettiamo.data.database.RecipesDao;
 import cfgmm.ricettiamo.data.database.RecipesRoomDatabase;
-import cfgmm.ricettiamo.data.source.ingredient.IngredientLocalDataSource;
 import cfgmm.ricettiamo.model.Ingredient;
 import cfgmm.ricettiamo.model.Recipe;
 
@@ -66,9 +65,7 @@ public class RecipesLocalDataSource extends BaseRecipesLocalDataSource{
      */
     @Override
     public void getFavoriteRecipes() {
-        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            recipesCallback.onSuccessFavorite(recipesDao.getFavoriteRecipes());
-        });
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> recipesCallback.onSuccessFavorite(recipesDao.getFavoriteRecipes()));
     }
 
     /**
@@ -113,8 +110,6 @@ public class RecipesLocalDataSource extends BaseRecipesLocalDataSource{
      * because the database access cannot been executed in the main thread.
      */
     private void readDataFromDatabase() {
-        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> {
-            recipesCallback.onSuccessFromDatabase(recipesDao.getAll());
-        });
+        RecipesRoomDatabase.databaseWriteExecutor.execute(() -> recipesCallback.onSuccessFromDatabase(recipesDao.getAll()));
     }
 }

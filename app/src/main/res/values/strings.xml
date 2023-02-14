@@ -203,6 +203,7 @@
     <string name="invalid_email">Invalid Email</string>
     <string name="no_recipes_found">No recipes found</string>
     <string name="community">The chefs of RicettiAmo offer:</string>
+    <string name="maxStars" translatable="false">/5</string>
 
     <string-array name="point_array">
         <item>0</item>

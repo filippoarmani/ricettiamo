@@ -1,7 +1,6 @@
 package cfgmm.ricettiamo.data.repository.user;
 
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
