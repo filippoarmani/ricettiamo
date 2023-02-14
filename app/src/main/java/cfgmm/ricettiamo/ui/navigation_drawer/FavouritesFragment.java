@@ -1,7 +1,6 @@
 package cfgmm.ricettiamo.ui.navigation_drawer;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +21,11 @@ import java.util.List;
 import cfgmm.ricettiamo.R;
 import cfgmm.ricettiamo.adapter.RecipesRecyclerAdapter;
 import cfgmm.ricettiamo.data.repository.recipe.IRecipesRepository;
-import cfgmm.ricettiamo.data.repository.user.IUserRepository;
 import cfgmm.ricettiamo.model.Recipe;
 import cfgmm.ricettiamo.model.Result;
 import cfgmm.ricettiamo.util.ServiceLocator;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModel;
 import cfgmm.ricettiamo.viewmodel.RecipeViewModelFactory;
-import cfgmm.ricettiamo.viewmodel.UserViewModel;
-import cfgmm.ricettiamo.viewmodel.UserViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,12 +37,9 @@ public class FavouritesFragment extends Fragment {
     private static final String TAG = FavouritesFragment.class.getSimpleName();
 
     private List<Recipe> allFavoriteList;
-    private List<Recipe> firebaseFavoriteList;
-    private List<Recipe> memoryFavoriteList;
 
     private RecipesRecyclerAdapter recipesRecyclerAdapter;
     private LinearProgressIndicator progressBar;
-    private UserViewModel userViewModel;
     private RecipeViewModel recipeViewModel;
 
     public FavouritesFragment() {}
@@ -67,16 +58,12 @@ public class FavouritesFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         allFavoriteList = new ArrayList<>();
-        firebaseFavoriteList = new ArrayList<>();
-        memoryFavoriteList = new ArrayList<>();
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        IUserRepository userRepository = ServiceLocator.getInstance().getUserRepository();
-        userViewModel = new ViewModelProvider(requireActivity(), new UserViewModelFactory(userRepository)).get(UserViewModel.class);
 
         IRecipesRepository iRecipesRepository = ServiceLocator.getInstance().getRecipesRepository(requireActivity().getApplication());
         recipeViewModel = new ViewModelProvider(requireActivity(), new RecipeViewModelFactory(iRecipesRepository)).get(RecipeViewModel.class);
@@ -92,51 +79,14 @@ public class FavouritesFragment extends Fragment {
         recipeViewModel.getFavoriteRecipes().observe(getViewLifecycleOwner(), result -> {
             progressBar.setVisibility(View.VISIBLE);
             if(result != null && result.isSuccess()) {
-                memoryFavoriteList.clear();
-                memoryFavoriteList.addAll(((Result.ListRecipeResponseSuccess) result).getData());
 
                 allFavoriteList.clear();
-                allFavoriteList.addAll(memoryFavoriteList);
-                //allFavoriteList.addAll(firebaseFavoriteList);
+                allFavoriteList.addAll(((Result.ListRecipeResponseSuccess) result).getData());
 
                 requireActivity().runOnUiThread(() -> recipesRecyclerAdapter.notifyDataSetChanged());
             }
             progressBar.setVisibility(View.GONE);
         });
-
-        /*userViewModel.getCurrentUserLiveData().observe(getViewLifecycleOwner(), result -> {
-            progressBar.setVisibility(View.VISIBLE);
-            if (result != null && result.isSuccess()) {
-
-                recipeViewModel.getAllRecipes().observe(getViewLifecycleOwner(), resultRecipe -> {
-                    if (resultRecipe != null && resultRecipe.isSuccess()) {
-                        List<Recipe> allRecipeListFirebase = ((Result.ListRecipeResponseSuccess) resultRecipe).getData();
-
-                        if (allRecipeListFirebase != null && allRecipeListFirebase.size() > 0) {
-                            firebaseFavoriteList.clear();
-                            Log.e("fav ", String.valueOf(firebaseFavoriteList.size()));
-                            for (Recipe recipe: allRecipeListFirebase) {
-                                if (recipe.isFavorite())
-                                    firebaseFavoriteList.add(recipe);
-                            }
-                            Log.e("fav ", String.valueOf(firebaseFavoriteList.size()));
-
-                            allFavoriteList.clear();
-                            allFavoriteList.addAll(memoryFavoriteList);
-                            allFavoriteList.addAll(firebaseFavoriteList);
-
-                            requireActivity().runOnUiThread(() -> recipesRecyclerAdapter.notifyDataSetChanged());
-                        }
-                    } else {
-                        Snackbar.make(requireView(), getString(R.string.error_retrieving_recipe), Snackbar.LENGTH_SHORT).show();
-                    }
-                });
-            } else {
-                Result.Error error = ((Result.Error) result);
-                Snackbar.make(requireView(), error.getMessage(), Snackbar.LENGTH_SHORT).show();
-            }
-            progressBar.setVisibility(View.GONE);
-        });*/
 
         RecyclerView recyclerviewFavRecipes = view.findViewById(R.id.recyclerview_favourite_recipes);
         LinearLayoutManager layoutManager =

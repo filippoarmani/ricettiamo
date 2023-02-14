@@ -103,10 +103,7 @@ public class FridgeFragment extends Fragment {
             } else {
                 float q = Float.parseFloat(qta);
                 long id = 1;
-                if (ingredientList.size() > 0) {
-                    id = ingredientList.get(ingredientList.size() - 1).getId() + 1;
-                }
-                Ingredient newIngredient = new Ingredient(id, name, q, unit, false, true);
+                Ingredient newIngredient = new Ingredient(name, q, unit, false, true);
                 ingredientViewModel.insertIngredient(newIngredient);
                 ingredientList.add(newIngredient);
                 adapter.notifyItemInserted(ingredientList.size() - 1);

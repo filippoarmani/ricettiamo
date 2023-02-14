@@ -99,9 +99,7 @@ public class ShoppingListFragment extends Fragment {
             } else {
                 float q = Float.parseFloat(qta);
                 long id = 1;
-                if (shoppingList.size() > 0) {
-                    id = shoppingList.get(shoppingList.size() - 1).getId() + 1;
-                }Ingredient newIngredient = new Ingredient(id, name, q, unit, true, false);
+                Ingredient newIngredient = new Ingredient(name, q, unit, true, false);
                 ingredientViewModel.insertIngredient(newIngredient);
                 adapter.notifyItemInserted(shoppingList.size() - 1);
             }
